@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About · M&A Intelligence</title>
+<meta name="description" content="Who writes M&A Intelligence and why.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--off-white:#F8F6F2;--paper:#F2EEE6;--navy:#0F1F3D;--navy-mid:#1B2F52;--rule:#D8D0C0;--rule-light:#EAE4D8;--black:#111111;--grey:#444444;--grey-mid:#666666;--grey-light:#888888;--accent:#8B1A1A;--border:rgba(0,0,0,0.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:18px}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;background:var(--navy);z-index:300;transform:translateX(-280px);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:299}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-logo-bar{width:2px;height:16px;background:var(--accent);flex-shrink:0}
+.sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:1.4rem;cursor:pointer;line-height:1;padding:0 4px}
+.sb-close:hover{color:var(--white)}
+.sb-section{font-size:0.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:1.25rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
+.sb-link:hover,.sb-link.active{color:var(--white)}
+.sb-link.active{font-weight:600}
+.sb-issue{display:block;padding:0.5rem 0;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s}
+.sb-issue:hover{color:rgba(255,255,255,0.65)}
+.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--white);color:var(--navy);border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
+nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:62px;gap:0.5rem;flex-wrap:nowrap}
+.nav-left{display:flex;align-items:center;gap:0.5rem;flex-shrink:0}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.6);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;flex-shrink:0}
+.hamburger span{display:block;width:20px;height:1.5px;background:currentColor;border-radius:1px}
+.hamburger:hover{color:var(--white)}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:18px;background:var(--accent);flex-shrink:0}
+.nav-logo-text{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white);white-space:nowrap}
+.nav-links{display:flex;gap:0;align-items:center;flex-shrink:0}
+.nav-link{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;padding:0.35rem 0.9rem;transition:color 0.2s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--white)}
+.nav-link.active{font-weight:600}
+.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--white);color:var(--navy);border:none;padding:0.5rem 1rem;cursor:pointer;transition:background 0.2s;white-space:nowrap;flex-shrink:0}
+.nav-sub:hover{background:var(--off-white)}
+footer{background:var(--navy);padding:1.75rem;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+.f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
+.f-brand-bar{width:2px;height:14px;background:var(--accent);flex-shrink:0}
+.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.f-links a{font-size:0.78rem;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.2s}
+.f-links a:hover{color:rgba(255,255,255,0.6)}
+.f-copy{font-size:0.68rem;color:rgba(255,255,255,0.18);width:100%;margin-top:0.2rem}
+@media(min-width:768px){nav{padding:0 2.25rem;height:64px;flex-wrap:nowrap}footer{padding:2rem 2.25rem}}
+@media(max-width:767px){body{font-size:16px}.nav-links{display:none}}
+
+.page{padding:2.5rem 1.5rem}
+.page-inner{max-width:660px;margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;color:var(--grey-mid);text-decoration:none;margin-bottom:1.75rem;transition:color 0.2s}
+.back-link:hover{color:var(--navy)}
+.page-eyebrow{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1.75rem;display:flex;align-items:center;gap:8px}
+.page-eyebrow::before{content:'';width:16px;height:2px;background:var(--accent);flex-shrink:0}
+.profile{display:flex;flex-direction:column;align-items:center;text-align:center}
+.profile-photo{width:130px;height:130px;border-radius:50%;overflow:hidden;border:2px solid var(--rule);background:var(--paper);margin-bottom:1.25rem}
+.profile-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.profile-name{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:0.25rem}
+.profile-role{font-size:0.9rem;font-weight:400;color:var(--grey-mid);margin-bottom:1rem;line-height:1.5}
+.profile-linkedin{display:inline-flex;align-items:center;gap:7px;font-size:0.82rem;font-weight:500;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;margin-bottom:2rem;transition:border-color 0.2s}
+.profile-linkedin:hover{border-color:var(--navy)}
+.profile-linkedin svg{width:14px;height:14px;flex-shrink:0}
+.profile-bio{text-align:left;width:100%}
+.bio-item{display:flex;gap:1rem;padding:0.9rem 0;border-bottom:1px solid var(--rule-light);align-items:flex-start}
+.bio-item:first-child{padding-top:0}
+.bio-item:last-child{border-bottom:none}
+.bio-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px}
+.bio-text{font-size:1rem;font-weight:300;line-height:1.85;color:var(--black)}
+.bio-text strong{font-weight:600;color:var(--navy)}
+@media(min-width:768px){.page{padding:3.5rem 2.25rem}}
+</style>
+</head>
+<body>
+<script>
+function openSidebar(){var s=document.getElementById("sidebar"),o=document.getElementById("sbOverlay");if(s)s.classList.add("open");if(o)o.classList.add("open");document.body.style.overflow="hidden"}
+function closeSidebar(){var s=document.getElementById("sidebar"),o=document.getElementById("sbOverlay");if(s)s.classList.remove("open");if(o)o.classList.remove("open");document.body.style.overflow=""}
+window.addEventListener('DOMContentLoaded',function(){
+  var u='deals',d='news.mnaintel.com';
+  document.querySelectorAll('.email-link').forEach(function(el){el.href='mailto:'+u+'@'+d;el.textContent=u+'@'+d});
+});
+function handleSub(e){
+  e.preventDefault();
+  var inp=e.target.querySelector('input');
+  var btn=e.target.querySelector('button[type=submit]')||e.target.querySelector('button');
+  window.open('https://news.mnaintel.com/subscribe?email='+encodeURIComponent(inp.value),'_blank');
+  var orig=btn.textContent;btn.textContent='✓ Check your inbox';inp.value='';
+  setTimeout(function(){btn.textContent=orig},3000);
+}
+</script>
+<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sb-top">
+    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">×</button>
+  </div>
+  <div class="sb-section">Navigate</div>
+  <a href="/" class="sb-link" onclick="closeSidebar()">Home</a>
+  <a href="/about" class="sb-link active" onclick="closeSidebar()">About</a>
+  <a href="/plans" class="sb-link" onclick="closeSidebar()">Plans</a>
+  <div class="sb-section">Issues</div>
+  <a href="/issue-01" class="sb-issue" onclick="closeSidebar()">01 — What your business is actually worth · Mar 2026</a>
+  <a href="#" class="sb-issue" onclick="closeSidebar()">02 — Why most SME sales take 3 years · Apr 2026</a>
+  <a href="#" class="sb-issue" onclick="closeSidebar()">03 — What a buyer checks in 48 hours · Apr 2026</a>
+  <a href="#" class="sb-issue" onclick="closeSidebar()">04 — Why your business sells to someone you know · May 2026</a>
+  <div class="sb-section">Contact</div>
+  <a class="sb-link email-link" href="#">Contact</a>
+  <button class="sb-cta" onclick="window.open('https://news.mnaintel.com/subscribe','_blank')">Subscribe Free</button>
+</div>
+<nav>
+  <div class="nav-left">
+    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+  </div>
+  <div class="nav-links">
+    <a href="/about" class="nav-link active">About</a>
+    <a href="/issue-01" class="nav-link">Issues</a>
+    <a href="/plans" class="nav-link">Plans</a>
+    </div>
+  <button class="nav-sub" onclick="window.open('https://news.mnaintel.com/subscribe','_blank')">Subscribe Free</button>
+</nav>
+<div class="page">
+  <div class="page-inner">
+    <a href="/" class="back-link">← Back to home</a>
+    <div class="page-eyebrow">About</div>
+    <div class="profile">
+      <div class="profile-photo"><img src="photo.jpg" alt="Profile photo"></div>
+      <div class="profile-name">The Editor</div>
+      <div class="profile-role">M&A and Business Development &nbsp;·&nbsp; Passed CFA Level II</div>
+      <a href="https://www.linkedin.com/in/marcopietro-mpcc" target="_blank" class="profile-linkedin">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 1A1.5 1.5 0 1 0 2.5 4 1.5 1.5 0 0 0 2.5 1zM1 5.5h3V15H1V5.5zM5.5 5.5h2.8v1.3h.04C8.74 5.9 9.9 5.3 11.2 5.3c2.9 0 3.4 1.9 3.4 4.4V15h-3v-4.7c0-1.1 0-2.5-1.5-2.5-1.5 0-1.8 1.2-1.8 2.4V15h-3V5.5z"/></svg>
+        Connect on LinkedIn
+      </a>
+      <div class="profile-bio">
+        <div class="bio-item"><div class="bio-dot"></div><div class="bio-text"><strong>Master of Science in Business Administration</strong> (2018)</div></div>
+        <div class="bio-item"><div class="bio-dot"></div><div class="bio-text"><strong>Bachelor of Science in International Economics</strong> (2016)</div></div>
+        <div class="bio-item"><div class="bio-dot"></div><div class="bio-text"><strong>M&amp;A and Business Development Analyst at Medlog (MSC Group)</strong> — Led strategic growth initiatives in transport and logistics, with hands-on involvement in buy-side M&amp;A, joint ventures, greenfield developments, and debt financing projects.</div></div>
+        <div class="bio-item"><div class="bio-dot"></div><div class="bio-text"><strong>Experience at Big Four firms (Deloitte, KPMG, EY)</strong> — Cross-functional expertise across Corporate Finance Advisory, Debt Restructuring, Distressed M&amp;A, and Audit, building a solid foundation in both transactional and financial due diligence work.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
+    <div class="f-links">
+      <a href="/about">About</a>
+      <a href="/issue-01">Issues</a>
+      <a href="/plans">Plans</a>
+      <a class="email-link" href="#">Contact</a>
+    </div>
+    <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
+  </div>
+</footer>
+</body>
+</html>

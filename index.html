@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M&A Intelligence — Weekly Briefing for Business Owners</title>
+<meta name="description" content="The buy-side view on selling your business. Free weekly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--off-white:#F8F6F2;--paper:#F2EEE6;--navy:#0F1F3D;--navy-mid:#1B2F52;--rule:#D8D0C0;--rule-light:#EAE4D8;--black:#111111;--grey:#444444;--grey-mid:#666666;--grey-light:#888888;--accent:#8B1A1A;--border:rgba(0,0,0,0.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:18px}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;background:var(--navy);z-index:300;transform:translateX(-280px);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:299}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-logo-bar{width:2px;height:16px;background:var(--accent);flex-shrink:0}
+.sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:1.4rem;cursor:pointer;line-height:1;padding:0 4px}
+.sb-close:hover{color:var(--white)}
+.sb-section{font-size:0.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:1.25rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
+.sb-link:hover,.sb-link.active{color:var(--white)}
+.sb-link.active{font-weight:600}
+.sb-issue{display:block;padding:0.5rem 0;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s}
+.sb-issue:hover{color:rgba(255,255,255,0.65)}
+.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--white);color:var(--navy);border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
+nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:62px;gap:0.5rem;flex-wrap:nowrap}
+.nav-left{display:flex;align-items:center;gap:0.5rem;flex-shrink:0}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.6);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;flex-shrink:0}
+.hamburger span{display:block;width:20px;height:1.5px;background:currentColor;border-radius:1px}
+.hamburger:hover{color:var(--white)}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:18px;background:var(--accent);flex-shrink:0}
+.nav-logo-text{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white);white-space:nowrap}
+.nav-links{display:flex;gap:0;align-items:center;flex-shrink:0}
+.nav-link{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;padding:0.35rem 0.9rem;transition:color 0.2s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--white)}
+.nav-link.active{font-weight:600}
+.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--white);color:var(--navy);border:none;padding:0.5rem 1rem;cursor:pointer;transition:background 0.2s;white-space:nowrap;flex-shrink:0}
+.nav-sub:hover{background:var(--off-white)}
+footer{background:var(--navy);padding:1.75rem;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+.f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
+.f-brand-bar{width:2px;height:14px;background:var(--accent);flex-shrink:0}
+.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.f-links a{font-size:0.78rem;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.2s}
+.f-links a:hover{color:rgba(255,255,255,0.6)}
+.f-copy{font-size:0.68rem;color:rgba(255,255,255,0.18);width:100%;margin-top:0.2rem}
+@media(min-width:768px){nav{padding:0 2.25rem;height:64px;flex-wrap:nowrap}footer{padding:2rem 2.25rem}}
+@media(max-width:767px){body{font-size:16px}.nav-links{display:none}}
+
+.hero{border-bottom:2px solid var(--navy);padding:4rem 1.5rem 3rem}
+.hero-inner{max-width:1100px;margin:0 auto}
+.kicker{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
+.kicker-bar{width:20px;height:2px;background:var(--accent);flex-shrink:0}
+.kicker-text{font-size:0.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4.2rem);font-weight:700;line-height:1.06;letter-spacing:-.025em;color:var(--navy);margin-bottom:0.85rem}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-deck{font-size:1.1rem;font-weight:300;line-height:1.75;color:var(--grey);margin-bottom:1.75rem;max-width:640px}
+.hero-form{display:flex;flex-direction:column;gap:0;max-width:480px;margin-bottom:0.6rem}
+.hero-email{background:var(--white);border:1.5px solid var(--navy);color:var(--black);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.85rem 1rem;outline:none;min-width:0}
+.hero-email::placeholder{color:#bbb}
+.hero-btn{font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--navy);color:var(--white);border:1.5px solid var(--navy);padding:0.85rem 1.5rem;cursor:pointer;white-space:nowrap}
+.hero-btn:hover{background:var(--navy-mid)}
+.hero-note{font-size:0.78rem;color:var(--grey-light);margin-bottom:2.5rem}
+.hero-stats{display:flex;gap:3rem;padding-top:2rem;border-top:1px solid var(--rule);flex-wrap:wrap}
+.hs-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:3px}
+.hs-label{font-size:0.82rem;font-weight:300;color:var(--grey)}
+.about-strip{background:var(--off-white);border-bottom:1px solid var(--rule);padding:1.25rem 1.5rem}
+.about-strip-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1.25rem}
+.about-photo{width:48px;height:48px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1px solid var(--rule)}
+.about-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.about-name{font-size:0.9rem;font-weight:600;color:var(--navy)}
+.about-role{font-size:0.8rem;font-weight:300;color:var(--grey)}
+.about-more{font-size:0.78rem;font-weight:600;color:var(--navy);text-decoration:none;white-space:nowrap;border-bottom:1px solid var(--rule);margin-left:auto;flex-shrink:0}
+.about-more:hover{border-color:var(--navy)}
+.issues-sec{padding:0 1.5rem;border-bottom:1px solid var(--rule)}
+.issues-inner{max-width:1100px;margin:0 auto}
+.issues-header{display:flex;align-items:baseline;justify-content:space-between;padding:1.5rem 0 0;border-bottom:3px solid var(--navy)}
+.issues-header-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy)}
+.issues-header-sub{font-size:0.75rem;color:var(--grey-light)}
+.issue-row{display:block;padding:2rem 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.issue-row:last-child{border-bottom:none}
+.issue-row.published:hover .issue-row-title{text-decoration:underline}
+.issue-row-top{display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.issue-row-num{font-size:0.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.issue-row-cat{font-size:0.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light)}
+.issue-row-date{font-size:0.75rem;color:var(--grey-light);margin-left:auto}
+.issue-row-soon{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);background:var(--rule-light);padding:2px 8px;margin-left:auto;white-space:nowrap}
+.issue-row-title{font-family:'Playfair Display',serif;font-size:clamp(1.35rem,3vw,1.9rem);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:0.65rem}
+.issue-row.soon .issue-row-title{color:var(--grey-mid)}
+.issue-row-summary{font-size:1rem;font-weight:300;color:var(--grey);line-height:1.7;max-width:800px}
+.issue-row.soon .issue-row-summary{color:var(--grey-light)}
+.issue-row-read{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--navy);margin-top:0.85rem}
+.why-sec{background:var(--off-white);border-bottom:1px solid var(--rule);padding:3rem 1.5rem}
+.why-inner{max-width:1100px;margin:0 auto}
+.why-eyebrow{font-size:0.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.85rem;display:flex;align-items:center;gap:8px}
+.why-eyebrow::before{content:'';width:16px;height:2px;background:var(--accent);flex-shrink:0}
+.why-h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.85rem}
+.why-intro{font-size:1rem;font-weight:300;line-height:1.8;color:var(--grey);margin-bottom:2rem;max-width:700px}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.why-card{background:var(--white);padding:1.75rem 1.5rem}
+.why-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:0.35rem}
+.why-label{font-size:0.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.5rem}
+.why-text{font-size:0.95rem;font-weight:300;color:var(--grey);line-height:1.6}
+.sub-sec{padding:3rem 1.5rem;border-bottom:1px solid var(--rule)}
+.sub-inner{max-width:540px;margin:0 auto;text-align:center}
+.sub-h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.5vw,2rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.6rem}
+.sub-h2 em{font-style:italic;color:var(--accent)}
+.sub-p{font-size:1rem;font-weight:300;color:var(--grey);margin-bottom:1.75rem;line-height:1.65}
+.sub-form{display:flex;flex-direction:column;gap:0;max-width:440px;margin:0 auto 0.6rem}
+.sub-email{background:var(--white);border:1.5px solid var(--navy);color:var(--black);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.85rem 1rem;outline:none}
+.sub-email::placeholder{color:#bbb}
+.sub-btn{font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--navy);color:var(--white);border:1.5px solid var(--navy);padding:0.85rem;cursor:pointer}
+.sub-btn:hover{background:var(--navy-mid)}
+.sub-note{font-size:0.75rem;color:var(--grey-light)}
+.mobile-sticky{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:2px solid var(--navy);padding:0.75rem 1.25rem;z-index:150}
+@media(min-width:768px){
+  .hero{padding:4.5rem 3rem 3.5rem}
+  .about-strip,.issues-sec,.why-sec,.sub-sec{padding-left:3rem;padding-right:3rem}
+  .hero-form{flex-direction:row}.hero-email{border-right:none}.hero-btn{border-left:none}
+  .sub-form{flex-direction:row}.sub-email{flex:1;border-right:none}.sub-btn{border-left:none;white-space:nowrap}
+  .why-grid{grid-template-columns:1fr 1fr 1fr 1fr}
+}
+@media(max-width:767px){.hero-stats{gap:1.5rem}.hs-num{font-size:1.7rem}.mobile-sticky{display:flex}}
+</style>
+</head>
+<body>
+<script>
+function openSidebar(){var s=document.getElementById("sidebar"),o=document.getElementById("sbOverlay");if(s)s.classList.add("open");if(o)o.classList.add("open");document.body.style.overflow="hidden"}
+function closeSidebar(){var s=document.getElementById("sidebar"),o=document.getElementById("sbOverlay");if(s)s.classList.remove("open");if(o)o.classList.remove("open");document.body.style.overflow=""}
+window.addEventListener('DOMContentLoaded',function(){
+  var u='deals',d='news.mnaintel.com';
+  document.querySelectorAll('.email-link').forEach(function(el){el.href='mailto:'+u+'@'+d;el.textContent=u+'@'+d});
+});
+function handleSub(e){
+  e.preventDefault();
+  var inp=e.target.querySelector('input');
+  var btn=e.target.querySelector('button[type=submit]')||e.target.querySelector('button');
+  window.open('https://news.mnaintel.com/subscribe?email='+encodeURIComponent(inp.value),'_blank');
+  var orig=btn.textContent;btn.textContent='✓ Check your inbox';inp.value='';
+  setTimeout(function(){btn.textContent=orig},3000);
+}
+</script>
+<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sb-top">
+    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">×</button>
+  </div>
+  <div class="sb-section">Navigate</div>
+  <a href="/" class="sb-link active" onclick="closeSidebar()">Home</a>
+  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
+  <a href="/plans" class="sb-link" onclick="closeSidebar()">Plans</a>
+  <div class="sb-section">Issues</div>
+  <a href="/issue-01" class="sb-issue" onclick="closeSidebar()">01 — What your business is actually worth · Mar 2026</a>
+  <a href="#" class="sb-issue active" onclick="closeSidebar()">02 — Why most SME sales take 3 years · Apr 2026</a>
+  <a href="#" class="sb-issue active" onclick="closeSidebar()">03 — What a buyer checks in 48 hours · Apr 2026</a>
+  <a href="#" class="sb-issue active" onclick="closeSidebar()">04 — Why your business sells to someone you know · May 2026</a>
+  <div class="sb-section">Contact</div>
+  <a class="sb-link email-link" href="#">Contact</a>
+  <button class="sb-cta" onclick="window.open('https://news.mnaintel.com/subscribe','_blank')">Subscribe Free</button>
+</div>
+<nav>
+  <div class="nav-left">
+    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+  </div>
+  <div class="nav-links">
+    <a href="/about" class="nav-link">About</a>
+    <a href="/issue-01" class="nav-link">Issues</a>
+    <a href="/plans" class="nav-link">Plans</a>
+    </div>
+  <button class="nav-sub" onclick="window.open('https://news.mnaintel.com/subscribe','_blank')">Subscribe Free</button>
+</nav>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="kicker"><div class="kicker-bar"></div><div class="kicker-text">Weekly briefing for business owners thinking about their exit</div></div>
+    <h1>The buy-side view<br>on selling your business.<br><em>Free. Every week.</em></h1>
+    <p class="hero-deck">Written by an M&A analyst who sits on the other side of the table.</p>
+    <form class="hero-form" onsubmit="handleSub(event)">
+      <input type="email" class="hero-email" placeholder="your@email.com" required>
+      <button type="submit" class="hero-btn">Subscribe Free</button>
+    </form>
+    <p class="hero-note">Free. No credit card. Unsubscribe anytime.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hs-num">70%</div><div class="hs-label">of SME sales never close</div></div>
+      <div class="hero-stat"><div class="hs-num">23%</div><div class="hs-label">left on the table by unprepared sellers</div></div>
+      <div class="hero-stat"><div class="hs-num">1 in 3</div><div class="hs-label">deals lost in due diligence</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="mobile-sticky">
+  <form onsubmit="handleSub(event)" style="display:flex;gap:0;width:100%">
+    <input type="email" placeholder="your@email.com" required style="flex:1;background:#fff;border:1.5px solid var(--navy);color:var(--black);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.75rem 1rem;outline:none;border-right:none">
+    <button type="submit" style="font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--navy);color:var(--white);border:1.5px solid var(--navy);padding:0.75rem 1.1rem;cursor:pointer;white-space:nowrap">Subscribe</button>
+  </form>
+</div>
+
+<div class="about-strip">
+  <div class="about-strip-inner">
+    <div class="about-photo"><img src="photo.jpg" alt="Editor"></div>
+    <div>
+      <div class="about-name">The Editor</div>
+      <div class="about-role">M&A and Business Development · Passed CFA Level II</div>
+    </div>
+    <a href="/about" class="about-more">Full profile →</a>
+  </div>
+</div>
+
+<div class="issues-sec">
+  <div class="issues-inner">
+    <div class="issues-header">
+      <div class="issues-header-title">Issues</div>
+      <div class="issues-header-sub">One issue per week</div>
+    </div>
+    <a href="/issue-01" class="issue-row published" style="display:block">
+      <div class="issue-row-top">
+        <span class="issue-row-num">No. 01</span>
+        <span class="issue-row-cat">Valuation</span>
+        <span class="issue-row-date">March 2026</span>
+      </div>
+      <div class="issue-row-title">Your business is not worth what you put into it. Here's what a buyer actually pays for.</div>
+      <div class="issue-row-summary">The most expensive misconception in SME M&A — and the framework buyers use to price a business. Most owners discover the gap too late. This issue gives you the model before you need it.</div>
+      <div class="issue-row-read">Read the full brief →</div>
+    </a>
+    <div class="issue-row soon">
+      <div class="issue-row-top">
+        <span class="issue-row-num">No. 02</span>
+        <span class="issue-row-cat">Process</span>
+        <span class="issue-row-soon">Coming soon · April 2026</span>
+      </div>
+      <div class="issue-row-title">Why most SME sales take 3 years — and how to cut that to 12 months.</div>
+      <div class="issue-row-summary">The timeline is not set by the market. It is set entirely by how prepared the seller is before the first buyer conversation.</div>
+    </div>
+    <div class="issue-row soon">
+      <div class="issue-row-top">
+        <span class="issue-row-num">No. 03</span>
+        <span class="issue-row-cat">Due diligence</span>
+        <span class="issue-row-soon">Coming soon · April 2026</span>
+      </div>
+      <div class="issue-row-title">The 5 things a buyer checks in the first 48 hours of due diligence.</div>
+      <div class="issue-row-summary">Most deals that collapse in due diligence were already dead before they started. Five signals buyers look for immediately.</div>
+    </div>
+    <div class="issue-row soon">
+      <div class="issue-row-top">
+        <span class="issue-row-num">No. 04</span>
+        <span class="issue-row-cat">Buyer psychology</span>
+        <span class="issue-row-soon">Coming soon · May 2026</span>
+      </div>
+      <div class="issue-row-title">Why your business sells to someone you already know — and how to find them.</div>
+      <div class="issue-row-summary">Most SME transactions happen through existing relationships. Here is how to map your buyer universe before going to market.</div>
+    </div>
+  </div>
+</div>
+
+<div class="why-sec">
+  <div class="why-inner">
+    <div class="why-eyebrow">The numbers</div>
+    <h2 class="why-h2">Most business owners sell once.<br>Buyers do it for a living.</h2>
+    <p class="why-intro">That asymmetry — in preparation, knowledge, and leverage — is where value disappears. M&A Intelligence closes that gap with one brief per week, written from the buy side.</p>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-num">70%</div><div class="why-label">SME sales that never close</div><div class="why-text">Most fail before a buyer makes a formal offer. Almost always preventable.</div></div>
+      <div class="why-card"><div class="why-num">23%</div><div class="why-label">Value left on the table</div><div class="why-text">Unprepared sellers accept an average 23% discount vs. a structured process.</div></div>
+      <div class="why-card"><div class="why-num">1 in 3</div><div class="why-label">Lost in due diligence</div><div class="why-text">After months of process and legal fees. Almost always visible 18 months earlier.</div></div>
+      <div class="why-card"><div class="why-num">4× vs 8×</div><div class="why-label">The multiple gap</div><div class="why-text">On CHF 1M EBITDA, the difference between a bad and a good exit is CHF 4 million.</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="sub-sec">
+  <div class="sub-inner">
+    <h2 class="sub-h2">Know what your business is worth<br><em>before someone else tells you.</em></h2>
+    <p class="sub-p">Free. Weekly. The buy-side view with no mandate to sell you anything.</p>
+    <form class="sub-form" onsubmit="handleSub(event)">
+      <input type="email" class="sub-email" placeholder="your@email.com" required>
+      <button type="submit" class="sub-btn">Subscribe Free</button>
+    </form>
+    <div class="sub-note">Pro access coming soon. Unsubscribe anytime.</div>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
+    <div class="f-links">
+      <a href="/about">About</a>
+      <a href="/issue-01">Issues</a>
+      <a href="/plans">Plans</a>
+      <a class="email-link" href="#">Contact</a>
+    </div>
+    <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
+  </div>
+</footer>
+</body>
+</html>

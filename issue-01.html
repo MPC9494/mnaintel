@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issue No. 01 — What a Buyer Actually Pays For · M&A Intelligence</title>
+<meta name="description" content="The most expensive misconception in SME M&A.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--white:#FFFFFF;--off-white:#F8F6F2;--paper:#F2EEE6;--navy:#0F1F3D;--navy-mid:#1B2F52;--rule:#D8D0C0;--rule-light:#EAE4D8;--black:#111111;--grey:#444444;--grey-mid:#666666;--grey-light:#888888;--accent:#8B1A1A;--border:rgba(0,0,0,0.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:18px}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;background:var(--navy);z-index:300;transform:translateX(-280px);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:299}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-logo-bar{width:2px;height:16px;background:var(--accent);flex-shrink:0}
+.sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:1.4rem;cursor:pointer;line-height:1;padding:0 4px}
+.sb-close:hover{color:var(--white)}
+.sb-section{font-size:0.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:1.25rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
+.sb-link:hover,.sb-link.active{color:var(--white)}
+.sb-link.active{font-weight:600}
+.sb-issue{display:block;padding:0.5rem 0;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s}
+.sb-issue:hover{color:rgba(255,255,255,0.65)}
+.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--white);color:var(--navy);border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
+nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:62px;gap:0.5rem;flex-wrap:nowrap}
+.nav-left{display:flex;align-items:center;gap:0.5rem;flex-shrink:0}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.6);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;flex-shrink:0}
+.hamburger span{display:block;width:20px;height:1.5px;background:currentColor;border-radius:1px}
+.hamburger:hover{color:var(--white)}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:18px;background:var(--accent);flex-shrink:0}
+.nav-logo-text{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white);white-space:nowrap}
+.nav-links{display:flex;gap:0;align-items:center;flex-shrink:0}
+.nav-link{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;padding:0.35rem 0.9rem;transition:color 0.2s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--white)}
+.nav-link.active{font-weight:600}
+.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--white);color:var(--navy);border:none;padding:0.5rem 1rem;cursor:pointer;transition:background 0.2s;white-space:nowrap;flex-shrink:0}
+.nav-sub:hover{background:var(--off-white)}
+footer{background:var(--navy);padding:1.75rem;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+.f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
+.f-brand-bar{width:2px;height:14px;background:var(--accent);flex-shrink:0}
+.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.f-links a{font-size:0.78rem;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.2s}
+.f-links a:hover{color:rgba(255,255,255,0.6)}
+.f-copy{font-size:0.68rem;color:rgba(255,255,255,0.18);width:100%;margin-top:0.2rem}
+@media(min-width:768px){nav{padding:0 2.25rem;height:64px;flex-wrap:nowrap}footer{padding:2rem 2.25rem}}
+@media(max-width:767px){body{font-size:16px}.nav-links{display:none}}
+
+.page{padding:3rem 1.5rem}
+.page-inner{max-width:720px;margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;color:var(--grey-mid);text-decoration:none;margin-bottom:2rem;transition:color 0.2s}
+.back-link:hover{color:var(--navy)}
+.issue-masthead{border-bottom:2px solid var(--navy);padding-bottom:1.25rem;margin-bottom:2rem}
+.issue-pub{font-size:0.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.5rem}
+.issue-meta{display:flex;align-items:center;gap:0.9rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.issue-tag{font-size:0.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:rgba(139,26,26,0.08);padding:3px 9px}
+.issue-date{font-size:0.75rem;color:var(--grey-light)}
+.issue-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.75rem}
+.issue-deck{font-size:1.05rem;font-weight:300;font-style:italic;color:var(--grey);line-height:1.65}
+.issue-body{margin-top:2rem}
+.issue-body p{font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--black);margin-bottom:1.1rem}
+.issue-body strong{font-weight:600;color:var(--navy)}
+.blur-wrap{position:relative;overflow:hidden;margin-top:0.5rem}
+.blurred{filter:blur(4px);user-select:none;pointer-events:none}
+.blurred p{font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--black);margin-bottom:1.1rem}
+.paywall{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0.97) 32%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 1rem 2.5rem;gap:0.75rem;text-align:center}
+.paywall-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--navy)}
+.paywall-sub{font-size:0.92rem;font-weight:300;color:var(--grey);max-width:340px;line-height:1.6}
+.paywall-form{display:flex;flex-direction:column;gap:0;width:100%;max-width:400px}
+.paywall-email{background:var(--white);border:1.5px solid var(--navy);color:var(--black);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.85rem 1rem;outline:none}
+.paywall-email::placeholder{color:#bbb}
+.paywall-btn{font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--navy);color:var(--white);border:1.5px solid var(--navy);padding:0.85rem;cursor:pointer}
+.issue-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.5rem;margin-top:2rem;border-top:1px solid var(--rule-light)}
+.issue-footer-note{font-size:0.75rem;color:var(--grey-light)}
+.share-wrap{position:relative;display:inline-block}
+.share-btn{background:transparent;border:1px solid var(--border);color:var(--grey-mid);font-size:0.75rem;font-weight:500;font-family:'DM Sans',sans-serif;padding:5px 11px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.share-btn:hover{border-color:var(--navy);color:var(--navy)}
+.share-menu{position:absolute;right:0;top:calc(100% + 6px);background:var(--white);border:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,0.1);z-index:50;min-width:155px;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all 0.18s}
+.share-wrap:hover .share-menu{opacity:1;pointer-events:all;transform:translateY(0)}
+.share-item{display:flex;align-items:center;gap:10px;padding:0.65rem 1rem;font-size:0.88rem;font-family:'DM Sans',sans-serif;color:var(--grey);text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--rule-light)}
+.share-item:last-child{border-bottom:none}
+.share-item:hover{background:var(--off-white);color:var(--navy)}
+.si-icon{width:14px;height:14px;flex-shrink:0}
+@media(min-width:768px){.page{padding:3.5rem 2.25rem}.paywall-form{flex-direction:row}.paywall-email{flex:1;border-right:none}.paywall-btn{white-space:nowrap;border-left:none}}
+</style>
+</head>
+<body>
+<script>
+function openSidebar(){var s=document.getElementById("sidebar"),o=document.getElementById("sbOverlay");if(s)s.classList.add("open");if(o)o.classList.add("open");document.body.style.overflow="hidden"}
+function closeSidebar(){var s=document.getElementById("sidebar"),o=document.getElementById("sbOverlay");if(s)s.classList.remove("open");if(o)o.classList.remove("open");document.body.style.overflow=""}
+window.addEventListener('DOMContentLoaded',function(){
+  var u='deals',d='news.mnaintel.com';
+  document.querySelectorAll('.email-link').forEach(function(el){el.href='mailto:'+u+'@'+d;el.textContent=u+'@'+d});
+});
+function handleSub(e){
+  e.preventDefault();
+  var inp=e.target.querySelector('input');
+  var btn=e.target.querySelector('button[type=submit]')||e.target.querySelector('button');
+  window.open('https://news.mnaintel.com/subscribe?email='+encodeURIComponent(inp.value),'_blank');
+  var orig=btn.textContent;btn.textContent='✓ Check your inbox';inp.value='';
+  setTimeout(function(){btn.textContent=orig},3000);
+}
+</script>
+<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sb-top">
+    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">×</button>
+  </div>
+  <div class="sb-section">Navigate</div>
+  <a href="/" class="sb-link" onclick="closeSidebar()">Home</a>
+  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
+  <a href="/plans" class="sb-link" onclick="closeSidebar()">Plans</a>
+  <div class="sb-section">Issues</div>
+  <a href="/issue-01" class="sb-issue active" onclick="closeSidebar()">01 — What your business is actually worth · Mar 2026</a>
+  <a href="#" class="sb-issue" onclick="closeSidebar()">02 — Why most SME sales take 3 years · Apr 2026</a>
+  <a href="#" class="sb-issue" onclick="closeSidebar()">03 — What a buyer checks in 48 hours · Apr 2026</a>
+  <a href="#" class="sb-issue" onclick="closeSidebar()">04 — Why your business sells to someone you know · May 2026</a>
+  <div class="sb-section">Contact</div>
+  <a class="sb-link email-link" href="#">Contact</a>
+  <button class="sb-cta" onclick="window.open('https://news.mnaintel.com/subscribe','_blank')">Subscribe Free</button>
+</div>
+<nav>
+  <div class="nav-left">
+    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+  </div>
+  <div class="nav-links">
+    <a href="/about" class="nav-link">About</a>
+    <a href="/issue-01" class="nav-link active">Issues</a>
+    <a href="/plans" class="nav-link">Plans</a>
+    </div>
+  <button class="nav-sub" onclick="window.open('https://news.mnaintel.com/subscribe','_blank')">Subscribe Free</button>
+</nav>
+<div class="page">
+  <div class="page-inner">
+    <a href="/" class="back-link">← Back to home</a>
+    <div class="issue-masthead">
+      <div class="issue-pub">M&A Intelligence — Weekly Briefing</div>
+      <div class="issue-meta">
+        <span class="issue-tag">Issue No. 01 · Valuation</span>
+        <span class="issue-date">March 2026</span>
+      </div>
+      <div class="issue-title">Your business is not worth what you put into it. Here's what a buyer actually pays for.</div>
+      <div class="issue-deck">Every business owner has a number in their head. Almost none of them arrive at it the way a buyer does. Understanding that gap — before you sit across the table — is worth more than any advisor you will ever hire.</div>
+    </div>
+    <div class="issue-body">
+      <p>You spent twenty years building this business. You reinvested the profits. You paid yourself less than the market for a decade so the company could grow. You built a team, earned customer loyalty, and created something that runs without you being in every room. The number in your head reflects all of that. It should.</p>
+      <p>A buyer doesn't care about any of it.</p>
+      <p>This is not cynicism. It is arithmetic. A strategic acquirer or a private equity fund looks at one thing first: <strong>what does this business earn, reliably, after we adjust for everything the owner did to make the P&L look the way it does?</strong> That number — normalised EBITDA — is almost always different from what appears in your accounts. Sometimes dramatically so.</p>
+      <p>The adjustments go both ways. If you paid yourself CHF 400,000 per year and a market-rate CEO would cost CHF 180,000, a buyer adds back CHF 220,000 to your earnings. That is positive. But if your three largest customers represent 60% of revenue, a buyer applies a risk discount to every multiple they consider. That is negative — and it compounds.</p>
+    </div>
+    <div class="blur-wrap">
+      <div class="blurred">
+        <p>The multiple itself — the number a buyer applies to your normalised EBITDA — is not fixed. It moves with sector, size, growth rate, customer concentration, and management dependency. In Southern European SME transactions, multiples typically range between 4× and 8× EBITDA for businesses in the CHF 2–15M range. The difference between 4× and 8× on CHF 1M of normalised EBITDA is CHF 4 million. That is not a rounding error. That is the gap between a life-changing outcome and a disappointing one.</p>
+        <p>Three things move you from 4× to 8× faster than anything else. First: revenue visibility. Second: management depth — if the business cannot run without you, a buyer prices that into the multiple. Third: clean financials. A buyer who finds surprises in due diligence does not renegotiate. They walk.</p>
+        <p>The most important thing you can do today is commission an independent normalisation of your EBITDA. Not from your accountant. From someone who thinks like a buyer.</p>
+      </div>
+      <div class="paywall">
+        <div class="paywall-title">Continue reading — it's free</div>
+        <div class="paywall-sub">Subscribe to M&A Intelligence and get the full brief plus every future issue.</div>
+        <form class="paywall-form" onsubmit="handleSub(event)">
+          <input type="email" class="paywall-email" placeholder="your@email.com" required>
+          <button type="submit" class="paywall-btn">Subscribe Free →</button>
+        </form>
+      </div>
+    </div>
+    <div class="issue-footer">
+      <div class="issue-footer-note">M&A Intelligence · Issue No. 01 · March 2026</div>
+      <div class="share-wrap">
+        <button class="share-btn"><svg class="si-icon" viewBox="0 0 16 16" fill="none"><circle cx="12" cy="3" r="1.5" stroke="currentColor" stroke-width="1.2"/><circle cx="4" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="13" r="1.5" stroke="currentColor" stroke-width="1.2"/><line x1="10.7" y1="4.2" x2="5.3" y2="7" stroke="currentColor" stroke-width="1.2"/><line x1="5.3" y1="9" x2="10.7" y2="11.8" stroke="currentColor" stroke-width="1.2"/></svg>Share</button>
+        <div class="share-menu">
+          <a class="share-item" href="https://www.linkedin.com/sharing/share-offsite/?url=https://mnaintel.com/issue-01" target="_blank">LinkedIn</a>
+          <a class="share-item" href="https://twitter.com/intent/tweet?url=https://mnaintel.com/issue-01" target="_blank">X (Twitter)</a>
+          <a class="share-item" href="https://api.whatsapp.com/send?text=https://mnaintel.com/issue-01" target="_blank">WhatsApp</a>
+          <a class="share-item email-link" href="#">Email</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
+    <div class="f-links">
+      <a href="/about">About</a>
+      <a href="/issue-01">Issues</a>
+      <a href="/plans">Plans</a>
+      <a class="email-link" href="#">Contact</a>
+    </div>
+    <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
+  </div>
+</footer>
+</body>
+</html>
