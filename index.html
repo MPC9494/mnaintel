@@ -52,6 +52,40 @@ footer{background:var(--navy);padding:1.75rem;border-top:1px solid rgba(255,255,
 .f-links a{font-size:0.78rem;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.2s}
 .f-links a:hover{color:rgba(255,255,255,0.6)}
 .f-copy{font-size:0.68rem;color:rgba(255,255,255,0.18);width:100%;margin-top:0.2rem}
+/* LEAD MAGNET */
+.lead-sec{background:var(--navy);padding:3.5rem 2rem;border-bottom:1px solid rgba(255,255,255,0.07)}
+.lead-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.lead-eyebrow{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.85rem;display:flex;align-items:center;gap:8px}
+.lead-eyebrow::before{content:'';width:16px;height:2px;background:var(--accent);flex-shrink:0}
+.lead-h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--white);line-height:1.15;margin-bottom:0.85rem}
+.lead-p{font-size:1rem;font-weight:300;line-height:1.75;color:rgba(255,255,255,0.6);margin-bottom:1.5rem}
+.lead-list{list-style:none;margin-bottom:1.75rem}
+.lead-list li{font-size:0.92rem;font-weight:300;color:rgba(255,255,255,0.65);padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.lead-list li::before{content:'→';color:var(--accent);flex-shrink:0;font-size:0.85rem;margin-top:1px}
+.lead-form{display:flex;max-width:460px;margin-bottom:0.6rem}
+.lead-email{flex:1;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.2);border-right:none;color:var(--white);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.85rem 1rem;outline:none;min-width:0}
+.lead-email::placeholder{color:rgba(255,255,255,0.3)}
+.lead-email:focus{border-color:rgba(255,255,255,0.5)}
+.lead-btn{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1.5px solid var(--accent);padding:0.85rem 1.25rem;cursor:pointer;white-space:nowrap;transition:background 0.2s}
+.lead-btn:hover{background:#7a1515}
+.lead-note{font-size:0.75rem;color:rgba(255,255,255,0.3)}
+.lead-preview{background:var(--white);padding:1.5rem;border-top:4px solid var(--accent)}
+.lp-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--navy);margin-bottom:2px}
+.lp-brand{font-size:0.7rem;color:var(--grey-light);margin-bottom:0.85rem}
+.lp-divider{height:1px;background:var(--rule);margin:0.6rem 0}
+.lp-row{display:grid;grid-template-columns:1fr auto auto;gap:1rem;padding:0.3rem 0;font-size:0.82rem;color:var(--grey)}
+.lp-row span:last-child,.lp-row span:nth-child(2){font-variant-numeric:tabular-nums;text-align:right}
+.lp-header{font-size:0.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light)}
+.lp-add span:first-child{color:var(--accent);font-size:0.8rem}
+.lp-total{font-weight:600;color:var(--navy)}
+.lp-scenarios{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);margin-top:0.5rem}
+.lp-sc{background:var(--off-white);padding:0.65rem 0.5rem;text-align:center}
+.lp-sc-mid{background:var(--navy)}
+.lp-sc-label{font-size:0.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--grey-light);margin-bottom:3px}
+.lp-sc-mid .lp-sc-label{color:rgba(255,255,255,0.4)}
+.lp-sc-val{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--navy)}
+.lp-sc-mid .lp-sc-val{color:var(--white)}
+@media(max-width:767px){.lead-inner{grid-template-columns:1fr}.lead-right{display:none}.lead-form{flex-direction:column}.lead-email{border-right:1.5px solid rgba(255,255,255,0.2);border-bottom:none}.lead-btn{border-top:none}}
 @media(min-width:768px){nav{padding:0 2.25rem;height:64px;flex-wrap:nowrap}footer{padding:2rem 2.25rem}}
 @media(max-width:767px){body{font-size:16px}.nav-links{display:none}}
 
@@ -139,7 +173,18 @@ window.addEventListener('DOMContentLoaded',function(){
   var u='deals',d='news.mnaintel.com';
   document.querySelectorAll('.email-link').forEach(function(el){el.href='mailto:'+u+'@'+d;el.textContent=u+'@'+d});
 });
-function handleSub(e){
+function handleLeadMagnet(e){
+  e.preventDefault();
+  var input=e.target.querySelector('input[type=email]');
+  var btn=e.target.querySelector('button');
+  var email=encodeURIComponent(input.value);
+  window.open('https://news.mnaintel.com/subscribe?email='+email,'_blank');
+  var orig=btn.textContent;
+  btn.textContent='✓ Check your inbox for the download link';
+  input.value='';
+  setTimeout(function(){btn.textContent=orig},4000);
+}
+
   e.preventDefault();
   var inp=e.target.querySelector('input');
   var btn=e.target.querySelector('button[type=submit]')||e.target.querySelector('button');
@@ -157,6 +202,7 @@ function handleSub(e){
   <div class="sb-section">Navigate</div>
   <a href="/" class="sb-link active" onclick="closeSidebar()">Home</a>
   <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
+  <a href="/tools" class="sb-link" onclick="closeSidebar()">Tools</a>
   <a href="/plans" class="sb-link" onclick="closeSidebar()">Plans</a>
   <div class="sb-section">Issues</div>
   <a href="/issue-01" class="sb-issue" onclick="closeSidebar()">01 — What your business is actually worth · Mar 2026</a>
@@ -175,6 +221,7 @@ function handleSub(e){
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
     <a href="/issue-01" class="nav-link">Issues</a>
+    <a href="/tools" class="nav-link">Tools</a>
     <a href="/plans" class="nav-link">Plans</a>
     </div>
   <button class="nav-sub" onclick="window.open('https://news.mnaintel.com/subscribe','_blank')">Subscribe Free</button>
@@ -292,6 +339,7 @@ function handleSub(e){
     <div class="f-links">
       <a href="/about">About</a>
       <a href="/issue-01">Issues</a>
+      <a href="/tools">Tools</a>
       <a href="/plans">Plans</a>
       <a class="email-link" href="#">Contact</a>
     </div>
