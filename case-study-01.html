@@ -60,13 +60,20 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 .back-link:hover{color:var(--navy)}
 .article-masthead{border-bottom:2px solid var(--navy);padding-bottom:1.5rem;margin-bottom:2rem}
 .article-pub{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.5rem}
-.article-meta{display:flex;align-items:center;gap:0.9rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.article-tags{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap}
 .article-tag{font-size:0.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:rgba(139,26,26,0.08);padding:3px 9px}
+.article-tag.grey{color:var(--grey-mid);background:var(--rule-light)}
 .article-date{font-size:0.75rem;color:var(--grey-light)}
 .article-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.75rem}
 .article-deck{font-size:1.05rem;font-weight:300;font-style:italic;color:var(--grey);line-height:1.65}
+/* Deal snapshot bar */
+.deal-snap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.75rem 0}
+.snap-cell{background:var(--off-white);padding:1rem 1.1rem}
+.snap-label{font-size:0.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.25rem}
+.snap-val{font-size:0.95rem;font-weight:600;color:var(--navy)}
+/* Body */
 .article-body p{font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--black);margin-bottom:1.25rem}
-.article-body h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin:2rem 0 0.75rem}
+.article-body h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin:2rem 0 0.75rem;padding-top:1rem;border-top:1px solid var(--rule-light)}
 .article-body strong{font-weight:600;color:var(--navy)}
 .data-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.92rem}
 .data-table th{background:var(--navy);color:var(--white);font-weight:600;font-size:0.72rem;letter-spacing:.08em;text-transform:uppercase;padding:0.75rem 1rem;text-align:left}
@@ -74,19 +81,28 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 .data-table td:first-child{font-weight:500;color:var(--navy)}
 .data-table tr:last-child td{border-bottom:none}
 .data-table tr:nth-child(even) td{background:var(--off-white)}
-.callout{background:var(--navy);padding:1.5rem 1.75rem;margin:1.75rem 0}
-.callout p{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.75;margin-bottom:0}
-.callout strong{color:var(--white);font-weight:600}
-.article-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.5rem;margin-top:2rem;border-top:1px solid var(--rule-light)}
-.article-footer-note{font-size:0.75rem;color:var(--grey-light)}
+.callout{background:var(--off-white);border-left:3px solid var(--accent);padding:1.25rem 1.5rem;margin:1.75rem 0}
+.callout p{font-size:0.98rem;font-weight:300;color:var(--black);line-height:1.75;margin-bottom:0}
+.callout strong{font-weight:600;color:var(--navy)}
+/* Author's POV */
+.authors-pov{background:var(--navy);padding:2rem;margin:2.5rem 0}
+.pov-label{font-size:0.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.pov-label::before{content:'';width:12px;height:2px;background:var(--accent);flex-shrink:0}
+.authors-pov p{font-size:1rem;font-weight:300;line-height:1.85;color:rgba(255,255,255,0.75);margin-bottom:0.85rem}
+.authors-pov p:last-child{margin-bottom:0}
+.authors-pov strong{font-weight:600;color:var(--white)}
+.authors-pov em{font-style:italic;color:rgba(255,255,255,0.5)}
+/* Subscribe inline */
 .sub-inline{background:var(--off-white);border-left:3px solid var(--accent);padding:1.5rem 1.75rem;margin:2rem 0}
 .sub-inline p{font-size:0.95rem;font-weight:300;color:var(--grey);margin-bottom:1rem;line-height:1.65}
 .sub-inline-form{display:flex;max-width:420px}
 .sub-inline-email{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0.75rem 1rem;outline:none;min-width:0}
 .sub-inline-email::placeholder{color:#bbb}
 .sub-inline-btn{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1.5px solid var(--accent);padding:0.75rem 1rem;cursor:pointer;white-space:nowrap}
+.article-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.5rem;margin-top:2rem;border-top:1px solid var(--rule-light)}
+.article-footer-note{font-size:0.75rem;color:var(--grey-light)}
 @media(min-width:900px){.article{padding:4rem 3rem}}
-@media(max-width:767px){body{font-size:16px}.article{padding:2.5rem 1.5rem}.sub-inline-form{flex-direction:column}.sub-inline-email{border-right:1.5px solid var(--navy);border-bottom:none}.sub-inline-btn{border-top:none}}
+@media(max-width:767px){body{font-size:16px}.article{padding:2.5rem 1.5rem}.deal-snap{grid-template-columns:1fr 1fr}.sub-inline-form{flex-direction:column}.sub-inline-email{border-right:1.5px solid var(--navy);border-bottom:none}.sub-inline-btn{border-top:none}}
 </style>
 </head>
 <body>
@@ -110,7 +126,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   <a href="#" class="sb-issue">02 — Why most SME sales take 3 years · Apr 2026</a>
   <a href="#" class="sb-issue">03 — What a buyer checks in 48 hours · Apr 2026</a>
   <div class="sb-section">Contact</div>
-  <a class="sb-link" data-email href="#">deals@news.mnaintel.com</a>
+  <a class="sb-link" data-email href="#"><span class="__cf_email__" data-cfemail="741011151807341a1103075a191a151d1a0011185a171b19">[email&#160;protected]</span></a>
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </div>
 <nav>
@@ -131,47 +147,63 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 <div class="article">
   <a href="/case-studies" class="back-link">← Back to Case Studies</a>
   <div class="article-masthead">
-    <div class="article-pub">M&A Intelligence — Case Study</div>
-    <div class="article-meta">
-      <span class="article-tag">Transport & Logistics · €14.3 Billion</span>
+    <div class="article-pub">M&A Intelligence — Case Study No. 01</div>
+    <div class="article-tags">
+      <span class="article-tag">Transport & Logistics</span>
+      <span class="article-tag grey">Europe</span>
+      <span class="article-tag grey">Cash</span>
+      <span class="article-tag grey">€14.3 Billion</span>
       <span class="article-date">March 2026</span>
     </div>
     <div class="article-title">DSV acquires DB Schenker at 7.5× EBITDA — why not 12×?</div>
-    <div class="article-deck">The largest logistics deal of 2024 paid less than half the multiple of a smaller specialist acquired the same year. Here is what the numbers actually tell you about how buyers value scale versus specialisation.</div>
+    <div class="article-deck">The largest logistics deal of 2024 paid less than half the multiple of a smaller specialist sold the same year. Here is what the numbers actually tell you about how buyers price scale versus specialisation.</div>
+  </div>
+
+  <div class="deal-snap">
+    <div class="snap-cell"><div class="snap-label">Buyer</div><div class="snap-val">DSV A/S</div></div>
+    <div class="snap-cell"><div class="snap-label">Target</div><div class="snap-val">DB Schenker</div></div>
+    <div class="snap-cell"><div class="snap-label">EV / EBITDA</div><div class="snap-val">7.5×</div></div>
+    <div class="snap-cell"><div class="snap-label">Consideration</div><div class="snap-val">Cash · €14.3B</div></div>
   </div>
 
   <div class="article-body">
-    <p>In 2024, two logistics companies sold within months of each other. One was one of the largest freight networks in Europe. The other was a mid-sized cold-chain specialist. The larger company sold at 7.5× EBITDA. The smaller one sold at 14.5× EBITDA — nearly double.</p>
-    <p>The larger company was <strong>DB Schenker</strong>, acquired by DSV for €14.3 billion. The smaller one was <strong>Frigo-Trans</strong>, acquired by UPS. Same sector. Same year. Radically different multiples.</p>
-    <p>Understanding why is one of the most useful things a business owner can do before deciding to sell.</p>
+    <p>In 2024, two logistics companies sold within months of each other. One was one of the largest freight networks in Europe. The other was a mid-sized cold-chain specialist. The larger company sold at <strong>7.5× EBITDA</strong>. The smaller one sold at <strong>14.5× EBITDA</strong> — nearly double.</p>
+    <p>The larger company was DB Schenker, acquired by DSV for €14.3 billion in a full cash transaction. The smaller one was Frigo-Trans, acquired by UPS. Same sector. Same year. Radically different multiples.</p>
+    <p>Understanding why is one of the most valuable things a business owner can do before deciding to sell.</p>
 
-    <h2>The deal at a glance</h2>
+    <h2>The two deals side by side</h2>
     <table class="data-table">
       <tr><th>Item</th><th>DB Schenker</th><th>Frigo-Trans</th></tr>
-      <tr><td>Buyer</td><td>DSV</td><td>UPS</td></tr>
-      <tr><td>Transaction value</td><td>€14.3 billion</td><td>Not disclosed</td></tr>
-      <tr><td>EV / EBITDA multiple</td><td>7.5×</td><td>14.5×</td></tr>
+      <tr><td>Buyer</td><td>DSV A/S (Denmark)</td><td>UPS (USA)</td></tr>
+      <tr><td>Geography</td><td>Pan-European</td><td>Germany / Europe</td></tr>
+      <tr><td>Enterprise Value</td><td>€14.3 billion</td><td>Not disclosed</td></tr>
+      <tr><td>EV / EBITDA</td><td>7.5×</td><td>14.5×</td></tr>
+      <tr><td>Consideration</td><td>Cash</td><td>Cash</td></tr>
       <tr><td>Sector</td><td>General freight forwarding</td><td>Ultra-low-temperature logistics</td></tr>
-      <tr><td>Year</td><td>2024</td><td>2024</td></tr>
+      <tr><td>Year closed</td><td>2024</td><td>2024</td></tr>
     </table>
 
     <h2>Why did DSV pay only 7.5×?</h2>
-    <p>Seven and a half times EBITDA is not a low multiple for a business of this size. For context, the average EV/EBITDA multiple for transport and logistics SMEs in DACH is between 3.5× and 5.5×. DSV paid above market.</p>
-    <p>But the question is not whether 7.5× is low in absolute terms. The question is why it was not higher — and what that tells us about how strategic buyers price large, complex assets.</p>
-    <p>Three factors compressed the multiple. First: <strong>integration risk</strong>. DB Schenker is enormous. Integrating it into DSV's existing network requires years of systems alignment, culture change, and operational restructuring. Buyers price that risk into the multiple. Second: <strong>customer overlap</strong>. DSV and DB Schenker share many of the same large corporate clients. A buyer acquiring a competitor does not get 100% of that revenue — some customers will consolidate their contracts rather than double up. Third: <strong>regulatory risk</strong>. A deal of this size requires approval from multiple competition authorities. That uncertainty has a cost.</p>
+    <p>Seven and a half times EBITDA is not a low multiple for a business of this size. The average EV/EBITDA for transport and logistics SMEs in DACH sits between <strong>3.5× and 5.5×</strong>. DSV paid well above the market average for mid-sized players.</p>
+    <p>But the question is not whether 7.5× is low in absolute terms. The question is what capped it — and what business owners can learn from it.</p>
+    <p>Three factors compressed the multiple. First: <strong>integration complexity</strong>. DB Schenker is enormous. Integrating it into DSV's network requires years of systems alignment, cultural change, and operational restructuring. Buyers price that execution risk into the multiple. Second: <strong>revenue overlap</strong>. DSV and DB Schenker serve many of the same large corporate clients. An acquirer does not get 100% of that revenue — some customers will consolidate. Third: <strong>regulatory exposure</strong>. A deal of this size required approval from multiple competition authorities across jurisdictions. Uncertainty has a cost, and buyers discount for it.</p>
 
     <h2>Why did UPS pay 14.5× for Frigo-Trans?</h2>
-    <p>Frigo-Trans operates ultra-low-temperature transport — a highly specialised niche with significant barriers to entry. You cannot replicate this business overnight. The equipment is expensive and specialised, the operational expertise takes years to build, and the regulatory requirements are demanding.</p>
-    <p>That specialisation does three things for a buyer. It removes competition risk — there are very few alternative acquisition targets. It creates pricing power — customers cannot easily switch. And it generates <strong>recurring, contract-based revenue</strong> that is highly predictable.</p>
-    <div class="callout"><p><strong>The lesson:</strong> Scale alone does not drive premium multiples. Specialisation, barriers to entry, and revenue predictability do. A CHF 5M business with 80% recurring revenue and a defensible niche will often sell at a higher multiple than a CHF 50M business that is easily replicable.</p></div>
+    <p>Frigo-Trans operates ultra-low-temperature transport — a highly specialised segment with significant <strong>barriers to entry</strong>. The equipment is expensive and specialised, the operational expertise takes years to build, and the regulatory requirements are demanding.</p>
+    <p>That specialisation creates three things a buyer values above everything else: it removes competitive acquisition alternatives, it generates <strong>pricing power</strong> that generic operators do not have, and it produces <strong>contract-based, recurring revenue</strong> that is highly predictable.</p>
+    <div class="callout"><p><strong>Scale alone does not drive premium multiples.</strong> Specialisation, barriers to entry, and revenue predictability do. A CHF 5M business with 80% recurring revenue and a defensible niche will often command a higher multiple than a CHF 50M business that any well-capitalised competitor could replicate.</p></div>
 
-    <h2>What this means for SME owners</h2>
-    <p>Most business owners benchmark their valuation against size. They assume that a bigger business means a higher multiple. The DB Schenker / Frigo-Trans comparison shows that this assumption is wrong.</p>
-    <p>What actually moves your multiple from 4× to 8× in an SME transaction is not revenue — it is the quality and predictability of that revenue, the defensibility of your market position, and the degree to which the business can run without you.</p>
-    <p>Before you go to market, the most valuable exercise you can do is to look at your own business through the lens of a buyer and ask: what would compress my multiple? Customer concentration, owner dependency, undocumented processes, and unaudited financials are the four issues that appear most consistently in transactions that fail or disappoint.</p>
+    <h2>What the sector benchmarks tell us</h2>
+    <p>The DACH transport and logistics market in 2024 showed a wide dispersion of multiples — not because the market was inconsistent, but because the drivers of value vary dramatically by sub-sector. General road freight: <strong>3.5–5.5×</strong>. E-commerce and last-mile specialists: <strong>10–12×</strong>. Cold-chain and ultra-specialised segments: <strong>12–14.5×</strong>.</p>
+    <p>The pattern is consistent: the more defensible the niche, the higher the multiple. The more commoditised the service, the lower. This holds across geographies and deal sizes.</p>
+  </div>
 
-    <h2>Sources</h2>
-    <p style="font-size:0.85rem;color:var(--grey-light)">DSV / DB Schenker transaction data: MCF Corporate Finance M&A Logistics Insights, Spring 2025. Frigo-Trans / UPS transaction data: MCF Corporate Finance M&A Logistics Insights, Spring 2025. DACH SME multiple benchmarks: Dealsuite M&A Monitor 2024.</p>
+  <div class="authors-pov">
+    <div class="pov-label">Author's POV</div>
+    <p>I have sat in rooms where buyers price businesses like these. The conversation almost never starts with the P&L. It starts with two questions: <strong>"Who else could do this?"</strong> and <strong>"How confident are we in the forward cash flows?"</strong></p>
+    <p>DB Schenker is a great business. But DSV could have built similar capabilities over time, or acquired alternatives. Frigo-Trans operated in a segment where you either have the infrastructure and the certifications, or you do not. There is no organic path to what they built. That scarcity is what drives the multiple from 7× to 14×.</p>
+    <p>For a business owner reading this: the question is not whether your business is profitable. It is whether what you have built is <strong>genuinely difficult to replicate</strong>. If a well-funded competitor could approximate your position in three years, expect a mid-range multiple. If they cannot — because of your relationships, your certifications, your customer contracts, or your operational expertise — expect a premium.</p>
+    <p><em>The most expensive mistake I see sellers make is going to market before they have documented and articulated why their business is hard to replicate. Buyers will not do that work for you.</em></p>
   </div>
 
   <div class="sub-inline">
@@ -183,7 +215,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   </div>
 
   <div class="article-footer">
-    <div class="article-footer-note">M&A Intelligence · Case Study No. 01 · March 2026</div>
+    <div class="article-footer-note">M&A Intelligence · Case Study No. 01 · March 2026 · Sources: MCF Corporate Finance M&A Logistics Insights 2025; Dealsuite M&A Monitor 2024</div>
     <a href="/case-studies" style="font-size:0.82rem;font-weight:600;color:var(--navy);text-decoration:none">← All case studies</a>
   </div>
 </div>
@@ -202,7 +234,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function openSidebar(){
   document.getElementById('sidebar').classList.add('open');
   document.getElementById('sbOverlay').classList.add('open');
@@ -221,13 +253,4 @@ function handleSub(e){
   var orig=btn.textContent;btn.textContent='✓ Opening Beehiiv...';inp.value='';
   setTimeout(function(){btn.textContent=orig},3000);
 }
-window.addEventListener('DOMContentLoaded',function(){
-  var u='deals',d='news.mnaintel.com';
-  document.querySelectorAll('[data-email]').forEach(function(el){
-    el.href='mailto:'+u+'@'+d;el.textContent=u+'@'+d;
-  });
-});
-</script>
-
-</body>
-</html>
+window.addEventListener('DOMContentLoaded',fu

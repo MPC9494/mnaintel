@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tools · M&A Intelligence</title>
-<meta name="description" content="Free M&A and valuation tools for business owners. Subscribe to download.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="description" content="Free M&A tools for business owners. EBITDA calculator, valuation range, exit readiness score. Subscribe to unlock full results.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+
 :root{--white:#FFFFFF;--off-white:#F8F6F2;--paper:#F2EEE6;--navy:#0F1F3D;--navy-mid:#1B2F52;--rule:#D8D0C0;--rule-light:#EAE4D8;--black:#111111;--grey:#444444;--grey-mid:#666666;--grey-light:#888888;--accent:#8B1A1A;--border:rgba(0,0,0,0.1)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -28,11 +28,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black)
 .sb-link.active{font-weight:600}
 .sb-issue{display:block;padding:0.5rem 0;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s}
 .sb-issue:hover{color:rgba(255,255,255,0.65)}
-.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--white);color:var(--navy);border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
+.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
+.sb-cta:hover{background:#7a1515}
 nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:62px;gap:1rem;flex-wrap:nowrap}
 .nav-left{display:flex;align-items:center;gap:0.5rem;flex-shrink:0}
-.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.6);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;flex-shrink:0}
-.hamburger span{display:block;width:20px;height:1.5px;background:currentColor;border-radius:1px}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.7);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;flex-shrink:0}
+.hamburger span{display:block;width:22px;height:2px;background:currentColor;border-radius:1px;transition:all 0.2s}
 .hamburger:hover{color:var(--white)}
 .nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .nav-logo-bar{width:2px;height:18px;background:var(--accent);flex-shrink:0}
@@ -51,118 +52,60 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 .f-links a{font-size:0.82rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s}
 .f-links a:hover{color:rgba(255,255,255,0.65)}
 .f-copy{font-size:0.7rem;color:rgba(255,255,255,0.2);width:100%;margin-top:0.25rem}
+@media(min-width:900px){nav{padding:0 2.5rem;height:66px}footer{padding:2rem 3rem}}
+@media(max-width:767px){.nav-links{display:none}}
 
-/* PAGE HEADER */
 .page-header{background:var(--navy);padding:3rem 2rem 2.5rem;border-bottom:3px solid var(--accent)}
 .page-header-inner{max-width:1100px;margin:0 auto}
-.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:1.5rem;transition:color 0.2s}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:1.5rem}
 .back-link:hover{color:rgba(255,255,255,0.8)}
 .page-eyebrow{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.85rem;display:flex;align-items:center;gap:8px}
 .page-eyebrow::before{content:'';width:16px;height:2px;background:var(--accent);flex-shrink:0}
 .page-h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:0.75rem}
 .page-intro{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.75;max-width:600px}
-
-/* HOW IT WORKS */
-.how-sec{background:var(--off-white);border-bottom:1px solid var(--rule);padding:1.5rem 2rem}
-.how-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
-.how-step{display:flex;align-items:center;gap:0.75rem;font-size:0.85rem;font-weight:400;color:var(--grey)}
-.how-num{width:24px;height:24px;border-radius:50%;background:var(--navy);color:var(--white);font-size:0.72rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.how-arrow{color:var(--rule);font-size:1.2rem}
-
-/* TOOLS GRID */
-.tools-sec{padding:3rem 2rem}
+/* Tool rows — same format as issues */
+.tools-sec{padding:0 2rem;border-bottom:1px solid var(--rule)}
 .tools-inner{max-width:1100px;margin:0 auto}
-.tools-section-label{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--grey-light);margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:1px solid var(--rule)}
-.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:3rem}
-
-/* Tool card */
-.tool-card{background:var(--white);padding:2rem;display:flex;flex-direction:column;gap:0;position:relative}
-.tool-card.available:hover{background:var(--off-white)}
-.tool-card.soon{background:var(--off-white);cursor:default}
-.tool-tag{font-size:0.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;display:inline-block;margin-bottom:1rem;width:fit-content}
-.tool-tag.free{background:rgba(26,107,60,0.1);color:#1A6B3C}
-.tool-tag.coming{background:var(--rule-light);color:var(--grey-light)}
-.tool-icon{font-size:1.75rem;margin-bottom:0.85rem;line-height:1}
-.tool-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:0.5rem;line-height:1.2}
-.tool-card.soon .tool-name{color:var(--grey-mid)}
-.tool-desc{font-size:0.88rem;font-weight:300;color:var(--grey);line-height:1.65;margin-bottom:1.25rem;flex:1}
-.tool-card.soon .tool-desc{color:var(--grey-light)}
-.tool-features{list-style:none;margin-bottom:1.5rem}
-.tool-features li{font-size:0.78rem;color:var(--grey);padding:0.25rem 0;display:flex;align-items:flex-start;gap:8px;line-height:1.4}
-.tool-features li::before{content:'·';color:var(--accent);flex-shrink:0;font-weight:700}
-.tool-card.soon .tool-features li{color:var(--grey-light)}
-.tool-btn{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:0.7rem 1rem;border:none;cursor:pointer;transition:all 0.2s;width:100%;text-align:center}
-.tool-btn.unlock{background:var(--navy);color:var(--white)}
-.tool-btn.unlock:hover{background:var(--navy-mid)}
-.tool-btn.soon{background:transparent;border:1px solid var(--rule);color:var(--grey-light);cursor:default}
-
-/* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:400;align-items:center;justify-content:center;padding:1.5rem}
-.modal-overlay.open{display:flex}
-.modal{background:var(--white);max-width:480px;width:100%;padding:2.5rem;position:relative}
-.modal-close{position:absolute;top:1rem;right:1rem;background:transparent;border:none;font-size:1.4rem;cursor:pointer;color:var(--grey-light);line-height:1}
-.modal-close:hover{color:var(--navy)}
-.modal-eyebrow{font-size:0.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem}
-.modal-h{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:0.5rem;line-height:1.2}
-.modal-p{font-size:0.92rem;font-weight:300;color:var(--grey);line-height:1.65;margin-bottom:1.5rem}
-.modal-form{display:flex;flex-direction:column;gap:0;margin-bottom:0.6rem}
-.modal-email{background:var(--white);border:1.5px solid var(--navy);border-bottom:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.85rem 1rem;outline:none}
-.modal-email::placeholder{color:#bbb}
-.modal-btn{font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--navy);color:var(--white);border:1.5px solid var(--navy);padding:0.85rem;cursor:pointer;transition:background 0.2s}
-.modal-btn:hover{background:var(--navy-mid)}
-.modal-note{font-size:0.72rem;color:var(--grey-light)}
-
-@media(min-width:900px){nav{padding:0 2.5rem;height:66px}.page-header,.how-sec,.tools-sec{padding-left:3rem;padding-right:3rem}footer{padding:2rem 3rem}}
-@media(max-width:767px){.nav-links{display:none}.tools-grid{grid-template-columns:1fr}.how-arrow{display:none}}
-@media(max-width:1024px){.tools-grid{grid-template-columns:1fr 1fr}}
+.tools-header{display:flex;align-items:baseline;justify-content:space-between;padding:1.75rem 0 0;border-bottom:3px solid var(--navy)}
+.tools-header-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy)}
+.tools-header-sub{font-size:0.75rem;color:var(--grey-light)}
+.tool-row{display:flex;padding:2rem 0;border-bottom:1px solid var(--rule);gap:2rem;align-items:flex-start}
+.tool-row:last-child{border-bottom:none}
+.tool-row.soon{opacity:0.6}
+.tool-row-left{flex:1;min-width:0}
+.tool-row-top{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.tool-row-num{font-size:0.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.tool-row-tag{font-size:0.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);background:var(--rule-light);padding:2px 7px}
+.tool-row-tag.live{color:#1A6B3C;background:rgba(26,107,60,0.1)}
+.tool-row-soon{font-size:0.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);background:var(--rule-light);padding:2px 8px;margin-left:auto}
+.tool-row-title{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,3vw,1.6rem);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:0.5rem}
+.tool-row.soon .tool-row-title{color:var(--grey-mid)}
+.tool-row-desc{font-size:1rem;font-weight:300;color:var(--grey);line-height:1.7;margin-bottom:1rem}
+.tool-row.soon .tool-row-desc{color:var(--grey-light)}
+.tool-row-features{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.trf{font-size:0.8rem;color:var(--grey-mid);display:flex;align-items:center;gap:5px}
+.trf::before{content:'·';color:var(--accent);font-weight:700}
+.tool-row-cta{display:inline-flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.75rem 1.5rem;cursor:pointer;text-decoration:none;transition:background 0.2s}
+.tool-row-cta:hover{background:#7a1515}
+.tool-row-cta.disabled{background:var(--rule);color:var(--grey-light);cursor:default}
+/* Right preview panel */
+.tool-row-right{width:280px;flex-shrink:0}
+.tool-preview{background:var(--off-white);border:1px solid var(--rule);padding:1.25rem;position:relative}
+.tool-preview-label{font-size:0.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.75rem}
+.tp-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.3rem 0;border-bottom:1px solid var(--rule-light);font-size:0.82rem}
+.tp-row:last-of-type{border-bottom:none}
+.tp-label{color:var(--grey);font-weight:300}
+.tp-val{color:var(--navy);font-weight:600;font-variant-numeric:tabular-nums}
+.tp-val.blurred{filter:blur(5px);user-select:none}
+.tp-gate{text-align:center;padding:0.75rem 0 0;border-top:1px solid var(--rule);margin-top:0.5rem}
+.tp-gate-text{font-size:0.72rem;color:var(--grey-light);margin-bottom:0.5rem}
+.tp-gate-btn{font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.5rem 1rem;cursor:pointer;width:100%}
+.tp-gate-btn:hover{background:#7a1515}
+@media(min-width:900px){.page-header,.tools-sec{padding-left:3rem;padding-right:3rem}}
+@media(max-width:767px){body{font-size:16px}.page-header,.tools-sec{padding-left:1.5rem;padding-right:1.5rem}.tool-row{flex-direction:column}.tool-row-right{width:100%}}
 </style>
 </head>
 <body>
-<script>
-function openSidebar(){var s=document.getElementById("sidebar"),o=document.getElementById("sbOverlay");if(s)s.classList.add("open");if(o)o.classList.add("open");document.body.style.overflow="hidden"}
-function closeSidebar(){var s=document.getElementById("sidebar"),o=document.getElementById("sbOverlay");if(s)s.classList.remove("open");if(o)o.classList.remove("open");document.body.style.overflow=""}
-
-function openModal(toolName){
-  document.getElementById('modalTool').textContent=toolName;
-  document.getElementById('modal').classList.add('open');
-  document.body.style.overflow="hidden";
-}
-function closeModal(){
-  document.getElementById('modal').classList.remove('open');
-  document.body.style.overflow="";
-}
-
-function handleDownload(e){
-  e.preventDefault();
-  var input=document.getElementById('modalEmailInput');
-  var btn=document.getElementById('modalSubmitBtn');
-  var email=encodeURIComponent(input.value);
-  window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+email,'_blank');
-  btn.textContent='✓ Check your inbox for the download link';
-  input.value='';
-  setTimeout(function(){closeModal();btn.textContent='Subscribe & Download →';},3000);
-}
-
-window.addEventListener('DOMContentLoaded',function(){
-  var u='deals',d='news.mnaintel.com';
-  document.querySelectorAll('[data-email]').forEach(function(el){el.href='mailto:'+u+'@'+d;el.textContent=u+'@'+d});
-});
-</script>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <div class="modal-eyebrow">Free Download</div>
-    <div class="modal-h" id="modalTool">EBITDA Normalisation Calculator</div>
-    <p class="modal-p">Subscribe to M&A Intelligence to download. Free. One brief per week. Unsubscribe anytime.</p>
-    <form class="modal-form" onsubmit="handleDownload(event)">
-      <input type="email" class="modal-email" id="modalEmailInput" placeholder="your@email.com" required>
-      <button type="submit" class="modal-btn" id="modalSubmitBtn">Subscribe & Download →</button>
-    </form>
-    <div class="modal-note">Your email goes to Beehiiv — the download link arrives in the welcome email.</div>
-  </div>
-</div>
 
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 <div class="sidebar" id="sidebar">
@@ -173,19 +116,19 @@ window.addEventListener('DOMContentLoaded',function(){
   <div class="sb-section">Navigate</div>
   <a href="/" class="sb-link" onclick="closeSidebar()">Home</a>
   <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
-  <a href="/issue-01" class="sb-link" onclick="closeSidebar()">Issue 01</a>
+  <a href="/issue-01" class="sb-link" onclick="closeSidebar()">Issues</a>
+  <a href="/case-studies" class="sb-link" onclick="closeSidebar()">Case Studies</a>
   <a href="/tools" class="sb-link active" onclick="closeSidebar()">Tools</a>
   <a href="/plans" class="sb-link" onclick="closeSidebar()">Plans</a>
+  
   <div class="sb-section">Issues</div>
   <a href="/issue-01" class="sb-issue" onclick="closeSidebar()">01 — What your business is actually worth · Mar 2026</a>
   <a href="#" class="sb-issue">02 — Why most SME sales take 3 years · Apr 2026</a>
   <a href="#" class="sb-issue">03 — What a buyer checks in 48 hours · Apr 2026</a>
-  <a href="#" class="sb-issue">04 — Why your business sells to someone you know · May 2026</a>
   <div class="sb-section">Contact</div>
-  <a class="sb-link" data-email href="#"><span class="__cf_email__" data-cfemail="c3a7a6a2afb083ada6b4b0edaeada2aaadb7a6afeda0acae">[email&#160;protected]</span></a>
+  <a class="sb-link" data-email href="#">deals@news.mnaintel.com</a>
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </div>
-
 <nav>
   <div class="nav-left">
     <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -194,9 +137,10 @@ window.addEventListener('DOMContentLoaded',function(){
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
     <a href="/issue-01" class="nav-link">Issues</a>
-    <a href="/tools" class="nav-link active">Tools</a>
     <a href="/case-studies" class="nav-link">Case Studies</a>
+    <a href="/tools" class="nav-link active">Tools</a>
     <a href="/plans" class="nav-link">Plans</a>
+    
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </nav>
@@ -206,126 +150,165 @@ window.addEventListener('DOMContentLoaded',function(){
     <a href="/" class="back-link">← Back to home</a>
     <div class="page-eyebrow">Tools</div>
     <h1 class="page-h1">The buy-side toolkit.<br>Free with your subscription.</h1>
-    <p class="page-intro">Professional M&A tools built from real transaction experience. Subscribe free to download — one email, instant access.</p>
-  </div>
-</div>
-
-<div class="how-sec">
-  <div class="how-inner">
-    <div class="how-step"><div class="how-num">1</div><span>Choose a tool</span></div>
-    <div class="how-arrow">→</div>
-    <div class="how-step"><div class="how-num">2</div><span>Enter your email</span></div>
-    <div class="how-arrow">→</div>
-    <div class="how-step"><div class="how-num">3</div><span>Subscribe to M&A Intelligence — free</span></div>
-    <div class="how-arrow">→</div>
-    <div class="how-step"><div class="how-num">4</div><span>Download link arrives in your welcome email</span></div>
+    <p class="page-intro">Use each tool to get a partial result instantly. Subscribe free to unlock the full output and download.</p>
   </div>
 </div>
 
 <div class="tools-sec">
   <div class="tools-inner">
-
-    <div class="tools-section-label">Valuation</div>
-    <div class="tools-grid">
-
-      <!-- EBITDA Calculator — available -->
-      <div class="tool-card available">
-        <span class="tool-tag free">Free download</span>
-        <div class="tool-icon">📊</div>
-        <div class="tool-name">EBITDA Normalisation Calculator</div>
-        <div class="tool-desc">The exact framework a buy-side analyst uses to price a business. Enter your P&L, add back owner-specific costs, and get your adjusted EBITDA and indicative valuation range.</div>
-        <ul class="tool-features">
-          <li>Full P&L with gross margin and EBITDA breakdown</li>
-          <li>6 normalisation add-back categories with explanations</li>
-          <li>Low / Base / High Enterprise Value scenarios</li>
-          <li>EV to Equity Value bridge</li>
-          <li>M&A Intelligence branding — professional and confidential</li>
-        </ul>
-        <button class="tool-btn unlock" onclick="openModal('EBITDA Normalisation Calculator')">Download Free →</button>
-      </div>
-
-      <!-- Multipli Tracker — coming soon -->
-      <div class="tool-card soon">
-        <span class="tool-tag coming">Coming soon</span>
-        <div class="tool-icon">📈</div>
-        <div class="tool-name">Market Multiples Tracker</div>
-        <div class="tool-desc">Select your sector and geography — get the current EV/EBITDA range based on real transaction data. Updated monthly by the M&A Intelligence team.</div>
-        <ul class="tool-features">
-          <li>DACH, Southern Europe, UK — sector by sector</li>
-          <li>Strategic vs. PE buyer multiples</li>
-          <li>Updated monthly with sourced data</li>
-          <li>Transport, manufacturing, services, tech</li>
-        </ul>
-        <button class="tool-btn soon">Notify me when live</button>
-      </div>
-
-      <!-- Synergies Calculator — coming soon -->
-      <div class="tool-card soon">
-        <span class="tool-tag coming">Coming soon</span>
-        <div class="tool-icon">🔗</div>
-        <div class="tool-name">Synergies Calculator</div>
-        <div class="tool-desc">Estimate the post-merger savings from combining two businesses. Input fixed costs, headcount overlap, and shared infrastructure — see the value creation in CHF.</div>
-        <ul class="tool-features">
-          <li>Cost synergies — headcount, overhead, procurement</li>
-          <li>Revenue synergies — cross-sell, pricing power</li>
-          <li>Integration cost offset</li>
-          <li>Payback period on acquisition premium</li>
-        </ul>
-        <button class="tool-btn soon">Notify me when live</button>
-      </div>
-
+    <div class="tools-header">
+      <div class="tools-header-title">Available Tools</div>
+      <div class="tools-header-sub">New tools added monthly</div>
     </div>
 
-    <div class="tools-section-label">Process & Due Diligence</div>
-    <div class="tools-grid">
-
-      <!-- DD Checklist — coming soon -->
-      <div class="tool-card soon">
-        <span class="tool-tag coming">Coming soon</span>
-        <div class="tool-icon">✅</div>
-        <div class="tool-name">Due Diligence Checklist</div>
-        <div class="tool-desc">The 50 documents a buyer requests in the first 48 hours of due diligence. Organise your Virtual Data Room before the process starts — not during it.</div>
-        <ul class="tool-features">
-          <li>Financial, legal, commercial, HR sections</li>
-          <li>Priority order — what buyers look at first</li>
-          <li>Common red flags to pre-empt</li>
-          <li>VDR folder structure included</li>
-        </ul>
-        <button class="tool-btn soon">Notify me when live</button>
+    <!-- TOOL 01 — EBITDA Calculator -->
+    <div class="tool-row">
+      <div class="tool-row-left">
+        <div class="tool-row-top">
+          <span class="tool-row-num">Tool 01</span>
+          <span class="tool-row-tag live">Available now</span>
+        </div>
+        <div class="tool-row-title">EBITDA Normalisation Calculator</div>
+        <div class="tool-row-desc">Enter your P&L numbers and the tool normalises your EBITDA — adding back owner salary above market, personal expenses, one-off costs, and D&A. Then applies sector multiples to give you a valuation range. See your partial result instantly. Subscribe to download the full Excel model.</div>
+        <div class="tool-row-features">
+          <span class="trf">Full P&L normalisation</span>
+          <span class="trf">6 add-back categories</span>
+          <span class="trf">EV to Equity Value bridge</span>
+          <span class="trf">Low / Base / High scenarios</span>
+        </div>
+        <a href="/readiness" class="tool-row-cta">Try the Exit Readiness Test →</a>
+        &nbsp;&nbsp;
+        <button class="tool-row-cta" onclick="openDownloadModal('EBITDA Normalisation Calculator — Excel Model')">Download Excel →</button>
       </div>
-
-      <!-- Timeline Builder — coming soon -->
-      <div class="tool-card soon">
-        <span class="tool-tag coming">Coming soon</span>
-        <div class="tool-icon">📅</div>
-        <div class="tool-name">Deal Timeline Builder</div>
-        <div class="tool-desc">Enter your LOI signing date — get a milestone calendar from first meeting to closing. Understand the typical process and where deals get stuck.</div>
-        <ul class="tool-features">
-          <li>LOI → Exclusivity → DD → SPA → Closing</li>
-          <li>Realistic timeframes by deal size</li>
-          <li>Key decision points highlighted</li>
-          <li>Exportable calendar</li>
-        </ul>
-        <button class="tool-btn soon">Notify me when live</button>
+      <div class="tool-row-right">
+        <div class="tool-preview">
+          <div class="tool-preview-label">Preview — example output</div>
+          <div class="tp-row"><span class="tp-label">Revenue</span><span class="tp-val">CHF 2,500,000</span></div>
+          <div class="tp-row"><span class="tp-label">Reported EBITDA</span><span class="tp-val">CHF 700,000</span></div>
+          <div class="tp-row"><span class="tp-label">Total add-backs</span><span class="tp-val">CHF 160,000</span></div>
+          <div class="tp-row"><span class="tp-label">Adjusted EBITDA</span><span class="tp-val">CHF 860,000</span></div>
+          <div class="tp-row"><span class="tp-label">EBITDA margin</span><span class="tp-val">34.4%</span></div>
+          <div class="tp-row"><span class="tp-label">EV range (4–7×)</span><span class="tp-val blurred">CHF X.XM – X.XM</span></div>
+          <div class="tp-gate">
+            <div class="tp-gate-text">Subscribe to unlock the full valuation range</div>
+            <button class="tp-gate-btn" onclick="openDownloadModal('EBITDA Normalisation Calculator')">Unlock Full Output →</button>
+          </div>
+        </div>
       </div>
-
-      <!-- Readiness Scorecard — coming soon -->
-      <div class="tool-card soon">
-        <span class="tool-tag coming">Coming soon</span>
-        <div class="tool-icon">🎯</div>
-        <div class="tool-name">Exit Readiness Scorecard</div>
-        <div class="tool-desc">10 questions. 5 minutes. A score that tells you how ready your business is for a sale process — and what to fix before you go to market.</div>
-        <ul class="tool-features">
-          <li>Financial, operational, legal readiness</li>
-          <li>Weighted scoring by buyer priority</li>
-          <li>Personalised action list by score</li>
-          <li>Benchmarked against comparable transactions</li>
-        </ul>
-        <button class="tool-btn soon">Notify me when live</button>
-      </div>
-
     </div>
 
+    <!-- TOOL 02 — Exit Readiness -->
+    <div class="tool-row">
+      <div class="tool-row-left">
+        <div class="tool-row-top">
+          <span class="tool-row-num">Tool 02</span>
+          <span class="tool-row-tag live">Available now</span>
+        </div>
+        <div class="tool-row-title">Exit Readiness Scorecard</div>
+        <div class="tool-row-desc">5 questions about your business — customer concentration, management depth, financial documentation, revenue predictability, P&L clarity. Get your score and a partial breakdown instantly. Subscribe to receive the full report with specific actions to improve your multiple before going to market.</div>
+        <div class="tool-row-features">
+          <span class="trf">5 questions, 3 minutes</span>
+          <span class="trf">Score out of 15</span>
+          <span class="trf">Finding per area</span>
+          <span class="trf">Full report on subscribe</span>
+        </div>
+        <a href="/readiness" class="tool-row-cta">Take the Test →</a>
+      </div>
+      <div class="tool-row-right">
+        <div class="tool-preview">
+          <div class="tool-preview-label">Preview — example score</div>
+          <div class="tp-row"><span class="tp-label">Customer concentration</span><span class="tp-val">⚠️ Medium risk</span></div>
+          <div class="tp-row"><span class="tp-label">Management depth</span><span class="tp-val">✅ Strong</span></div>
+          <div class="tp-row"><span class="tp-label">Financial docs</span><span class="tp-val">✅ Audited</span></div>
+          <div class="tp-row"><span class="tp-label">Revenue predictability</span><span class="tp-val blurred">🔴 xxxxxxxx</span></div>
+          <div class="tp-row"><span class="tp-label">Your score</span><span class="tp-val blurred">X / 15</span></div>
+          <div class="tp-gate">
+            <div class="tp-gate-text">Take the test to see your full score</div>
+            <a href="/readiness" class="tp-gate-btn" style="display:block;text-align:center;text-decoration:none">Start Test →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOOL 03 — Market Multiples Tracker -->
+    <div class="tool-row soon">
+      <div class="tool-row-left">
+        <div class="tool-row-top">
+          <span class="tool-row-num">Tool 03</span>
+          <span class="tool-row-soon">Coming soon · May 2026</span>
+        </div>
+        <div class="tool-row-title">Market Multiples Tracker</div>
+        <div class="tool-row-desc">Select your sector and geography — get the current EV/EBITDA range based on real transaction data. Updated monthly. Covers DACH, Southern Europe, UK, transport, manufacturing, business services, and technology-enabled services.</div>
+        <div class="tool-row-features">
+          <span class="trf">Updated monthly</span>
+          <span class="trf">Sector + geography filters</span>
+          <span class="trf">Strategic vs PE multiples</span>
+          <span class="trf">Sourced transaction data</span>
+        </div>
+        <button class="tool-row-cta disabled">Coming Soon</button>
+      </div>
+      <div class="tool-row-right">
+        <div class="tool-preview">
+          <div class="tool-preview-label">Preview — DACH multiples 2025</div>
+          <div class="tp-row"><span class="tp-label">Transport & Logistics</span><span class="tp-val blurred">X.X – X.X×</span></div>
+          <div class="tp-row"><span class="tp-label">Manufacturing</span><span class="tp-val blurred">X.X – X.X×</span></div>
+          <div class="tp-row"><span class="tp-label">Business Services</span><span class="tp-val blurred">X.X – X.X×</span></div>
+          <div class="tp-row"><span class="tp-label">Tech-enabled</span><span class="tp-val blurred">XX – XX×</span></div>
+          <div class="tp-gate">
+            <div class="tp-gate-text">Launching May 2026 — subscribe to be notified</div>
+            <button class="tp-gate-btn" onclick="openDownloadModal('Market Multiples Tracker — Notify Me')">Notify Me →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOOL 04 — DD Checklist -->
+    <div class="tool-row soon">
+      <div class="tool-row-left">
+        <div class="tool-row-top">
+          <span class="tool-row-num">Tool 04</span>
+          <span class="tool-row-soon">Coming soon · April 2026</span>
+        </div>
+        <div class="tool-row-title">Due Diligence Checklist</div>
+        <div class="tool-row-desc">The 50 documents a buyer requests in the first 48 hours of due diligence. Organise your Virtual Data Room before the process starts — not during it. Includes VDR folder structure and a priority order based on what buyers actually look at first.</div>
+        <div class="tool-row-features">
+          <span class="trf">50 document categories</span>
+          <span class="trf">Priority order</span>
+          <span class="trf">VDR folder structure</span>
+          <span class="trf">Common red flags</span>
+        </div>
+        <button class="tool-row-cta disabled">Coming Soon</button>
+      </div>
+      <div class="tool-row-right">
+        <div class="tool-preview">
+          <div class="tool-preview-label">Preview — first 48 hours</div>
+          <div class="tp-row"><span class="tp-label">Last 3Y audited accounts</span><span class="tp-val">Priority 1</span></div>
+          <div class="tp-row"><span class="tp-label">Customer contract list</span><span class="tp-val">Priority 1</span></div>
+          <div class="tp-row"><span class="tp-label">Management accounts YTD</span><span class="tp-val">Priority 1</span></div>
+          <div class="tp-row"><span class="tp-label">+ 47 more categories</span><span class="tp-val blurred">Priority X</span></div>
+          <div class="tp-gate">
+            <div class="tp-gate-text">Launching April 2026 — subscribe to be notified</div>
+            <button class="tp-gate-btn" onclick="openDownloadModal('Due Diligence Checklist — Notify Me')">Notify Me →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DOWNLOAD MODAL -->
+<div id="dlModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:400;align-items:center;justify-content:center;padding:1.5rem">
+  <div style="background:var(--white);max-width:460px;width:100%;padding:2.5rem;position:relative">
+    <button onclick="closeDlModal()" style="position:absolute;top:1rem;right:1rem;background:transparent;border:none;font-size:1.4rem;cursor:pointer;color:var(--grey-light)">×</button>
+    <div style="font-size:0.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem">Free Download</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:0.5rem;line-height:1.25" id="dlModalTitle">Tool</div>
+    <p style="font-size:0.92rem;font-weight:300;color:var(--grey);line-height:1.65;margin-bottom:1.5rem">Subscribe to M&A Intelligence — free — to download. One brief per week. Unsubscribe anytime.</p>
+    <form style="display:flex;flex-direction:column;gap:0;margin-bottom:0.6rem" onsubmit="handleDlSub(event)">
+      <input type="email" id="dlEmailInput" style="background:var(--white);border:1.5px solid var(--navy);border-bottom:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.85rem 1rem;outline:none" placeholder="your@email.com" required>
+      <button type="submit" id="dlSubmitBtn" style="font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.85rem;cursor:pointer">Subscribe & Download →</button>
+    </form>
+    <div style="font-size:0.72rem;color:var(--grey-light)">Download link arrives in your welcome email.</div>
   </div>
 </div>
 
@@ -335,8 +318,66 @@ window.addEventListener('DOMContentLoaded',function(){
     <div class="f-links">
       <a href="/about">About</a>
       <a href="/issue-01">Issues</a>
+      <a href="/case-studies">Case Studies</a>
       <a href="/tools">Tools</a>
       <a href="/plans">Plans</a>
       <a data-email href="#">Contact</a>
     </div>
-    <div class="f-copy">© 2026 M&A Intelli
+    <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
+  </div>
+</footer>
+
+<script>
+function openDownloadModal(title) {
+  document.getElementById('dlModalTitle').textContent = title;
+  var m = document.getElementById('dlModal');
+  m.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeDlModal() {
+  document.getElementById('dlModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.getElementById('dlModal').addEventListener('click', function(e) {
+  if (e.target === this) closeDlModal();
+});
+function handleDlSub(e) {
+  e.preventDefault();
+  var email = document.getElementById('dlEmailInput').value;
+  var btn = document.getElementById('dlSubmitBtn');
+  window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email=' + encodeURIComponent(email), '_blank');
+  btn.textContent = '✓ Check your inbox';
+  document.getElementById('dlEmailInput').value = '';
+  setTimeout(function() { closeDlModal(); btn.textContent = 'Subscribe & Download →'; }, 3000);
+}
+</script>
+
+<script>
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sbOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sbOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function handleSub(e){
+  e.preventDefault();
+  var inp=e.target.querySelector('input[type=email]');
+  var btn=e.target.querySelector('button[type=submit]')||e.target.querySelector('button');
+  window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(inp.value),'_blank');
+  var orig=btn.textContent;btn.textContent='✓ Opening Beehiiv...';inp.value='';
+  setTimeout(function(){btn.textContent=orig},3000);
+}
+window.addEventListener('DOMContentLoaded',function(){
+  var u='deals',d='news.mnaintel.com';
+  document.querySelectorAll('[data-email]').forEach(function(el){
+    el.href='mailto:'+u+'@'+d;el.textContent=u+'@'+d;
+  });
+});
+</script>
+
+</body>
+</html>
