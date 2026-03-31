@@ -5,6 +5,9 @@
     { "source": "/about", "destination": "/about.html" },
     { "source": "/issue-01", "destination": "/issue-01.html" },
     { "source": "/plans", "destination": "/plans.html" },
-    { "source": "/tools", "destination": "/tools.html" }
+    { "source": "/tools", "destination": "/tools.html" },
+    { "source": "/case-studies", "destination": "/case-studies.html" },
+    { "source": "/case-study-01", "destination": "/case-study-01.html" },
+    { "source": "/readiness", "destination": "/readiness.html" }
   ]
 }

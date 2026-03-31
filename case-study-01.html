@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSV acquires DB Schenker — Case Study · M&A Intelligence</title>
+<meta name="description" content="Why DSV paid 7.5× EBITDA for DB Schenker while Frigo-Trans sold at 14.5×. Buy-side analysis of the largest logistics deal of 2024.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root{--white:#FFFFFF;--off-white:#F8F6F2;--paper:#F2EEE6;--navy:#0F1F3D;--navy-mid:#1B2F52;--rule:#D8D0C0;--rule-light:#EAE4D8;--black:#111111;--grey:#444444;--grey-mid:#666666;--grey-light:#888888;--accent:#8B1A1A;--border:rgba(0,0,0,0.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;background:var(--navy);z-index:300;transform:translateX(-280px);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:299}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-logo-bar{width:2px;height:16px;background:var(--accent);flex-shrink:0}
+.sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:1.4rem;cursor:pointer;line-height:1;padding:0 4px}
+.sb-close:hover{color:var(--white)}
+.sb-section{font-size:0.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:1.25rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
+.sb-link:hover,.sb-link.active{color:var(--white)}
+.sb-link.active{font-weight:600}
+.sb-issue{display:block;padding:0.5rem 0;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s}
+.sb-issue:hover{color:rgba(255,255,255,0.65)}
+.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
+.sb-cta:hover{background:#7a1515}
+nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:62px;gap:1rem;flex-wrap:nowrap}
+.nav-left{display:flex;align-items:center;gap:0.5rem;flex-shrink:0}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.7);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;flex-shrink:0}
+.hamburger span{display:block;width:22px;height:2px;background:currentColor;border-radius:1px;transition:all 0.2s}
+.hamburger:hover{color:var(--white)}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:18px;background:var(--accent);flex-shrink:0}
+.nav-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white);white-space:nowrap}
+.nav-links{display:flex;align-items:center;flex-shrink:0}
+.nav-link{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;padding:0.35rem 0.85rem;transition:color 0.2s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--white)}
+.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.5rem 1.25rem;cursor:pointer;transition:background 0.2s;white-space:nowrap;flex-shrink:0}
+.nav-sub:hover{background:#7a1515}
+footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+.f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
+.f-brand-bar{width:2px;height:14px;background:var(--accent);flex-shrink:0}
+.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.f-links a{font-size:0.82rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s}
+.f-links a:hover{color:rgba(255,255,255,0.65)}
+.f-copy{font-size:0.7rem;color:rgba(255,255,255,0.2);width:100%;margin-top:0.25rem}
+@media(min-width:900px){nav{padding:0 2.5rem;height:66px}footer{padding:2rem 3rem}}
+@media(max-width:767px){.nav-links{display:none}}
+
+.article{padding:3rem 2rem;max-width:760px;margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;color:var(--grey-mid);text-decoration:none;margin-bottom:2rem}
+.back-link:hover{color:var(--navy)}
+.article-masthead{border-bottom:2px solid var(--navy);padding-bottom:1.5rem;margin-bottom:2rem}
+.article-pub{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.5rem}
+.article-meta{display:flex;align-items:center;gap:0.9rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.article-tag{font-size:0.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:rgba(139,26,26,0.08);padding:3px 9px}
+.article-date{font-size:0.75rem;color:var(--grey-light)}
+.article-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.75rem}
+.article-deck{font-size:1.05rem;font-weight:300;font-style:italic;color:var(--grey);line-height:1.65}
+.article-body p{font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--black);margin-bottom:1.25rem}
+.article-body h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin:2rem 0 0.75rem}
+.article-body strong{font-weight:600;color:var(--navy)}
+.data-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.92rem}
+.data-table th{background:var(--navy);color:var(--white);font-weight:600;font-size:0.72rem;letter-spacing:.08em;text-transform:uppercase;padding:0.75rem 1rem;text-align:left}
+.data-table td{padding:0.7rem 1rem;border-bottom:1px solid var(--rule-light);color:var(--grey)}
+.data-table td:first-child{font-weight:500;color:var(--navy)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:nth-child(even) td{background:var(--off-white)}
+.callout{background:var(--navy);padding:1.5rem 1.75rem;margin:1.75rem 0}
+.callout p{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.75;margin-bottom:0}
+.callout strong{color:var(--white);font-weight:600}
+.article-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.5rem;margin-top:2rem;border-top:1px solid var(--rule-light)}
+.article-footer-note{font-size:0.75rem;color:var(--grey-light)}
+.sub-inline{background:var(--off-white);border-left:3px solid var(--accent);padding:1.5rem 1.75rem;margin:2rem 0}
+.sub-inline p{font-size:0.95rem;font-weight:300;color:var(--grey);margin-bottom:1rem;line-height:1.65}
+.sub-inline-form{display:flex;max-width:420px}
+.sub-inline-email{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0.75rem 1rem;outline:none;min-width:0}
+.sub-inline-email::placeholder{color:#bbb}
+.sub-inline-btn{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1.5px solid var(--accent);padding:0.75rem 1rem;cursor:pointer;white-space:nowrap}
+@media(min-width:900px){.article{padding:4rem 3rem}}
+@media(max-width:767px){body{font-size:16px}.article{padding:2.5rem 1.5rem}.sub-inline-form{flex-direction:column}.sub-inline-email{border-right:1.5px solid var(--navy);border-bottom:none}.sub-inline-btn{border-top:none}}
+</style>
+</head>
+<body>
+
+<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sb-top">
+    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">×</button>
+  </div>
+  <div class="sb-section">Navigate</div>
+  <a href="/" class="sb-link" onclick="closeSidebar()">Home</a>
+  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
+  <a href="/issue-01" class="sb-link" onclick="closeSidebar()">Issues</a>
+  <a href="/case-studies" class="sb-link active" onclick="closeSidebar()">Case Studies</a>
+  <a href="/tools" class="sb-link" onclick="closeSidebar()">Tools</a>
+  <a href="/plans" class="sb-link" onclick="closeSidebar()">Plans</a>
+  
+  <div class="sb-section">Issues</div>
+  <a href="/issue-01" class="sb-issue" onclick="closeSidebar()">01 — What your business is actually worth · Mar 2026</a>
+  <a href="#" class="sb-issue">02 — Why most SME sales take 3 years · Apr 2026</a>
+  <a href="#" class="sb-issue">03 — What a buyer checks in 48 hours · Apr 2026</a>
+  <div class="sb-section">Contact</div>
+  <a class="sb-link" data-email href="#">deals@news.mnaintel.com</a>
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+</div>
+<nav>
+  <div class="nav-left">
+    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+  </div>
+  <div class="nav-links">
+    <a href="/about" class="nav-link">About</a>
+    <a href="/issue-01" class="nav-link">Issues</a>
+    <a href="/case-studies" class="nav-link active">Case Studies</a>
+    <a href="/tools" class="nav-link">Tools</a>
+    <a href="/plans" class="nav-link">Plans</a>
+    
+  </div>
+  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+</nav>
+<div class="article">
+  <a href="/case-studies" class="back-link">← Back to Case Studies</a>
+  <div class="article-masthead">
+    <div class="article-pub">M&A Intelligence — Case Study</div>
+    <div class="article-meta">
+      <span class="article-tag">Transport & Logistics · €14.3 Billion</span>
+      <span class="article-date">March 2026</span>
+    </div>
+    <div class="article-title">DSV acquires DB Schenker at 7.5× EBITDA — why not 12×?</div>
+    <div class="article-deck">The largest logistics deal of 2024 paid less than half the multiple of a smaller specialist acquired the same year. Here is what the numbers actually tell you about how buyers value scale versus specialisation.</div>
+  </div>
+
+  <div class="article-body">
+    <p>In 2024, two logistics companies sold within months of each other. One was one of the largest freight networks in Europe. The other was a mid-sized cold-chain specialist. The larger company sold at 7.5× EBITDA. The smaller one sold at 14.5× EBITDA — nearly double.</p>
+    <p>The larger company was <strong>DB Schenker</strong>, acquired by DSV for €14.3 billion. The smaller one was <strong>Frigo-Trans</strong>, acquired by UPS. Same sector. Same year. Radically different multiples.</p>
+    <p>Understanding why is one of the most useful things a business owner can do before deciding to sell.</p>
+
+    <h2>The deal at a glance</h2>
+    <table class="data-table">
+      <tr><th>Item</th><th>DB Schenker</th><th>Frigo-Trans</th></tr>
+      <tr><td>Buyer</td><td>DSV</td><td>UPS</td></tr>
+      <tr><td>Transaction value</td><td>€14.3 billion</td><td>Not disclosed</td></tr>
+      <tr><td>EV / EBITDA multiple</td><td>7.5×</td><td>14.5×</td></tr>
+      <tr><td>Sector</td><td>General freight forwarding</td><td>Ultra-low-temperature logistics</td></tr>
+      <tr><td>Year</td><td>2024</td><td>2024</td></tr>
+    </table>
+
+    <h2>Why did DSV pay only 7.5×?</h2>
+    <p>Seven and a half times EBITDA is not a low multiple for a business of this size. For context, the average EV/EBITDA multiple for transport and logistics SMEs in DACH is between 3.5× and 5.5×. DSV paid above market.</p>
+    <p>But the question is not whether 7.5× is low in absolute terms. The question is why it was not higher — and what that tells us about how strategic buyers price large, complex assets.</p>
+    <p>Three factors compressed the multiple. First: <strong>integration risk</strong>. DB Schenker is enormous. Integrating it into DSV's existing network requires years of systems alignment, culture change, and operational restructuring. Buyers price that risk into the multiple. Second: <strong>customer overlap</strong>. DSV and DB Schenker share many of the same large corporate clients. A buyer acquiring a competitor does not get 100% of that revenue — some customers will consolidate their contracts rather than double up. Third: <strong>regulatory risk</strong>. A deal of this size requires approval from multiple competition authorities. That uncertainty has a cost.</p>
+
+    <h2>Why did UPS pay 14.5× for Frigo-Trans?</h2>
+    <p>Frigo-Trans operates ultra-low-temperature transport — a highly specialised niche with significant barriers to entry. You cannot replicate this business overnight. The equipment is expensive and specialised, the operational expertise takes years to build, and the regulatory requirements are demanding.</p>
+    <p>That specialisation does three things for a buyer. It removes competition risk — there are very few alternative acquisition targets. It creates pricing power — customers cannot easily switch. And it generates <strong>recurring, contract-based revenue</strong> that is highly predictable.</p>
+    <div class="callout"><p><strong>The lesson:</strong> Scale alone does not drive premium multiples. Specialisation, barriers to entry, and revenue predictability do. A CHF 5M business with 80% recurring revenue and a defensible niche will often sell at a higher multiple than a CHF 50M business that is easily replicable.</p></div>
+
+    <h2>What this means for SME owners</h2>
+    <p>Most business owners benchmark their valuation against size. They assume that a bigger business means a higher multiple. The DB Schenker / Frigo-Trans comparison shows that this assumption is wrong.</p>
+    <p>What actually moves your multiple from 4× to 8× in an SME transaction is not revenue — it is the quality and predictability of that revenue, the defensibility of your market position, and the degree to which the business can run without you.</p>
+    <p>Before you go to market, the most valuable exercise you can do is to look at your own business through the lens of a buyer and ask: what would compress my multiple? Customer concentration, owner dependency, undocumented processes, and unaudited financials are the four issues that appear most consistently in transactions that fail or disappoint.</p>
+
+    <h2>Sources</h2>
+    <p style="font-size:0.85rem;color:var(--grey-light)">DSV / DB Schenker transaction data: MCF Corporate Finance M&A Logistics Insights, Spring 2025. Frigo-Trans / UPS transaction data: MCF Corporate Finance M&A Logistics Insights, Spring 2025. DACH SME multiple benchmarks: Dealsuite M&A Monitor 2024.</p>
+  </div>
+
+  <div class="sub-inline">
+    <p><strong>Get the next case study in your inbox.</strong> M&A Intelligence publishes one brief per week — deal analysis, valuation frameworks, and buy-side intelligence for business owners. Free.</p>
+    <form class="sub-inline-form" onsubmit="handleSub(event)">
+      <input type="email" class="sub-inline-email" placeholder="your@email.com" required>
+      <button type="submit" class="sub-inline-btn">Subscribe Free →</button>
+    </form>
+  </div>
+
+  <div class="article-footer">
+    <div class="article-footer-note">M&A Intelligence · Case Study No. 01 · March 2026</div>
+    <a href="/case-studies" style="font-size:0.82rem;font-weight:600;color:var(--navy);text-decoration:none">← All case studies</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
+    <div class="f-links">
+      <a href="/about">About</a>
+      <a href="/issue-01">Issues</a>
+      <a href="/case-studies">Case Studies</a>
+      <a href="/tools">Tools</a>
+      <a href="/plans">Plans</a>
+      <a data-email href="#">Contact</a>
+    </div>
+    <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
+  </div>
+</footer>
+
+<script>
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sbOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sbOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function handleSub(e){
+  e.preventDefault();
+  var inp=e.target.querySelector('input[type=email]');
+  var btn=e.target.querySelector('button[type=submit]')||e.target.querySelector('button');
+  window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(inp.value),'_blank');
+  var orig=btn.textContent;btn.textContent='✓ Opening Beehiiv...';inp.value='';
+  setTimeout(function(){btn.textContent=orig},3000);
+}
+window.addEventListener('DOMContentLoaded',function(){
+  var u='deals',d='news.mnaintel.com';
+  document.querySelectorAll('[data-email]').forEach(function(el){
+    el.href='mailto:'+u+'@'+d;el.textContent=u+'@'+d;
+  });
+});
+</script>
+
+</body>
+</html>
