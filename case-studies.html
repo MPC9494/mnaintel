@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Case Studies · M&A Intelligence</title>
-<meta name="description" content="Real M&A deal analysis from the buy side. Transport, logistics, and SME transactions explained with numbers.">
+<meta name="description" content="Real M&A deal analysis. Sector, geography, consideration paid, and what sellers can learn from each transaction.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 
@@ -63,26 +63,32 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 .page-eyebrow::before{content:'';width:16px;height:2px;background:var(--accent);flex-shrink:0}
 .page-h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:0.75rem}
 .page-intro{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.75;max-width:600px}
-.cs-sec{padding:3rem 2rem}
+.cs-sec{padding:0 2rem;border-bottom:1px solid var(--rule)}
 .cs-inner{max-width:1100px;margin:0 auto}
-.cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule)}
-.cs-card{background:var(--white);padding:2rem;text-decoration:none;display:flex;flex-direction:column;gap:0.5rem;transition:background 0.15s}
-.cs-card:hover{background:var(--off-white)}
-.cs-card.soon{background:var(--off-white);cursor:default}
-.cs-card.soon:hover{background:var(--off-white)}
-.cs-tag{font-size:0.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;display:inline-block;margin-bottom:0.5rem;width:fit-content}
-.cs-tag.live{background:rgba(139,26,26,0.1);color:var(--accent)}
-.cs-tag.coming{background:var(--rule-light);color:var(--grey-light)}
-.cs-sector{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light)}
-.cs-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--navy);line-height:1.25;margin:0.4rem 0 0.5rem}
-.cs-card.soon .cs-title{color:var(--grey-mid)}
-.cs-desc{font-size:0.92rem;font-weight:300;color:var(--grey);line-height:1.6;flex:1}
-.cs-meta{display:flex;align-items:center;justify-content:space-between;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--rule-light)}
-.cs-deal{font-size:0.75rem;font-weight:600;color:var(--navy)}
-.cs-read{font-size:0.78rem;font-weight:600;color:var(--accent)}
-.cs-card.soon .cs-deal{color:var(--grey-light)}
+.cs-header{display:flex;align-items:baseline;justify-content:space-between;padding:1.75rem 0 0;border-bottom:3px solid var(--navy)}
+.cs-header-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy)}
+.cs-header-sub{font-size:0.75rem;color:var(--grey-light)}
+/* Row — same format as issues */
+.cs-row{display:block;padding:2rem 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.cs-row:last-child{border-bottom:none}
+.cs-row.published:hover .cs-row-title{text-decoration:underline;text-decoration-color:var(--navy)}
+.cs-row-top{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.cs-row-num{font-size:0.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.cs-row-tag{font-size:0.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);background:var(--rule-light);padding:2px 7px}
+.cs-row-soon{font-size:0.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);background:var(--rule-light);padding:2px 8px;margin-left:auto}
+.cs-row-date{font-size:0.75rem;color:var(--grey-light);margin-left:auto}
+.cs-row-title{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.85rem);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:0.65rem}
+.cs-row.soon .cs-row-title{color:var(--grey-mid)}
+.cs-row-summary{font-size:1rem;font-weight:300;color:var(--grey);line-height:1.7;max-width:800px;margin-bottom:0.75rem}
+.cs-row.soon .cs-row-summary{color:var(--grey-light)}
+/* Deal metadata chips */
+.cs-row-meta{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+.meta-chip{display:flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:var(--grey-mid)}
+.meta-chip-label{font-size:0.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light)}
+.meta-chip-val{font-weight:500;color:var(--navy)}
+.cs-row-read{font-size:0.85rem;font-weight:600;color:var(--navy);margin-left:auto}
 @media(min-width:900px){.page-header,.cs-sec{padding-left:3rem;padding-right:3rem}}
-@media(max-width:767px){body{font-size:16px}.cs-grid{grid-template-columns:1fr}.page-header,.cs-sec{padding-left:1.5rem;padding-right:1.5rem}}
+@media(max-width:767px){body{font-size:16px}.page-header,.cs-sec{padding-left:1.5rem;padding-right:1.5rem}}
 </style>
 </head>
 <body>
@@ -124,46 +130,94 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </nav>
+
 <div class="page-header">
   <div class="page-header-inner">
     <a href="/" class="back-link">← Back to home</a>
     <div class="page-eyebrow">Case Studies</div>
-    <h1 class="page-h1">Real deals.<br>Real numbers.<br>Buy-side analysis.</h1>
-    <p class="page-intro">Each case study breaks down a real M&A transaction — the multiple paid, the rationale, what the buyer saw, and what business owners can learn before they go to market.</p>
+    <h1 class="page-h1">Real deals. Real numbers.<br>Buy-side analysis.</h1>
+    <p class="page-intro">Each case study breaks down a real M&A transaction — the multiple paid, the structure, the rationale, and what sellers can learn before they go to market.</p>
   </div>
 </div>
+
 <div class="cs-sec">
   <div class="cs-inner">
-    <div class="cs-grid">
-      <a href="/case-study-01" class="cs-card">
-        <span class="cs-tag live">Published · March 2026</span>
-        <div class="cs-sector">Transport & Logistics · €14.3 Billion</div>
-        <div class="cs-title">DSV acquires DB Schenker at 7.5× EBITDA — why not 12×?</div>
-        <div class="cs-desc">The largest logistics deal of 2024. DSV paid 7.5× for one of Europe's biggest freight networks. Frigo-Trans sold at 14.5× the same year. What made the difference — and what it means for any logistics business owner thinking about a sale.</div>
-        <div class="cs-meta"><span class="cs-deal">DSV / DB Schenker · 2024</span><span class="cs-read">Read case study →</span></div>
-      </a>
-      <div class="cs-card soon">
-        <span class="cs-tag coming">Coming soon · April 2026</span>
-        <div class="cs-sector">Manufacturing · SME</div>
-        <div class="cs-title">Why this CHF 8M manufacturer sold at 4× — and how it could have been 7×.</div>
-        <div class="cs-desc">A real transaction from the DACH market. The business was profitable, growing, and well-run. But three fixable issues cut the multiple in half. Anonymised case study with full analysis.</div>
-        <div class="cs-meta"><span class="cs-deal">Anonymised · DACH · 2023</span><span class="cs-read"></span></div>
+    <div class="cs-header">
+      <div class="cs-header-title">Case Studies</div>
+      <div class="cs-header-sub">Updated monthly</div>
+    </div>
+
+    <!-- CS 01 — published -->
+    <a href="/case-study-01" class="cs-row published" style="display:block">
+      <div class="cs-row-top">
+        <span class="cs-row-num">No. 01</span>
+        <span class="cs-row-tag">Transport & Logistics</span>
+        <span class="cs-row-tag">Europe</span>
+        <span class="cs-row-date">March 2026</span>
       </div>
-      <div class="cs-card soon">
-        <span class="cs-tag coming">Coming soon · May 2026</span>
-        <div class="cs-sector">Business Services · Southern Europe</div>
-        <div class="cs-title">The deal that collapsed in week two of due diligence — and why it was entirely predictable.</div>
-        <div class="cs-desc">Three buyers, six months of process, a signed LOI. Then due diligence started. What the buyer found in the first 48 hours that killed the deal — and how the seller could have seen it coming 18 months earlier.</div>
-        <div class="cs-meta"><span class="cs-deal">Anonymised · Southern Europe · 2024</span><span class="cs-read"></span></div>
+      <div class="cs-row-title">DSV acquires DB Schenker at 7.5× — why not 12×?</div>
+      <div class="cs-row-summary">The largest logistics deal of 2024. DSV paid 7.5× EBITDA for one of Europe's biggest freight networks — while Frigo-Trans sold at 14.5× the same year. Same sector, same geography, radically different multiples. Here is why, and what it means for any business owner thinking about a sale.</div>
+      <div class="cs-row-meta">
+        <div class="meta-chip"><span class="meta-chip-label">Buyer</span><span class="meta-chip-val">DSV A/S</span></div>
+        <div class="meta-chip"><span class="meta-chip-label">Geography</span><span class="meta-chip-val">Pan-European</span></div>
+        <div class="meta-chip"><span class="meta-chip-label">EV / EBITDA</span><span class="meta-chip-val">7.5×</span></div>
+        <div class="meta-chip"><span class="meta-chip-label">Consideration</span><span class="meta-chip-val">Cash · €14.3B</span></div>
+        <span class="cs-row-read">Read case study →</span>
       </div>
-      <div class="cs-card soon">
-        <span class="cs-tag coming">Coming soon · May 2026</span>
-        <div class="cs-sector">E-commerce Logistics</div>
-        <div class="cs-title">UPS pays 14.5× for Frigo-Trans — what specialist logistics is really worth.</div>
-        <div class="cs-desc">The same year DSV paid 7.5× for DB Schenker, UPS paid almost double for a cold-chain specialist. The lesson: specialisation, barriers to entry, and recurring contracts can double your multiple.</div>
-        <div class="cs-meta"><span class="cs-deal">UPS / Frigo-Trans · 2024</span><span class="cs-read"></span></div>
+    </a>
+
+    <!-- CS 02 — coming soon -->
+    <div class="cs-row soon">
+      <div class="cs-row-top">
+        <span class="cs-row-num">No. 02</span>
+        <span class="cs-row-tag">Manufacturing</span>
+        <span class="cs-row-tag">DACH</span>
+        <span class="cs-row-soon">Coming soon · April 2026</span>
+      </div>
+      <div class="cs-row-title">Why this CHF 8M manufacturer sold at 4× — and how it could have been 7×.</div>
+      <div class="cs-row-summary">A real transaction from the DACH market. Profitable, growing, well-run. Three fixable issues cut the multiple in half. Anonymised case study with full analysis and a checklist of what the seller should have done 18 months earlier.</div>
+      <div class="cs-row-meta">
+        <div class="meta-chip"><span class="meta-chip-label">Geography</span><span class="meta-chip-val">DACH</span></div>
+        <div class="meta-chip"><span class="meta-chip-label">EV / EBITDA</span><span class="meta-chip-val">4.0× (vs 7.0× potential)</span></div>
+        <div class="meta-chip"><span class="meta-chip-label">Consideration</span><span class="meta-chip-val">Cash + Earn-out</span></div>
       </div>
     </div>
+
+    <!-- CS 03 — coming soon -->
+    <div class="cs-row soon">
+      <div class="cs-row-top">
+        <span class="cs-row-num">No. 03</span>
+        <span class="cs-row-tag">Business Services</span>
+        <span class="cs-row-tag">Southern Europe</span>
+        <span class="cs-row-soon">Coming soon · April 2026</span>
+      </div>
+      <div class="cs-row-title">The deal that collapsed in week two of due diligence — and why it was entirely predictable.</div>
+      <div class="cs-row-summary">Three buyers, six months of process, a signed LOI. Then due diligence started. What the buyer found in the first 48 hours that killed the deal — and how the seller could have seen it coming 18 months earlier. Anonymised.</div>
+      <div class="cs-row-meta">
+        <div class="meta-chip"><span class="meta-chip-label">Geography</span><span class="meta-chip-val">Southern Europe</span></div>
+        <div class="meta-chip"><span class="meta-chip-label">Outcome</span><span class="meta-chip-val">Deal collapsed in DD</span></div>
+        <div class="meta-chip"><span class="meta-chip-label">Consideration</span><span class="meta-chip-val">Cash (proposed)</span></div>
+      </div>
+    </div>
+
+    <!-- CS 04 — coming soon -->
+    <div class="cs-row soon">
+      <div class="cs-row-top">
+        <span class="cs-row-num">No. 04</span>
+        <span class="cs-row-tag">E-commerce Logistics</span>
+        <span class="cs-row-tag">Europe</span>
+        <span class="cs-row-soon">Coming soon · May 2026</span>
+      </div>
+      <div class="cs-row-title">UPS pays 14.5× for Frigo-Trans — what specialist logistics is actually worth.</div>
+      <div class="cs-row-summary">Nearly double the multiple DSV paid for DB Schenker. The lesson: specialisation, regulatory barriers, and contract-based revenue can fundamentally change what your business is worth to a strategic buyer.</div>
+      <div class="cs-row-meta">
+        <div class="meta-chip"><span class="meta-chip-label">Buyer</span><span class="meta-chip-val">UPS</span></div>
+        <div class="meta-chip"><span class="meta-chip-label">Geography</span><span class="meta-chip-val">Germany / Europe</span></div>
+        <div class="meta-chip"><span class="meta-chip-label">EV / EBITDA</span><span class="meta-chip-val">14.5×</span></div>
+        <div class="meta-chip"><span class="meta-chip-label">Consideration</span><span class="meta-chip-val">Cash</span></div>
+      </div>
+    </div>
+
   </div>
 </div>
 <footer>
