@@ -178,7 +178,7 @@ function handleLeadMagnet(e){
   var input=e.target.querySelector('input[type=email]');
   var btn=e.target.querySelector('button');
   var email=encodeURIComponent(input.value);
-  window.open('https://news.mnaintel.com/subscribe?email='+email,'_blank');
+  window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+email,'_blank');
   var orig=btn.textContent;
   btn.textContent='✓ Check your inbox for the download link';
   input.value='';
@@ -188,7 +188,7 @@ function handleLeadMagnet(e){
   e.preventDefault();
   var inp=e.target.querySelector('input');
   var btn=e.target.querySelector('button[type=submit]')||e.target.querySelector('button');
-  window.open('https://news.mnaintel.com/subscribe?email='+encodeURIComponent(inp.value),'_blank');
+  window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(inp.value),'_blank');
   var orig=btn.textContent;btn.textContent='✓ Check your inbox';inp.value='';
   setTimeout(function(){btn.textContent=orig},3000);
 }
@@ -211,7 +211,7 @@ function handleLeadMagnet(e){
   <a href="#" class="sb-issue active" onclick="closeSidebar()">04 — Why your business sells to someone you know · May 2026</a>
   <div class="sb-section">Contact</div>
   <a class="sb-link email-link" href="#">Contact</a>
-  <button class="sb-cta" onclick="window.open('https://news.mnaintel.com/subscribe','_blank')">Subscribe Free</button>
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </div>
 <nav>
   <div class="nav-left">
@@ -224,7 +224,7 @@ function handleLeadMagnet(e){
     <a href="/tools" class="nav-link">Tools</a>
     <a href="/plans" class="nav-link">Plans</a>
     </div>
-  <button class="nav-sub" onclick="window.open('https://news.mnaintel.com/subscribe','_blank')">Subscribe Free</button>
+  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </nav>
 <div class="hero">
   <div class="hero-inner">
