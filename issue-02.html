@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why most SME sales take 3 years — and how to cut that to 12 months · M&A Intelligence</title>
+<meta name="description" content="The average SME sale takes 24–36 months. Here is why — and how prepared sellers close in 12 months.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root{--white:#FFFFFF;--off-white:#F8F6F2;--paper:#F2EEE6;--navy:#0F1F3D;--navy-mid:#1B2F52;--rule:#D8D0C0;--rule-light:#EAE4D8;--black:#111111;--grey:#444444;--grey-mid:#666666;--grey-light:#888888;--accent:#8B1A1A;--border:rgba(0,0,0,0.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;background:var(--navy);z-index:300;transform:translateX(-280px);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:299}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-logo-bar{width:2px;height:16px;background:var(--accent);flex-shrink:0}
+.sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:1.4rem;cursor:pointer;line-height:1;padding:0 4px}
+.sb-close:hover{color:var(--white)}
+.sb-section{font-size:0.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:1.25rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
+.sb-link:hover,.sb-link.active{color:var(--white)}
+.sb-link.active{font-weight:600}
+.sb-issue{display:block;padding:0.5rem 0;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s}
+.sb-issue:hover{color:rgba(255,255,255,0.65)}
+.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
+.sb-cta:hover{background:#7a1515}
+nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:62px;gap:1rem;flex-wrap:nowrap}
+.nav-left{display:flex;align-items:center;gap:0.5rem;flex-shrink:0}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.7);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;flex-shrink:0}
+.hamburger span{display:block;width:22px;height:2px;background:currentColor;border-radius:1px;transition:all 0.2s}
+.hamburger:hover{color:var(--white)}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:18px;background:var(--accent);flex-shrink:0}
+.nav-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white);white-space:nowrap}
+.nav-links{display:flex;align-items:center;flex-shrink:0}
+.nav-link{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;padding:0.35rem 0.85rem;transition:color 0.2s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--white)}
+.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.5rem 1.25rem;cursor:pointer;transition:background 0.2s;white-space:nowrap;flex-shrink:0}
+.nav-sub:hover{background:#7a1515}
+footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+.f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
+.f-brand-bar{width:2px;height:14px;background:var(--accent);flex-shrink:0}
+.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.f-links a{font-size:0.82rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s}
+.f-links a:hover{color:rgba(255,255,255,0.65)}
+.f-copy{font-size:0.7rem;color:rgba(255,255,255,0.2);width:100%;margin-top:0.25rem}
+@media(min-width:900px){nav{padding:0 2.5rem;height:66px}footer{padding:2rem 3rem}}
+@media(max-width:767px){.nav-links{display:none}}
+
+
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.06)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.65);font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:400;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left}
+.sb-dropdown-btn:hover{color:var(--white)}
+.sb-arrow{font-size:0.75rem;color:rgba(255,255,255,0.3);transition:transform 0.2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.5rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.35rem 0 0.35rem 0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;line-height:1.4;transition:color 0.2s}
+.sb-sub-link:hover{color:rgba(255,255,255,0.8)}
+.sb-sub-link.muted{color:rgba(255,255,255,0.28)}
+
+.article{padding:3rem 2rem;max-width:760px;margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;color:var(--grey-mid);text-decoration:none;margin-bottom:2rem}
+.back-link:hover{color:var(--navy)}
+.article-masthead{border-bottom:2px solid var(--navy);padding-bottom:1.5rem;margin-bottom:2rem}
+.article-pub{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.5rem}
+.article-dates{display:flex;gap:1.5rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.article-date-item{display:flex;flex-direction:column;gap:2px}
+.article-date-label{font-size:0.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light)}
+.article-date-val{font-size:0.82rem;font-weight:500;color:var(--navy)}
+.article-tags{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.article-tag{font-size:0.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:rgba(139,26,26,0.08);padding:3px 9px}
+.article-tag.grey{color:var(--grey-mid);background:var(--rule-light)}
+.article-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.75rem}
+.article-deck{font-size:1.05rem;font-weight:300;font-style:italic;color:var(--grey);line-height:1.65}
+.deal-snap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.75rem 0}
+.snap-cell{background:var(--off-white);padding:1rem 1.1rem}
+.snap-label{font-size:0.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.25rem}
+.snap-val{font-size:0.95rem;font-weight:600;color:var(--navy)}
+.article-body p{font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--black);margin-bottom:1.25rem}
+.article-body h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin:2rem 0 0.75rem;padding-top:1rem;border-top:1px solid var(--rule-light)}
+.article-body strong{font-weight:600;color:var(--navy)}
+.data-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.92rem}
+.data-table th{background:var(--navy);color:var(--white);font-weight:600;font-size:0.72rem;letter-spacing:.08em;text-transform:uppercase;padding:0.75rem 1rem;text-align:left}
+.data-table td{padding:0.7rem 1rem;border-bottom:1px solid var(--rule-light);color:var(--grey)}
+.data-table td:first-child{font-weight:500;color:var(--navy)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:nth-child(even) td{background:var(--off-white)}
+.callout{background:var(--off-white);border-left:3px solid var(--accent);padding:1.25rem 1.5rem;margin:1.75rem 0}
+.callout p{font-size:0.98rem;font-weight:300;color:var(--black);line-height:1.75;margin-bottom:0}
+.callout strong{font-weight:600;color:var(--navy)}
+.authors-pov{background:var(--navy);padding:2rem;margin:2.5rem 0}
+.pov-label{font-size:0.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.pov-label::before{content:'';width:12px;height:2px;background:var(--accent);flex-shrink:0}
+.authors-pov p{font-size:1rem;font-weight:300;line-height:1.85;color:rgba(255,255,255,0.75);margin-bottom:0.85rem}
+.authors-pov p:last-child{margin-bottom:0}
+.authors-pov strong{font-weight:600;color:var(--white)}
+.sub-inline{background:var(--off-white);border-left:3px solid var(--accent);padding:1.5rem 1.75rem;margin:2rem 0}
+.sub-inline p{font-size:0.95rem;font-weight:300;color:var(--grey);margin-bottom:1rem;line-height:1.65}
+.sub-inline-form{display:flex;max-width:420px}
+.sub-inline-email{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0.75rem 1rem;outline:none;min-width:0}
+.sub-inline-email::placeholder{color:#bbb}
+.sub-inline-btn{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1.5px solid var(--accent);padding:0.75rem 1rem;cursor:pointer;white-space:nowrap}
+.article-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.5rem;margin-top:2rem;border-top:1px solid var(--rule-light)}
+.article-footer-note{font-size:0.75rem;color:var(--grey-light)}
+@media(min-width:900px){.article{padding:4rem 3rem}}
+@media(max-width:767px){body{font-size:16px}.article{padding:2.5rem 1.5rem}.deal-snap{grid-template-columns:1fr 1fr}.sub-inline-form{flex-direction:column}.sub-inline-email{border-right:1.5px solid var(--navy);border-bottom:none}.sub-inline-btn{border-top:none}}
+</style>
+</head>
+<body>
+
+<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sb-top">
+    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">×</button>
+  </div>
+  <div class="sb-section">Navigate</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
+    <div class="sb-dropdown-items" id="dropIssues">
+      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01 — Your business is not worth what you think</a>
+      <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02 — Why most SME sales take 3 years</a>
+      <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03 — What a buyer checks in 48 hours</a>
+      <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04 — Why your business sells to someone you know</a>
+    </div>
+  </div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')"><span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span></button>
+    <div class="sb-dropdown-items" id="dropCS">
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01 — DSV / DB Schenker · 7.5×</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">02 — DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">03 — Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04 — UPS / Frigo-Trans · 14.5×</a>
+    </div>
+  </div>
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+</div>
+<nav>
+  <div class="nav-left">
+    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+  </div>
+  <div class="nav-links">
+    <a href="/about" class="nav-link">About</a>
+    <a href="/issue-01" class="nav-link">Issues</a>
+    <a href="/case-studies" class="nav-link">Case Studies</a>
+    <a href="/tools" class="nav-link">Tools</a>
+    <a href="/plans" class="nav-link">Plans</a>
+    
+  </div>
+  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+</nav>
+<div class="article">
+  <a href="/issues" class="back-link">← Back to Issues</a>
+  <div class="article-masthead">
+    <div class="article-pub">M&A Intelligence — Issue No. 02</div>
+    <div class="article-dates">
+      <div class="article-date-item"><div class="article-date-label">Deal date</div><div class="article-date-val">—</div></div>
+      <div class="article-date-item"><div class="article-date-label">Published</div><div class="article-date-val">April 2026</div></div>
+    </div>
+    <div class="article-tags"><span class="article-tag">M&A Process</span></div>
+    <div class="article-title">Why most SME sales take 3 years — and how to cut that to 12 months.</div>
+    <div class="article-deck">The timeline is not set by the market. It is set entirely by how prepared the seller is before the first buyer conversation. Here is what preparation actually means — and the six things to complete before you speak to anyone.</div>
+  </div>
+  
+  <div class="article-body">
+<p>There is a number most M&A advisors will not tell you upfront: the average SME sale process, from the decision to sell to cash in the bank, takes between 24 and 36 months. Not because buyers are slow. Not because the market is difficult. Because most sellers are not ready when they think they are.</p>
+<p>The good news: this timeline is almost entirely within your control. Sellers who close in 12 months do not have better businesses. They have <strong>more prepared ones</strong>.</p>
+
+<h2>The three phases — and where time actually disappears</h2>
+<p>Every SME sale follows the same structure. Phase one is preparation — getting the business, the documentation, and the numbers ready. Phase two is the process — finding buyers, running conversations, receiving and negotiating offers. Phase three is execution — legal, due diligence, and closing.</p>
+<p>Most sellers assume phase two is where the time goes. It is not. In a well-run process, phase two takes three to five months. Phase three takes two to four months. The variable is almost always <strong>phase one</strong> — and most sellers have not started it when they think they are ready to sell.</p>
+
+<h2>What "preparation" actually means</h2>
+<p>Preparation is not hiring an advisor and writing an information memorandum. Those come later. Real preparation means completing six things before you speak to a single buyer.</p>
+<p>First: <strong>three years of clean, audited or independently reviewed financials</strong>. Not management accounts. Not internal spreadsheets. A buyer's financial due diligence starts with your accounts, and if they are unaudited, the first thing that happens is a Quality of Earnings review — which costs time and money and creates uncertainty about the numbers.</p>
+<p>Second: <strong>normalised EBITDA with documented add-backs</strong>. Every adjustment you make to reported EBITDA needs a paper trail. One-off costs, owner salary above market, personal expenses through the company — each one needs documentation that a third-party accountant can verify. Undocumented add-backs get rejected.</p>
+<p>Third: <strong>a management team that can run the business without you</strong>. If you are the business — the key relationships, the operational knowledge, the client contact — then every buyer will insist on an earn-out and a long transition period. That adds months and uncertainty to every negotiation.</p>
+<p>Fourth: <strong>a clean legal structure</strong>. Undocumented shareholder agreements, missing IP assignments, employment contracts that have never been formalised, leases that expire mid-process — these are all discovered in due diligence and each one creates a delay or a price reduction.</p>
+<p>Fifth: <strong>a data room that is ready before you need it</strong>. The moment you enter exclusivity, the clock starts. Buyers who are waiting for documents lose confidence. Sellers who deliver a complete, organised virtual data room on day one of exclusivity close months faster.</p>
+<p>Sixth: <strong>a clear view of your buyer universe</strong>. Who are the most logical acquirers? Which competitors, adjacents, or financial sponsors would benefit most from owning your business? This analysis shapes your entire process strategy — and most sellers have never done it.</p>
+
+<h2>The timeline benchmark</h2>
+<table class="data-table">
+  <tr><th>Phase</th><th>Unprepared seller</th><th>Prepared seller</th></tr>
+  <tr><td>Preparation</td><td>12–18 months</td><td>Already done</td></tr>
+  <tr><td>Finding &amp; qualifying buyers</td><td>3–6 months</td><td>2–3 months</td></tr>
+  <tr><td>LOI to exclusivity</td><td>2–3 months</td><td>1–2 months</td></tr>
+  <tr><td>Due diligence &amp; legal</td><td>4–6 months</td><td>2–3 months</td></tr>
+  <tr><td>Total</td><td>24–36 months</td><td>6–12 months</td></tr>
+</table>
+
+<div class="callout"><p><strong>The uncomfortable truth:</strong> most sellers start thinking about the sale when they are emotionally ready to leave. Preparation should start when you are not — 18 to 24 months before you plan to approach the market. The business you prepare is a better business to own in the meantime.</p></div>
+</div>
+  <div class="authors-pov"><div class="pov-label">Author's POV</div><p>The fastest deal I have been involved with took nine months from first conversation to closing. The seller had spent two years — without telling anyone — cleaning up the business. Audited accounts, documented processes, a management team with real authority, a data room built in advance. When we entered exclusivity, due diligence was almost a formality.</p>
+<p>The slowest took four years. The business was excellent — genuinely profitable, growing, defensible market position. But the owner had never separated his personal expenses from the company, had no documentation for three key customer relationships, and had one employee who held all the technical knowledge. <strong>Every issue was fixable. None were fixed before the process started.</strong></p>
+<p>The difference between those two outcomes was not the business. It was the preparation. If you are reading this more than 18 months before you plan to sell, you still have time to be the first seller, not the second.</p></div>
+  <div class="sub-inline">
+    <p><strong>Subscribe free</strong> to receive the next issue and every case study the moment it publishes.</p>
+    <form class="sub-inline-form" onsubmit="handleSub(event)">
+      <input type="email" class="sub-inline-email" placeholder="your@email.com" required>
+      <button type="submit" class="sub-inline-btn">Subscribe Free →</button>
+    </form>
+  </div>
+  <div class="article-footer">
+    <div class="article-footer-note">M&A Intelligence · Issue No. 02 · April 2026</div>
+    <a href="/issues" style="font-size:0.82rem;font-weight:600;color:var(--navy);text-decoration:none">← Issues</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
+    <div class="f-links">
+      <a href="/about">About</a>
+      <a href="/issue-01">Issues</a>
+      <a href="/case-studies">Case Studies</a>
+      <a href="/tools">Tools</a>
+      <a href="/plans">Plans</a>
+      <a data-email href="#">Contact</a>
+    </div>
+    <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
+  </div>
+</footer>
+
+<script>
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sbOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sbOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function handleSub(e){
+  e.preventDefault();
+  var inp=e.target.querySelector('input[type=email]');
+  var btn=e.target.querySelector('button[type=submit]')||e.target.querySelector('button');
+  window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(inp.value),'_blank');
+  var orig=btn.textContent;btn.textContent='✓ Opening Beehiiv...';inp.value='';
+  setTimeout(function(){btn.textContent=orig},3000);
+}
+window.addEventListener('DOMContentLoaded',function(){
+  var u='deals',d='news.mnaintel.com';
+  document.querySelectorAll('[data-email]').forEach(function(el){
+    el.href='mailto:'+u+'@'+d;el.textContent=u+'@'+d;
+  });
+});
+</script>
+
+<script>
+function toggleDrop(id) {
+  var el = document.getElementById(id);
+  var arrow = document.getElementById('arrow' + id.replace('drop',''));
+  var isOpen = el.classList.contains('open');
+  document.querySelectorAll('.sb-dropdown-items').forEach(function(d){d.classList.remove('open')});
+  document.querySelectorAll('.sb-arrow').forEach(function(a){a.classList.remove('open')});
+  if(!isOpen){ el.classList.add('open'); if(arrow) arrow.classList.add('open'); }
+}
+</script>
+</body>
+</html>

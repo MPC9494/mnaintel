@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why your business sells to someone you already know — and how to find them · M&A Intelligence</title>
+<meta name="description" content="Most SME transactions involve a buyer the seller already knew. Here is how to map your buyer universe before going to market.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root{--white:#FFFFFF;--off-white:#F8F6F2;--paper:#F2EEE6;--navy:#0F1F3D;--navy-mid:#1B2F52;--rule:#D8D0C0;--rule-light:#EAE4D8;--black:#111111;--grey:#444444;--grey-mid:#666666;--grey-light:#888888;--accent:#8B1A1A;--border:rgba(0,0,0,0.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;background:var(--navy);z-index:300;transform:translateX(-280px);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:299}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-logo-bar{width:2px;height:16px;background:var(--accent);flex-shrink:0}
+.sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:1.4rem;cursor:pointer;line-height:1;padding:0 4px}
+.sb-close:hover{color:var(--white)}
+.sb-section{font-size:0.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:1.25rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
+.sb-link:hover,.sb-link.active{color:var(--white)}
+.sb-link.active{font-weight:600}
+.sb-issue{display:block;padding:0.5rem 0;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s}
+.sb-issue:hover{color:rgba(255,255,255,0.65)}
+.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
+.sb-cta:hover{background:#7a1515}
+nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:62px;gap:1rem;flex-wrap:nowrap}
+.nav-left{display:flex;align-items:center;gap:0.5rem;flex-shrink:0}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.7);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;flex-shrink:0}
+.hamburger span{display:block;width:22px;height:2px;background:currentColor;border-radius:1px;transition:all 0.2s}
+.hamburger:hover{color:var(--white)}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:18px;background:var(--accent);flex-shrink:0}
+.nav-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white);white-space:nowrap}
+.nav-links{display:flex;align-items:center;flex-shrink:0}
+.nav-link{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;padding:0.35rem 0.85rem;transition:color 0.2s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--white)}
+.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.5rem 1.25rem;cursor:pointer;transition:background 0.2s;white-space:nowrap;flex-shrink:0}
+.nav-sub:hover{background:#7a1515}
+footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+.f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
+.f-brand-bar{width:2px;height:14px;background:var(--accent);flex-shrink:0}
+.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.f-links a{font-size:0.82rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s}
+.f-links a:hover{color:rgba(255,255,255,0.65)}
+.f-copy{font-size:0.7rem;color:rgba(255,255,255,0.2);width:100%;margin-top:0.25rem}
+@media(min-width:900px){nav{padding:0 2.5rem;height:66px}footer{padding:2rem 3rem}}
+@media(max-width:767px){.nav-links{display:none}}
+
+
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.06)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.65);font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:400;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left}
+.sb-dropdown-btn:hover{color:var(--white)}
+.sb-arrow{font-size:0.75rem;color:rgba(255,255,255,0.3);transition:transform 0.2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.5rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.35rem 0 0.35rem 0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;line-height:1.4;transition:color 0.2s}
+.sb-sub-link:hover{color:rgba(255,255,255,0.8)}
+.sb-sub-link.muted{color:rgba(255,255,255,0.28)}
+
+.article{padding:3rem 2rem;max-width:760px;margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;color:var(--grey-mid);text-decoration:none;margin-bottom:2rem}
+.back-link:hover{color:var(--navy)}
+.article-masthead{border-bottom:2px solid var(--navy);padding-bottom:1.5rem;margin-bottom:2rem}
+.article-pub{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.5rem}
+.article-dates{display:flex;gap:1.5rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.article-date-item{display:flex;flex-direction:column;gap:2px}
+.article-date-label{font-size:0.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light)}
+.article-date-val{font-size:0.82rem;font-weight:500;color:var(--navy)}
+.article-tags{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.article-tag{font-size:0.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:rgba(139,26,26,0.08);padding:3px 9px}
+.article-tag.grey{color:var(--grey-mid);background:var(--rule-light)}
+.article-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.75rem}
+.article-deck{font-size:1.05rem;font-weight:300;font-style:italic;color:var(--grey);line-height:1.65}
+.deal-snap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.75rem 0}
+.snap-cell{background:var(--off-white);padding:1rem 1.1rem}
+.snap-label{font-size:0.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.25rem}
+.snap-val{font-size:0.95rem;font-weight:600;color:var(--navy)}
+.article-body p{font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--black);margin-bottom:1.25rem}
+.article-body h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin:2rem 0 0.75rem;padding-top:1rem;border-top:1px solid var(--rule-light)}
+.article-body strong{font-weight:600;color:var(--navy)}
+.data-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.92rem}
+.data-table th{background:var(--navy);color:var(--white);font-weight:600;font-size:0.72rem;letter-spacing:.08em;text-transform:uppercase;padding:0.75rem 1rem;text-align:left}
+.data-table td{padding:0.7rem 1rem;border-bottom:1px solid var(--rule-light);color:var(--grey)}
+.data-table td:first-child{font-weight:500;color:var(--navy)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:nth-child(even) td{background:var(--off-white)}
+.callout{background:var(--off-white);border-left:3px solid var(--accent);padding:1.25rem 1.5rem;margin:1.75rem 0}
+.callout p{font-size:0.98rem;font-weight:300;color:var(--black);line-height:1.75;margin-bottom:0}
+.callout strong{font-weight:600;color:var(--navy)}
+.authors-pov{background:var(--navy);padding:2rem;margin:2.5rem 0}
+.pov-label{font-size:0.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.pov-label::before{content:'';width:12px;height:2px;background:var(--accent);flex-shrink:0}
+.authors-pov p{font-size:1rem;font-weight:300;line-height:1.85;color:rgba(255,255,255,0.75);margin-bottom:0.85rem}
+.authors-pov p:last-child{margin-bottom:0}
+.authors-pov strong{font-weight:600;color:var(--white)}
+.sub-inline{background:var(--off-white);border-left:3px solid var(--accent);padding:1.5rem 1.75rem;margin:2rem 0}
+.sub-inline p{font-size:0.95rem;font-weight:300;color:var(--grey);margin-bottom:1rem;line-height:1.65}
+.sub-inline-form{display:flex;max-width:420px}
+.sub-inline-email{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0.75rem 1rem;outline:none;min-width:0}
+.sub-inline-email::placeholder{color:#bbb}
+.sub-inline-btn{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1.5px solid var(--accent);padding:0.75rem 1rem;cursor:pointer;white-space:nowrap}
+.article-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.5rem;margin-top:2rem;border-top:1px solid var(--rule-light)}
+.article-footer-note{font-size:0.75rem;color:var(--grey-light)}
+@media(min-width:900px){.article{padding:4rem 3rem}}
+@media(max-width:767px){body{font-size:16px}.article{padding:2.5rem 1.5rem}.deal-snap{grid-template-columns:1fr 1fr}.sub-inline-form{flex-direction:column}.sub-inline-email{border-right:1.5px solid var(--navy);border-bottom:none}.sub-inline-btn{border-top:none}}
+</style>
+</head>
+<body>
+
+<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sb-top">
+    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">×</button>
+  </div>
+  <div class="sb-section">Navigate</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
+    <div class="sb-dropdown-items" id="dropIssues">
+      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01 — Your business is not worth what you think</a>
+      <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02 — Why most SME sales take 3 years</a>
+      <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03 — What a buyer checks in 48 hours</a>
+      <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04 — Why your business sells to someone you know</a>
+    </div>
+  </div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')"><span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span></button>
+    <div class="sb-dropdown-items" id="dropCS">
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01 — DSV / DB Schenker · 7.5×</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">02 — DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">03 — Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04 — UPS / Frigo-Trans · 14.5×</a>
+    </div>
+  </div>
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+</div>
+<nav>
+  <div class="nav-left">
+    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+  </div>
+  <div class="nav-links">
+    <a href="/about" class="nav-link">About</a>
+    <a href="/issue-01" class="nav-link">Issues</a>
+    <a href="/case-studies" class="nav-link">Case Studies</a>
+    <a href="/tools" class="nav-link">Tools</a>
+    <a href="/plans" class="nav-link">Plans</a>
+    
+  </div>
+  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+</nav>
+<div class="article">
+  <a href="/issues" class="back-link">← Back to Issues</a>
+  <div class="article-masthead">
+    <div class="article-pub">M&A Intelligence — Issue No. 04</div>
+    <div class="article-dates">
+      <div class="article-date-item"><div class="article-date-label">Deal date</div><div class="article-date-val">—</div></div>
+      <div class="article-date-item"><div class="article-date-label">Published</div><div class="article-date-val">May 2026</div></div>
+    </div>
+    <div class="article-tags"><span class="article-tag">Buyer Psychology</span></div>
+    <div class="article-title">Why your business sells to someone you already know — and how to find them.</div>
+    <div class="article-deck">Most SME transactions happen through existing relationships. Here is how to map your buyer universe before going to market — and why the best buyers rarely come from a broad process.</div>
+  </div>
+  
+  <div class="article-body">
+<p>The most common question I hear from business owners thinking about a sale is: "How do I find buyers?" The answer, in the majority of SME transactions, is that you do not find them. They are already in your network — as customers, suppliers, competitors, or former colleagues. You just have not mapped them yet.</p>
+<p>Research on European mid-market M&A consistently shows that <strong>the majority of SME transactions involve a party that had a prior commercial or professional relationship with the seller</strong>. This is not a coincidence. It reflects how trust is built in a transaction where the seller needs to believe the buyer will care for what they built — and the buyer needs to believe the seller is telling the truth about the business.</p>
+
+<h2>Strategic buyers vs financial buyers — why it matters for price</h2>
+<p>Before mapping your buyer universe, it is worth understanding who pays more and why. The answer almost always is: <strong>strategic buyers</strong>. A strategic buyer — a competitor, a supplier, a customer, or a business in an adjacent sector — can generate synergies from owning your business that a financial buyer cannot. Those synergies increase the value they can justify paying.</p>
+<p>A private equity firm buying your business is building a portfolio. They need to generate a return on their investment over three to five years and exit. Their price is constrained by the returns they can generate organically and through operational improvement. A strategic buyer can eliminate overlapping costs, cross-sell to your customer base, or use your geographic footprint to expand into a new market. They are paying for your business plus the value it creates inside theirs.</p>
+<p>In practice, strategic buyers pay a premium of 20 to 40% over financial buyers for the same business. Not always — but often enough that a seller who only talks to private equity is leaving money on the table.</p>
+
+<h2>The three types of strategic buyer</h2>
+<p>There are three categories worth mapping. First, <strong>direct competitors</strong> — businesses that do what you do, in the same or adjacent geographies. They understand your market, know your customers, and can generate cost synergies immediately. They are the most obvious buyers and often the most motivated.</p>
+<p>Second, <strong>adjacent businesses</strong> — companies that serve your customers with different products or services. A logistics company buying a freight forwarder. A business services firm buying a specialist provider. They want your customer relationships and can offer services yours cannot.</p>
+<p>Third, <strong>international players seeking entry</strong>. If your market has attractive characteristics — growth, fragmentation, regulatory moat — a foreign competitor may see acquisition as faster and cheaper than organic entry. These buyers often pay the highest premiums because they are buying something they genuinely cannot build quickly.</p>
+
+<h2>How to map your buyer universe</h2>
+<p>The exercise is straightforward. Take a blank sheet. Write the names of every competitor you know. Every customer who has asked whether you would consider a partnership. Every supplier who has mentioned consolidation in the industry. Every former colleague who now works at a larger firm.</p>
+<p>Now ask three questions for each name: Do they have the financial capacity to acquire a business of your size? Would owning your business make their business better? Is there a personal relationship — or a route to one?</p>
+<p>The names that score highly on all three are your primary targets. The goal is not to approach them immediately. It is to know who they are before you start a formal process — so that when you do, you have a view on who is most likely to move quickly and pay well.</p>
+
+<div class="callout"><p><strong>The best deals are rarely competitive auctions.</strong> They are conversations between two parties who understand each other's business and have already built a degree of trust. A formal process is sometimes necessary. But the seller who has mapped their buyer universe in advance always negotiates from a stronger position.</p></div>
+</div>
+  <div class="authors-pov"><div class="pov-label">Author's POV</div><p>The best transaction I have been involved with was never formally marketed. The seller had spent two years quietly building a relationship with the most logical strategic acquirer — attending the same industry events, finding common ground on industry challenges, understanding how the acquirer thought about growth. By the time the conversation turned to a potential deal, both sides already understood the business case.</p>
+<p>The process took four months. The price was above what a formal auction would likely have achieved, because the buyer had high conviction and no competitive pressure to manage. <strong>The seller's preparation was not financial — it was relational.</strong></p>
+<p>I am not suggesting you should avoid a formal process. Sometimes it is the right approach. But the sellers who get the best outcomes — fastest, cleanest, highest price — are almost always the ones who knew exactly who they wanted to sell to, and had spent time making sure that buyer knew them well before the conversation started.</p></div>
+  <div class="sub-inline">
+    <p><strong>Subscribe free</strong> to receive the next issue and every case study the moment it publishes.</p>
+    <form class="sub-inline-form" onsubmit="handleSub(event)">
+      <input type="email" class="sub-inline-email" placeholder="your@email.com" required>
+      <button type="submit" class="sub-inline-btn">Subscribe Free →</button>
+    </form>
+  </div>
+  <div class="article-footer">
+    <div class="article-footer-note">M&A Intelligence · Issue No. 04 · May 2026</div>
+    <a href="/issues" style="font-size:0.82rem;font-weight:600;color:var(--navy);text-decoration:none">← Issues</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
+    <div class="f-links">
+      <a href="/about">About</a>
+      <a href="/issue-01">Issues</a>
+      <a href="/case-studies">Case Studies</a>
+      <a href="/tools">Tools</a>
+      <a href="/plans">Plans</a>
+      <a data-email href="#">Contact</a>
+    </div>
+    <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
+  </div>
+</footer>
+
+<script>
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sbOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sbOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function handleSub(e){
+  e.preventDefault();
+  var inp=e.target.querySelector('input[type=email]');
+  var btn=e.target.querySelector('button[type=submit]')||e.target.querySelector('button');
+  window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(inp.value),'_blank');
+  var orig=btn.textContent;btn.textContent='✓ Opening Beehiiv...';inp.value='';
+  setTimeout(function(){btn.textContent=orig},3000);
+}
+window.addEventListener('DOMContentLoaded',function(){
+  var u='deals',d='news.mnaintel.com';
+  document.querySelectorAll('[data-email]').forEach(function(el){
+    el.href='mailto:'+u+'@'+d;el.textContent=u+'@'+d;
+  });
+});
+</script>
+
+<script>
+function toggleDrop(id) {
+  var el = document.getElementById(id);
+  var arrow = document.getElementById('arrow' + id.replace('drop',''));
+  var isOpen = el.classList.contains('open');
+  document.querySelectorAll('.sb-dropdown-items').forEach(function(d){d.classList.remove('open')});
+  document.querySelectorAll('.sb-arrow').forEach(function(a){a.classList.remove('open')});
+  if(!isOpen){ el.classList.add('open'); if(arrow) arrow.classList.add('open'); }
+}
+</script>
+</body>
+</html>
