@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tools · M&A Intelligence</title>
-<meta name="description" content="Free M&A tools for business owners. EBITDA calculator, valuation range, exit readiness score. Subscribe to unlock full results.">
+<meta name="description" content="Free M&A tools for business owners. EBITDA calculator, exit readiness test, market multiples tracker.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 
@@ -55,54 +55,79 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 @media(min-width:900px){nav{padding:0 2.5rem;height:66px}footer{padding:2rem 3rem}}
 @media(max-width:767px){.nav-links{display:none}}
 
-.page-header{background:var(--navy);padding:3rem 2rem 2.5rem;border-bottom:3px solid var(--accent)}
-.page-header-inner{max-width:1100px;margin:0 auto}
-.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:1.5rem}
-.back-link:hover{color:rgba(255,255,255,0.8)}
-.page-eyebrow{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.85rem;display:flex;align-items:center;gap:8px}
-.page-eyebrow::before{content:'';width:16px;height:2px;background:var(--accent);flex-shrink:0}
-.page-h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:0.75rem}
-.page-intro{font-size:1rem;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.75;max-width:600px}
-/* Tool rows — same format as issues */
+/* PAGE HERO */
+.hero{border-bottom:2px solid var(--navy);padding:4rem 2rem 3rem}
+.hero-inner{max-width:1100px;margin:0 auto}
+.kicker{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
+.kicker-bar{width:20px;height:2px;background:var(--accent);flex-shrink:0}
+.kicker-text{font-size:0.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:700;line-height:1.06;letter-spacing:-.025em;color:var(--navy);margin-bottom:1rem}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-deck{font-size:1.1rem;font-weight:300;line-height:1.75;color:var(--grey);max-width:700px}
+/* HOW IT WORKS STRIP */
+.how-strip{background:var(--off-white);border-bottom:1px solid var(--rule);padding:1rem 2rem}
+.how-strip-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.how-step{display:flex;align-items:center;gap:0.6rem;font-size:0.82rem;font-weight:300;color:var(--grey)}
+.how-num{width:22px;height:22px;border-radius:50%;background:var(--navy);color:var(--white);font-size:0.68rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.how-arrow{color:var(--rule);font-size:1rem}
+/* TOOLS SECTION — same as issues-sec */
 .tools-sec{padding:0 2rem;border-bottom:1px solid var(--rule)}
 .tools-inner{max-width:1100px;margin:0 auto}
 .tools-header{display:flex;align-items:baseline;justify-content:space-between;padding:1.75rem 0 0;border-bottom:3px solid var(--navy)}
 .tools-header-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy)}
 .tools-header-sub{font-size:0.75rem;color:var(--grey-light)}
-.tool-row{display:flex;padding:2rem 0;border-bottom:1px solid var(--rule);gap:2rem;align-items:flex-start}
+/* TOOL ROWS — same as issue-row but with right panel */
+.tool-row{display:flex;padding:2rem 0;border-bottom:1px solid var(--rule);gap:3rem;align-items:flex-start}
 .tool-row:last-child{border-bottom:none}
-.tool-row.soon{opacity:0.6}
 .tool-row-left{flex:1;min-width:0}
 .tool-row-top{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap}
 .tool-row-num{font-size:0.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-.tool-row-tag{font-size:0.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);background:var(--rule-light);padding:2px 7px}
-.tool-row-tag.live{color:#1A6B3C;background:rgba(26,107,60,0.1)}
-.tool-row-soon{font-size:0.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);background:var(--rule-light);padding:2px 8px;margin-left:auto}
-.tool-row-title{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,3vw,1.6rem);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:0.5rem}
+.tool-tag-live{font-size:0.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#1A6B3C;background:rgba(26,107,60,0.1);padding:2px 8px}
+.tool-tag-soon{font-size:0.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);background:var(--rule-light);padding:2px 8px;margin-left:auto}
+.tool-row-title{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.85rem);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:0.65rem}
 .tool-row.soon .tool-row-title{color:var(--grey-mid)}
-.tool-row-desc{font-size:1rem;font-weight:300;color:var(--grey);line-height:1.7;margin-bottom:1rem}
+.tool-row-desc{font-size:1rem;font-weight:300;color:var(--grey);line-height:1.7;max-width:680px;margin-bottom:1rem}
 .tool-row.soon .tool-row-desc{color:var(--grey-light)}
-.tool-row-features{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem}
-.trf{font-size:0.8rem;color:var(--grey-mid);display:flex;align-items:center;gap:5px}
+.tool-row-features{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.trf{font-size:0.82rem;color:var(--grey-mid);display:flex;align-items:center;gap:5px}
 .trf::before{content:'·';color:var(--accent);font-weight:700}
-.tool-row-cta{display:inline-flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.75rem 1.5rem;cursor:pointer;text-decoration:none;transition:background 0.2s}
-.tool-row-cta:hover{background:#7a1515}
-.tool-row-cta.disabled{background:var(--rule);color:var(--grey-light);cursor:default}
-/* Right preview panel */
-.tool-row-right{width:280px;flex-shrink:0}
-.tool-preview{background:var(--off-white);border:1px solid var(--rule);padding:1.25rem;position:relative}
-.tool-preview-label{font-size:0.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.75rem}
-.tp-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.3rem 0;border-bottom:1px solid var(--rule-light);font-size:0.82rem}
+.tool-row-actions{display:flex;gap:0.75rem;flex-wrap:wrap}
+.tool-btn-primary{display:inline-flex;align-items:center;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.75rem 1.5rem;cursor:pointer;text-decoration:none;transition:background 0.2s}
+.tool-btn-primary:hover{background:#7a1515}
+.tool-btn-secondary{display:inline-flex;align-items:center;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:transparent;color:var(--navy);border:1.5px solid var(--rule);padding:0.75rem 1.5rem;cursor:pointer;text-decoration:none;transition:all 0.2s}
+.tool-btn-secondary:hover{border-color:var(--navy)}
+.tool-btn-disabled{display:inline-flex;align-items:center;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--rule-light);color:var(--grey-light);border:none;padding:0.75rem 1.5rem;cursor:default}
+/* PREVIEW PANEL */
+.tool-row-right{width:260px;flex-shrink:0}
+.tool-preview{border:1px solid var(--rule);background:var(--white)}
+.tp-header{background:var(--navy);padding:0.75rem 1rem}
+.tp-header-label{font-size:0.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.35)}
+.tp-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.55rem 1rem;border-bottom:1px solid var(--rule-light);font-size:0.85rem}
 .tp-row:last-of-type{border-bottom:none}
 .tp-label{color:var(--grey);font-weight:300}
-.tp-val{color:var(--navy);font-weight:600;font-variant-numeric:tabular-nums}
-.tp-val.blurred{filter:blur(5px);user-select:none}
-.tp-gate{text-align:center;padding:0.75rem 0 0;border-top:1px solid var(--rule);margin-top:0.5rem}
-.tp-gate-text{font-size:0.72rem;color:var(--grey-light);margin-bottom:0.5rem}
-.tp-gate-btn{font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.5rem 1rem;cursor:pointer;width:100%}
+.tp-val{color:var(--navy);font-weight:600}
+.tp-val.blurred{filter:blur(5px);user-select:none;pointer-events:none}
+.tp-gate{padding:0.85rem 1rem;border-top:1px solid var(--rule);background:var(--off-white);text-align:center}
+.tp-gate-text{font-size:0.72rem;color:var(--grey-light);margin-bottom:0.5rem;line-height:1.4}
+.tp-gate-btn{font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.5rem 0.85rem;cursor:pointer;width:100%}
 .tp-gate-btn:hover{background:#7a1515}
-@media(min-width:900px){.page-header,.tools-sec{padding-left:3rem;padding-right:3rem}}
-@media(max-width:767px){body{font-size:16px}.page-header,.tools-sec{padding-left:1.5rem;padding-right:1.5rem}.tool-row{flex-direction:column}.tool-row-right{width:100%}}
+/* SUBSCRIBE */
+.sub-sec{padding:2.5rem 2rem;border-bottom:1px solid var(--rule)}
+.sub-inner{max-width:560px;margin:0 auto;text-align:center}
+.sub-h2{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.5rem}
+.sub-h2 em{font-style:italic;color:var(--accent)}
+.sub-p{font-size:0.9rem;font-weight:300;color:var(--grey);margin-bottom:1.25rem;line-height:1.6}
+.sub-form{display:flex;max-width:440px;margin:0 auto 0.6rem}
+.sub-email{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.65rem 1rem;outline:none;min-width:0}
+.sub-email::placeholder{color:#bbb}
+.sub-btn{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1.5px solid var(--accent);padding:0.65rem 1.25rem;cursor:pointer;white-space:nowrap}
+.sub-btn:hover{background:#7a1515}
+.sub-note{font-size:0.75rem;color:var(--grey-light)}
+/* MODAL */
+#dlModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:400;align-items:center;justify-content:center;padding:1.5rem}
+@media(min-width:900px){.hero{padding:5rem 3rem 4rem}.how-strip,.tools-sec,.sub-sec{padding-left:3rem;padding-right:3rem}}
+@media(max-width:900px){.tool-row-right{display:none}}
+@media(max-width:767px){body{font-size:16px}.hero{padding:2.5rem 1.5rem 2rem}.how-strip,.tools-sec,.sub-sec{padding-left:1.5rem;padding-right:1.5rem}.tool-row{flex-direction:column}.how-arrow{display:none}.sub-form{flex-direction:column}.sub-email{border-right:1.5px solid var(--navy);border-bottom:none}.sub-btn{border-top:none}}
 </style>
 </head>
 <body>
@@ -126,7 +151,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   <a href="#" class="sb-issue">02 — Why most SME sales take 3 years · Apr 2026</a>
   <a href="#" class="sb-issue">03 — What a buyer checks in 48 hours · Apr 2026</a>
   <div class="sb-section">Contact</div>
-  <a class="sb-link" data-email href="#">deals@news.mnaintel.com</a>
+  <a class="sb-link" data-email href="#"><span class="__cf_email__" data-cfemail="adc9c8ccc1deedc3c8dade83c0c3ccc4c3d9c8c183cec2c0">[email&#160;protected]</span></a>
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </div>
 <nav>
@@ -140,17 +165,25 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
     <a href="/case-studies" class="nav-link">Case Studies</a>
     <a href="/tools" class="nav-link active">Tools</a>
     <a href="/plans" class="nav-link">Plans</a>
-    
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </nav>
 
-<div class="page-header">
-  <div class="page-header-inner">
-    <a href="/" class="back-link">← Back to home</a>
-    <div class="page-eyebrow">Tools</div>
-    <h1 class="page-h1">The buy-side toolkit.<br>Free with your subscription.</h1>
-    <p class="page-intro">Use each tool to get a partial result instantly. Subscribe free to unlock the full output and download.</p>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="kicker"><div class="kicker-bar"></div><div class="kicker-text">Free tools for business owners</div></div>
+    <h1>The buy-side toolkit.<br><em>Free with your subscription.</em></h1>
+    <p class="hero-deck">Use each tool to get a partial result instantly. Subscribe free to unlock the full output and download the Excel model.</p>
+  </div>
+</div>
+
+<div class="how-strip">
+  <div class="how-strip-inner">
+    <div class="how-step"><div class="how-num">1</div><span>Use the tool — get a partial result instantly</span></div>
+    <div class="how-arrow">→</div>
+    <div class="how-step"><div class="how-num">2</div><span>Subscribe free to M&A Intelligence</span></div>
+    <div class="how-arrow">→</div>
+    <div class="how-step"><div class="how-num">3</div><span>Unlock full output + download in welcome email</span></div>
   </div>
 </div>
 
@@ -161,70 +194,70 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
       <div class="tools-header-sub">New tools added monthly</div>
     </div>
 
-    <!-- TOOL 01 — EBITDA Calculator -->
+    <!-- TOOL 01 — Exit Readiness -->
     <div class="tool-row">
       <div class="tool-row-left">
         <div class="tool-row-top">
           <span class="tool-row-num">Tool 01</span>
-          <span class="tool-row-tag live">Available now</span>
+          <span class="tool-tag-live">Live now</span>
+        </div>
+        <div class="tool-row-title">Exit Readiness Scorecard</div>
+        <div class="tool-row-desc">5 questions about your business. See your score and partial findings instantly — customer concentration, management depth, financial quality, revenue predictability, P&L clarity. Subscribe free to receive the full report with specific actions to improve your multiple before you go to market.</div>
+        <div class="tool-row-features">
+          <span class="trf">5 questions · 3 minutes</span>
+          <span class="trf">Score out of 15</span>
+          <span class="trf">Finding per dimension</span>
+          <span class="trf">Full action plan on subscribe</span>
+        </div>
+        <div class="tool-row-actions">
+          <a href="/readiness" class="tool-btn-primary">Take the Test →</a>
+        </div>
+      </div>
+      <div class="tool-row-right">
+        <div class="tool-preview">
+          <div class="tp-header"><div class="tp-header-label">Example output</div></div>
+          <div class="tp-row"><span class="tp-label">Customer concentration</span><span class="tp-val">⚠️ Medium</span></div>
+          <div class="tp-row"><span class="tp-label">Management depth</span><span class="tp-val">✅ Strong</span></div>
+          <div class="tp-row"><span class="tp-label">Financial quality</span><span class="tp-val">✅ Audited</span></div>
+          <div class="tp-row"><span class="tp-label">Revenue predictability</span><span class="tp-val blurred">🔴 Low</span></div>
+          <div class="tp-row"><span class="tp-label">Your score</span><span class="tp-val blurred">X / 15</span></div>
+          <div class="tp-gate">
+            <div class="tp-gate-text">Take the test to see your full score and action plan</div>
+            <a href="/readiness" class="tp-gate-btn" style="display:block;text-align:center;text-decoration:none">Start Test →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOOL 02 — EBITDA Calculator -->
+    <div class="tool-row">
+      <div class="tool-row-left">
+        <div class="tool-row-top">
+          <span class="tool-row-num">Tool 02</span>
+          <span class="tool-tag-live">Live now</span>
         </div>
         <div class="tool-row-title">EBITDA Normalisation Calculator</div>
-        <div class="tool-row-desc">Enter your P&L numbers and the tool normalises your EBITDA — adding back owner salary above market, personal expenses, one-off costs, and D&A. Then applies sector multiples to give you a valuation range. See your partial result instantly. Subscribe to download the full Excel model.</div>
+        <div class="tool-row-desc">The exact framework a buy-side analyst uses to price a business. Enter your P&L, add back owner-specific costs, and see your adjusted EBITDA and indicative valuation range. Download the full Excel model — with sector benchmarks, EV to Equity Value bridge, and Low / Base / High scenarios — by subscribing free.</div>
         <div class="tool-row-features">
           <span class="trf">Full P&L normalisation</span>
           <span class="trf">6 add-back categories</span>
           <span class="trf">EV to Equity Value bridge</span>
           <span class="trf">Low / Base / High scenarios</span>
         </div>
-        <a href="/readiness" class="tool-row-cta">Try the Exit Readiness Test →</a>
-        &nbsp;&nbsp;
-        <button class="tool-row-cta" onclick="openDownloadModal('EBITDA Normalisation Calculator — Excel Model')">Download Excel →</button>
+        <div class="tool-row-actions">
+          <button class="tool-btn-primary" onclick="openDlModal('EBITDA Normalisation Calculator')">Download Excel Model →</button>
+        </div>
       </div>
       <div class="tool-row-right">
         <div class="tool-preview">
-          <div class="tool-preview-label">Preview — example output</div>
+          <div class="tp-header"><div class="tp-header-label">Example output</div></div>
           <div class="tp-row"><span class="tp-label">Revenue</span><span class="tp-val">CHF 2,500,000</span></div>
           <div class="tp-row"><span class="tp-label">Reported EBITDA</span><span class="tp-val">CHF 700,000</span></div>
           <div class="tp-row"><span class="tp-label">Total add-backs</span><span class="tp-val">CHF 160,000</span></div>
           <div class="tp-row"><span class="tp-label">Adjusted EBITDA</span><span class="tp-val">CHF 860,000</span></div>
-          <div class="tp-row"><span class="tp-label">EBITDA margin</span><span class="tp-val">34.4%</span></div>
-          <div class="tp-row"><span class="tp-label">EV range (4–7×)</span><span class="tp-val blurred">CHF X.XM – X.XM</span></div>
           <div class="tp-gate">
-            <div class="tp-gate-text">Subscribe to unlock the full valuation range</div>
-            <button class="tp-gate-btn" onclick="openDownloadModal('EBITDA Normalisation Calculator')">Unlock Full Output →</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TOOL 02 — Exit Readiness -->
-    <div class="tool-row">
-      <div class="tool-row-left">
-        <div class="tool-row-top">
-          <span class="tool-row-num">Tool 02</span>
-          <span class="tool-row-tag live">Available now</span>
-        </div>
-        <div class="tool-row-title">Exit Readiness Scorecard</div>
-        <div class="tool-row-desc">5 questions about your business — customer concentration, management depth, financial documentation, revenue predictability, P&L clarity. Get your score and a partial breakdown instantly. Subscribe to receive the full report with specific actions to improve your multiple before going to market.</div>
-        <div class="tool-row-features">
-          <span class="trf">5 questions, 3 minutes</span>
-          <span class="trf">Score out of 15</span>
-          <span class="trf">Finding per area</span>
-          <span class="trf">Full report on subscribe</span>
-        </div>
-        <a href="/readiness" class="tool-row-cta">Take the Test →</a>
-      </div>
-      <div class="tool-row-right">
-        <div class="tool-preview">
-          <div class="tool-preview-label">Preview — example score</div>
-          <div class="tp-row"><span class="tp-label">Customer concentration</span><span class="tp-val">⚠️ Medium risk</span></div>
-          <div class="tp-row"><span class="tp-label">Management depth</span><span class="tp-val">✅ Strong</span></div>
-          <div class="tp-row"><span class="tp-label">Financial docs</span><span class="tp-val">✅ Audited</span></div>
-          <div class="tp-row"><span class="tp-label">Revenue predictability</span><span class="tp-val blurred">🔴 xxxxxxxx</span></div>
-          <div class="tp-row"><span class="tp-label">Your score</span><span class="tp-val blurred">X / 15</span></div>
-          <div class="tp-gate">
-            <div class="tp-gate-text">Take the test to see your full score</div>
-            <a href="/readiness" class="tp-gate-btn" style="display:block;text-align:center;text-decoration:none">Start Test →</a>
+            <div class="tp-gate-text">Subscribe free to download the full Excel model</div>
+            <button class="tp-gate-btn" onclick="openDlModal('EBITDA Normalisation Calculator')">Unlock & Download →</button>
           </div>
         </div>
       </div>
@@ -235,28 +268,30 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
       <div class="tool-row-left">
         <div class="tool-row-top">
           <span class="tool-row-num">Tool 03</span>
-          <span class="tool-row-soon">Coming soon · May 2026</span>
+          <span class="tool-tag-soon">Coming soon · May 2026</span>
         </div>
         <div class="tool-row-title">Market Multiples Tracker</div>
-        <div class="tool-row-desc">Select your sector and geography — get the current EV/EBITDA range based on real transaction data. Updated monthly. Covers DACH, Southern Europe, UK, transport, manufacturing, business services, and technology-enabled services.</div>
+        <div class="tool-row-desc">Select your sector and geography — get the current EV/EBITDA range based on real transaction data. Covers DACH, Southern Europe, and UK. Updated monthly. Strategic vs. PE buyer multiples shown separately.</div>
         <div class="tool-row-features">
           <span class="trf">Updated monthly</span>
           <span class="trf">Sector + geography filters</span>
           <span class="trf">Strategic vs PE multiples</span>
           <span class="trf">Sourced transaction data</span>
         </div>
-        <button class="tool-row-cta disabled">Coming Soon</button>
+        <div class="tool-row-actions">
+          <button class="tool-btn-primary" onclick="openDlModal('Market Multiples Tracker — Notify Me')">Notify Me When Live →</button>
+        </div>
       </div>
       <div class="tool-row-right">
         <div class="tool-preview">
-          <div class="tool-preview-label">Preview — DACH multiples 2025</div>
-          <div class="tp-row"><span class="tp-label">Transport & Logistics</span><span class="tp-val blurred">X.X – X.X×</span></div>
-          <div class="tp-row"><span class="tp-label">Manufacturing</span><span class="tp-val blurred">X.X – X.X×</span></div>
-          <div class="tp-row"><span class="tp-label">Business Services</span><span class="tp-val blurred">X.X – X.X×</span></div>
-          <div class="tp-row"><span class="tp-label">Tech-enabled</span><span class="tp-val blurred">XX – XX×</span></div>
+          <div class="tp-header"><div class="tp-header-label">DACH benchmarks 2025</div></div>
+          <div class="tp-row"><span class="tp-label">Transport & Logistics</span><span class="tp-val blurred">X.X–X.X×</span></div>
+          <div class="tp-row"><span class="tp-label">Manufacturing</span><span class="tp-val blurred">X.X–X.X×</span></div>
+          <div class="tp-row"><span class="tp-label">Business Services</span><span class="tp-val blurred">X.X–X.X×</span></div>
+          <div class="tp-row"><span class="tp-label">Tech-enabled</span><span class="tp-val blurred">XX–XX×</span></div>
           <div class="tp-gate">
-            <div class="tp-gate-text">Launching May 2026 — subscribe to be notified</div>
-            <button class="tp-gate-btn" onclick="openDownloadModal('Market Multiples Tracker — Notify Me')">Notify Me →</button>
+            <div class="tp-gate-text">Launching May 2026</div>
+            <button class="tp-gate-btn" onclick="openDlModal('Market Multiples Tracker')">Notify Me →</button>
           </div>
         </div>
       </div>
@@ -267,28 +302,30 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
       <div class="tool-row-left">
         <div class="tool-row-top">
           <span class="tool-row-num">Tool 04</span>
-          <span class="tool-row-soon">Coming soon · April 2026</span>
+          <span class="tool-tag-soon">Coming soon · April 2026</span>
         </div>
         <div class="tool-row-title">Due Diligence Checklist</div>
-        <div class="tool-row-desc">The 50 documents a buyer requests in the first 48 hours of due diligence. Organise your Virtual Data Room before the process starts — not during it. Includes VDR folder structure and a priority order based on what buyers actually look at first.</div>
+        <div class="tool-row-desc">The 50 documents a buyer requests in the first 48 hours of due diligence. Organise your Virtual Data Room before the process starts — not during it. Includes priority order and VDR folder structure based on what buyers actually look at first.</div>
         <div class="tool-row-features">
           <span class="trf">50 document categories</span>
           <span class="trf">Priority order</span>
           <span class="trf">VDR folder structure</span>
           <span class="trf">Common red flags</span>
         </div>
-        <button class="tool-row-cta disabled">Coming Soon</button>
+        <div class="tool-row-actions">
+          <button class="tool-btn-primary" onclick="openDlModal('Due Diligence Checklist — Notify Me')">Notify Me When Live →</button>
+        </div>
       </div>
       <div class="tool-row-right">
         <div class="tool-preview">
-          <div class="tool-preview-label">Preview — first 48 hours</div>
+          <div class="tp-header"><div class="tp-header-label">First 48 hours — preview</div></div>
           <div class="tp-row"><span class="tp-label">Last 3Y audited accounts</span><span class="tp-val">Priority 1</span></div>
           <div class="tp-row"><span class="tp-label">Customer contract list</span><span class="tp-val">Priority 1</span></div>
           <div class="tp-row"><span class="tp-label">Management accounts YTD</span><span class="tp-val">Priority 1</span></div>
           <div class="tp-row"><span class="tp-label">+ 47 more categories</span><span class="tp-val blurred">Priority X</span></div>
           <div class="tp-gate">
-            <div class="tp-gate-text">Launching April 2026 — subscribe to be notified</div>
-            <button class="tp-gate-btn" onclick="openDownloadModal('Due Diligence Checklist — Notify Me')">Notify Me →</button>
+            <div class="tp-gate-text">Launching April 2026</div>
+            <button class="tp-gate-btn" onclick="openDlModal('Due Diligence Checklist')">Notify Me →</button>
           </div>
         </div>
       </div>
@@ -297,7 +334,19 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   </div>
 </div>
 
-<!-- DOWNLOAD MODAL -->
+<div class="sub-sec">
+  <div class="sub-inner">
+    <h2 class="sub-h2">Get new tools<br><em>the moment they launch.</em></h2>
+    <p class="sub-p">Free. Weekly. One issue per week from the buy side.</p>
+    <form class="sub-form" onsubmit="handleSub(event)">
+      <input type="email" class="sub-email" placeholder="your@email.com" required>
+      <button type="submit" class="sub-btn">Subscribe Free</button>
+    </form>
+    <div class="sub-note">Unsubscribe anytime.</div>
+  </div>
+</div>
+
+<!-- MODAL -->
 <div id="dlModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:400;align-items:center;justify-content:center;padding:1.5rem">
   <div style="background:var(--white);max-width:460px;width:100%;padding:2.5rem;position:relative">
     <button onclick="closeDlModal()" style="position:absolute;top:1rem;right:1rem;background:transparent;border:none;font-size:1.4rem;cursor:pointer;color:var(--grey-light)">×</button>
@@ -327,8 +376,8 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   </div>
 </footer>
 
-<script>
-function openDownloadModal(title) {
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function openDlModal(title) {
   document.getElementById('dlModalTitle').textContent = title;
   var m = document.getElementById('dlModal');
   m.style.display = 'flex';
@@ -371,13 +420,4 @@ function handleSub(e){
   var orig=btn.textContent;btn.textContent='✓ Opening Beehiiv...';inp.value='';
   setTimeout(function(){btn.textContent=orig},3000);
 }
-window.addEventListener('DOMContentLoaded',function(){
-  var u='deals',d='news.mnaintel.com';
-  document.querySelectorAll('[data-email]').forEach(function(el){
-    el.href='mailto:'+u+'@'+d;el.textContent=u+'@'+d;
-  });
-});
-</script>
-
-</body>
-</html>
+window.addEventListener('DOMContentLoaded',fu

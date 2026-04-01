@@ -63,13 +63,13 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:700;line-height:1.06;letter-spacing:-.025em;color:var(--navy);margin-bottom:1rem}
 .hero h1 em{font-style:italic;color:var(--accent)}
 .hero-deck{font-size:1.1rem;font-weight:300;line-height:1.75;color:var(--grey);margin-bottom:1.75rem;max-width:700px}
-.hero-form{display:flex;max-width:480px;margin-bottom:0.6rem}
-.hero-email{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.85rem 1rem;outline:none;min-width:0}
+.hero-form{display:flex;max-width:420px;margin-top:1.75rem;margin-bottom:0.5rem}
+.hero-email{flex:1;background:var(--white);border:1px solid var(--navy);border-right:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:0.92rem;padding:0.65rem 1rem;outline:none;min-width:0}
 .hero-email::placeholder{color:#bbb}
-.hero-btn{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1.5px solid var(--accent);padding:0.85rem 1.5rem;cursor:pointer;white-space:nowrap}
+.hero-btn{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1px solid var(--accent);padding:0.65rem 1.25rem;cursor:pointer;white-space:nowrap}
 .hero-btn:hover{background:#7a1515}
-.hero-note{font-size:0.78rem;color:var(--grey-light);margin-bottom:2.5rem}
-.hero-stats{display:flex;gap:3rem;padding-top:2rem;border-top:1px solid var(--rule);flex-wrap:wrap}
+.hero-note{font-size:0.72rem;color:var(--grey-light);margin-bottom:0}
+.hero-stats{display:flex;gap:3rem;padding-top:1.5rem;border-top:1px solid var(--rule);margin-bottom:0;flex-wrap:wrap}
 .hs-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:4px}
 .hs-label{font-size:0.78rem;font-weight:400;color:var(--grey);line-height:1.35}
 .about-strip{background:var(--off-white);border-bottom:1px solid var(--rule);padding:1.25rem 2rem}
@@ -110,15 +110,15 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 .why-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:0.3rem}
 .why-label{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.4rem}
 .why-text{font-size:0.92rem;font-weight:300;color:var(--grey);line-height:1.6}
-.sub-sec{padding:3.5rem 2rem;border-bottom:1px solid var(--rule)}
+.sub-sec{padding:2.5rem 2rem;border-bottom:1px solid var(--rule)}
 .sub-inner{max-width:560px;margin:0 auto;text-align:center}
-.sub-h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.5vw,2.1rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.6rem}
+.sub-h2{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.5rem}
 .sub-h2 em{font-style:italic;color:var(--accent)}
-.sub-p{font-size:1rem;font-weight:300;color:var(--grey);margin-bottom:1.75rem;line-height:1.65}
+.sub-p{font-size:0.9rem;font-weight:300;color:var(--grey);margin-bottom:1.25rem;line-height:1.6}
 .sub-form{display:flex;max-width:440px;margin:0 auto 0.6rem}
-.sub-email{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.85rem 1rem;outline:none;min-width:0}
+.sub-email{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.65rem 1rem;outline:none;min-width:0}
 .sub-email::placeholder{color:#bbb}
-.sub-btn{font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1.5px solid var(--accent);padding:0.85rem 1.25rem;cursor:pointer;white-space:nowrap}
+.sub-btn{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1.5px solid var(--accent);padding:0.65rem 1.25rem;cursor:pointer;white-space:nowrap}
 .sub-btn:hover{background:#7a1515}
 .sub-note{font-size:0.75rem;color:var(--grey-light)}
 .mobile-sticky{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:2px solid var(--navy);padding:0.75rem 1.25rem;z-index:150;box-shadow:0 -4px 16px rgba(0,0,0,0.08)}
@@ -164,7 +164,6 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
     <a href="/case-studies" class="nav-link">Case Studies</a>
     <a href="/tools" class="nav-link">Tools</a>
     <a href="/plans" class="nav-link">Plans</a>
-    
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </nav>
@@ -173,17 +172,17 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   <div class="hero-inner">
     <div class="kicker"><div class="kicker-bar"></div><div class="kicker-text">Weekly briefing for business owners thinking about their exit</div></div>
     <h1>The buy-side view<br>on selling your business.<br><em>Free. Every week.</em></h1>
-    <p class="hero-deck">Written by an M&A analyst who sits on the other side of the table.</p>
-    <form class="hero-form" onsubmit="handleSub(event)">
-      <input type="email" class="hero-email" placeholder="your@email.com" required>
-      <button type="submit" class="hero-btn">Subscribe Free</button>
-    </form>
-    <p class="hero-note">Free. No credit card. Unsubscribe anytime.</p>
+    <p class="hero-deck">Closing the information gap between buyers and sellers.</p>
     <div class="hero-stats">
       <div><div class="hs-num">70%</div><div class="hs-label">of SME sales never close</div></div>
       <div><div class="hs-num">23%</div><div class="hs-label">left on the table by unprepared sellers</div></div>
       <div><div class="hs-num">1 in 3</div><div class="hs-label">deals lost in due diligence</div></div>
     </div>
+    <form class="hero-form" onsubmit="handleSub(event)">
+      <input type="email" class="hero-email" placeholder="your@email.com" required>
+      <button type="submit" class="hero-btn">Subscribe Free →</button>
+    </form>
+    
   </div>
 </div>
 
@@ -245,7 +244,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 <div class="sub-sec">
   <div class="sub-inner">
     <h2 class="sub-h2">Know what your business is worth<br><em>before someone else tells you.</em></h2>
-    <p class="sub-p">Free. Weekly. The buy-side view with no mandate to sell you anything.</p>
+    <p class="sub-p">Free. Weekly. One issue per week from the buy side.</p>
     <form class="sub-form" onsubmit="handleSub(event)">
       <input type="email" class="sub-email" placeholder="your@email.com" required>
       <button type="submit" class="sub-btn">Subscribe Free</button>
