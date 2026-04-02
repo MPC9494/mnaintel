@@ -97,94 +97,35 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 </head>
 <body>
 
+
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 <div class="sidebar" id="sidebar">
   <div class="sb-top">
     <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
     <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
-
   <div class="sb-section">Navigate</div>
-
-  <!-- Issues dropdown -->
   <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')">
-      <span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span>
-    </button>
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
     <div class="sb-dropdown-items" id="dropIssues">
-      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01 — Your business is not worth what you think</a>
-      <a href="#" class="sb-sub-link muted">02 — Why most SME sales take 3 years</a>
-      <a href="#" class="sb-sub-link muted">03 — What a buyer checks in 48 hours</a>
-      <a href="#" class="sb-sub-link muted">04 — Why your business sells to someone you know</a>
+      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
+      <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
+      <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
+      <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
     </div>
   </div>
-
-  <!-- Case Studies dropdown -->
   <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')">
-      <span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span>
-    </button>
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')"><span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span></button>
     <div class="sb-dropdown-items" id="dropCS">
-      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01 — DSV / DB Schenker · 7.5×</a>
-      <a href="#" class="sb-sub-link muted">02 — DACH manufacturer · 4× vs 7×</a>
-      <a href="#" class="sb-sub-link muted">03 — Deal collapsed in due diligence</a>
-      <a href="#" class="sb-sub-link muted">04 — UPS / Frigo-Trans · 14.5×</a>
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01. DSV / DB Schenker · 7.5×</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">02. DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">03. Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04. UPS / Frigo-Trans · 14.5×</a>
     </div>
   </div>
-
-  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
-</div><div class="sb-logo-text">M&A Intelligence</div></a>
-    <button class="sb-close" onclick="closeSidebar()">×</button>
-  </div>
-
-  <div class="sb-section">Navigate</div>
-
-  <!-- Issues dropdown -->
-  <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')">
-      <span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span>
-    </button>
-    <div class="sb-dropdown-items" id="dropIssues">
-      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01 — Your business is not worth what you think</a>
-      <a href="#" class="sb-sub-link muted">02 — Why most SME sales take 3 years</a>
-      <a href="#" class="sb-sub-link muted">03 — What a buyer checks in 48 hours</a>
-      <a href="#" class="sb-sub-link muted">04 — Why your business sells to someone you know</a>
-    </div>
-  </div>
-
-  <!-- Case Studies dropdown -->
-  <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')">
-      <span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span>
-    </button>
-    <div class="sb-dropdown-items" id="dropCS">
-      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01 — DSV / DB Schenker · 7.5×</a>
-      <a href="#" class="sb-sub-link muted">02 — DACH manufacturer · 4× vs 7×</a>
-      <a href="#" class="sb-sub-link muted">03 — Deal collapsed in due diligence</a>
-      <a href="#" class="sb-sub-link muted">04 — UPS / Frigo-Trans · 14.5×</a>
-    </div>
-  </div>
-
-  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
-</div><div class="sb-logo-text">M&A Intelligence</div></a>
-    <button class="sb-close" onclick="closeSidebar()">×</button>
-  </div>
-  <div class="sb-section">Navigate</div>
-  <a href="/" class="sb-link" onclick="closeSidebar()">Home</a>
-  <a href="/about" class="sb-link active" onclick="closeSidebar()">About</a>
-  <a href="/issue-01" class="sb-link" onclick="closeSidebar()">Issues</a>
-  <a href="/case-studies" class="sb-link" onclick="closeSidebar()">Case Studies</a>
-  <a href="/tools" class="sb-link" onclick="closeSidebar()">Tools</a>
-  <a href="/plans" class="sb-link" onclick="closeSidebar()">Plans</a>
-  
-  <div class="sb-section">Issues</div>
-  <a href="/issue-01" class="sb-issue" onclick="closeSidebar()">01 — What your business is actually worth · Mar 2026</a>
-  <a href="#" class="sb-issue">02 — Why most SME sales take 3 years · Apr 2026</a>
-  <a href="#" class="sb-issue">03 — What a buyer checks in 48 hours · Apr 2026</a>
-  <div class="sb-section">Contact</div>
-  <a class="sb-link" data-email href="#"><span class="__cf_email__" data-cfemail="0d69686c617e4d63687a7e2360636c6463796861236e6260">[email&#160;protected]</span></a>
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </div>
+
 <nav>
   <div class="nav-left">
     <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -200,32 +141,33 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </nav>
 <div class="page" style="padding-bottom:5rem">
-  <a href="/" class="back-link">← Back to home</a>
+  <a href="/" class="back-link">Back to home</a>
   <div class="page-eyebrow">About</div>
-
-  <div class="profile">
-    <div class="profile-avatar"><div class="profile-avatar-text">M</div></div>
-    <div class="profile-name">The Editor</div>
-  </div>
 
   <div class="about-block">
     <div class="about-block-h">The information gap in SME M&A.</div>
-    <p>Buyers acquire businesses for a living. Most founders sell once. That asymmetry produces a predictable outcome: founders leave money on the table — not because their business is bad, but because they don't understand how it's being priced on the other side of the table.</p>
-    <p>The average buy-side analyst runs the same mental model on every target: normalised EBITDA, sector multiple, illiquidity discount, net debt bridge. The founder sitting across the table has never seen that model. They're negotiating blind.</p>
-    <p>M&A Intelligence exists to close that gap. Not as a broker. Not as an advisor with a mandate. As an analyst who writes down what he actually sees.</p>
+    <p>Buyers acquire businesses for a living. Most founders sell once. That asymmetry produces a predictable outcome: money left on the table, not because the business is bad, but because the founder never understood how it was being priced on the other side.</p>
+    <p>The buy-side analyst runs the same mental model on every target. Normalised EBITDA, sector multiple, net debt bridge. The founder sitting across the table has never seen that model. M&A Intelligence exists to change that.</p>
+    <p>Not as a broker. Not as an advisor with a mandate. As an analyst who writes down what he actually sees.</p>
   </div>
 
   <div class="about-block">
     <div class="about-block-h">The editor.</div>
-    <p>Currently working in M&A and Business Development at an international operating group — buy-side transactions, joint ventures, and debt financings across Southern Europe, DACH, and Latin America.</p>
-    <p>Previously Financial Advisory at Deloitte Luxembourg — Vendor Due Diligence, fundraising (€200M+ raised across mandates), and strategic reviews for private banking clients managing assets above €3 billion.</p>
-    <p>Before that, Deal Advisory at KPMG Milan — Distressed M&A, restructuring, and buy-side due diligence on UTP portfolios. Started at EY in Audit. CFA Level II Candidate.</p>
+    <ul class="bio-list">
+      <li>Currently working in M&A and Business Development at an international operating group, covering buy-side transactions, joint ventures, and debt financings across Southern Europe, DACH, and Latin America.</li>
+      <li>Previously Financial Advisory at Deloitte Luxembourg, leading Vendor Due Diligence mandates and raising over €200M across fundraising assignments for financial institutions.</li>
+      <li>Before that, Deal Advisory at KPMG Milan, focused on Distressed M&A, restructuring, and buy-side due diligence on UTP portfolios.</li>
+      <li>Passed CFA Level II.</li>
+    </ul>
   </div>
 
   <div class="about-block">
     <div class="about-block-h">Who this is for.</div>
-    <p>If you own a business and you're thinking about an exit — in one year or five — this is the manual you should have had from day one.</p>
-    <p>If you're 22 and trying to understand how M&A actually works — not the textbook version, but how a deal gets priced, structured, and killed — this is the closest thing to sitting in the room.</p>
+    <ul class="bio-list">
+      <li>Business owners thinking about an exit, in one year or five. This is the manual that should have been available from day one.</li>
+      <li>Finance professionals, consultants, and advisors who want the buy-side perspective that most courses skip entirely.</li>
+      <li>Anyone at the start of a career in M&A, investment banking, or private equity who wants to understand how deals actually get priced, structured, and closed.</li>
+    </ul>
   </div>
 </div>
 

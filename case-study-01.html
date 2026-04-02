@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DSV acquires DB Schenker — Case Study · M&A Intelligence</title>
+<title>DSV acquires DB Schenker. Case Study · M&A Intelligence</title>
 <meta name="description" content="Why DSV paid 7.5× EBITDA for DB Schenker while Frigo-Trans sold at 14.5×. Buy-side analysis of the largest logistics deal of 2024.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -103,9 +103,21 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 .article-footer-note{font-size:0.75rem;color:var(--grey-light)}
 @media(min-width:900px){.article{padding:4rem 3rem}}
 @media(max-width:767px){body{font-size:16px}.article{padding:2.5rem 1.5rem}.deal-snap{grid-template-columns:1fr 1fr}.sub-inline-form{flex-direction:column}.sub-inline-email{border-right:1.5px solid var(--navy);border-bottom:none}.sub-inline-btn{border-top:none}}
+
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.06)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.65);font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:400;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left}
+.sb-dropdown-btn:hover{color:var(--white)}
+.sb-arrow{font-size:0.75rem;color:rgba(255,255,255,0.3);transition:transform 0.2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.5rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.35rem 0 0.35rem 0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;line-height:1.4;transition:color 0.2s}
+.sb-sub-link:hover{color:rgba(255,255,255,0.8)}
+.sb-sub-link.muted{color:rgba(255,255,255,0.28)}
 </style>
 </head>
 <body>
+
 
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 <div class="sidebar" id="sidebar">
@@ -114,21 +126,27 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
     <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
   <div class="sb-section">Navigate</div>
-  <a href="/" class="sb-link" onclick="closeSidebar()">Home</a>
-  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
-  <a href="/issue-01" class="sb-link" onclick="closeSidebar()">Issues</a>
-  <a href="/case-studies" class="sb-link active" onclick="closeSidebar()">Case Studies</a>
-  <a href="/tools" class="sb-link" onclick="closeSidebar()">Tools</a>
-  <a href="/plans" class="sb-link" onclick="closeSidebar()">Plans</a>
-  
-  <div class="sb-section">Issues</div>
-  <a href="/issue-01" class="sb-issue" onclick="closeSidebar()">01 — What your business is actually worth · Mar 2026</a>
-  <a href="#" class="sb-issue">02 — Why most SME sales take 3 years · Apr 2026</a>
-  <a href="#" class="sb-issue">03 — What a buyer checks in 48 hours · Apr 2026</a>
-  <div class="sb-section">Contact</div>
-  <a class="sb-link" data-email href="#"><span class="__cf_email__" data-cfemail="741011151807341a1103075a191a151d1a0011185a171b19">[email&#160;protected]</span></a>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
+    <div class="sb-dropdown-items" id="dropIssues">
+      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
+      <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
+      <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
+      <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
+    </div>
+  </div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')"><span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span></button>
+    <div class="sb-dropdown-items" id="dropCS">
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01. DSV / DB Schenker · 7.5×</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">02. DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">03. Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04. UPS / Frigo-Trans · 14.5×</a>
+    </div>
+  </div>
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </div>
+
 <nav>
   <div class="nav-left">
     <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -136,7 +154,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   </div>
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
-    <a href="/issue-01" class="nav-link">Issues</a>
+    <a href="/issues" class="nav-link">Issues</a>
     <a href="/case-studies" class="nav-link active">Case Studies</a>
     <a href="/tools" class="nav-link">Tools</a>
     <a href="/plans" class="nav-link">Plans</a>
@@ -146,7 +164,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 <div class="article">
   <a href="/case-studies" class="back-link">← Back to Case Studies</a>
   <div class="article-masthead">
-    <div class="article-pub">M&A Intelligence — Case Study No. 01</div>
+    <div class="article-pub">M&A Intelligence. Case Study No. 01</div>
     <div class="article-tags">
       <span class="article-tag">Transport & Logistics</span>
       <span class="article-tag grey">Europe</span>
@@ -154,7 +172,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
       <span class="article-tag grey">€14.3 Billion</span>
       <span class="article-date">March 2026</span>
     </div>
-    <div class="article-title">DSV acquires DB Schenker at 7.5× EBITDA — why not 12×?</div>
+    <div class="article-title">DSV acquires DB Schenker at 7.5× EBITDA. why not 12×?</div>
     <div class="article-deck">The largest logistics deal of 2024 paid less than half the multiple of a smaller specialist sold the same year. Here is what the numbers actually tell you about how buyers price scale versus specialisation.</div>
   </div>
 
@@ -166,7 +184,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   </div>
 
   <div class="article-body">
-    <p>In 2024, two logistics companies sold within months of each other. One was one of the largest freight networks in Europe. The other was a mid-sized cold-chain specialist. The larger company sold at <strong>7.5× EBITDA</strong>. The smaller one sold at <strong>14.5× EBITDA</strong> — nearly double.</p>
+    <p>In 2024, two logistics companies sold within months of each other. One was one of the largest freight networks in Europe. The other was a mid-sized cold-chain specialist. The larger company sold at <strong>7.5× EBITDA</strong>. The smaller one sold at <strong>14.5× EBITDA</strong>. nearly double.</p>
     <p>The larger company was DB Schenker, acquired by DSV for €14.3 billion in a full cash transaction. The smaller one was Frigo-Trans, acquired by UPS. Same sector. Same year. Radically different multiples.</p>
     <p>Understanding why is one of the most valuable things a business owner can do before deciding to sell.</p>
 
@@ -184,16 +202,16 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 
     <h2>Why did DSV pay only 7.5×?</h2>
     <p>Seven and a half times EBITDA is not a low multiple for a business of this size. The average EV/EBITDA for transport and logistics SMEs in DACH sits between <strong>3.5× and 5.5×</strong>. DSV paid well above the market average for mid-sized players.</p>
-    <p>But the question is not whether 7.5× is low in absolute terms. The question is what capped it — and what business owners can learn from it.</p>
-    <p>Three factors compressed the multiple. First: <strong>integration complexity</strong>. DB Schenker is enormous. Integrating it into DSV's network requires years of systems alignment, cultural change, and operational restructuring. Buyers price that execution risk into the multiple. Second: <strong>revenue overlap</strong>. DSV and DB Schenker serve many of the same large corporate clients. An acquirer does not get 100% of that revenue — some customers will consolidate. Third: <strong>regulatory exposure</strong>. A deal of this size required approval from multiple competition authorities across jurisdictions. Uncertainty has a cost, and buyers discount for it.</p>
+    <p>But the question is not whether 7.5× is low in absolute terms. The question is what capped it. and what business owners can learn from it.</p>
+    <p>Three factors compressed the multiple. First: <strong>integration complexity</strong>. DB Schenker is enormous. Integrating it into DSV's network requires years of systems alignment, cultural change, and operational restructuring. Buyers price that execution risk into the multiple. Second: <strong>revenue overlap</strong>. DSV and DB Schenker serve many of the same large corporate clients. An acquirer does not get 100% of that revenue. some customers will consolidate. Third: <strong>regulatory exposure</strong>. A deal of this size required approval from multiple competition authorities across jurisdictions. Uncertainty has a cost, and buyers discount for it.</p>
 
     <h2>Why did UPS pay 14.5× for Frigo-Trans?</h2>
-    <p>Frigo-Trans operates ultra-low-temperature transport — a highly specialised segment with significant <strong>barriers to entry</strong>. The equipment is expensive and specialised, the operational expertise takes years to build, and the regulatory requirements are demanding.</p>
+    <p>Frigo-Trans operates ultra-low-temperature transport. a highly specialised segment with significant <strong>barriers to entry</strong>. The equipment is expensive and specialised, the operational expertise takes years to build, and the regulatory requirements are demanding.</p>
     <p>That specialisation creates three things a buyer values above everything else: it removes competitive acquisition alternatives, it generates <strong>pricing power</strong> that generic operators do not have, and it produces <strong>contract-based, recurring revenue</strong> that is highly predictable.</p>
     <div class="callout"><p><strong>Scale alone does not drive premium multiples.</strong> Specialisation, barriers to entry, and revenue predictability do. A CHF 5M business with 80% recurring revenue and a defensible niche will often command a higher multiple than a CHF 50M business that any well-capitalised competitor could replicate.</p></div>
 
     <h2>What the sector benchmarks tell us</h2>
-    <p>The DACH transport and logistics market in 2024 showed a wide dispersion of multiples — not because the market was inconsistent, but because the drivers of value vary dramatically by sub-sector. General road freight: <strong>3.5–5.5×</strong>. E-commerce and last-mile specialists: <strong>10–12×</strong>. Cold-chain and ultra-specialised segments: <strong>12–14.5×</strong>.</p>
+    <p>The DACH transport and logistics market in 2024 showed a wide dispersion of multiples. not because the market was inconsistent, but because the drivers of value vary dramatically by sub-sector. General road freight: <strong>3.5–5.5×</strong>. E-commerce and last-mile specialists: <strong>10–12×</strong>. Cold-chain and ultra-specialised segments: <strong>12–14.5×</strong>.</p>
     <p>The pattern is consistent: the more defensible the niche, the higher the multiple. The more commoditised the service, the lower. This holds across geographies and deal sizes.</p>
   </div>
 
@@ -201,12 +219,12 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
     <div class="pov-label">Author's POV</div>
     <p>I have sat in rooms where buyers price businesses like these. The conversation almost never starts with the P&L. It starts with two questions: <strong>"Who else could do this?"</strong> and <strong>"How confident are we in the forward cash flows?"</strong></p>
     <p>DB Schenker is a great business. But DSV could have built similar capabilities over time, or acquired alternatives. Frigo-Trans operated in a segment where you either have the infrastructure and the certifications, or you do not. There is no organic path to what they built. That scarcity is what drives the multiple from 7× to 14×.</p>
-    <p>For a business owner reading this: the question is not whether your business is profitable. It is whether what you have built is <strong>genuinely difficult to replicate</strong>. If a well-funded competitor could approximate your position in three years, expect a mid-range multiple. If they cannot — because of your relationships, your certifications, your customer contracts, or your operational expertise — expect a premium.</p>
+    <p>For a business owner reading this: the question is not whether your business is profitable. It is whether what you have built is <strong>genuinely difficult to replicate</strong>. If a well-funded competitor could approximate your position in three years, expect a mid-range multiple. If they cannot. because of your relationships, your certifications, your customer contracts, or your operational expertise. expect a premium.</p>
     <p><em>The most expensive mistake I see sellers make is going to market before they have documented and articulated why their business is hard to replicate. Buyers will not do that work for you.</em></p>
   </div>
 
   <div class="sub-inline">
-    <p><strong>Get the next case study in your inbox.</strong> M&A Intelligence publishes one brief per week — deal analysis, valuation frameworks, and buy-side intelligence for business owners. Free.</p>
+    <p><strong>Get the next case study in your inbox.</strong> M&A Intelligence publishes one brief per week. deal analysis, valuation frameworks, and buy-side intelligence for business owners. Free.</p>
     <form class="sub-inline-form" onsubmit="handleSub(event)">
       <input type="email" class="sub-inline-email" placeholder="your@email.com" required>
       <button type="submit" class="sub-inline-btn">Subscribe Free →</button>

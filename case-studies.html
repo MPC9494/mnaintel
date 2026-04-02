@@ -55,7 +55,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 @media(min-width:900px){nav{padding:0 2.5rem;height:66px}footer{padding:2rem 3rem}}
 @media(max-width:767px){.nav-links{display:none}}
 
-/* PAGE HERO — same as index */
+/* PAGE HERO. same as index */
 .hero{border-bottom:2px solid var(--navy);padding:4rem 2rem 3rem}
 .hero-inner{max-width:1100px;margin:0 auto}
 .kicker{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
@@ -64,13 +64,13 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:700;line-height:1.06;letter-spacing:-.025em;color:var(--navy);margin-bottom:1rem}
 .hero h1 em{font-style:italic;color:var(--accent)}
 .hero-deck{font-size:1.1rem;font-weight:300;line-height:1.75;color:var(--grey);max-width:700px}
-/* CASE STUDIES SECTION — exact same as issues-sec */
+/* CASE STUDIES SECTION. exact same as issues-sec */
 .cs-sec{padding:0 2rem;border-bottom:1px solid var(--rule)}
 .cs-inner{max-width:1100px;margin:0 auto}
 .cs-header{display:flex;align-items:baseline;justify-content:space-between;padding:1.75rem 0 0;border-bottom:3px solid var(--navy)}
 .cs-header-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy)}
 .cs-header-sub{font-size:0.75rem;color:var(--grey-light)}
-/* ROWS — exact same as issue-row */
+/* ROWS. exact same as issue-row */
 .cs-row{display:block;padding:2rem 0;border-bottom:1px solid var(--rule);text-decoration:none}
 .cs-row:last-child{border-bottom:none}
 .cs-row.published:hover .cs-row-title{text-decoration:underline;text-decoration-color:var(--navy)}
@@ -116,61 +116,35 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 </head>
 <body>
 
+
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 <div class="sidebar" id="sidebar">
   <div class="sb-top">
     <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
     <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
-
   <div class="sb-section">Navigate</div>
-
-  <!-- Issues dropdown -->
   <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')">
-      <span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span>
-    </button>
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
     <div class="sb-dropdown-items" id="dropIssues">
-      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01 — Your business is not worth what you think</a>
-      <a href="#" class="sb-sub-link">02 — Why most SME sales take 3 years</a>
-      <a href="#" class="sb-sub-link">03 — What a buyer checks in 48 hours</a>
-      <a href="#" class="sb-sub-link">04 — Why your business sells to someone you know</a>
+      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
+      <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
+      <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
+      <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
     </div>
   </div>
-
-  <!-- Case Studies dropdown -->
   <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')">
-      <span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span>
-    </button>
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')"><span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span></button>
     <div class="sb-dropdown-items" id="dropCS">
-      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01 — DSV / DB Schenker · 7.5×</a>
-      <a href="#" class="sb-sub-link">02 — DACH manufacturer · 4× vs 7×</a>
-      <a href="#" class="sb-sub-link">03 — Deal collapsed in due diligence</a>
-      <a href="#" class="sb-sub-link">04 — UPS / Frigo-Trans · 14.5×</a>
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01. DSV / DB Schenker · 7.5×</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">02. DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">03. Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04. UPS / Frigo-Trans · 14.5×</a>
     </div>
   </div>
-
-  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
-</div><div class="sb-logo-text">M&A Intelligence</div></a>
-    <button class="sb-close" onclick="closeSidebar()">×</button>
-  </div>
-  <div class="sb-section">Navigate</div>
-  <a href="/" class="sb-link" onclick="closeSidebar()">Home</a>
-  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
-  <a href="/issue-01" class="sb-link" onclick="closeSidebar()">Issues</a>
-  <a href="/case-studies" class="sb-link active" onclick="closeSidebar()">Case Studies</a>
-  <a href="/tools" class="sb-link" onclick="closeSidebar()">Tools</a>
-  <a href="/plans" class="sb-link" onclick="closeSidebar()">Plans</a>
-  
-  <div class="sb-section">Issues</div>
-  <a href="/issue-01" class="sb-issue" onclick="closeSidebar()">01 — What your business is actually worth · Mar 2026</a>
-  <a href="#" class="sb-issue">02 — Why most SME sales take 3 years · Apr 2026</a>
-  <a href="#" class="sb-issue">03 — What a buyer checks in 48 hours · Apr 2026</a>
-  <div class="sb-section">Contact</div>
-  <a class="sb-link" data-email href="#"><span class="__cf_email__" data-cfemail="2a4e4f4b46596a444f5d590447444b43445e4f4604494547">[email&#160;protected]</span></a>
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </div>
+
 <nav>
   <div class="nav-left">
     <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -196,7 +170,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 
 <div class="cs-sec">
   <div class="cs-inner">
-    <div class="cs-header">
+        <div class="cs-header">
       <div class="cs-header-title">Case Studies</div>
       <div class="cs-header-sub">Real transactions · Buy-side analysis</div>
     </div>
@@ -209,8 +183,8 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
         <span class="cs-row-tag">Cash</span>
         <span class="cs-row-date">March 2026</span>
       </div>
-      <div class="cs-row-title">DSV acquires DB Schenker at 7.5× EBITDA — why not 12×?</div>
-      <div class="cs-row-summary">The largest logistics deal of 2024. DSV paid 7.5× for one of Europe's biggest freight networks — while Frigo-Trans sold at 14.5× the same year. Same sector, same geography, radically different multiples. Here is why, and what any business owner can learn from it.</div>
+      <div class="cs-row-title">DSV acquires DB Schenker at 7.5× EBITDA. why not 12×?</div>
+      <div class="cs-row-summary">The largest logistics deal of 2024. DSV paid 7.5× for one of Europe's biggest freight networks. while Frigo-Trans sold at 14.5× the same year. Same sector, same geography, radically different multiples. Here is why.</div>
       <div class="cs-row-meta">
         <div><div class="meta-chip-label">Buyer</div><div class="meta-chip-val">DSV A/S</div></div>
         <div><div class="meta-chip-label">Geography</div><div class="meta-chip-val">Pan-European</div></div>
@@ -228,14 +202,15 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
         <span class="cs-row-tag">Cash + Earn-out</span>
         <span class="cs-row-date">April 2026</span>
       </div>
-      <div class="cs-row-title">Why this CHF 8M manufacturer sold at 4× — and how it could have been 7×.</div>
-      <div class="cs-row-summary">A real transaction from the DACH market. Profitable, growing, well-run. Three fixable issues cut the multiple in half. Anonymised case study with full analysis and a checklist of what the seller should have done 18 months earlier.</div>
+      <div class="cs-row-title">Why this CHF 8M manufacturer sold at 4×. and how it could have been 7×.</div>
+      <div class="cs-row-summary">A real transaction from the DACH market. Profitable, growing, well-run. Three fixable issues cut the multiple in half. Anonymised case study with full analysis.</div>
       <div class="cs-row-meta">
         <div><div class="meta-chip-label">Geography</div><div class="meta-chip-val">DACH</div></div>
-        <div><div class="meta-chip-label">EV / EBITDA</div><div class="meta-chip-val">4.0× (vs 7.0× potential)</div></div>
+        <div><div class="meta-chip-label">EV / EBITDA</div><div class="meta-chip-val">4.0× (vs 7.0×)</div></div>
         <div><div class="meta-chip-label">Consideration</div><div class="meta-chip-val">Cash + Earn-out</div></div>
+        <span class="cs-row-read">Read case study →</span>
       </div>
-    </div>
+    </a>
 
     <a href="/case-study-03" class="cs-row published" style="display:block">
       <div class="cs-row-top">
@@ -245,14 +220,15 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
         <span class="cs-row-tag">Cash (proposed)</span>
         <span class="cs-row-date">April 2026</span>
       </div>
-      <div class="cs-row-title">The deal that collapsed in week two of due diligence — and why it was entirely predictable.</div>
-      <div class="cs-row-summary">Three buyers, six months of process, a signed LOI. Then due diligence started. What the buyer found in the first 48 hours that killed the deal — and how the seller could have seen it coming 18 months earlier.</div>
+      <div class="cs-row-title">The deal that collapsed in week two of due diligence. and why it was entirely predictable.</div>
+      <div class="cs-row-summary">Three buyers, six months of process, a signed LOI. Then due diligence started. What the buyer found in the first two weeks. and how the seller could have prevented every single issue.</div>
       <div class="cs-row-meta">
         <div><div class="meta-chip-label">Geography</div><div class="meta-chip-val">Southern Europe</div></div>
-        <div><div class="meta-chip-label">Outcome</div><div class="meta-chip-val">Deal collapsed in DD</div></div>
+        <div><div class="meta-chip-label">Outcome</div><div class="meta-chip-val">Collapsed in DD</div></div>
         <div><div class="meta-chip-label">Consideration</div><div class="meta-chip-val">Cash (proposed)</div></div>
+        <span class="cs-row-read">Read case study →</span>
       </div>
-    </div>
+    </a>
 
     <a href="/case-study-04" class="cs-row published" style="display:block">
       <div class="cs-row-top">
@@ -262,14 +238,15 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
         <span class="cs-row-tag">Cash</span>
         <span class="cs-row-date">May 2026</span>
       </div>
-      <div class="cs-row-title">UPS pays 14.5× for Frigo-Trans — what specialist logistics is actually worth.</div>
-      <div class="cs-row-summary">Nearly double the multiple DSV paid for DB Schenker the same year. The lesson: specialisation, regulatory barriers, and contract-based revenue can fundamentally change what your business is worth to a strategic buyer.</div>
+      <div class="cs-row-title">UPS pays 14.5× for Frigo-Trans. what specialist logistics is actually worth.</div>
+      <div class="cs-row-summary">Nearly double the multiple DSV paid for DB Schenker the same year. The lesson: specialisation, regulatory barriers, and contract-based revenue can fundamentally change what your business is worth.</div>
       <div class="cs-row-meta">
         <div><div class="meta-chip-label">Buyer</div><div class="meta-chip-val">UPS</div></div>
         <div><div class="meta-chip-label">EV / EBITDA</div><div class="meta-chip-val">14.5×</div></div>
         <div><div class="meta-chip-label">Consideration</div><div class="meta-chip-val">Cash</div></div>
+        <span class="cs-row-read">Read case study →</span>
       </div>
-    </div>
+    </a>
 
   </div>
 </div>

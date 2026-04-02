@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Issue No. 01 — What a Buyer Actually Pays For · M&A Intelligence</title>
+<title>Issue No. 01. What a Buyer Actually Pays For · M&A Intelligence</title>
 <meta name="description" content="The most expensive misconception in SME M&A.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -91,25 +91,21 @@ footer{background:var(--navy);padding:1.75rem;border-top:1px solid rgba(255,255,
 .share-item:hover{background:var(--off-white);color:var(--navy)}
 .si-icon{width:14px;height:14px;flex-shrink:0}
 @media(min-width:768px){.page{padding:3.5rem 2.25rem}.paywall-form{flex-direction:row}.paywall-email{flex:1;border-right:none}.paywall-btn{white-space:nowrap;border-left:none}}
+
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.06)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.65);font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:400;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left}
+.sb-dropdown-btn:hover{color:var(--white)}
+.sb-arrow{font-size:0.75rem;color:rgba(255,255,255,0.3);transition:transform 0.2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.5rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.35rem 0 0.35rem 0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;line-height:1.4;transition:color 0.2s}
+.sb-sub-link:hover{color:rgba(255,255,255,0.8)}
+.sb-sub-link.muted{color:rgba(255,255,255,0.28)}
 </style>
 </head>
 <body>
-<script>
-function openSidebar(){var s=document.getElementById("sidebar"),o=document.getElementById("sbOverlay");if(s)s.classList.add("open");if(o)o.classList.add("open");document.body.style.overflow="hidden"}
-function closeSidebar(){var s=document.getElementById("sidebar"),o=document.getElementById("sbOverlay");if(s)s.classList.remove("open");if(o)o.classList.remove("open");document.body.style.overflow=""}
-window.addEventListener('DOMContentLoaded',function(){
-  var u='deals',d='news.mnaintel.com';
-  document.querySelectorAll('.email-link').forEach(function(el){el.href='mailto:'+u+'@'+d;el.textContent=u+'@'+d});
-});
-function handleSub(e){
-  e.preventDefault();
-  var inp=e.target.querySelector('input');
-  var btn=e.target.querySelector('button[type=submit]')||e.target.querySelector('button');
-  window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(inp.value),'_blank');
-  var orig=btn.textContent;btn.textContent='✓ Check your inbox';inp.value='';
-  setTimeout(function(){btn.textContent=orig},3000);
-}
-</script>
+
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 <div class="sidebar" id="sidebar">
   <div class="sb-top">
@@ -117,19 +113,27 @@ function handleSub(e){
     <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
   <div class="sb-section">Navigate</div>
-  <a href="/" class="sb-link" onclick="closeSidebar()">Home</a>
-  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
-  <a href="/tools" class="sb-link" onclick="closeSidebar()">Tools</a>
-  <a href="/plans" class="sb-link" onclick="closeSidebar()">Plans</a>
-  <div class="sb-section">Issues</div>
-  <a href="/issue-01" class="sb-issue active" onclick="closeSidebar()">01 — What your business is actually worth · Mar 2026</a>
-  <a href="#" class="sb-issue" onclick="closeSidebar()">02 — Why most SME sales take 3 years · Apr 2026</a>
-  <a href="#" class="sb-issue" onclick="closeSidebar()">03 — What a buyer checks in 48 hours · Apr 2026</a>
-  <a href="#" class="sb-issue" onclick="closeSidebar()">04 — Why your business sells to someone you know · May 2026</a>
-  <div class="sb-section">Contact</div>
-  <a class="sb-link email-link" href="#">Contact</a>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
+    <div class="sb-dropdown-items" id="dropIssues">
+      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
+      <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
+      <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
+      <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
+    </div>
+  </div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')"><span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span></button>
+    <div class="sb-dropdown-items" id="dropCS">
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01. DSV / DB Schenker · 7.5×</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">02. DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">03. Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04. UPS / Frigo-Trans · 14.5×</a>
+    </div>
+  </div>
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </div>
+
 <nav>
   <div class="nav-left">
     <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -137,7 +141,7 @@ function handleSub(e){
   </div>
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
-    <a href="/issue-01" class="nav-link active">Issues</a>
+    <a href="/issues" class="nav-link active">Issues</a>
     <a href="/case-studies" class="nav-link">Case Studies</a>
     <a href="/tools" class="nav-link">Tools</a>
     <a href="/plans" class="nav-link">Plans</a>
@@ -148,34 +152,40 @@ function handleSub(e){
   <div class="page-inner">
     <a href="/" class="back-link">← Back to home</a>
     <div class="issue-masthead">
-      <div class="issue-pub">M&A Intelligence — Weekly Briefing</div>
+      <div class="issue-pub">M&A Intelligence. Weekly Briefing</div>
       <div class="issue-meta">
         <span class="issue-tag">Issue No. 01 · Valuation</span>
         <span class="issue-date">March 2026</span>
       </div>
       <div class="issue-title">Your business is not worth what you put into it. Here's what a buyer actually pays for.</div>
-      <div class="issue-deck">Every business owner has a number in their head. Almost none of them arrive at it the way a buyer does. Understanding that gap — before you sit across the table — is worth more than any advisor you will ever hire.</div>
+      <div class="issue-deck">Every business owner has a number in their head. Almost none of them arrive at it the way a buyer does. Understanding that gap. before you sit across the table. is worth more than any advisor you will ever hire.</div>
     </div>
     <div class="issue-body">
       <p>You spent twenty years building this business. You reinvested the profits. You paid yourself less than the market for a decade so the company could grow. You built a team, earned customer loyalty, and created something that runs without you being in every room. The number in your head reflects all of that. It should.</p>
       <p>A buyer doesn't care about any of it.</p>
-      <p>This is not cynicism. It is arithmetic. A strategic acquirer or a private equity fund looks at one thing first: <strong>what does this business earn, reliably, after we adjust for everything the owner did to make the P&L look the way it does?</strong> That number — normalised EBITDA — is almost always different from what appears in your accounts. Sometimes dramatically so.</p>
-      <p>The adjustments go both ways. If you paid yourself CHF 400,000 per year and a market-rate CEO would cost CHF 180,000, a buyer adds back CHF 220,000 to your earnings. That is positive. But if your three largest customers represent 60% of revenue, a buyer applies a risk discount to every multiple they consider. That is negative — and it compounds.</p>
+      <p>This is not cynicism. It is arithmetic. A strategic acquirer or a private equity fund looks at one thing first: <strong>what does this business earn, reliably, after we adjust for everything the owner did to make the P&L look the way it does?</strong> That number. normalised EBITDA. is almost always different from what appears in your accounts. Sometimes dramatically so.</p>
+      <p>The adjustments go both ways. If you paid yourself CHF 400,000 per year and a market-rate CEO would cost CHF 180,000, a buyer adds back CHF 220,000 to your earnings. That is positive. But if your three largest customers represent 60% of revenue, a buyer applies a risk discount to every multiple they consider. That is negative. and it compounds.</p>
     </div>
     <div class="blur-wrap">
       <div class="blurred">
-        <p>The multiple itself — the number a buyer applies to your normalised EBITDA — is not fixed. It moves with sector, size, growth rate, customer concentration, and management dependency. In Southern European SME transactions, multiples typically range between 4× and 8× EBITDA for businesses in the CHF 2–15M range. The difference between 4× and 8× on CHF 1M of normalised EBITDA is CHF 4 million. That is not a rounding error. That is the gap between a life-changing outcome and a disappointing one.</p>
-        <p>Three things move you from 4× to 8× faster than anything else. First: revenue visibility. Second: management depth — if the business cannot run without you, a buyer prices that into the multiple. Third: clean financials. A buyer who finds surprises in due diligence does not renegotiate. They walk.</p>
+        <p>The multiple itself. the number a buyer applies to your normalised EBITDA. is not fixed. It moves with sector, size, growth rate, customer concentration, and management dependency. In Southern European SME transactions, multiples typically range between 4× and 8× EBITDA for businesses in the CHF 2–15M range. The difference between 4× and 8× on CHF 1M of normalised EBITDA is CHF 4 million. That is not a rounding error. That is the gap between a life-changing outcome and a disappointing one.</p>
+        <p>Three things move you from 4× to 8× faster than anything else. First: revenue visibility. Second: management depth. if the business cannot run without you, a buyer prices that into the multiple. Third: clean financials. A buyer who finds surprises in due diligence does not renegotiate. They walk.</p>
         <p>The most important thing you can do today is commission an independent normalisation of your EBITDA. Not from your accountant. From someone who thinks like a buyer.</p>
       </div>
       <div class="paywall">
-        <div class="paywall-title">Continue reading — it's free</div>
+        <div class="paywall-title">Continue reading. it's free</div>
         <div class="paywall-sub">Subscribe to M&A Intelligence and get the full brief plus every future issue.</div>
         <form class="paywall-form" onsubmit="handleSub(event)">
           <input type="email" class="paywall-email" placeholder="your@email.com" required>
           <button type="submit" class="paywall-btn">Subscribe Free →</button>
         </form>
       </div>
+    </div>
+    <div style="background:var(--navy);padding:2rem;margin:2rem 0">
+      <div style="font-size:0.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem;display:flex;align-items:center;gap:8px"><span style="display:inline-block;width:12px;height:2px;background:#8B1A1A"></span>Author's POV</div>
+      <p style="font-size:1rem;font-weight:300;line-height:1.85;color:rgba(255,255,255,0.75);margin-bottom:0.85rem">I have reviewed hundreds of information memoranda from businesses that wanted to sell. The ones that never closed had one thing in common: the owner had spent years building the business on their own terms, and had never once thought about it from a buyer's perspective.</p>
+      <p style="font-size:1rem;font-weight:300;line-height:1.85;color:rgba(255,255,255,0.75);margin-bottom:0.85rem">The <strong style="font-weight:600;color:var(--white)">normalised EBITDA</strong> is not an accounting exercise. It is the first thing a buyer calculates when deciding whether to keep reading. If the number looks wrong. too high, unexplained, or inconsistent with the sector. the process stops before it starts. Most sellers never know why.</p>
+      <p style="font-size:1rem;font-weight:300;line-height:1.85;color:rgba(255,255,255,0.75);margin-bottom:0">The most common mistake I see: owners who add back their salary correctly, but forget that the buyer will replace them with a professional manager. The add-back is legitimate. But the buyer builds in the replacement cost on their side. and the <strong style="font-weight:600;color:var(--white)">net effect is smaller than the owner expected</strong>. Know both sides of that calculation before you sit across the table.</p>
     </div>
     <div class="issue-footer">
       <div class="issue-footer-note">M&A Intelligence · Issue No. 01 · March 2026</div>
