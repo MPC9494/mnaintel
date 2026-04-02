@@ -69,9 +69,11 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 .hero-btn{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1px solid var(--accent);padding:0.65rem 1.25rem;cursor:pointer;white-space:nowrap}
 .hero-btn:hover{background:#7a1515}
 .hero-note{font-size:0.72rem;color:var(--grey-light);margin-bottom:0}
-.hero-stats{display:flex;gap:3rem;padding-top:1.5rem;border-top:1px solid var(--rule);margin-bottom:0;flex-wrap:wrap}
-.hs-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:4px}
-.hs-label{font-size:0.78rem;font-weight:400;color:var(--grey);line-height:1.35}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:2rem}
+.hs-cell{background:var(--white);padding:1.25rem 1.5rem}
+.hs-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:0.3rem}
+.hs-label{font-size:0.82rem;font-weight:400;color:var(--grey);line-height:1.4;margin-bottom:0.2rem}
+.hs-source{font-size:0.65rem;color:var(--grey-light);font-style:italic}
 .about-strip{background:var(--off-white);border-bottom:1px solid var(--rule);padding:1.25rem 2rem}
 .about-strip-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1.25rem}
 .about-photo{width:50px;height:50px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1px solid var(--rule)}
@@ -126,7 +128,18 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 .mobile-sticky input{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.75rem 1rem;outline:none;min-width:0}
 .mobile-sticky button{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1.5px solid var(--accent);padding:0.75rem 1.1rem;cursor:pointer;white-space:nowrap}
 @media(min-width:900px){.hero{padding:5rem 3rem 4rem}.about-strip,.issues-sec,.why-sec,.sub-sec{padding-left:3rem;padding-right:3rem}}
-@media(max-width:767px){body{font-size:16px}.hero{padding:2.5rem 1.5rem 2rem}.about-strip,.issues-sec,.why-sec,.sub-sec{padding-left:1.5rem;padding-right:1.5rem}.hero-form{flex-direction:column}.hero-email{border-right:1.5px solid var(--navy);border-bottom:none}.hero-btn{border-top:none}.hero-stats{gap:1.75rem}.hs-num{font-size:1.8rem}.why-grid{grid-template-columns:1fr 1fr}.sub-form{flex-direction:column}.sub-email{border-right:1.5px solid var(--navy);border-bottom:none}.sub-btn{border-top:none}.mobile-sticky{display:block}}
+@media(max-width:767px){body{font-size:16px}.hero{padding:2.5rem 1.5rem 2rem}.about-strip,.issues-sec,.why-sec,.sub-sec{padding-left:1.5rem;padding-right:1.5rem}.hero-form{flex-direction:column}.hero-email{border-right:1.5px solid var(--navy);border-bottom:none}.hero-btn{border-top:none}.hero-stats{grid-template-columns:1fr}.hs-num{font-size:1.8rem}.why-grid{grid-template-columns:1fr 1fr}.sub-form{flex-direction:column}.sub-email{border-right:1.5px solid var(--navy);border-bottom:none}.sub-btn{border-top:none}.mobile-sticky{display:block}}
+
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.06)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.65);font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:400;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left}
+.sb-dropdown-btn:hover{color:var(--white)}
+.sb-arrow{font-size:0.75rem;color:rgba(255,255,255,0.3);transition:transform 0.2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.5rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.35rem 0 0.35rem 0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;line-height:1.4;transition:color 0.2s}
+.sb-sub-link:hover{color:rgba(255,255,255,0.8)}
+.sb-sub-link.muted{color:rgba(255,255,255,0.28)}
 </style>
 </head>
 <body>
@@ -135,6 +148,72 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 <div class="sidebar" id="sidebar">
   <div class="sb-top">
     <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">×</button>
+  </div>
+
+  <div class="sb-section">Navigate</div>
+
+  <!-- Issues dropdown -->
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')">
+      <span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span>
+    </button>
+    <div class="sb-dropdown-items" id="dropIssues">
+      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01 — Your business is not worth what you think</a>
+      <a href="#" class="sb-sub-link muted">02 — Why most SME sales take 3 years</a>
+      <a href="#" class="sb-sub-link muted">03 — What a buyer checks in 48 hours</a>
+      <a href="#" class="sb-sub-link muted">04 — Why your business sells to someone you know</a>
+    </div>
+  </div>
+
+  <!-- Case Studies dropdown -->
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')">
+      <span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span>
+    </button>
+    <div class="sb-dropdown-items" id="dropCS">
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01 — DSV / DB Schenker · 7.5×</a>
+      <a href="#" class="sb-sub-link muted">02 — DACH manufacturer · 4× vs 7×</a>
+      <a href="#" class="sb-sub-link muted">03 — Deal collapsed in due diligence</a>
+      <a href="#" class="sb-sub-link muted">04 — UPS / Frigo-Trans · 14.5×</a>
+    </div>
+  </div>
+
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+</div><div class="sb-logo-text">M&A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">×</button>
+  </div>
+
+  <div class="sb-section">Navigate</div>
+
+  <!-- Issues dropdown -->
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')">
+      <span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span>
+    </button>
+    <div class="sb-dropdown-items" id="dropIssues">
+      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01 — Your business is not worth what you think</a>
+      <a href="#" class="sb-sub-link muted">02 — Why most SME sales take 3 years</a>
+      <a href="#" class="sb-sub-link muted">03 — What a buyer checks in 48 hours</a>
+      <a href="#" class="sb-sub-link muted">04 — Why your business sells to someone you know</a>
+    </div>
+  </div>
+
+  <!-- Case Studies dropdown -->
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')">
+      <span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span>
+    </button>
+    <div class="sb-dropdown-items" id="dropCS">
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01 — DSV / DB Schenker · 7.5×</a>
+      <a href="#" class="sb-sub-link muted">02 — DACH manufacturer · 4× vs 7×</a>
+      <a href="#" class="sb-sub-link muted">03 — Deal collapsed in due diligence</a>
+      <a href="#" class="sb-sub-link muted">04 — UPS / Frigo-Trans · 14.5×</a>
+    </div>
+  </div>
+
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+</div><div class="sb-logo-text">M&A Intelligence</div></a>
     <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
   <div class="sb-section">Navigate</div>
@@ -160,7 +239,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   </div>
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
-    <a href="/issue-01" class="nav-link">Issues</a>
+    <a href="/issues" class="nav-link">Issues</a>
     <a href="/case-studies" class="nav-link">Case Studies</a>
     <a href="/tools" class="nav-link">Tools</a>
     <a href="/plans" class="nav-link">Plans</a>
@@ -170,19 +249,9 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="kicker"><div class="kicker-bar"></div><div class="kicker-text">Weekly briefing for business owners thinking about their exit</div></div>
-    <h1>The buy-side view<br>on selling your business.<br><em>Free. Every week.</em></h1>
-    <p class="hero-deck">Closing the information gap between buyers and sellers.</p>
-    <div class="hero-stats">
-      <div><div class="hs-num">70%</div><div class="hs-label">of SME sales never close</div></div>
-      <div><div class="hs-num">23%</div><div class="hs-label">left on the table by unprepared sellers</div></div>
-      <div><div class="hs-num">1 in 3</div><div class="hs-label">deals lost in due diligence</div></div>
-    </div>
-    <form class="hero-form" onsubmit="handleSub(event)">
-      <input type="email" class="hero-email" placeholder="your@email.com" required>
-      <button type="submit" class="hero-btn">Subscribe Free →</button>
-    </form>
-    
+    <div class="kicker"><div class="kicker-bar"></div><div class="kicker-text">Buy-side M&A · Written from the deal room</div></div>
+    <h1>M&A from the inside.<br><em>One deal per week.</em></h1>
+    <p class="hero-deck">The side of the table you never see.</p>
   </div>
 </div>
 
@@ -201,28 +270,28 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   <div class="issues-inner">
     <div class="issues-header">
       <div class="issues-header-title">Issues</div>
-      <div class="issues-header-sub">One issue per week</div>
+      
     </div>
     <a href="/issue-01" class="issue-row published" style="display:block">
       <div class="issue-row-top"><span class="issue-row-num">No. 01</span><span class="issue-row-cat">Valuation</span><span class="issue-row-date">March 2026</span></div>
       <div class="issue-row-title">Your business is not worth what you put into it. Here's what a buyer actually pays for.</div>
-      <div class="issue-row-summary">The most expensive misconception in SME M&A — and the framework buyers use to price a business. Most owners discover the gap too late. This issue gives you the model before you need it.</div>
+      <div class="issue-row-summary">The first thing a buyer does is recast your P&L. Every add-back, every owner expense, every one-off cost gets scrutinised before they build a number. Most founders find out what that number is when it's too late to change it.</div>
       <div class="issue-row-read">Read the full brief →</div>
     </a>
-    <div class="issue-row soon">
-      <div class="issue-row-top"><span class="issue-row-num">No. 02</span><span class="issue-row-cat">Process</span><span class="issue-row-soon">Coming soon · April 2026</span></div>
+    <a href="/issue-02" class="issue-row published" style="display:block">
+      <div class="issue-row-top"><span class="issue-row-num">No. 02</span><span class="issue-row-cat">M&A Process</span><span class="issue-row-date">April 2026</span></div>
       <div class="issue-row-title">Why most SME sales take 3 years — and how to cut that to 12 months.</div>
-      <div class="issue-row-summary">The timeline is not set by the market. It is set entirely by how prepared the seller is before the first buyer conversation.</div>
+      <div class="issue-row-summary">It's not the market. It's not the buyer. It's the seller — who starts the process before they're ready, and spends the next 18 months fixing things that should have been fixed before the first conversation.</div>
     </div>
-    <div class="issue-row soon">
-      <div class="issue-row-top"><span class="issue-row-num">No. 03</span><span class="issue-row-cat">Due diligence</span><span class="issue-row-soon">Coming soon · April 2026</span></div>
+    <a href="/issue-03" class="issue-row published" style="display:block">
+      <div class="issue-row-top"><span class="issue-row-num">No. 03</span><span class="issue-row-cat">Due Diligence</span><span class="issue-row-date">April 2026</span></div>
       <div class="issue-row-title">The 5 things a buyer checks in the first 48 hours of due diligence.</div>
-      <div class="issue-row-summary">Most deals that collapse in due diligence were already dead before they started. Five signals buyers look for immediately.</div>
+      <div class="issue-row-summary">Due diligence is not a formality. It's the moment the price gets renegotiated — or the deal dies. Five things, checked fast, before the buyer decides whether to keep going.</div>
     </div>
-    <div class="issue-row soon">
-      <div class="issue-row-top"><span class="issue-row-num">No. 04</span><span class="issue-row-cat">Buyer psychology</span><span class="issue-row-soon">Coming soon · May 2026</span></div>
+    <a href="/issue-04" class="issue-row published" style="display:block">
+      <div class="issue-row-top"><span class="issue-row-num">No. 04</span><span class="issue-row-cat">Buyer Psychology</span><span class="issue-row-date">May 2026</span></div>
       <div class="issue-row-title">Why your business sells to someone you already know — and how to find them.</div>
-      <div class="issue-row-summary">Most SME transactions happen through existing relationships. Here is how to map your buyer universe before going to market.</div>
+      <div class="issue-row-summary">Most SME transactions happen through existing relationships. The buyer who pays a premium and moves fast is already in your network. The question is whether you've mapped them yet.</div>
     </div>
   </div>
 </div>
@@ -231,7 +300,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   <div class="why-inner">
     <div class="why-eyebrow">The numbers</div>
     <h2 class="why-h2">Most business owners sell once.<br>Buyers do it for a living.</h2>
-    <p class="why-intro">That asymmetry — in preparation, knowledge, and leverage — is where value disappears. M&A Intelligence closes that gap with one brief per week, written from the buy side.</p>
+    <p class="why-intro">Buyers acquire businesses for a living. Most founders sell once. That asymmetry — in knowledge, preparation, and leverage — is where value disappears. M&A Intelligence brings the buy-side view to the other side of the table.</p>
     <div class="why-grid">
       <div class="why-card"><div class="why-num">70%</div><div class="why-label">SME sales that never close</div><div class="why-text">Most fail before a buyer makes a formal offer. Almost always preventable.</div></div>
       <div class="why-card"><div class="why-num">23%</div><div class="why-label">Value left on the table</div><div class="why-text">Unprepared sellers accept an average 23% discount vs. a structured process.</div></div>
@@ -241,24 +310,6 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   </div>
 </div>
 
-<div class="sub-sec">
-  <div class="sub-inner">
-    <h2 class="sub-h2">Know what your business is worth<br><em>before someone else tells you.</em></h2>
-    <p class="sub-p">Free. Weekly. One issue per week from the buy side.</p>
-    <form class="sub-form" onsubmit="handleSub(event)">
-      <input type="email" class="sub-email" placeholder="your@email.com" required>
-      <button type="submit" class="sub-btn">Subscribe Free</button>
-    </form>
-    <div class="sub-note">Unsubscribe anytime.</div>
-  </div>
-</div>
-
-<div class="mobile-sticky">
-  <form onsubmit="handleSub(event)">
-    <input type="email" placeholder="your@email.com" required>
-    <button type="submit">Subscribe Free</button>
-  </form>
-</div>
 
 <footer>
   <div class="footer-inner">
