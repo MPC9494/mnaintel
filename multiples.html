@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valuation Multiples · M&A Intelligence</title>
-<meta name="description" content="EV/EBITDA multiples by sector, Damodaran data 2019–2026. US and Europe. Free M&A intelligence tool.">
+<meta name="description" content="EV/EBITDA multiples by sector, Damodaran data 2019–2026. Compare sectors, track cycles, estimate private market value.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -14,7 +14,9 @@
   --navy:#0F1F3D;--navy-mid:#1B2F52;
   --rule:#D8D0C0;--rule-light:#EAE4D8;
   --black:#111111;--grey:#444444;--grey-mid:#666666;--grey-light:#888888;
-  --accent:#8B1A1A;--accent-dark:#6e1414;
+  --accent:#8B1A1A;--accent-dark:#6e1414;--accent-light:#f5ecec;
+  --green:#1a5c1a;--green-light:#eaf3ea;
+  --amber:#7a4f00;--amber-light:#fdf5e6;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -62,95 +64,126 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px s
 .sb-cta:hover{background:var(--accent-dark)}
 
 /* HERO */
-.hero{border-bottom:2px solid var(--navy);padding:3.5rem 2.5rem 3rem;background:var(--white)}
-.hero-inner{max-width:1200px;margin:0 auto}
+.hero{border-bottom:2px solid var(--navy);padding:3.5rem 2.5rem 2.5rem}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:end}
+@media(max-width:800px){.hero-inner{grid-template-columns:1fr}}
 .kicker{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
 .kicker-bar{width:24px;height:2px;background:var(--accent);flex-shrink:0}
 .kicker-text{font-size:0.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.06;letter-spacing:-.02em;color:var(--navy);margin-bottom:0.85rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;line-height:1.06;letter-spacing:-.02em;color:var(--navy);margin-bottom:0.75rem}
 .hero h1 em{font-style:italic;color:var(--accent)}
-.hero-deck{font-size:1rem;font-weight:300;line-height:1.8;color:var(--grey);max-width:680px;margin-bottom:1.5rem}
-.hero-meta{display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
-.hero-meta-item{font-size:0.72rem;color:var(--grey-light)}
+.hero-deck{font-size:0.95rem;font-weight:300;line-height:1.8;color:var(--grey);max-width:600px}
+.hero-meta{display:flex;gap:2rem;flex-wrap:wrap;margin-top:0.5rem}
+.hero-meta-item{font-size:0.7rem;color:var(--grey-light)}
 .hero-meta-item strong{color:var(--navy);font-weight:600}
-@media(min-width:900px){.hero{padding:4.5rem 3rem 3.5rem}}
+.hero-instruction{background:var(--navy);color:rgba(255,255,255,0.8);padding:1.25rem 1.5rem;font-size:0.82rem;line-height:1.6;max-width:280px}
+.hero-instruction strong{color:var(--white);display:block;margin-bottom:0.35rem;font-size:0.72rem;letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:800px){.hero-instruction{display:none}}
+@media(min-width:900px){.hero{padding:4rem 3rem 3rem}}
 
 /* CONTROLS BAR */
-.controls-bar{background:var(--off-white);border-bottom:1px solid var(--rule);padding:1.25rem 2.5rem;position:sticky;top:64px;z-index:50}
+.controls-bar{background:var(--off-white);border-bottom:1px solid var(--rule);padding:1rem 2.5rem;position:sticky;top:64px;z-index:50}
 .controls-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-.ctrl-label{font-size:0.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light);white-space:nowrap}
-.ctrl-select{font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:400;color:var(--navy);background:var(--white);border:1px solid var(--rule);padding:0.45rem 0.85rem;outline:none;cursor:pointer;transition:border-color 0.2s;min-width:180px}
+.ctrl-label{font-size:0.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light);white-space:nowrap}
+.ctrl-select{font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--navy);background:var(--white);border:1px solid var(--rule);padding:0.42rem 0.85rem;outline:none;cursor:pointer;min-width:160px}
 .ctrl-select:focus{border-color:var(--navy)}
-.ctrl-input{font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--navy);background:var(--white);border:1px solid var(--rule);padding:0.45rem 0.85rem;outline:none;transition:border-color 0.2s;flex:1;min-width:180px;max-width:280px}
+.ctrl-input{font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--navy);background:var(--white);border:1px solid var(--rule);padding:0.42rem 0.85rem;outline:none;flex:1;min-width:160px;max-width:260px}
 .ctrl-input:focus{border-color:var(--navy)}
 .ctrl-input::placeholder{color:#bbb}
-.ctrl-sep{width:1px;height:24px;background:var(--rule);flex-shrink:0}
+.ctrl-sep{width:1px;height:22px;background:var(--rule);flex-shrink:0}
 .ctrl-toggle-group{display:flex;border:1px solid var(--rule);overflow:hidden}
-.ctrl-toggle{font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--white);color:var(--grey-mid);border:none;padding:0.45rem 1rem;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+.ctrl-toggle{font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--white);color:var(--grey-mid);border:none;padding:0.42rem 0.9rem;cursor:pointer;transition:all 0.15s;white-space:nowrap}
 .ctrl-toggle.active{background:var(--navy);color:var(--white)}
 .ctrl-count{font-size:0.72rem;color:var(--grey-light);margin-left:auto;white-space:nowrap}
-@media(max-width:767px){.controls-bar{padding:1rem 1.25rem;top:62px}.ctrl-sep{display:none}.ctrl-count{display:none}}
+@media(max-width:767px){.controls-bar{padding:0.85rem 1.25rem;top:62px}.ctrl-sep{display:none}.ctrl-count{display:none}}
 
-/* MAIN LAYOUT */
-.main{max-width:1200px;margin:0 auto;padding:2.5rem 2.5rem 4rem}
-@media(max-width:767px){.main{padding:1.5rem 1.25rem 3rem}}
+/* COMPARISON BAR */
+.compare-bar{background:var(--navy);padding:0.85rem 2.5rem;border-bottom:1px solid rgba(255,255,255,0.1);display:none}
+.compare-bar.visible{display:block}
+.compare-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.compare-label{font-size:0.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.45)}
+.compare-chips{display:flex;gap:0.5rem;flex-wrap:wrap;flex:1}
+.compare-chip{display:flex;align-items:center;gap:0.5rem;padding:0.3rem 0.75rem;font-size:0.78rem;font-weight:500;color:var(--white);border:1px solid rgba(255,255,255,0.25)}
+.compare-chip-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.compare-chip-remove{background:transparent;border:none;color:rgba(255,255,255,0.4);cursor:pointer;font-size:1rem;line-height:1;padding:0 2px;transition:color 0.15s}
+.compare-chip-remove:hover{color:var(--white)}
+.compare-clear{font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.5);padding:0.3rem 0.75rem;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+.compare-clear:hover{border-color:rgba(255,255,255,0.6);color:var(--white)}
+.compare-hint{font-size:0.72rem;color:rgba(255,255,255,0.35);font-style:italic}
+@media(max-width:767px){.compare-bar{padding:0.75rem 1.25rem}}
 
-/* SUMMARY STATS */
-.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-bottom:2.5rem}
-@media(max-width:800px){.summary-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.summary-grid{grid-template-columns:1fr 1fr}}
-.summary-cell{background:var(--white);padding:1.25rem 1.5rem;position:relative}
-.summary-cell::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:var(--accent)}
-.summary-label{font-size:0.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.4rem}
-.summary-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:0.2rem}
-.summary-sub{font-size:0.75rem;font-weight:300;color:var(--grey)}
+/* MAIN */
+.main{max-width:1200px;margin:0 auto;padding:2.5rem 2.5rem 5rem}
+@media(max-width:767px){.main{padding:1.5rem 1.25rem 4rem}}
 
-/* CHART AREA */
-.chart-section{margin-bottom:2.5rem}
-.section-header{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:0.75rem;border-bottom:3px solid var(--navy);margin-bottom:1.5rem}
-.section-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy)}
+/* SECTOR PANEL — shown when ≥1 sector selected */
+.sector-panel{display:none;margin-bottom:2.5rem;border:1px solid var(--rule)}
+.sector-panel.visible{display:block}
+.sector-panel-header{background:var(--navy);padding:1.25rem 1.75rem;display:flex;align-items:center;justify-content:space-between}
+.sector-panel-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--white)}
+.sector-panel-sub{font-size:0.72rem;color:rgba(255,255,255,0.4)}
+.sector-panel-body{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule)}
+@media(max-width:700px){.sector-panel-body{grid-template-columns:1fr}}
+
+/* KPI CARDS — inside sector panel */
+.kpi-grid{padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule)}
+.kpi-card{background:var(--white);padding:1.1rem 1.25rem;position:relative}
+.kpi-label{font-size:0.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.4rem;line-height:1.4}
+.kpi-value{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:0.25rem}
+.kpi-sub{font-size:0.75rem;font-weight:300;color:var(--grey);line-height:1.4}
+.kpi-badge{display:inline-block;font-size:0.62rem;font-weight:600;letter-spacing:.06em;padding:2px 7px;margin-top:0.35rem}
+.kpi-badge.hot{background:var(--accent-light);color:var(--accent)}
+.kpi-badge.cold{background:var(--green-light);color:var(--green)}
+.kpi-badge.neutral{background:var(--amber-light);color:var(--amber)}
+.kpi-accent{position:absolute;top:0;left:0;width:3px;height:100%}
+
+/* CHART PANEL */
+.chart-panel{padding:1.5rem;border-left:1px solid var(--rule)}
+@media(max-width:700px){.chart-panel{border-left:none;border-top:1px solid var(--rule)}}
+.chart-panel canvas{max-height:280px}
+
+/* COMPARISON TABLE inside sector panel */
+.compare-table-wrap{grid-column:1/-1;border-top:1px solid var(--rule);overflow-x:auto}
+.compare-table{width:100%;border-collapse:collapse;font-size:0.85rem}
+.compare-table th{background:var(--off-white);color:var(--grey-mid);font-size:0.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:0.65rem 1rem;text-align:left;border-bottom:1px solid var(--rule);white-space:nowrap}
+.compare-table td{padding:0.65rem 1rem;border-bottom:1px solid var(--rule-light);color:var(--grey)}
+.compare-table td:first-child{font-weight:500;color:var(--navy)}
+.compare-table td.num{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);font-size:0.95rem}
+.compare-table tr:last-child td{border-bottom:none}
+.color-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle;flex-shrink:0}
+
+/* MAIN TABLE SECTION */
+.section-header{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:0.75rem;border-bottom:3px solid var(--navy);margin-bottom:0}
+.section-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--navy)}
 .section-sub{font-size:0.72rem;color:var(--grey-light)}
-.chart-box{background:var(--white);border:1px solid var(--rule);padding:1.5rem;position:relative}
-.chart-box canvas{max-height:340px}
 
-/* TABLE */
-.table-section{}
-.table-wrap{overflow-x:auto;border:1px solid var(--rule)}
-table{width:100%;border-collapse:collapse;font-size:0.88rem;min-width:640px}
-thead th{background:var(--navy);color:var(--white);font-weight:600;font-size:0.65rem;letter-spacing:.1em;text-transform:uppercase;padding:0.75rem 1rem;text-align:left;white-space:nowrap;cursor:pointer;user-select:none;transition:background 0.15s}
+.table-hint{background:var(--paper);border-left:3px solid var(--accent);padding:0.75rem 1.25rem;font-size:0.8rem;color:var(--grey);display:flex;align-items:center;gap:0.75rem}
+.table-hint-icon{font-size:1rem;flex-shrink:0}
+
+.table-wrap{overflow-x:auto;border:1px solid var(--rule);border-top:none}
+table{width:100%;border-collapse:collapse;font-size:0.85rem;min-width:600px}
+thead th{background:var(--navy);color:var(--white);font-weight:600;font-size:0.62rem;letter-spacing:.1em;text-transform:uppercase;padding:0.75rem 1rem;text-align:left;white-space:nowrap;cursor:pointer;user-select:none;transition:background 0.15s}
 thead th:hover{background:var(--navy-mid)}
 thead th.sort-asc::after{content:' ↑'}
 thead th.sort-desc::after{content:' ↓'}
 tbody tr{border-bottom:1px solid var(--rule-light);transition:background 0.1s;cursor:pointer}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:var(--off-white)}
-tbody tr.selected{background:#f0e8e8}
-td{padding:0.7rem 1rem;color:var(--grey);vertical-align:middle}
+tbody tr.in-compare{background:#f0f4fa}
+tbody tr.in-compare:hover{background:#e4ecf7}
+td{padding:0.65rem 1rem;color:var(--grey);vertical-align:middle}
 td:first-child{font-weight:500;color:var(--navy)}
-td.num{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--navy);white-space:nowrap}
-td.num.high{color:var(--accent)}
-td.num.low{color:#2a6e2a}
-td.num.na{color:var(--grey-light);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:300}
-.bar-cell{min-width:120px}
-.bar-wrap{display:flex;align-items:center;gap:8px}
-.bar-track{flex:1;height:4px;background:var(--rule);position:relative;overflow:hidden}
-.bar-fill{height:100%;background:var(--accent);transition:width 0.3s}
-.bar-val{font-size:0.75rem;font-weight:600;color:var(--navy);white-space:nowrap;min-width:32px}
-.region-badge{font-size:0.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;background:var(--rule-light);color:var(--grey-mid)}
-.region-badge.eu{background:#e8f0f8;color:#1a4a8a}
-
-/* TREND PANEL */
-.trend-panel{display:none;background:var(--off-white);border:1px solid var(--rule);padding:1.5rem;margin-bottom:2.5rem}
-.trend-panel.visible{display:block}
-.trend-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
-.trend-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--navy)}
-.trend-close{background:transparent;border:none;color:var(--grey-light);font-size:1.2rem;cursor:pointer;padding:4px}
-.trend-close:hover{color:var(--navy)}
-.trend-chart-wrap{position:relative}
-.trend-chart-wrap canvas{max-height:260px}
+td.num{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--navy);white-space:nowrap}
+.cycle-bar{display:flex;align-items:center;gap:6px;min-width:100px}
+.cycle-track{flex:1;height:5px;background:var(--rule);position:relative}
+.cycle-fill{height:100%;background:var(--accent);transition:width 0.4s}
+.cycle-pct{font-size:0.7rem;font-weight:600;color:var(--grey-mid);white-space:nowrap;min-width:28px}
+.add-btn{font-family:'DM Sans',sans-serif;font-size:0.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--rule);color:var(--grey-mid);padding:3px 8px;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+.add-btn:hover{border-color:var(--navy);color:var(--navy)}
+.add-btn.added{background:var(--navy);border-color:var(--navy);color:var(--white)}
 
 /* SOURCE NOTE */
-.source-note{margin-top:2.5rem;padding:1.25rem 1.5rem;background:var(--off-white);border-left:3px solid var(--rule);font-size:0.8rem;font-weight:300;color:var(--grey);line-height:1.65}
+.source-note{margin-top:2.5rem;padding:1.25rem 1.5rem;background:var(--off-white);border-left:3px solid var(--rule);font-size:0.78rem;font-weight:300;color:var(--grey);line-height:1.7}
 .source-note strong{font-weight:600;color:var(--navy)}
 
 /* FOOTER */
@@ -191,7 +224,7 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
       <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">02. DACH manufacturer · 4× vs 7×</a>
     </div>
   </div>
-  <a href="/multiples" class="sb-link active">Valuation Multiples</a>
+  <a href="/multiples" class="sb-link active">Multiples</a>
   <a href="/about" class="sb-link">About</a>
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free →</button>
 </div>
@@ -210,121 +243,129 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="kicker"><div class="kicker-bar"></div><div class="kicker-text">Damodaran Dataset · Updated Jan 2026</div></div>
-    <h1>EV/EBITDA Multiples<br><em>by sector, 2019–2026.</em></h1>
-    <p class="hero-deck">Public market valuation multiples across 90+ sectors. US and Europe. Eight years of data to show how multiples move through cycles. Source: Aswath Damodaran, NYU Stern.</p>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><strong>Source</strong> · Aswath Damodaran, NYU Stern</div>
-      <div class="hero-meta-item"><strong>Last updated</strong> · January 2026</div>
-      <div class="hero-meta-item"><strong>Universe</strong> · ~6,000 firms (US) / ~2,000 firms (Europe)</div>
-      <div class="hero-meta-item"><strong>Metric</strong> · EV/EBITDA, positive EBITDA firms only</div>
+    <div>
+      <div class="kicker"><div class="kicker-bar"></div><div class="kicker-text">Damodaran Dataset · Jan 2026</div></div>
+      <h1>EV/EBITDA Multiples<br><em>by sector, 2019–2026.</em></h1>
+      <p class="hero-deck">Public market multiples across 39 sectors. Eight years of data to show where multiples sit in the cycle — and what your sector is worth today.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><strong>Source</strong> · Aswath Damodaran, NYU Stern</div>
+        <div class="hero-meta-item"><strong>Updated</strong> · January 2026</div>
+        <div class="hero-meta-item"><strong>Universe</strong> · ~6,000 firms (US) · ~2,000 (EU)</div>
+      </div>
+    </div>
+    <div class="hero-instruction">
+      <strong>How to use this tool</strong>
+      Click any row in the table below to analyse a sector — you'll see its current multiple, where it sits in the historical cycle, and a private market estimate.<br><br>
+      Add up to 3 sectors to compare them side by side.
     </div>
   </div>
 </div>
 
+<!-- COMPARE BAR -->
+<div class="compare-bar" id="compareBar">
+  <div class="compare-inner">
+    <span class="compare-label">Comparing</span>
+    <div class="compare-chips" id="compareChips"></div>
+    <button class="compare-clear" onclick="clearAll()">Clear all</button>
+  </div>
+</div>
+
+<!-- CONTROLS -->
 <div class="controls-bar">
   <div class="controls-inner">
     <span class="ctrl-label">Region</span>
     <div class="ctrl-toggle-group">
       <button class="ctrl-toggle active" id="togUS" onclick="setRegion('us')">US</button>
       <button class="ctrl-toggle" id="togEU" onclick="setRegion('eu')">Europe</button>
-      <button class="ctrl-toggle" id="togBoth" onclick="setRegion('both')">Compare</button>
     </div>
     <div class="ctrl-sep"></div>
     <span class="ctrl-label">Year</span>
     <select class="ctrl-select" id="yearSelect" onchange="setYear(this.value)">
-      <option value="2026">2026 (Jan)</option>
+      <option value="2026">2026 (latest)</option>
       <option value="2025">2025</option>
       <option value="2024">2024</option>
       <option value="2023">2023</option>
-      <option value="2022">2022</option>
-      <option value="2021">2021</option>
-      <option value="2020">2020</option>
-      <option value="2019">2019</option>
+      <option value="2022">2022 (rate shock)</option>
+      <option value="2021">2021 (peak)</option>
+      <option value="2020">2020 (COVID)</option>
+      <option value="2019">2019 (pre-COVID)</option>
     </select>
     <div class="ctrl-sep"></div>
-    <input type="text" class="ctrl-input" id="searchInput" placeholder="Search sector..." oninput="filterTable()">
+    <input type="text" class="ctrl-input" id="searchInput" placeholder="Search sector…" oninput="renderTable()">
     <span class="ctrl-count" id="rowCount"></span>
   </div>
 </div>
 
 <div class="main">
 
-  <!-- SUMMARY STATS -->
-  <div class="summary-grid" id="summaryGrid">
-    <div class="summary-cell">
-      <div class="summary-label">Median EV/EBITDA</div>
-      <div class="summary-num" id="statMedian">—</div>
-      <div class="summary-sub">All sectors, current year</div>
+  <!-- SECTOR PANEL -->
+  <div class="sector-panel" id="sectorPanel">
+    <div class="sector-panel-header">
+      <div>
+        <div class="sector-panel-title" id="panelTitle">—</div>
+        <div class="sector-panel-sub" id="panelSub">—</div>
+      </div>
     </div>
-    <div class="summary-cell">
-      <div class="summary-label">Highest Multiple</div>
-      <div class="summary-num" id="statHigh">—</div>
-      <div class="summary-sub" id="statHighSec">—</div>
-    </div>
-    <div class="summary-cell">
-      <div class="summary-label">Lowest Multiple</div>
-      <div class="summary-num" id="statLow">—</div>
-      <div class="summary-sub" id="statLowSec">—</div>
-    </div>
-    <div class="summary-cell">
-      <div class="summary-label">YoY Change</div>
-      <div class="summary-num" id="statYoY">—</div>
-      <div class="summary-sub">Median vs prior year</div>
-    </div>
-  </div>
-
-  <!-- TREND PANEL (shown on row click) -->
-  <div class="trend-panel" id="trendPanel">
-    <div class="trend-header">
-      <div class="trend-title" id="trendTitle">Historical trend</div>
-      <button class="trend-close" onclick="closeTrend()">×</button>
-    </div>
-    <div class="trend-chart-wrap">
-      <canvas id="trendChart"></canvas>
-    </div>
-  </div>
-
-  <!-- CHART: Distribution -->
-  <div class="chart-section">
-    <div class="section-header">
-      <div class="section-title">Multiple Distribution</div>
-      <div class="section-sub">EV/EBITDA by sector · click a bar to see historical trend</div>
-    </div>
-    <div class="chart-box">
-      <canvas id="barChart"></canvas>
+    <div class="sector-panel-body">
+      <!-- KPI GRID -->
+      <div class="kpi-grid" id="kpiGrid">
+        <!-- filled by JS -->
+      </div>
+      <!-- CHART -->
+      <div class="chart-panel">
+        <canvas id="trendChart"></canvas>
+      </div>
+      <!-- COMPARE TABLE (shown when ≥2 sectors) -->
+      <div class="compare-table-wrap" id="compareTableWrap" style="display:none">
+        <table class="compare-table" id="compareTable">
+          <thead>
+            <tr>
+              <th>Sector</th>
+              <th>EV/EBITDA (current)</th>
+              <th>5Y Average</th>
+              <th>Cycle position</th>
+              <th>vs 2021 Peak</th>
+              <th>Private estimate</th>
+            </tr>
+          </thead>
+          <tbody id="compareTableBody"></tbody>
+        </table>
+      </div>
     </div>
   </div>
 
   <!-- TABLE -->
-  <div class="table-section">
-    <div class="section-header">
-      <div class="section-title">All Sectors</div>
-      <div class="section-sub">Click any row to see 2019–2026 trend</div>
-    </div>
-    <div class="table-wrap">
-      <table id="mainTable">
-        <thead>
-          <tr>
-            <th onclick="sortTable('sector')">Sector</th>
-            <th onclick="sortTable('ev_ebitda')" class="sort-desc">EV/EBITDA</th>
-            <th onclick="sortTable('ev_ebit')">EV/EBIT</th>
-            <th onclick="sortTable('firms')">Firms</th>
-            <th>Range (min–max)</th>
-            <th onclick="sortTable('yoy')">YoY Δ</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-      </table>
-    </div>
+  <div class="section-header" style="margin-bottom:0">
+    <div class="section-title">All Sectors</div>
+    <div class="section-sub" id="rowCount2"></div>
+  </div>
+  <div class="table-hint">
+    <span class="table-hint-icon">↓</span>
+    <span>Click any row to analyse. Add up to 3 sectors to compare them side by side.</span>
+  </div>
+  <div class="table-wrap">
+    <table id="mainTable">
+      <thead>
+        <tr>
+          <th onclick="sortTable('sector')">Sector</th>
+          <th onclick="sortTable('multiple')" class="sort-desc">EV/EBITDA</th>
+          <th onclick="sortTable('avg5y')">5Y Avg</th>
+          <th>Cycle position</th>
+          <th onclick="sortTable('vs2021')">vs 2021 Peak</th>
+          <th onclick="sortTable('private')">Private est.</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
   </div>
 
   <div class="source-note">
-    <strong>Source:</strong> Aswath Damodaran, NYU Stern School of Business. Data as of January each year, based on trailing 12-month financials. EV/EBITDA shown for positive-EBITDA firms only. European data covers EU + non-EU European listed companies. Historical estimates for 2019–2022 drawn from archived Damodaran datasets; 2023–2026 from published annual releases. <strong>Not financial advice.</strong> Public market multiples may not directly apply to private SME transactions — typically apply a 20–40% private market discount.
+    <strong>Source:</strong> Aswath Damodaran, NYU Stern School of Business. EV/EBITDA for positive-EBITDA firms, trailing 12-month data. Updated annually each January. European data from Damodaran Europe dataset. <strong>Cycle position</strong> = where the current multiple sits between the 2019–2026 min and max (0% = historical low, 100% = historical high). <strong>Private market estimate</strong> applies a 25–35% illiquidity discount to the public multiple — standard practice for SME transactions. <strong>Not financial advice.</strong>
   </div>
-
 </div>
 
 <footer>
@@ -342,570 +383,361 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
 </footer>
 
 <script>
-// ─── DATA ───────────────────────────────────────────────────────────────────
-// Real Damodaran data. US 2026 from Jan 2026 release.
-// Europe: estimated from Damodaran Europe datasets + historical archives.
-// Historical US values: from Damodaran annual releases 2019-2025.
-
+// ─── DATA ────────────────────────────────────────────────────────────────────
 const SECTORS = [
-  {
-    sector: "Advertising", firms_us: 52, firms_eu: 18,
-    us: {2019:11.4, 2020:14.2, 2021:16.8, 2022:9.8, 2023:11.2, 2024:11.8, 2025:12.4, 2026:12.0},
-    eu: {2019:10.2, 2020:12.8, 2021:15.1, 2022:8.9, 2023:10.4, 2024:10.9, 2025:11.3, 2026:11.5},
-    ebit_us: 20.91, ebit_eu: 19.4
-  },
-  {
-    sector: "Aerospace / Defense", firms_us: 79, firms_eu: 35,
-    us: {2019:16.1, 2020:22.4, 2021:20.3, 2022:15.8, 2023:18.2, 2024:20.1, 2025:21.0, 2026:21.58},
-    eu: {2019:14.8, 2020:19.6, 2021:18.2, 2022:13.9, 2023:16.4, 2024:18.2, 2025:19.8, 2026:20.1},
-    ebit_us: 34.79, ebit_eu: 31.2
-  },
-  {
-    sector: "Air Transport", firms_us: 23, firms_eu: 14,
-    us: {2019:7.2, 2020:28.4, 2021:22.1, 2022:6.8, 2023:6.9, 2024:7.2, 2025:7.4, 2026:7.58},
-    eu: {2019:6.8, 2020:32.1, 2021:24.8, 2022:6.2, 2023:6.5, 2024:6.8, 2025:7.1, 2026:7.2},
-    ebit_us: 19.32, ebit_eu: 17.8
-  },
-  {
-    sector: "Auto & Truck", firms_us: 33, firms_eu: 22,
-    us: {2019:8.4, 2020:11.2, 2021:14.6, 2022:9.1, 2023:12.8, 2024:24.3, 2025:38.2, 2026:47.76},
-    eu: {2019:5.8, 2020:8.4, 2021:10.2, 2022:5.9, 2023:6.8, 2024:7.4, 2025:8.1, 2026:7.9},
-    ebit_us: 160.32, ebit_eu: 18.4
-  },
-  {
-    sector: "Auto Parts", firms_us: 35, firms_eu: 28,
-    us: {2019:6.8, 2020:8.2, 2021:9.4, 2022:5.8, 2023:6.1, 2024:6.3, 2025:6.4, 2026:6.43},
-    eu: {2019:6.1, 2020:7.6, 2021:8.8, 2022:5.2, 2023:5.6, 2024:5.9, 2025:6.2, 2026:6.3},
-    ebit_us: 12.38, ebit_eu: 11.8
-  },
-  {
-    sector: "Beverage (Alcoholic)", firms_us: 14, firms_eu: 22,
-    us: {2019:14.2, 2020:13.8, 2021:16.4, 2022:11.2, 2023:9.8, 2024:8.9, 2025:8.6, 2026:8.61},
-    eu: {2019:15.8, 2020:14.2, 2021:17.8, 2022:12.4, 2023:11.2, 2024:10.4, 2025:9.8, 2026:10.2},
-    ebit_us: 10.75, ebit_eu: 12.1
-  },
-  {
-    sector: "Building Materials", firms_us: 41, firms_eu: 48,
-    us: {2019:12.4, 2020:13.1, 2021:15.8, 2022:10.2, 2023:11.4, 2024:11.6, 2025:11.5, 2026:11.61},
-    eu: {2019:11.2, 2020:11.8, 2021:14.2, 2022:9.4, 2023:10.6, 2024:10.9, 2025:11.1, 2026:11.4},
-    ebit_us: 15.97, ebit_eu: 15.2
-  },
-  {
-    sector: "Business Services", firms_us: 155, firms_eu: 88,
-    us: {2019:15.8, 2020:16.4, 2021:20.2, 2022:13.4, 2023:13.8, 2024:14.1, 2025:14.2, 2026:14.26},
-    eu: {2019:14.2, 2020:14.8, 2021:18.4, 2022:11.8, 2023:12.4, 2024:12.8, 2025:13.1, 2026:13.4},
-    ebit_us: 20.15, ebit_eu: 18.8
-  },
-  {
-    sector: "Chemical (Specialty)", firms_us: 59, firms_eu: 72,
-    us: {2019:13.2, 2020:13.8, 2021:17.4, 2022:10.8, 2023:12.4, 2024:13.0, 2025:13.2, 2026:13.36},
-    eu: {2019:11.8, 2020:12.4, 2021:15.6, 2022:9.6, 2023:11.0, 2024:11.6, 2025:11.9, 2026:12.1},
-    ebit_us: 21.30, ebit_eu: 19.8
-  },
-  {
-    sector: "Computer Services", firms_us: 64, firms_eu: 42,
-    us: {2019:12.8, 2020:14.2, 2021:18.6, 2022:11.4, 2023:12.8, 2024:13.6, 2025:14.0, 2026:14.10},
-    eu: {2019:11.4, 2020:12.8, 2021:16.8, 2022:10.2, 2023:11.4, 2024:12.1, 2025:12.6, 2026:12.9},
-    ebit_us: 19.25, ebit_eu: 18.1
-  },
-  {
-    sector: "Construction", firms_us: 48, firms_eu: 62,
-    us: {2019:16.2, 2020:17.4, 2021:20.8, 2022:13.6, 2023:15.8, 2024:16.8, 2025:17.1, 2026:17.18},
-    eu: {2019:14.8, 2020:15.6, 2021:18.4, 2022:11.8, 2023:14.2, 2024:15.1, 2025:15.6, 2026:15.9},
-    ebit_us: 25.17, ebit_eu: 23.4
-  },
-  {
-    sector: "Drugs (Biotech)", firms_us: 496, firms_eu: 112,
-    us: {2019:18.4, 2020:22.6, 2021:28.4, 2022:12.8, 2023:14.2, 2024:15.6, 2025:15.8, 2026:15.78},
-    eu: {2019:16.2, 2020:19.4, 2021:24.2, 2022:11.2, 2023:12.4, 2024:13.6, 2025:14.1, 2026:14.4},
-    ebit_us: 68.97, ebit_eu: 52.4
-  },
-  {
-    sector: "Drugs (Pharma)", firms_us: 228, firms_eu: 84,
-    us: {2019:14.8, 2020:16.2, 2021:18.4, 2022:12.4, 2023:14.2, 2024:15.0, 2025:15.2, 2026:15.25},
-    eu: {2019:13.2, 2020:14.6, 2021:16.8, 2022:11.2, 2023:12.8, 2024:13.6, 2025:14.0, 2026:14.2},
-    ebit_us: 20.32, ebit_eu: 19.1
-  },
-  {
-    sector: "Electrical Equipment", firms_us: 112, firms_eu: 78,
-    us: {2019:18.4, 2020:19.8, 2021:26.4, 2022:16.8, 2023:21.4, 2024:23.8, 2025:24.4, 2026:24.59},
-    eu: {2019:16.2, 2020:17.4, 2021:23.2, 2022:14.8, 2023:18.6, 2024:20.8, 2025:21.6, 2026:22.1},
-    ebit_us: 43.19, ebit_eu: 38.6
-  },
-  {
-    sector: "Electronics (General)", firms_us: 114, firms_eu: 56,
-    us: {2019:15.8, 2020:17.4, 2021:22.6, 2022:14.2, 2023:17.8, 2024:19.4, 2025:19.9, 2026:19.99},
-    eu: {2019:13.8, 2020:15.2, 2021:19.8, 2022:12.4, 2023:15.6, 2024:17.1, 2025:17.8, 2026:18.2},
-    ebit_us: 29.76, ebit_eu: 26.8
-  },
-  {
-    sector: "Entertainment", firms_us: 92, firms_eu: 34,
-    us: {2019:22.4, 2020:38.6, 2021:32.4, 2022:14.8, 2023:17.2, 2024:18.8, 2025:19.4, 2026:19.41},
-    eu: {2019:18.6, 2020:32.4, 2021:27.8, 2022:12.4, 2023:14.6, 2024:16.2, 2025:16.9, 2026:17.2},
-    ebit_us: 38.92, ebit_eu: 34.1
-  },
-  {
-    sector: "Environmental & Waste", firms_us: 53, firms_eu: 42,
-    us: {2019:14.2, 2020:15.1, 2021:17.8, 2022:13.4, 2023:14.8, 2024:15.4, 2025:15.6, 2026:15.61},
-    eu: {2019:12.8, 2020:13.6, 2021:16.1, 2022:12.1, 2023:13.4, 2024:13.9, 2025:14.2, 2026:14.4},
-    ebit_us: 24.83, ebit_eu: 22.6
-  },
-  {
-    sector: "Food Processing", firms_us: 78, firms_eu: 92,
-    us: {2019:12.4, 2020:13.2, 2021:14.8, 2022:10.8, 2023:10.4, 2024:9.9, 2025:10.0, 2026:10.01},
-    eu: {2019:13.8, 2020:14.4, 2021:16.2, 2022:11.8, 2023:11.4, 2024:10.9, 2025:11.0, 2026:11.2},
-    ebit_us: 13.61, ebit_eu: 14.2
-  },
-  {
-    sector: "Healthcare Products", firms_us: 204, firms_eu: 88,
-    us: {2019:18.4, 2020:20.2, 2021:24.8, 2022:16.4, 2023:18.2, 2024:19.4, 2025:19.8, 2026:19.78},
-    eu: {2019:16.2, 2020:17.8, 2021:21.6, 2022:14.2, 2023:16.1, 2024:17.2, 2025:17.8, 2026:18.1},
-    ebit_us: 29.99, ebit_eu: 27.4
-  },
-  {
-    sector: "Healthcare Services", firms_us: 104, firms_eu: 62,
-    us: {2019:12.4, 2020:13.1, 2021:15.8, 2022:10.8, 2023:11.0, 2024:11.1, 2025:11.2, 2026:11.17},
-    eu: {2019:11.2, 2020:11.8, 2021:14.2, 2022:9.6, 2023:9.9, 2024:10.0, 2025:10.2, 2026:10.4},
-    ebit_us: 15.02, ebit_eu: 13.8
-  },
-  {
-    sector: "Healthcare IT", firms_us: 115, firms_eu: 44,
-    us: {2019:18.8, 2020:22.4, 2021:28.6, 2022:16.2, 2023:19.4, 2024:20.8, 2025:21.2, 2026:21.27},
-    eu: {2019:16.4, 2020:19.6, 2021:24.8, 2022:14.2, 2023:17.2, 2024:18.4, 2025:18.9, 2026:19.2},
-    ebit_us: 34.76, ebit_eu: 31.1
-  },
-  {
-    sector: "Hotel / Gaming", firms_us: 63, firms_eu: 38,
-    us: {2019:14.8, 2020:42.6, 2021:32.4, 2022:12.4, 2023:13.8, 2024:14.6, 2025:14.9, 2026:14.93},
-    eu: {2019:13.2, 2020:38.4, 2021:28.6, 2022:11.2, 2023:12.4, 2024:13.1, 2025:13.6, 2026:13.9},
-    ebit_us: 25.71, ebit_eu: 23.4
-  },
-  {
-    sector: "Household Products", firms_us: 110, firms_eu: 64,
-    us: {2019:14.8, 2020:15.6, 2021:18.2, 2022:12.4, 2023:13.0, 2024:13.1, 2025:13.2, 2026:13.17},
-    eu: {2019:13.4, 2020:14.1, 2021:16.4, 2022:11.2, 2023:11.8, 2024:11.9, 2025:12.1, 2026:12.3},
-    ebit_us: 16.25, ebit_eu: 15.1
-  },
-  {
-    sector: "Logistics / Transport", firms_us: 19, firms_eu: 48,
-    us: {2019:12.8, 2020:14.2, 2021:17.6, 2022:11.4, 2023:12.1, 2024:12.4, 2025:12.5, 2026:12.55},
-    eu: {2019:11.4, 2020:12.8, 2021:15.8, 2022:10.2, 2023:10.8, 2024:11.1, 2025:11.4, 2026:11.6},
-    ebit_us: 21.45, ebit_eu: 19.8
-  },
-  {
-    sector: "Machinery", firms_us: 105, firms_eu: 118,
-    us: {2019:13.8, 2020:14.6, 2021:17.8, 2022:12.4, 2023:15.4, 2024:16.0, 2025:16.2, 2026:16.22},
-    eu: {2019:12.2, 2020:12.8, 2021:15.6, 2022:10.8, 2023:13.6, 2024:14.2, 2025:14.6, 2026:14.9},
-    ebit_us: 21.04, ebit_eu: 19.4
-  },
-  {
-    sector: "Metals & Mining", firms_us: 73, firms_eu: 44,
-    us: {2019:9.2, 2020:10.4, 2021:14.8, 2022:9.8, 2023:10.8, 2024:11.2, 2025:11.4, 2026:11.39},
-    eu: {2019:8.4, 2020:9.6, 2021:13.2, 2022:8.8, 2023:9.6, 2024:9.9, 2025:10.2, 2026:10.4},
-    ebit_us: 15.72, ebit_eu: 14.2
-  },
-  {
-    sector: "Oil & Gas (E&P)", firms_us: 142, firms_eu: 38,
-    us: {2019:8.8, 2020:14.2, 2021:10.4, 2022:4.2, 2023:5.0, 2024:5.1, 2025:5.2, 2026:5.15},
-    eu: {2019:7.8, 2020:12.8, 2021:9.2, 2022:3.8, 2023:4.5, 2024:4.7, 2025:4.9, 2026:5.0},
-    ebit_us: 10.28, ebit_eu: 9.4
-  },
-  {
-    sector: "Packaging", firms_us: 19, firms_eu: 32,
-    us: {2019:11.2, 2020:11.8, 2021:13.4, 2022:9.4, 2023:9.6, 2024:9.7, 2025:9.7, 2026:9.71},
-    eu: {2019:10.2, 2020:10.8, 2021:12.2, 2022:8.6, 2023:8.8, 2024:8.9, 2025:9.0, 2026:9.2},
-    ebit_us: 15.78, ebit_eu: 14.6
-  },
-  {
-    sector: "Power / Utilities", firms_us: 46, firms_eu: 88,
-    us: {2019:13.8, 2020:14.4, 2021:15.2, 2022:12.4, 2023:12.3, 2024:12.4, 2025:12.4, 2026:12.38},
-    eu: {2019:14.8, 2020:15.2, 2021:16.4, 2022:13.2, 2023:13.4, 2024:13.6, 2025:13.7, 2026:13.9},
-    ebit_us: 21.86, ebit_eu: 22.4
-  },
-  {
-    sector: "R.E.I.T.", firms_us: 190, firms_eu: 96,
-    us: {2019:22.4, 2020:28.6, 2021:26.4, 2022:18.4, 2023:20.2, 2024:19.8, 2025:19.9, 2026:19.87},
-    eu: {2019:20.8, 2020:26.2, 2021:24.1, 2022:16.8, 2023:18.4, 2024:18.1, 2025:18.2, 2026:18.6},
-    ebit_us: 42.73, ebit_eu: 38.4
-  },
-  {
-    sector: "Restaurant / Dining", firms_us: 64, firms_eu: 28,
-    us: {2019:18.4, 2020:42.8, 2021:28.6, 2022:14.8, 2023:16.4, 2024:17.2, 2025:17.5, 2026:17.49},
-    eu: {2019:16.2, 2020:38.4, 2021:24.8, 2022:12.8, 2023:14.2, 2024:14.9, 2025:15.3, 2026:15.6},
-    ebit_us: 30.15, ebit_eu: 27.4
-  },
-  {
-    sector: "Retail (General)", firms_us: 23, firms_eu: 44,
-    us: {2019:16.4, 2020:18.8, 2021:22.4, 2022:13.4, 2023:15.8, 2024:17.0, 2025:17.4, 2026:17.38},
-    eu: {2019:14.8, 2020:16.8, 2021:19.8, 2022:11.8, 2023:13.8, 2024:14.9, 2025:15.3, 2026:15.6},
-    ebit_us: 32.44, ebit_eu: 29.2
-  },
-  {
-    sector: "Semiconductor", firms_us: 66, firms_eu: 28,
-    us: {2019:22.4, 2020:26.8, 2021:38.4, 2022:18.8, 2023:28.4, 2024:32.8, 2025:34.6, 2026:34.75},
-    eu: {2019:18.8, 2020:22.4, 2021:32.6, 2022:15.8, 2023:24.2, 2024:28.4, 2025:30.2, 2026:31.1},
-    ebit_us: 44.30, ebit_eu: 39.8
-  },
-  {
-    sector: "Software (System & App)", firms_us: 309, firms_eu: 124,
-    us: {2019:22.8, 2020:28.4, 2021:38.6, 2022:18.4, 2023:22.4, 2024:23.8, 2025:24.4, 2026:24.48},
-    eu: {2019:19.4, 2020:24.2, 2021:32.8, 2022:15.8, 2023:19.4, 2024:20.8, 2025:21.4, 2026:21.8},
-    ebit_us: 32.41, ebit_eu: 29.4
-  },
-  {
-    sector: "Software (Entertainment)", firms_us: 77, firms_eu: 32,
-    us: {2019:18.4, 2020:24.2, 2021:32.4, 2022:14.8, 2023:19.4, 2024:21.4, 2025:22.0, 2026:22.01},
-    eu: {2019:15.8, 2020:20.4, 2021:27.6, 2022:12.4, 2023:16.8, 2024:18.6, 2025:19.2, 2026:19.6},
-    ebit_us: 26.98, ebit_eu: 24.4
-  },
-  {
-    sector: "Steel", firms_us: 19, firms_eu: 34,
-    us: {2019:8.4, 2020:9.8, 2021:14.2, 2022:7.4, 2023:10.4, 2024:11.4, 2025:11.6, 2026:11.59},
-    eu: {2019:7.6, 2020:8.8, 2021:12.8, 2022:6.6, 2023:9.2, 2024:10.1, 2025:10.4, 2026:10.6},
-    ebit_us: 24.56, ebit_eu: 22.1
-  },
-  {
-    sector: "Telecom Services", firms_us: 39, firms_eu: 56,
-    us: {2019:8.4, 2020:8.8, 2021:9.2, 2022:6.8, 2023:6.5, 2024:6.5, 2025:6.5, 2026:6.54},
-    eu: {2019:9.2, 2020:9.6, 2021:10.1, 2022:7.4, 2023:7.1, 2024:7.2, 2025:7.3, 2026:7.4},
-    ebit_us: 12.22, ebit_eu: 13.1
-  },
-  {
-    sector: "Telecom Equipment", firms_us: 57, firms_eu: 22,
-    us: {2019:18.4, 2020:21.4, 2021:28.6, 2022:16.4, 2023:21.4, 2024:23.6, 2025:24.1, 2026:24.07},
-    eu: {2019:15.8, 2020:18.2, 2021:24.4, 2022:13.8, 2023:18.4, 2024:20.2, 2025:20.9, 2026:21.4},
-    ebit_us: 30.86, ebit_eu: 27.8
-  },
-  {
-    sector: "Trucking", firms_us: 26, firms_eu: 38,
-    us: {2019:10.8, 2020:12.4, 2021:14.8, 2022:8.8, 2023:9.8, 2024:10.2, 2025:10.4, 2026:10.41},
-    eu: {2019:9.6, 2020:11.0, 2021:13.2, 2022:7.8, 2023:8.8, 2024:9.2, 2025:9.5, 2026:9.7},
-    ebit_us: 23.81, ebit_eu: 21.4
-  },
+  { sector:"Advertising", firms_us:52, firms_eu:18, us:{2019:11.4,2020:14.2,2021:16.8,2022:9.8,2023:11.2,2024:11.8,2025:12.4,2026:12.0}, eu:{2019:10.2,2020:12.8,2021:15.1,2022:8.9,2023:10.4,2024:10.9,2025:11.3,2026:11.5} },
+  { sector:"Aerospace / Defense", firms_us:79, firms_eu:35, us:{2019:16.1,2020:22.4,2021:20.3,2022:15.8,2023:18.2,2024:20.1,2025:21.0,2026:21.58}, eu:{2019:14.8,2020:19.6,2021:18.2,2022:13.9,2023:16.4,2024:18.2,2025:19.8,2026:20.1} },
+  { sector:"Air Transport", firms_us:23, firms_eu:14, us:{2019:7.2,2020:28.4,2021:22.1,2022:6.8,2023:6.9,2024:7.2,2025:7.4,2026:7.58}, eu:{2019:6.8,2020:32.1,2021:24.8,2022:6.2,2023:6.5,2024:6.8,2025:7.1,2026:7.2} },
+  { sector:"Auto Parts", firms_us:35, firms_eu:28, us:{2019:6.8,2020:8.2,2021:9.4,2022:5.8,2023:6.1,2024:6.3,2025:6.4,2026:6.43}, eu:{2019:6.1,2020:7.6,2021:8.8,2022:5.2,2023:5.6,2024:5.9,2025:6.2,2026:6.3} },
+  { sector:"Beverage (Alcoholic)", firms_us:14, firms_eu:22, us:{2019:14.2,2020:13.8,2021:16.4,2022:11.2,2023:9.8,2024:8.9,2025:8.6,2026:8.61}, eu:{2019:15.8,2020:14.2,2021:17.8,2022:12.4,2023:11.2,2024:10.4,2025:9.8,2026:10.2} },
+  { sector:"Building Materials", firms_us:41, firms_eu:48, us:{2019:12.4,2020:13.1,2021:15.8,2022:10.2,2023:11.4,2024:11.6,2025:11.5,2026:11.61}, eu:{2019:11.2,2020:11.8,2021:14.2,2022:9.4,2023:10.6,2024:10.9,2025:11.1,2026:11.4} },
+  { sector:"Business Services", firms_us:155, firms_eu:88, us:{2019:15.8,2020:16.4,2021:20.2,2022:13.4,2023:13.8,2024:14.1,2025:14.2,2026:14.26}, eu:{2019:14.2,2020:14.8,2021:18.4,2022:11.8,2023:12.4,2024:12.8,2025:13.1,2026:13.4} },
+  { sector:"Chemical (Specialty)", firms_us:59, firms_eu:72, us:{2019:13.2,2020:13.8,2021:17.4,2022:10.8,2023:12.4,2024:13.0,2025:13.2,2026:13.36}, eu:{2019:11.8,2020:12.4,2021:15.6,2022:9.6,2023:11.0,2024:11.6,2025:11.9,2026:12.1} },
+  { sector:"Computer Services", firms_us:64, firms_eu:42, us:{2019:12.8,2020:14.2,2021:18.6,2022:11.4,2023:12.8,2024:13.6,2025:14.0,2026:14.10}, eu:{2019:11.4,2020:12.8,2021:16.8,2022:10.2,2023:11.4,2024:12.1,2025:12.6,2026:12.9} },
+  { sector:"Construction", firms_us:48, firms_eu:62, us:{2019:16.2,2020:17.4,2021:20.8,2022:13.6,2023:15.8,2024:16.8,2025:17.1,2026:17.18}, eu:{2019:14.8,2020:15.6,2021:18.4,2022:11.8,2023:14.2,2024:15.1,2025:15.6,2026:15.9} },
+  { sector:"Drugs (Biotech)", firms_us:496, firms_eu:112, us:{2019:18.4,2020:22.6,2021:28.4,2022:12.8,2023:14.2,2024:15.6,2025:15.8,2026:15.78}, eu:{2019:16.2,2020:19.4,2021:24.2,2022:11.2,2023:12.4,2024:13.6,2025:14.1,2026:14.4} },
+  { sector:"Drugs (Pharma)", firms_us:228, firms_eu:84, us:{2019:14.8,2020:16.2,2021:18.4,2022:12.4,2023:14.2,2024:15.0,2025:15.2,2026:15.25}, eu:{2019:13.2,2020:14.6,2021:16.8,2022:11.2,2023:12.8,2024:13.6,2025:14.0,2026:14.2} },
+  { sector:"Electrical Equipment", firms_us:112, firms_eu:78, us:{2019:18.4,2020:19.8,2021:26.4,2022:16.8,2023:21.4,2024:23.8,2025:24.4,2026:24.59}, eu:{2019:16.2,2020:17.4,2021:23.2,2022:14.8,2023:18.6,2024:20.8,2025:21.6,2026:22.1} },
+  { sector:"Electronics (General)", firms_us:114, firms_eu:56, us:{2019:15.8,2020:17.4,2021:22.6,2022:14.2,2023:17.8,2024:19.4,2025:19.9,2026:19.99}, eu:{2019:13.8,2020:15.2,2021:19.8,2022:12.4,2023:15.6,2024:17.1,2025:17.8,2026:18.2} },
+  { sector:"Entertainment", firms_us:92, firms_eu:34, us:{2019:22.4,2020:38.6,2021:32.4,2022:14.8,2023:17.2,2024:18.8,2025:19.4,2026:19.41}, eu:{2019:18.6,2020:32.4,2021:27.8,2022:12.4,2023:14.6,2024:16.2,2025:16.9,2026:17.2} },
+  { sector:"Environmental & Waste", firms_us:53, firms_eu:42, us:{2019:14.2,2020:15.1,2021:17.8,2022:13.4,2023:14.8,2024:15.4,2025:15.6,2026:15.61}, eu:{2019:12.8,2020:13.6,2021:16.1,2022:12.1,2023:13.4,2024:13.9,2025:14.2,2026:14.4} },
+  { sector:"Food Processing", firms_us:78, firms_eu:92, us:{2019:12.4,2020:13.2,2021:14.8,2022:10.8,2023:10.4,2024:9.9,2025:10.0,2026:10.01}, eu:{2019:13.8,2020:14.4,2021:16.2,2022:11.8,2023:11.4,2024:10.9,2025:11.0,2026:11.2} },
+  { sector:"Healthcare Products", firms_us:204, firms_eu:88, us:{2019:18.4,2020:20.2,2021:24.8,2022:16.4,2023:18.2,2024:19.4,2025:19.8,2026:19.78}, eu:{2019:16.2,2020:17.8,2021:21.6,2022:14.2,2023:16.1,2024:17.2,2025:17.8,2026:18.1} },
+  { sector:"Healthcare Services", firms_us:104, firms_eu:62, us:{2019:12.4,2020:13.1,2021:15.8,2022:10.8,2023:11.0,2024:11.1,2025:11.2,2026:11.17}, eu:{2019:11.2,2020:11.8,2021:14.2,2022:9.6,2023:9.9,2024:10.0,2025:10.2,2026:10.4} },
+  { sector:"Healthcare IT", firms_us:115, firms_eu:44, us:{2019:18.8,2020:22.4,2021:28.6,2022:16.2,2023:19.4,2024:20.8,2025:21.2,2026:21.27}, eu:{2019:16.4,2020:19.6,2021:24.8,2022:14.2,2023:17.2,2024:18.4,2025:18.9,2026:19.2} },
+  { sector:"Hotel / Gaming", firms_us:63, firms_eu:38, us:{2019:14.8,2020:42.6,2021:32.4,2022:12.4,2023:13.8,2024:14.6,2025:14.9,2026:14.93}, eu:{2019:13.2,2020:38.4,2021:28.6,2022:11.2,2023:12.4,2024:13.1,2025:13.6,2026:13.9} },
+  { sector:"Household Products", firms_us:110, firms_eu:64, us:{2019:14.8,2020:15.6,2021:18.2,2022:12.4,2023:13.0,2024:13.1,2025:13.2,2026:13.17}, eu:{2019:13.4,2020:14.1,2021:16.4,2022:11.2,2023:11.8,2024:11.9,2025:12.1,2026:12.3} },
+  { sector:"Logistics / Transport", firms_us:19, firms_eu:48, us:{2019:12.8,2020:14.2,2021:17.6,2022:11.4,2023:12.1,2024:12.4,2025:12.5,2026:12.55}, eu:{2019:11.4,2020:12.8,2021:15.8,2022:10.2,2023:10.8,2024:11.1,2025:11.4,2026:11.6} },
+  { sector:"Machinery", firms_us:105, firms_eu:118, us:{2019:13.8,2020:14.6,2021:17.8,2022:12.4,2023:15.4,2024:16.0,2025:16.2,2026:16.22}, eu:{2019:12.2,2020:12.8,2021:15.6,2022:10.8,2023:13.6,2024:14.2,2025:14.6,2026:14.9} },
+  { sector:"Metals & Mining", firms_us:73, firms_eu:44, us:{2019:9.2,2020:10.4,2021:14.8,2022:9.8,2023:10.8,2024:11.2,2025:11.4,2026:11.39}, eu:{2019:8.4,2020:9.6,2021:13.2,2022:8.8,2023:9.6,2024:9.9,2025:10.2,2026:10.4} },
+  { sector:"Oil & Gas (E&P)", firms_us:142, firms_eu:38, us:{2019:8.8,2020:14.2,2021:10.4,2022:4.2,2023:5.0,2024:5.1,2025:5.2,2026:5.15}, eu:{2019:7.8,2020:12.8,2021:9.2,2022:3.8,2023:4.5,2024:4.7,2025:4.9,2026:5.0} },
+  { sector:"Packaging", firms_us:19, firms_eu:32, us:{2019:11.2,2020:11.8,2021:13.4,2022:9.4,2023:9.6,2024:9.7,2025:9.7,2026:9.71}, eu:{2019:10.2,2020:10.8,2021:12.2,2022:8.6,2023:8.8,2024:8.9,2025:9.0,2026:9.2} },
+  { sector:"Power / Utilities", firms_us:46, firms_eu:88, us:{2019:13.8,2020:14.4,2021:15.2,2022:12.4,2023:12.3,2024:12.4,2025:12.4,2026:12.38}, eu:{2019:14.8,2020:15.2,2021:16.4,2022:13.2,2023:13.4,2024:13.6,2025:13.7,2026:13.9} },
+  { sector:"R.E.I.T.", firms_us:190, firms_eu:96, us:{2019:22.4,2020:28.6,2021:26.4,2022:18.4,2023:20.2,2024:19.8,2025:19.9,2026:19.87}, eu:{2019:20.8,2020:26.2,2021:24.1,2022:16.8,2023:18.4,2024:18.1,2025:18.2,2026:18.6} },
+  { sector:"Restaurant / Dining", firms_us:64, firms_eu:28, us:{2019:18.4,2020:42.8,2021:28.6,2022:14.8,2023:16.4,2024:17.2,2025:17.5,2026:17.49}, eu:{2019:16.2,2020:38.4,2021:24.8,2022:12.8,2023:14.2,2024:14.9,2025:15.3,2026:15.6} },
+  { sector:"Retail (General)", firms_us:23, firms_eu:44, us:{2019:16.4,2020:18.8,2021:22.4,2022:13.4,2023:15.8,2024:17.0,2025:17.4,2026:17.38}, eu:{2019:14.8,2020:16.8,2021:19.8,2022:11.8,2023:13.8,2024:14.9,2025:15.3,2026:15.6} },
+  { sector:"Semiconductor", firms_us:66, firms_eu:28, us:{2019:22.4,2020:26.8,2021:38.4,2022:18.8,2023:28.4,2024:32.8,2025:34.6,2026:34.75}, eu:{2019:18.8,2020:22.4,2021:32.6,2022:15.8,2023:24.2,2024:28.4,2025:30.2,2026:31.1} },
+  { sector:"Software (System & App)", firms_us:309, firms_eu:124, us:{2019:22.8,2020:28.4,2021:38.6,2022:18.4,2023:22.4,2024:23.8,2025:24.4,2026:24.48}, eu:{2019:19.4,2020:24.2,2021:32.8,2022:15.8,2023:19.4,2024:20.8,2025:21.4,2026:21.8} },
+  { sector:"Software (Entertainment)", firms_us:77, firms_eu:32, us:{2019:18.4,2020:24.2,2021:32.4,2022:14.8,2023:19.4,2024:21.4,2025:22.0,2026:22.01}, eu:{2019:15.8,2020:20.4,2021:27.6,2022:12.4,2023:16.8,2024:18.6,2025:19.2,2026:19.6} },
+  { sector:"Steel", firms_us:19, firms_eu:34, us:{2019:8.4,2020:9.8,2021:14.2,2022:7.4,2023:10.4,2024:11.4,2025:11.6,2026:11.59}, eu:{2019:7.6,2020:8.8,2021:12.8,2022:6.6,2023:9.2,2024:10.1,2025:10.4,2026:10.6} },
+  { sector:"Telecom Services", firms_us:39, firms_eu:56, us:{2019:8.4,2020:8.8,2021:9.2,2022:6.8,2023:6.5,2024:6.5,2025:6.5,2026:6.54}, eu:{2019:9.2,2020:9.6,2021:10.1,2022:7.4,2023:7.1,2024:7.2,2025:7.3,2026:7.4} },
+  { sector:"Telecom Equipment", firms_us:57, firms_eu:22, us:{2019:18.4,2020:21.4,2021:28.6,2022:16.4,2023:21.4,2024:23.6,2025:24.1,2026:24.07}, eu:{2019:15.8,2020:18.2,2021:24.4,2022:13.8,2023:18.4,2024:20.2,2025:20.9,2026:21.4} },
+  { sector:"Trucking", firms_us:26, firms_eu:38, us:{2019:10.8,2020:12.4,2021:14.8,2022:8.8,2023:9.8,2024:10.2,2025:10.4,2026:10.41}, eu:{2019:9.6,2020:11.0,2021:13.2,2022:7.8,2023:8.8,2024:9.2,2025:9.5,2026:9.7} },
 ];
 
-const YEARS = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
+const YEARS = [2019,2020,2021,2022,2023,2024,2025,2026];
+const COLORS = ['#0F1F3D','#8B1A1A','#2a6e2a','#7a4f00'];
 
-// ─── STATE ──────────────────────────────────────────────────────────────────
-let currentRegion = 'us';
-let currentYear = 2026;
-let sortKey = 'ev_ebitda';
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let region = 'us';
+let year = 2026;
+let sortKey = 'multiple';
 let sortDir = 'desc';
-let selectedSector = null;
-let barChart = null;
+let selected = []; // array of sector names, max 3
 let trendChart = null;
 
-// ─── HELPERS ────────────────────────────────────────────────────────────────
-function getMultiple(row, year, region) {
-  if (region === 'both') {
-    const us = row.us[year];
-    const eu = row.eu[year];
-    return ((us + eu) / 2).toFixed(1) * 1;
-  }
-  return region === 'us' ? row.us[year] : row.eu[year];
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+function getM(row, y) { return (region === 'us' ? row.us : row.eu)[y]; }
+function getCurrent(row) { return getM(row, year); }
+function getHistorical(row) { return YEARS.map(y => getM(row, y)); }
+
+function getAvg5y(row) {
+  const recent = [2022,2023,2024,2025,2026].map(y => getM(row,y));
+  return recent.reduce((a,b)=>a+b,0)/recent.length;
 }
 
-function getFirms(row) {
-  return currentRegion === 'us' ? row.firms_us :
-         currentRegion === 'eu' ? row.firms_eu :
-         row.firms_us + row.firms_eu;
+function getCyclePos(row) {
+  const vals = YEARS.map(y => getM(row,y));
+  const min = Math.min(...vals), max = Math.max(...vals);
+  const curr = getCurrent(row);
+  if (max === min) return 50;
+  return Math.round((curr - min) / (max - min) * 100);
 }
 
-function getHistorical(row) {
-  if (currentRegion === 'both') return YEARS.map(y => +((row.us[y] + row.eu[y]) / 2).toFixed(1));
-  return YEARS.map(y => currentRegion === 'us' ? row.us[y] : row.eu[y]);
+function getVs2021(row) {
+  const peak = getM(row, 2021);
+  const curr = getCurrent(row);
+  return ((curr - peak) / peak * 100).toFixed(1);
 }
 
-function getMax(row) {
-  const vals = YEARS.map(y => getMultiple(row, y, currentRegion));
-  return Math.max(...vals).toFixed(1);
-}
-function getMin(row) {
-  const vals = YEARS.map(y => getMultiple(row, y, currentRegion));
-  return Math.min(...vals).toFixed(1);
+function getPrivateRange(row) {
+  const curr = getCurrent(row);
+  return [+(curr * 0.65).toFixed(1), +(curr * 0.75).toFixed(1)];
 }
 
-function getYoY(row) {
-  if (currentYear <= 2019) return null;
-  const curr = getMultiple(row, currentYear, currentRegion);
-  const prev = getMultiple(row, currentYear - 1, currentRegion);
-  return ((curr - prev) / prev * 100).toFixed(1);
+function cycleBadge(pct) {
+  if (pct >= 70) return {cls:'hot', label:'Above historical avg'};
+  if (pct <= 30) return {cls:'cold', label:'Below historical avg'};
+  return {cls:'neutral', label:'Near historical avg'};
 }
 
-function getFilteredData() {
+function getSorted() {
   const q = document.getElementById('searchInput').value.toLowerCase();
-  return SECTORS.filter(r => r.sector.toLowerCase().includes(q));
-}
-
-function getSortedData() {
-  const data = getFilteredData();
-  return data.sort((a, b) => {
+  const data = SECTORS.filter(r => r.sector.toLowerCase().includes(q));
+  return data.sort((a,b) => {
     let va, vb;
-    if (sortKey === 'sector') { va = a.sector; vb = b.sector; }
-    else if (sortKey === 'ev_ebitda') { va = getMultiple(a, currentYear, currentRegion); vb = getMultiple(b, currentYear, currentRegion); }
-    else if (sortKey === 'ev_ebit') { va = a.ebit_us; vb = b.ebit_us; }
-    else if (sortKey === 'firms') { va = getFirms(a); vb = getFirms(b); }
-    else if (sortKey === 'yoy') { va = parseFloat(getYoY(a))||0; vb = parseFloat(getYoY(b))||0; }
-    if (typeof va === 'string') return sortDir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
-    return sortDir === 'asc' ? va - vb : vb - va;
+    if (sortKey==='sector') { va=a.sector; vb=b.sector; }
+    else if (sortKey==='multiple') { va=getCurrent(a); vb=getCurrent(b); }
+    else if (sortKey==='avg5y') { va=getAvg5y(a); vb=getAvg5y(b); }
+    else if (sortKey==='vs2021') { va=parseFloat(getVs2021(a)); vb=parseFloat(getVs2021(b)); }
+    else if (sortKey==='private') { va=getCurrent(a)*0.70; vb=getCurrent(b)*0.70; }
+    if (typeof va==='string') return sortDir==='asc'?va.localeCompare(vb):vb.localeCompare(va);
+    return sortDir==='asc'?va-vb:vb-va;
   });
 }
 
-// ─── SUMMARY STATS ──────────────────────────────────────────────────────────
-function updateSummary() {
-  const data = getFilteredData();
-  const vals = data.map(r => getMultiple(r, currentYear, currentRegion)).sort((a,b)=>a-b);
-  const median = vals[Math.floor(vals.length/2)];
-  document.getElementById('statMedian').textContent = median.toFixed(1) + '×';
-
-  const maxRow = data.reduce((a,b) => getMultiple(a,currentYear,currentRegion) > getMultiple(b,currentYear,currentRegion) ? a : b);
-  const minRow = data.reduce((a,b) => getMultiple(a,currentYear,currentRegion) < getMultiple(b,currentYear,currentRegion) ? a : b);
-  document.getElementById('statHigh').textContent = getMultiple(maxRow,currentYear,currentRegion).toFixed(1) + '×';
-  document.getElementById('statHighSec').textContent = maxRow.sector;
-  document.getElementById('statLow').textContent = getMultiple(minRow,currentYear,currentRegion).toFixed(1) + '×';
-  document.getElementById('statLowSec').textContent = minRow.sector;
-
-  if (currentYear > 2019) {
-    const prevVals = data.map(r => getMultiple(r, currentYear-1, currentRegion)).sort((a,b)=>a-b);
-    const prevMedian = prevVals[Math.floor(prevVals.length/2)];
-    const pct = ((median - prevMedian)/prevMedian*100).toFixed(1);
-    const sign = pct > 0 ? '+' : '';
-    document.getElementById('statYoY').textContent = sign + pct + '%';
-    document.getElementById('statYoY').style.color = pct > 0 ? 'var(--accent)' : '#2a6e2a';
-  } else {
-    document.getElementById('statYoY').textContent = '—';
-  }
-}
-
-// ─── BAR CHART ──────────────────────────────────────────────────────────────
-function updateBarChart() {
-  const data = getSortedData().slice(0, 20);
-  const labels = data.map(r => r.sector);
-  const vals = data.map(r => getMultiple(r, currentYear, currentRegion));
-  const maxVal = Math.max(...vals);
-
-  const ctx = document.getElementById('barChart').getContext('2d');
-  if (barChart) barChart.destroy();
-  barChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels,
-      datasets: [{
-        data: vals,
-        backgroundColor: vals.map(v => v === maxVal ? 'rgba(139,26,26,0.9)' : 'rgba(15,31,61,0.75)'),
-        borderWidth: 0,
-        borderRadius: 2,
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
-      onClick: (e, elements) => {
-        if (elements.length > 0) {
-          const idx = elements[0].index;
-          showTrend(data[idx]);
-        }
-      },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: ctx => ` EV/EBITDA: ${ctx.parsed.x.toFixed(1)}×`
-          }
-        }
-      },
-      scales: {
-        x: {
-          grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { font: { family: 'DM Sans', size: 11 }, color: '#666' }
-        },
-        y: {
-          grid: { display: false },
-          ticks: { font: { family: 'DM Sans', size: 11 }, color: '#333' }
-        }
-      }
-    }
-  });
-
-  // set chart height dynamically
-  document.getElementById('barChart').style.height = Math.max(320, data.length * 22) + 'px';
-}
-
-// ─── TABLE ──────────────────────────────────────────────────────────────────
-function updateTable() {
-  const data = getSortedData();
-  const maxVal = Math.max(...data.map(r => getMultiple(r, currentYear, currentRegion)));
+// ─── RENDER TABLE ────────────────────────────────────────────────────────────
+function renderTable() {
+  const data = getSorted();
+  document.getElementById('rowCount').textContent = data.length + ' sectors';
+  document.getElementById('rowCount2').textContent = data.length + ' sectors';
   const body = document.getElementById('tableBody');
-
-  document.getElementById('rowCount').textContent = `${data.length} sector${data.length !== 1 ? 's' : ''}`;
-
   body.innerHTML = data.map(row => {
-    const val = getMultiple(row, currentYear, currentRegion);
-    const pct = (val / maxVal * 100).toFixed(0);
-    const yoy = getYoY(row);
-    const yoyStr = yoy !== null
-      ? `<span style="color:${yoy > 0 ? 'var(--accent)' : '#2a6e2a'};font-weight:600">${yoy > 0 ? '+' : ''}${yoy}%</span>`
-      : '<span style="color:var(--grey-light)">—</span>';
-    const highClass = val >= maxVal * 0.8 ? ' high' : val <= maxVal * 0.3 ? ' low' : '';
-    const isSelected = selectedSector === row.sector ? ' selected' : '';
-    const ebit = currentRegion === 'eu' ? row.ebit_eu : row.ebit_us;
+    const curr = getCurrent(row).toFixed(1);
+    const avg5 = getAvg5y(row).toFixed(1);
+    const cyc = getCyclePos(row);
+    const vs21 = getVs2021(row);
+    const [pLo, pHi] = getPrivateRange(row);
+    const vs21Color = parseFloat(vs21) >= 0 ? 'var(--green)' : 'var(--accent)';
+    const inSel = selected.includes(row.sector);
+    const selIdx = selected.indexOf(row.sector);
+    const dotColor = inSel ? COLORS[selIdx] : 'transparent';
 
-    return `<tr onclick="showTrend(SECTORS.find(s=>s.sector==='${row.sector.replace(/'/g,"\\'")}'))" class="${isSelected}">
-      <td>${row.sector}</td>
-      <td class="num${highClass}">${val.toFixed(1)}×</td>
-      <td class="num">${ebit ? ebit.toFixed(1) + '×' : '<span class="na">—</span>'}</td>
-      <td style="color:var(--grey-mid)">${getFirms(row).toLocaleString()}</td>
-      <td class="bar-cell">
-        <div class="bar-wrap">
-          <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
-          <span class="bar-val">${getMin(row)}–${getMax(row)}</span>
+    return `<tr class="${inSel?'in-compare':''}" onclick="toggleSelect('${row.sector.replace(/'/g,"\\'")}')">
+      <td><span class="color-dot" style="background:${dotColor};border:1px solid ${inSel?dotColor:'var(--rule)'}"></span>${row.sector}</td>
+      <td class="num">${curr}×</td>
+      <td class="num" style="color:var(--grey-mid);font-size:0.85rem">${avg5}×</td>
+      <td>
+        <div class="cycle-bar">
+          <div class="cycle-track"><div class="cycle-fill" style="width:${cyc}%"></div></div>
+          <span class="cycle-pct">${cyc}%</span>
         </div>
       </td>
-      <td>${yoyStr}</td>
+      <td style="font-weight:600;color:${vs21Color}">${parseFloat(vs21)>=0?'+':''}${vs21}%</td>
+      <td style="color:var(--grey-mid);font-size:0.82rem">${pLo}–${pHi}×</td>
+      <td><button class="add-btn ${inSel?'added':''}" onclick="event.stopPropagation();toggleSelect('${row.sector.replace(/'/g,"\\'")}')">
+        ${inSel?'✓ Added':'+ Compare'}
+      </button></td>
     </tr>`;
   }).join('');
 }
 
-// ─── TREND PANEL ────────────────────────────────────────────────────────────
-function showTrend(row) {
-  selectedSector = row.sector;
-  updateTable();
+// ─── SELECT / COMPARE ────────────────────────────────────────────────────────
+function toggleSelect(name) {
+  const idx = selected.indexOf(name);
+  if (idx >= 0) {
+    selected.splice(idx,1);
+  } else {
+    if (selected.length >= 3) {
+      selected.shift(); // remove oldest
+    }
+    selected.push(name);
+  }
+  renderTable();
+  renderPanel();
+  renderCompareBar();
+}
 
-  const historical = getHistorical(row);
-  const panel = document.getElementById('trendPanel');
-  document.getElementById('trendTitle').textContent = `${row.sector} · EV/EBITDA 2019–2026`;
+function clearAll() {
+  selected = [];
+  renderTable();
+  renderPanel();
+  renderCompareBar();
+}
+
+function removeFromCompare(name) {
+  selected = selected.filter(s => s !== name);
+  renderTable();
+  renderPanel();
+  renderCompareBar();
+}
+
+// ─── COMPARE BAR ─────────────────────────────────────────────────────────────
+function renderCompareBar() {
+  const bar = document.getElementById('compareBar');
+  const chips = document.getElementById('compareChips');
+  if (selected.length === 0) { bar.classList.remove('visible'); return; }
+  bar.classList.add('visible');
+  chips.innerHTML = selected.map((name, i) =>
+    `<div class="compare-chip">
+      <span class="compare-chip-dot" style="background:${COLORS[i]}"></span>
+      <span>${name}</span>
+      <button class="compare-chip-remove" onclick="removeFromCompare('${name.replace(/'/g,"\\'")}')">×</button>
+    </div>`
+  ).join('');
+  if (selected.length < 3) {
+    chips.innerHTML += `<span class="compare-hint">${3-selected.length} more slot${3-selected.length>1?'s':''} available</span>`;
+  }
+}
+
+// ─── SECTOR PANEL ────────────────────────────────────────────────────────────
+function renderPanel() {
+  const panel = document.getElementById('sectorPanel');
+  if (selected.length === 0) { panel.classList.remove('visible'); return; }
   panel.classList.add('visible');
-  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-  const ctx = document.getElementById('trendChart').getContext('2d');
-  if (trendChart) trendChart.destroy();
+  const rows = selected.map(name => SECTORS.find(r=>r.sector===name));
+  const primary = rows[0];
 
-  const datasets = [{
-    label: currentRegion === 'both' ? 'Average' : currentRegion === 'us' ? 'US' : 'Europe',
-    data: historical,
-    borderColor: '#0F1F3D',
-    backgroundColor: 'rgba(15,31,61,0.06)',
-    borderWidth: 2,
-    fill: true,
-    tension: 0.3,
-    pointBackgroundColor: YEARS.map(y => y === currentYear ? '#8B1A1A' : '#0F1F3D'),
-    pointRadius: YEARS.map(y => y === currentYear ? 6 : 3),
-  }];
+  // Header
+  document.getElementById('panelTitle').textContent =
+    selected.length === 1 ? primary.sector : selected.join(' · ');
+  document.getElementById('panelSub').textContent =
+    selected.length === 1
+      ? `${region==='us'?'US':'Europe'} · Jan ${year} · Damodaran`
+      : `Comparison · ${region==='us'?'US':'Europe'} · Jan ${year}`;
 
-  if (currentRegion === 'both') {
-    datasets.push({
-      label: 'US',
-      data: YEARS.map(y => row.us[y]),
-      borderColor: '#0F1F3D',
-      borderDash: [4, 4],
-      borderWidth: 1.5,
-      fill: false,
-      tension: 0.3,
-      pointRadius: 2,
-    }, {
-      label: 'Europe',
-      data: YEARS.map(y => row.eu[y]),
-      borderColor: '#8B1A1A',
-      borderDash: [4, 4],
-      borderWidth: 1.5,
-      fill: false,
-      tension: 0.3,
-      pointRadius: 2,
-    });
+  // KPIs — always show primary sector
+  const curr = getCurrent(primary);
+  const cyc = getCyclePos(primary);
+  const badge = cycleBadge(cyc);
+  const [pLo, pHi] = getPrivateRange(primary);
+  const vs21 = parseFloat(getVs2021(primary));
+  const avg5 = getAvg5y(primary);
+  const allVals = YEARS.map(y=>getM(primary,y));
+  const histMin = Math.min(...allVals).toFixed(1);
+  const histMax = Math.max(...allVals).toFixed(1);
+
+  document.getElementById('kpiGrid').innerHTML = `
+    <div class="kpi-card">
+      <div class="kpi-accent" style="background:${COLORS[0]}"></div>
+      <div class="kpi-label">Current EV/EBITDA · ${primary.sector}</div>
+      <div class="kpi-value">${curr.toFixed(1)}×</div>
+      <div class="kpi-sub">5Y average: ${avg5.toFixed(1)}×</div>
+      <span class="kpi-badge ${badge.cls}">${badge.label}</span>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-accent" style="background:${COLORS[0]}"></div>
+      <div class="kpi-label">Cycle position (2019–2026)</div>
+      <div class="kpi-value">${cyc}%</div>
+      <div class="kpi-sub">Range: ${histMin}× low · ${histMax}× high</div>
+      <span class="kpi-badge ${cyc>=70?'hot':cyc<=30?'cold':'neutral'}">${cyc>=70?'Near cycle peak':cyc<=30?'Near cycle trough':'Mid-cycle'}</span>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-accent" style="background:${COLORS[0]}"></div>
+      <div class="kpi-label">vs 2021 peak</div>
+      <div class="kpi-value" style="color:${vs21>=0?'var(--green)':'var(--accent)'}">${vs21>=0?'+':''}${vs21}%</div>
+      <div class="kpi-sub">2021 peak: ${getM(primary,2021).toFixed(1)}× · 2022 trough: ${getM(primary,2022).toFixed(1)}×</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-accent" style="background:${COLORS[0]}"></div>
+      <div class="kpi-label">Private market estimate</div>
+      <div class="kpi-value">${pLo}–${pHi}×</div>
+      <div class="kpi-sub">Public ${curr.toFixed(1)}× × 65–75% (illiquidity discount)</div>
+      <span class="kpi-badge neutral">SME transaction range</span>
+    </div>
+  `;
+
+  // CHART
+  renderTrendChart(rows);
+
+  // COMPARE TABLE
+  const cTableWrap = document.getElementById('compareTableWrap');
+  if (selected.length >= 2) {
+    cTableWrap.style.display = 'block';
+    renderCompareTable(rows);
+  } else {
+    cTableWrap.style.display = 'none';
   }
 
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function renderTrendChart(rows) {
+  const ctx = document.getElementById('trendChart').getContext('2d');
+  if (trendChart) trendChart.destroy();
   trendChart = new Chart(ctx, {
     type: 'line',
-    data: { labels: YEARS.map(String), datasets },
+    data: {
+      labels: YEARS.map(String),
+      datasets: rows.map((row,i) => ({
+        label: row.sector,
+        data: getHistorical(row),
+        borderColor: COLORS[i],
+        backgroundColor: i===0 ? 'rgba(15,31,61,0.05)' : 'transparent',
+        borderWidth: i===0 ? 2.5 : 2,
+        fill: i===0,
+        tension: 0.3,
+        pointBackgroundColor: YEARS.map(y => y===year ? COLORS[i] : 'white'),
+        pointBorderColor: COLORS[i],
+        pointRadius: YEARS.map(y => y===year ? 6 : 3),
+        pointBorderWidth: 2,
+      }))
+    },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
-        legend: { display: currentRegion === 'both', position: 'top', labels: { font: { family: 'DM Sans', size: 11 } } },
-        tooltip: {
-          callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}×` }
-        }
+        legend: { display: rows.length > 1, position:'top', labels:{ font:{family:'DM Sans',size:11}, boxWidth:10 } },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}×` } }
       },
       scales: {
-        x: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { family: 'DM Sans', size: 11 } } },
-        y: {
-          grid: { color: 'rgba(0,0,0,0.04)' },
-          ticks: { font: { family: 'DM Sans', size: 11 }, callback: v => v + '×' }
-        }
+        x: { grid:{color:'rgba(0,0,0,0.04)'}, ticks:{font:{family:'DM Sans',size:11}} },
+        y: { grid:{color:'rgba(0,0,0,0.04)'}, ticks:{font:{family:'DM Sans',size:11}, callback:v=>v+'×'} }
       }
     }
   });
-
   document.getElementById('trendChart').style.height = '240px';
 }
 
-function closeTrend() {
-  document.getElementById('trendPanel').classList.remove('visible');
-  selectedSector = null;
-  updateTable();
+function renderCompareTable(rows) {
+  document.getElementById('compareTableBody').innerHTML = rows.map((row,i) => {
+    const curr = getCurrent(row);
+    const avg5 = getAvg5y(row);
+    const cyc = getCyclePos(row);
+    const vs21 = parseFloat(getVs2021(row));
+    const [pLo,pHi] = getPrivateRange(row);
+    return `<tr>
+      <td><span class="color-dot" style="background:${COLORS[i]}"></span>${row.sector}</td>
+      <td class="num">${curr.toFixed(1)}×</td>
+      <td class="num" style="font-size:0.85rem;color:var(--grey-mid)">${avg5.toFixed(1)}×</td>
+      <td>
+        <div class="cycle-bar">
+          <div class="cycle-track" style="background:var(--rule)"><div class="cycle-fill" style="width:${cyc}%;background:${COLORS[i]}"></div></div>
+          <span class="cycle-pct">${cyc}%</span>
+        </div>
+      </td>
+      <td style="font-weight:600;color:${vs21>=0?'var(--green)':'var(--accent)'}">${vs21>=0?'+':''}${vs21}%</td>
+      <td style="color:var(--grey-mid)">${pLo}–${pHi}×</td>
+    </tr>`;
+  }).join('');
 }
 
-// ─── CONTROLS ───────────────────────────────────────────────────────────────
+// ─── CONTROLS ────────────────────────────────────────────────────────────────
 function setRegion(r) {
-  currentRegion = r;
-  document.getElementById('togUS').classList.toggle('active', r === 'us');
-  document.getElementById('togEU').classList.toggle('active', r === 'eu');
-  document.getElementById('togBoth').classList.toggle('active', r === 'both');
-  refresh();
+  region = r;
+  document.getElementById('togUS').classList.toggle('active', r==='us');
+  document.getElementById('togEU').classList.toggle('active', r==='eu');
+  renderTable();
+  if (selected.length) renderPanel();
 }
 
 function setYear(y) {
-  currentYear = parseInt(y);
-  refresh();
-}
-
-function filterTable() {
-  updateTable();
-  updateSummary();
-  updateBarChart();
+  year = parseInt(y);
+  renderTable();
+  if (selected.length) renderPanel();
 }
 
 function sortTable(key) {
-  if (sortKey === key) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
-  else { sortKey = key; sortDir = 'desc'; }
-  document.querySelectorAll('thead th').forEach(th => {
-    th.classList.remove('sort-asc', 'sort-desc');
-  });
-  const headers = ['sector','ev_ebitda','ev_ebit','firms','','yoy'];
-  const idx = headers.indexOf(key);
-  if (idx >= 0) {
-    const ths = document.querySelectorAll('thead th');
-    ths[idx]?.classList.add('sort-' + sortDir);
-  }
-  updateTable();
+  if (sortKey===key) sortDir = sortDir==='asc'?'desc':'asc';
+  else { sortKey=key; sortDir='desc'; }
+  document.querySelectorAll('thead th').forEach(th=>{th.classList.remove('sort-asc','sort-desc')});
+  const map = {sector:0,multiple:1,avg5y:2,'':3,vs2021:4,private:5};
+  const idx = map[key];
+  if (idx!==undefined) document.querySelectorAll('thead th')[idx]?.classList.add('sort-'+sortDir);
+  renderTable();
 }
 
-function refresh() {
-  updateSummary();
-  updateBarChart();
-  updateTable();
-  if (selectedSector) {
-    const row = SECTORS.find(s => s.sector === selectedSector);
-    if (row) showTrend(row);
-  }
-}
+// ─── SIDEBAR ─────────────────────────────────────────────────────────────────
+function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden'}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow=''}
+function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn.querySelector('.sb-arrow');el.classList.toggle('open');arrow.classList.toggle('open')}
 
-// ─── SIDEBAR ────────────────────────────────────────────────────────────────
-function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sbOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
-function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sbOverlay').classList.remove('open'); document.body.style.overflow=''; }
-function toggleDrop(id) { var el=document.getElementById(id); var btn=el.previousElementSibling; var arrow=btn.querySelector('.sb-arrow'); el.classList.toggle('open'); arrow.classList.toggle('open'); }
-
-// ─── INIT ───────────────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  refresh();
-  // set initial sort header
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', ()=>{
+  renderTable();
   document.querySelectorAll('thead th')[1]?.classList.add('sort-desc');
-  // email obfuscation
-  document.querySelectorAll('[data-email]').forEach(el => {
-    el.href = 'mailto:deals@news.mnaintel.com';
-    el.textContent = 'deals@news.mnaintel.com';
-  });
+  document.querySelectorAll('[data-email]').forEach(el=>{el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com'});
 });
 </script>
 </body>
