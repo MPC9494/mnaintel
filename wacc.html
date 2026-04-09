@@ -177,12 +177,9 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
 .f-copy{font-size:0.68rem;color:rgba(255,255,255,0.18);width:100%;margin-top:0.25rem}
 @media(min-width:900px){footer{padding:2.5rem 3rem}}
 
-.result-panel-toggle{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:0.6rem 1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:color 0.15s}
-.result-panel-toggle:hover{color:#fff}
-.result-panel-toggle-arrow{transition:transform 0.25s;font-size:0.8rem}
-.result-panel-toggle-arrow.collapsed{transform:rotate(180deg)}
-.result-panel-collapsible{overflow:hidden;transition:max-height 0.3s ease}
-.result-panel-collapsible.collapsed{max-height:0!important}
+.result-panel-toggle{width:100%;background:rgba(255,255,255,0.05);border:none;border-top:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:0.65rem 1.5rem;cursor:pointer;text-align:left;transition:all 0.15s}
+.result-panel-toggle:hover{color:#fff;background:rgba(255,255,255,0.08)}
+#resultPanelBody{overflow:hidden;transition:max-height 0.3s ease}
 
 .back-bar{background:#F8F6F2;border-bottom:1px solid #D8D0C0;padding:0.6rem 2.5rem}
 .back-bar-inner{max-width:1200px;margin:0 auto}
@@ -482,10 +479,40 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
     <div class="result-wacc" id="waccDisplay">—</div>
     <div class="result-wacc-ctx" id="waccCtx">Fill inputs to calculate</div>
   </div>
+
+  <!-- VALUATION — always visible, on top -->
+  <div class="result-body" id="valBlock" style="border-bottom:1px solid rgba(255,255,255,0.12)">
+    <div class="result-block" style="margin-bottom:0;padding-bottom:0;border-bottom:none">
+      <div class="result-block-title">Enterprise value estimate</div>
+      <div style="margin-bottom:0.85rem">
+        <div class="result-row-label" style="margin-bottom:0.3rem">Via sector multiple (EV/EBITDA)</div>
+        <div class="val-big" id="evMultiple">—</div>
+        <div class="val-sub" id="evMultipleSub">—</div>
+        <div class="val-range" id="evMultipleRange">—</div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:0.85rem">
+        <div class="result-row-label" style="margin-bottom:0.3rem">Via DCF (Gordon growth)</div>
+        <div class="val-big" id="evDCF">—</div>
+        <div class="val-sub" id="evDCFSub">—</div>
+      </div>
+      <div class="result-row" style="margin-top:0.75rem;border-top:1px solid rgba(255,255,255,0.07);padding-top:0.75rem">
+        <span class="result-row-label">Private market (−30%)</span>
+        <span class="result-row-val muted" id="evPrivate">—</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERPRETATION — always visible -->
+  <div class="interpretation" id="interpretation" style="margin:0;border-radius:0;border-left:none;border-top:none;border-bottom:1px solid rgba(255,255,255,0.1);padding:0.85rem 1.5rem">
+    Select a country and sector to see results.
+  </div>
+
+  <!-- COLLAPSE TOGGLE -->
   <button class="result-panel-toggle" onclick="toggleResultPanel()" id="resultToggleBtn">
-    <span id="resultToggleLabel">Hide details</span>
-    <span class="result-panel-toggle-arrow" id="resultToggleArrow">▲</span>
+    <span id="resultToggleLabel">WACC details ▾</span>
   </button>
+
+  <!-- COLLAPSIBLE WACC DETAILS -->
   <div class="result-body" id="resultPanelBody">
 
     <div class="result-block">
@@ -516,8 +543,8 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
       <div class="result-row"><span class="result-row-label">D/E ratio</span><span class="result-row-val" id="deOut">—</span></div>
     </div>
 
-    <div class="result-block">
-      <div class="result-block-title">WACC</div>
+    <div class="result-block" style="border-bottom:none;margin-bottom:0;padding-bottom:0">
+      <div class="result-block-title">WACC breakdown</div>
       <div class="result-row">
         <span class="result-row-label">Central estimate</span>
         <span class="result-row-val" id="waccCentral">—</span>
@@ -528,33 +555,6 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
       </div>
       <div class="wacc-bar-track"><div class="wacc-bar-fill" id="waccBar" style="width:0%"></div></div>
       <div class="wacc-bar-labels"><span>0%</span><span>10%</span><span>20%+</span></div>
-    </div>
-
-    <!-- VALUATION BLOCK — shown only when EBITDA is set -->
-    <div class="result-block" id="valBlock" style="display:none">
-      <div class="result-block-title">Enterprise value estimate</div>
-
-      <div style="margin-bottom:0.85rem">
-        <div class="result-row-label" style="margin-bottom:0.3rem">Via sector multiple (EV/EBITDA)</div>
-        <div class="val-big" id="evMultiple">—</div>
-        <div class="val-sub" id="evMultipleSub">—</div>
-        <div class="val-range" id="evMultipleRange">—</div>
-      </div>
-
-      <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:0.85rem">
-        <div class="result-row-label" style="margin-bottom:0.3rem">Via DCF (Gordon growth, simplified)</div>
-        <div class="val-big" id="evDCF">—</div>
-        <div class="val-sub" id="evDCFSub">—</div>
-      </div>
-
-      <div class="result-row" style="margin-top:0.75rem;border-top:1px solid rgba(255,255,255,0.07);padding-top:0.75rem">
-        <span class="result-row-label">Private market discount (−30%)</span>
-        <span class="result-row-val muted" id="evPrivate">—</span>
-      </div>
-    </div>
-
-    <div class="interpretation" id="interpretation">
-      Select a country and sector to see results.
     </div>
 
   </div>
@@ -817,26 +817,25 @@ function calc() {
     (sectorName ? sectorName+' · ' : '') +
     (document.getElementById('countrySelect').value || '');
 
-  // VALUATION
+  // VALUATION — always visible
+  document.getElementById('valBlock').style.display = 'block';
   if (ebitda > 0) {
-    document.getElementById('valBlock').style.display = 'block';
     const ev_mult  = sector ? ebitda * sector.ev : null;
     const evLo     = sector ? ebitda * (sector.ev * 0.85) : null;
     const evHi     = sector ? ebitda * (sector.ev * 1.15) : null;
     const fcf      = ebitda * fcfPct;
     const terminalV= wacc > growth ? fcf*(1+growth)/(wacc-growth) : null;
-    const ev_dcf   = terminalV; // simplified: terminal only (no explicit NOPAT period)
+    const ev_dcf   = terminalV;
 
     if (ev_mult !== null) {
-      document.getElementById('evMultiple').textContent    = fmtM(ev_mult*1000);
-      document.getElementById('evMultipleSub').textContent = `${sector.ev.toFixed(1)}× EV/EBITDA · ${sectorName}`;
+      document.getElementById('evMultiple').textContent     = fmtM(ev_mult*1000);
+      document.getElementById('evMultipleSub').textContent  = `${sector.ev.toFixed(1)}× EV/EBITDA · ${sectorName}`;
       document.getElementById('evMultipleRange').textContent= `Range: ${fmtM(evLo*1000)} – ${fmtM(evHi*1000)} (±15% on multiple)`;
     } else {
-      document.getElementById('evMultiple').textContent = '—';
-      document.getElementById('evMultipleSub').textContent = 'Select a sector for multiple-based EV';
-      document.getElementById('evMultipleRange').textContent = '';
+      document.getElementById('evMultiple').textContent     = '—';
+      document.getElementById('evMultipleSub').textContent  = 'Select a sector for multiple-based EV';
+      document.getElementById('evMultipleRange').textContent= '';
     }
-
     if (ev_dcf !== null && ev_dcf > 0) {
       document.getElementById('evDCF').textContent    = fmtM(ev_dcf*1000);
       document.getElementById('evDCFSub').textContent = `FCF ${fmtM(fcf*1000)} · WACC ${fmt(wacc)} · g ${(growth*100).toFixed(1)}%`;
@@ -844,12 +843,19 @@ function calc() {
       document.getElementById('evDCF').textContent    = '—';
       document.getElementById('evDCFSub').textContent = 'WACC must exceed growth rate';
     }
-
     const baseEV = ev_mult !== null ? ev_mult : (ev_dcf||0);
     document.getElementById('evPrivate').textContent = baseEV > 0 ? fmtM(baseEV*1000*0.70) : '—';
   } else {
-    document.getElementById('valBlock').style.display = 'none';
+    document.getElementById('evMultiple').textContent     = '—';
+    document.getElementById('evMultipleSub').textContent  = 'Enter EBITDA in Section 4 to estimate EV';
+    document.getElementById('evMultipleRange').textContent= '';
+    document.getElementById('evDCF').textContent          = '—';
+    document.getElementById('evDCFSub').textContent       = '';
+    document.getElementById('evPrivate').textContent      = '—';
   }
+  // Recalculate collapse height
+  var rpb = document.getElementById('resultPanelBody');
+  if (rpb && !rpb.classList.contains('collapsed')) rpb.style.maxHeight = rpb.scrollHeight + 'px';
 
   // interpretation
   const wPct = wacc*100;
@@ -865,17 +871,20 @@ function calc() {
 
 function toggleResultPanel(){
   var body = document.getElementById('resultPanelBody');
-  var arrow = document.getElementById('resultToggleArrow');
   var label = document.getElementById('resultToggleLabel');
-  var collapsed = body.classList.toggle('collapsed');
-  arrow.classList.toggle('collapsed', collapsed);
-  if(collapsed){label.textContent='Show details';body.style.maxHeight='0';}
-  else{label.textContent='Hide details';body.style.maxHeight=body.scrollHeight+'px';}
+  var isCollapsed = body.style.maxHeight === '0px';
+  if(isCollapsed){
+    body.style.maxHeight = body.scrollHeight + 'px';
+    label.textContent = 'WACC details ▴';
+  } else {
+    body.style.maxHeight = '0px';
+    label.textContent = 'WACC details ▾';
+  }
 }
-// Init max-height for transition
+// Init: expand by default
 document.addEventListener('DOMContentLoaded',function(){
-  var body=document.getElementById('resultPanelBody');
-  if(body) body.style.maxHeight=body.scrollHeight+'px';
+  var body = document.getElementById('resultPanelBody');
+  if(body){ body.style.maxHeight = body.scrollHeight + 'px'; }
 });
 
 function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden'}
