@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>M&A Intelligence · Buy-side M&A platform</title>
-<meta name="description" content="Live M&A market data, valuation tools and deal analysis. Built from the buy side.">
+<title>M&A Intelligence · Institutional M&A Data & Analytics</title>
+<meta name="description" content="Institutional-grade M&A data, valuation benchmarks and independent deal analysis for European transactions.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -211,18 +211,28 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 .ir{display:block;padding:0.75rem 1.1rem;border-bottom:1px solid var(--rule2);text-decoration:none;transition:background .1s}
 .ir:last-child{border-bottom:none}
 .ir:hover{background:var(--bg)}
-.ir:hover .ir-title{color:var(--red)}
+.ir:hover .ir-title{color:var(--red);transform:translateX(4px)}
 .ir-meta{font-family:var(--mono);font-size:0.6rem;color:var(--gl);margin-bottom:0.25rem}
-.ir-title{font-size:0.82rem;font-weight:600;color:var(--navy);line-height:1.35;transition:color .12s}
+.ir-title{font-size:0.85rem;font-weight:600;color:var(--navy);line-height:1.35;transition:color .12s,transform .15s}
 .csr{display:block;padding:0.75rem 1.1rem;border-bottom:1px solid var(--rule2);text-decoration:none;transition:background .1s}
 .csr:last-child{border-bottom:none}
 .csr:hover{background:var(--bg)}
-.csr:hover .csr-title{color:var(--red)}
+.csr:hover .csr-title{color:var(--red);transform:translateX(4px)}
 .csr-top{display:flex;align-items:center;gap:0.4rem;margin-bottom:0.25rem}
 .csr-num{font-family:var(--mono);font-size:0.6rem;color:var(--gl)}
 .csr-badge{font-family:var(--mono);font-size:0.62rem;font-weight:600}
 .csr-badge.g{color:var(--grn)}.csr-badge.r{color:var(--red)}
-.csr-title{font-size:0.82rem;font-weight:600;color:var(--navy);line-height:1.3;transition:color .12s}
+.csr-title{font-size:0.85rem;font-weight:600;color:var(--navy);line-height:1.3;transition:color .12s,transform .15s}
+
+
+/* ── CREDENTIAL STRIP ── */
+.cred-strip{background:var(--navy);padding:1.1rem 2.5rem;border-top:1px solid rgba(255,255,255,0.06)}
+.cred-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap}
+.cred-item{display:flex;align-items:center;gap:0.5rem}
+.cred-num{font-family:var(--mono);font-size:1rem;font-weight:600;color:#fff}
+.cred-lbl{font-size:0.65rem;color:rgba(255,255,255,0.4);line-height:1.3}
+.cred-sep{width:1px;height:24px;background:rgba(255,255,255,0.1);flex-shrink:0}
+@media(max-width:600px){.cred-strip{padding:1rem 1.25rem}.cred-sep{display:none}}
 
 /* ── FOOTER ── */
 footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(255,255,255,0.06)}
@@ -278,7 +288,7 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
   </div>
   <div class="sb-section">Info</div>
   <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
-  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Unlock Free Access →</button>
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
 </div>
 
 <!-- NAV -->
@@ -295,15 +305,15 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
     <a href="/country-index" class="nav-link">Cost Index</a>
     <a href="/advisors" class="nav-link">Advisors</a>
   </div>
-  <button class="nav-sub" onclick="showSub()">Unlock Free Access</button>
+  <button class="nav-sub" onclick="showSub()">Get Full Access</button>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-wrap">
-    <div class="live-badge"><span class="live-dot"></span>Live data · Jan 2026</div>
+    <div class="live-badge"><span class="live-dot"></span>Institutional-grade data · Updated Jan 2026</div>
     <h1 class="hero-h1">Stop guessing<br>your <span>valuation.</span></h1>
-    <p class="hero-tagline">See what buyers see — market multiples, financial tools and deal analysis from the deal room.</p>
+    <p class="hero-tagline">Independent buy-side intelligence for European M&A transactions.</p>
 
     <div class="hero-grid">
       <!-- LEFT: rotating data card + CTA -->
@@ -338,9 +348,9 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
         <div class="hero-cta-wrap">
           <a href="/multiples" class="btn-primary">
             <svg width="14" height="14" fill="none" viewBox="0 0 16 16"><rect x="1" y="9" width="3" height="6" fill="currentColor" opacity=".5"/><rect x="6" y="5" width="3" height="10" fill="currentColor" opacity=".7"/><rect x="11" y="1" width="3" height="14" fill="currentColor"/></svg>
-            Access Valuation Multiples
+            Access Benchmark Data
           </a>
-          <span class="btn-free-note">Free · No account needed</span>
+          <span class="btn-free-note">Institutional-grade · 39 sector benchmarks · No account needed</span>
         </div>
       </div>
 
@@ -389,7 +399,7 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
       </div>
       <span class="fc-cta">
         <svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="1" y="9" width="3" height="6" fill="currentColor" opacity=".5"/><rect x="6" y="5" width="3" height="10" fill="currentColor" opacity=".7"/><rect x="11" y="1" width="3" height="14" fill="currentColor"/></svg>
-        Open dashboard →
+        Open benchmark dashboard →
       </span>
     </a>
 
@@ -398,9 +408,9 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
       <div class="locked-header">
         <div class="lh-text">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="white" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="white" stroke-width="1.2"/></svg>
-          Unlock pro tools with a free account — WACC · Exit Calculator · Transaction Costs · Advisor Directory
+          Professional access — unlock proprietary valuation models and market intelligence
         </div>
-        <button class="btn-unlock" onclick="showSub()">Unlock all tools — Free →</button>
+        <button class="btn-unlock" onclick="showSub()">Get Full Access — Free →</button>
       </div>
       <div class="locked-grid">
         <div class="lc" onclick="showSub()">
@@ -408,28 +418,28 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
           <div class="lc-name">WACC Calculator</div>
           <div class="lc-data">9.2%</div>
           <div class="lc-sub">IT · Germany · 55 countries</div>
-          <div class="lc-hint">↑ Unlock to access</div>
+          <div class="lc-hint">Get access →</div>
         </div>
         <div class="lc" onclick="showSub()">
           <div class="lc-top"><span class="lc-num">03 · EXIT VALUE</span><svg width="10" height="10" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="#999" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="#999" stroke-width="1.2"/></svg></div>
           <div class="lc-name">Exit Calculator</div>
           <div class="lc-data">€8.8M</div>
           <div class="lc-sub">€1M EBITDA · 12.6× · −30%</div>
-          <div class="lc-hint">↑ Unlock to access</div>
+          <div class="lc-hint">Get access →</div>
         </div>
         <div class="lc" onclick="showSub()">
           <div class="lc-top"><span class="lc-num">04 · COST INDEX</span><svg width="10" height="10" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="#999" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="#999" stroke-width="1.2"/></svg></div>
           <div class="lc-name">Transaction Costs</div>
           <div class="lc-data">0% → 42%</div>
           <div class="lc-sub">CGT range · 20 countries</div>
-          <div class="lc-hint">↑ Unlock to access</div>
+          <div class="lc-hint">Get access →</div>
         </div>
         <div class="lc" onclick="showSub()">
           <div class="lc-top"><span class="lc-num">05 · ADVISORS</span><svg width="10" height="10" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="#999" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="#999" stroke-width="1.2"/></svg></div>
           <div class="lc-name">Advisor Directory</div>
           <div class="lc-data">20</div>
           <div class="lc-sub">Firms · Europe · curated</div>
-          <div class="lc-hint">↑ Unlock to access</div>
+          <div class="lc-hint">Get access →</div>
         </div>
       </div>
     </div>
@@ -438,10 +448,10 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
 
 <!-- SUBSCRIBE BAR -->
 <div class="sub-bar" id="subBar">
-  <div class="sb-msg"><strong>Create your free account</strong> — unlock WACC, Exit Calculator, Transaction Cost Index and Advisor Directory in one click.</div>
+  <div class="sb-msg"><strong>Get full access.</strong> Join the professional briefing to unlock all tools and receive weekly institutional-grade deal analysis.</div>
   <form class="sb-form" onsubmit="handleSub(event)">
     <input type="email" class="sb-email" id="sbEmail" placeholder="your@email.com" required>
-    <button type="submit" class="sb-btn">Unlock Free →</button>
+    <button type="submit" class="sb-btn">Get Full Access →</button>
   </form>
 </div>
 
@@ -452,7 +462,7 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
   <div class="data-block">
     <div class="db-header">
       <svg class="db-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M1 8h14M8 1v14" stroke="currentColor" stroke-width="1.2"/></svg>
-      <span class="db-title">Sell-side cost by country</span>
+      <span class="db-title">Transaction cost by country</span>
     </div>
     <div class="db-row"><span class="db-lbl">Switzerland</span><span class="db-val g">~4–7%</span></div>
     <div class="db-row"><span class="db-lbl">Belgium</span><span class="db-val g">~4–8%</span></div>
@@ -461,7 +471,7 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
     <div class="db-row"><span class="db-lbl">Italy</span><span class="db-val n">~31–35%</span></div>
     <div class="db-row"><span class="db-lbl">France</span><span class="db-val r">~35–39%</span></div>
     <div class="db-row"><span class="db-lbl">Denmark</span><span class="db-val r">~46–49%</span></div>
-    <div class="db-foot"><span class="db-src">Advisory + Legal + CGT · share deal</span><a href="/country-index" class="db-link">Full index →</a></div>
+    <div class="db-foot"><span class="db-src">Advisory + Legal + CGT · share deal · independent benchmarks</span><a href="/country-index" class="db-link">Full index →</a></div>
   </div>
 
   <!-- Issues -->
@@ -474,7 +484,7 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
     <a href="/issue-03" class="ir"><div class="ir-meta">03 · Apr 2026</div><div class="ir-title">What a buyer checks in 48 hours</div></a>
     <a href="/issue-02" class="ir"><div class="ir-meta">02 · Apr 2026</div><div class="ir-title">Why most SME sales take 3 years</div></a>
     <a href="/issue-01" class="ir"><div class="ir-meta">01 · Mar 2026</div><div class="ir-title">Your business is not worth what you think</div></a>
-    <div class="db-foot"><span class="db-src">Weekly · buy-side perspective</span><a href="/issues" class="db-link">All issues →</a></div>
+    <div class="db-foot"><span class="db-src">Independent analysis · buy-side perspective</span><a href="/issues" class="db-link">All issues →</a></div>
   </div>
 
   <!-- Case Studies -->
@@ -487,9 +497,24 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
     <a href="/case-study-03" class="csr"><div class="csr-top"><span class="csr-num">03</span><span class="csr-badge r">Collapsed</span></div><div class="csr-title">Deal killed in due diligence</div></a>
     <a href="/case-study-02" class="csr"><div class="csr-top"><span class="csr-num">02</span><span class="csr-badge g">4× vs 7×</span></div><div class="csr-title">DACH manufacturer — 3× multiple gap</div></a>
     <a href="/case-study-01" class="csr"><div class="csr-top"><span class="csr-num">01</span><span class="csr-badge g">7.5×</span></div><div class="csr-title">DSV / DB Schenker — €14.3B deconstructed</div></a>
-    <div class="db-foot"><span class="db-src">Real deals · deconstructed</span><a href="/case-studies" class="db-link">All cases →</a></div>
+    <div class="db-foot"><span class="db-src">Institutional case analysis · verified data</span><a href="/case-studies" class="db-link">All cases →</a></div>
   </div>
 
+</div>
+
+<!-- CREDENTIAL STRIP -->
+<div class="cred-strip">
+  <div class="cred-inner">
+    <div class="cred-item"><span class="cred-num">39+</span><span class="cred-lbl">Sector<br>benchmarks</span></div>
+    <div class="cred-sep"></div>
+    <div class="cred-item"><span class="cred-num">20</span><span class="cred-lbl">Countries<br>covered</span></div>
+    <div class="cred-sep"></div>
+    <div class="cred-item"><span class="cred-num">55</span><span class="cred-lbl">ERP country<br>datasets</span></div>
+    <div class="cred-sep"></div>
+    <div class="cred-item"><span class="cred-num">Jan 2026</span><span class="cred-lbl">Last data<br>update</span></div>
+    <div class="cred-sep"></div>
+    <div class="cred-item"><span class="cred-num">Damodaran</span><span class="cred-lbl">NYU Stern ·<br>primary source</span></div>
+  </div>
 </div>
 
 <footer>
@@ -590,7 +615,7 @@ function handleSub(e){
   const btn=e.target.querySelector('button');
   window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(inp.value),'_blank');
   btn.textContent='✓ Done'; inp.value='';
-  setTimeout(()=>btn.textContent='Unlock Free →',3000);
+  setTimeout(()=>btn.textContent='Get Full Access →',3000);
 }
 
 // ── SIDEBAR ──────────────────────────────────────────────────────────────────
