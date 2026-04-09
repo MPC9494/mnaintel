@@ -23,7 +23,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px}
+body{font-family:'DM Sans',sans-serif;background:#FFFFFF;color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;gap:1rem}
@@ -176,6 +176,18 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
 .f-links a:hover{color:rgba(255,255,255,0.65)}
 .f-copy{font-size:0.68rem;color:rgba(255,255,255,0.18);width:100%;margin-top:0.25rem}
 @media(min-width:900px){footer{padding:2.5rem 3rem}}
+
+.result-panel-toggle{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:0.6rem 1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:color 0.15s}
+.result-panel-toggle:hover{color:#fff}
+.result-panel-toggle-arrow{transition:transform 0.25s;font-size:0.8rem}
+.result-panel-toggle-arrow.collapsed{transform:rotate(180deg)}
+.result-panel-collapsible{overflow:hidden;transition:max-height 0.3s ease}
+.result-panel-collapsible.collapsed{max-height:0!important}
+
+.back-bar{background:#F8F6F2;border-bottom:1px solid #D8D0C0;padding:0.6rem 2.5rem}
+.back-bar-inner{max-width:1200px;margin:0 auto}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:#666;text-decoration:none;transition:color 0.15s}
+.back-btn:hover{color:#0F1F3D}
 </style>
 </head>
 <body>
@@ -186,26 +198,35 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
     <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
     <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
-  <div class="sb-section">Navigate</div>
+  <div class="sb-section">Editorial</div>
   <div class="sb-dropdown">
     <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
     <div class="sb-dropdown-items" id="dropIssues">
-      <a href="/issue-01" class="sb-sub-link">01. Your business is not worth what you think</a>
-      <a href="/issue-02" class="sb-sub-link">02. Why most SME sales take 3 years</a>
-      <a href="/issue-03" class="sb-sub-link">03. What a buyer checks in 48 hours</a>
-      <a href="/issue-04" class="sb-sub-link">04. Why your business sells to someone you know</a>
+      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
+      <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
+      <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
+      <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
     </div>
   </div>
   <div class="sb-dropdown">
     <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')"><span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span></button>
     <div class="sb-dropdown-items" id="dropCS">
-      <a href="/case-study-01" class="sb-sub-link">01. DSV / DB Schenker · 7.5×</a>
-      <a href="/case-study-02" class="sb-sub-link">02. DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01. DSV / DB Schenker · 7.5×</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">02. DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">03. Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04. UPS / Frigo-Trans · 14.5×</a>
     </div>
   </div>
-  <a href="/multiples" class="sb-link">Multiples</a>
-  <a href="/wacc" class="sb-link active">WACC Calculator</a>
-  <a href="/about" class="sb-link">About</a>
+  <div class="sb-section">Dashboard</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropDash')"><span>Dashboard</span><span class="sb-arrow" id="arrowDash">▾</span></button>
+    <div class="sb-dropdown-items" id="dropDash">
+      <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
+      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
+    </div>
+  </div>
+  <div class="sb-section">Info</div>
+  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free →</button>
 </div>
 
@@ -214,7 +235,7 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
     <button class="hamburger" onclick="openSidebar()"><span></span><span></span><span></span></button>
     <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
   </div>
-  <div class="nav-links">
+    <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
     <a href="/issues" class="nav-link">Issues</a>
     <a href="/case-studies" class="nav-link">Case Studies</a>
@@ -223,6 +244,7 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </nav>
+<div class="back-bar"><div class="back-bar-inner"><a href="/" class="back-btn">← Home</a></div></div>
 
 <div class="hero">
   <div class="hero-inner">
@@ -440,7 +462,15 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
 </div>
 
 <div class="source-note">
-  <strong>Data:</strong> ERP by country — Damodaran Jan 2026, Moody's sovereign ratings + equity volatility adjustment. Unlevered beta by sector — Damodaran US Jan 2026, corrected for cash. Sector EV/EBITDA multiples — Damodaran Jan 2026. <strong>Not financial advice.</strong> Validate with a qualified advisor before use in transactions. Override any input with your own figures using the mode toggles.
+  <div style="font-size:0.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0F1F3D;margin-bottom:0.85rem">Data Sources</div>
+  <ol style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.55rem">
+    <li style="display:flex;gap:0.75rem;font-size:0.78rem;line-height:1.6;color:#444"><span style="font-weight:700;color:#0F1F3D;flex-shrink:0">1.</span><span><strong>Equity Risk Premium by country</strong> — Damodaran, NYU Stern, January 2026. Moody's sovereign ratings + equity volatility adjustment. 150+ countries.</span></li>
+    <li style="display:flex;gap:0.75rem;font-size:0.78rem;line-height:1.6;color:#444"><span style="font-weight:700;color:#0F1F3D;flex-shrink:0">2.</span><span><strong>Unlevered beta by sector</strong> — Damodaran, NYU Stern, January 2026. US dataset. Beta corrected for cash. 90+ sectors.</span></li>
+    <li style="display:flex;gap:0.75rem;font-size:0.78rem;line-height:1.6;color:#444"><span style="font-weight:700;color:#0F1F3D;flex-shrink:0">3.</span><span><strong>EV/EBITDA sector multiples</strong> — Damodaran, NYU Stern, January 2026. Positive-EBITDA firms, trailing 12-month data.</span></li>
+    <li style="display:flex;gap:0.75rem;font-size:0.78rem;line-height:1.6;color:#444"><span style="font-weight:700;color:#0F1F3D;flex-shrink:0">4.</span><span><strong>Risk-free rates</strong> — Benchmark 10-year government bonds (ECB, US Treasury, BoE). Updated manually; verify current rates before use.</span></li>
+    <li style="display:flex;gap:0.75rem;font-size:0.78rem;line-height:1.6;color:#444"><span style="font-weight:700;color:#0F1F3D;flex-shrink:0">5.</span><span><strong>Hamada equation</strong> — Standard relevering formula: β<sub>L</sub> = β<sub>U</sub> × [1 + (1−t) × D/E]. Private total beta approximated using 0.55 correlation divisor.</span></li>
+  </ol>
+  <div style="margin-top:0.85rem;padding-top:0.75rem;border-top:1px solid #D8D0C0;font-size:0.72rem;color:#888"><strong style="color:#0F1F3D">Not financial advice.</strong> Validate with a qualified financial advisor before use in any transaction or investment decision.</div>
 </div>
 
 </div><!-- /inputs-col -->
@@ -452,7 +482,11 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
     <div class="result-wacc" id="waccDisplay">—</div>
     <div class="result-wacc-ctx" id="waccCtx">Fill inputs to calculate</div>
   </div>
-  <div class="result-body">
+  <button class="result-panel-toggle" onclick="toggleResultPanel()" id="resultToggleBtn">
+    <span id="resultToggleLabel">Hide details</span>
+    <span class="result-panel-toggle-arrow" id="resultToggleArrow">▲</span>
+  </button>
+  <div class="result-body" id="resultPanelBody">
 
     <div class="result-block">
       <div class="result-block-title">Cost of equity (Ke)</div>
@@ -531,7 +565,7 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
 <footer>
   <div class="footer-inner">
     <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
-    <div class="f-links">
+        <div class="f-links">
       <a href="/about">About</a>
       <a href="/issues">Issues</a>
       <a href="/case-studies">Case Studies</a>
@@ -828,6 +862,22 @@ function calc() {
 }
 
 // ─── SIDEBAR ─────────────────────────────────────────────────────────────────
+
+function toggleResultPanel(){
+  var body = document.getElementById('resultPanelBody');
+  var arrow = document.getElementById('resultToggleArrow');
+  var label = document.getElementById('resultToggleLabel');
+  var collapsed = body.classList.toggle('collapsed');
+  arrow.classList.toggle('collapsed', collapsed);
+  if(collapsed){label.textContent='Show details';body.style.maxHeight='0';}
+  else{label.textContent='Hide details';body.style.maxHeight=body.scrollHeight+'px';}
+}
+// Init max-height for transition
+document.addEventListener('DOMContentLoaded',function(){
+  var body=document.getElementById('resultPanelBody');
+  if(body) body.style.maxHeight=body.scrollHeight+'px';
+});
+
 function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden'}
 function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow=''}
 function toggleDrop(id){var el=document.getElementById(id);var arrow=el.previousElementSibling.querySelector('.sb-arrow');el.classList.toggle('open');arrow.classList.toggle('open')}

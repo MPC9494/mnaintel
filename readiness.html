@@ -120,6 +120,11 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 .sb-sub-link{display:block;padding:0.35rem 0 0.35rem 0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;line-height:1.4;transition:color 0.2s}
 .sb-sub-link:hover{color:rgba(255,255,255,0.8)}
 .sb-sub-link.muted{color:rgba(255,255,255,0.28)}
+
+.back-bar{background:var(--off-white,#F8F6F2);border-bottom:1px solid var(--rule,#D8D0C0);padding:0.6rem 2.5rem}
+.back-bar-inner{max-width:1200px;margin:0 auto}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:var(--grey-mid,#666);text-decoration:none;transition:color 0.15s}
+.back-btn:hover{color:var(--navy,#0F1F3D)}
 </style>
 </head>
 <body>
@@ -150,9 +155,14 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
       <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04. UPS / Frigo-Trans · 14.5×</a>
     </div>
   </div>
-  <div class="sb-section">Tools</div>
-  <a href="/multiples" class="sb-link" onclick="closeSidebar()">Valuation Multiples</a>
-  <a href="/wacc" class="sb-link" onclick="closeSidebar()">WACC Calculator</a>
+  <div class="sb-section">Dashboard</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropDash')"><span>Dashboard</span><span class="sb-arrow" id="arrowDash">▾</span></button>
+    <div class="sb-dropdown-items" id="dropDash">
+      <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
+      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
+    </div>
+  </div>
   <div class="sb-section">Info</div>
   <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free →</button>
@@ -172,6 +182,7 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </nav>
+<div class="back-bar"><div class="back-bar-inner"><a href="/" class="back-btn">← Home</a></div></div>
 
 <div class="test-wrap">
   <a href="/" class="back-link">Back to home</a>

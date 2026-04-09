@@ -169,14 +169,18 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
       <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04. UPS / Frigo-Trans · 14.5×</a>
     </div>
   </div>
-  <div class="sb-section">Tools</div>
-  <a href="/multiples" class="sb-link" onclick="closeSidebar()">Valuation Multiples</a>
-  <a href="/wacc" class="sb-link" onclick="closeSidebar()">WACC Calculator</a>
+  <div class="sb-section">Dashboard</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropDash')"><span>Dashboard</span><span class="sb-arrow" id="arrowDash">▾</span></button>
+    <div class="sb-dropdown-items" id="dropDash">
+      <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
+      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
+    </div>
+  </div>
   <div class="sb-section">Info</div>
   <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free →</button>
 </div>
-
 
 <nav>
   <div class="nav-left">

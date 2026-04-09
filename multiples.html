@@ -197,6 +197,11 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
 .f-links a:hover{color:rgba(255,255,255,0.65)}
 .f-copy{font-size:0.68rem;color:rgba(255,255,255,0.18);width:100%;margin-top:0.25rem}
 @media(min-width:900px){footer{padding:2.5rem 3rem}}
+
+.back-bar{background:#F8F6F2;border-bottom:1px solid #D8D0C0;padding:0.6rem 2.5rem}
+.back-bar-inner{max-width:1200px;margin:0 auto}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:#666;text-decoration:none;transition:color 0.15s}
+.back-btn:hover{color:#0F1F3D}
 </style>
 </head>
 <body>
@@ -207,7 +212,7 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
     <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
     <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
-  <div class="sb-section">Navigate</div>
+  <div class="sb-section">Editorial</div>
   <div class="sb-dropdown">
     <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
     <div class="sb-dropdown-items" id="dropIssues">
@@ -222,10 +227,20 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
     <div class="sb-dropdown-items" id="dropCS">
       <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01. DSV / DB Schenker · 7.5×</a>
       <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">02. DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">03. Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04. UPS / Frigo-Trans · 14.5×</a>
     </div>
   </div>
-  <a href="/multiples" class="sb-link active">Multiples</a>
-  <a href="/about" class="sb-link">About</a>
+  <div class="sb-section">Dashboard</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropDash')"><span>Dashboard</span><span class="sb-arrow" id="arrowDash">▾</span></button>
+    <div class="sb-dropdown-items" id="dropDash">
+      <a href="/multiples" class="sb-sub-link active" onclick="closeSidebar()">Valuation Multiples</a>
+      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
+    </div>
+  </div>
+  <div class="sb-section">Info</div>
+  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free →</button>
 </div>
 
@@ -234,14 +249,16 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
     <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
     <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
   </div>
-  <div class="nav-links">
+    <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
     <a href="/issues" class="nav-link">Issues</a>
     <a href="/case-studies" class="nav-link">Case Studies</a>
     <a href="/multiples" class="nav-link active">Multiples</a>
+    <a href="/wacc" class="nav-link">WACC</a>
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </nav>
+<div class="back-bar"><div class="back-bar-inner"><a href="/" class="back-btn">← Home</a></div></div>
 
 <!-- HERO -->
 <div class="hero">
@@ -371,11 +388,12 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
 <footer>
   <div class="footer-inner">
     <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
-    <div class="f-links">
+        <div class="f-links">
       <a href="/about">About</a>
       <a href="/issues">Issues</a>
       <a href="/case-studies">Case Studies</a>
       <a href="/multiples">Multiples</a>
+      <a href="/wacc">WACC</a>
       <a data-email href="#">Contact</a>
     </div>
     <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
