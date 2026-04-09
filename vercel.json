@@ -51,6 +51,18 @@
       "destination": "/readiness.html"
     },
     {
+      "source": "/exit-calculator",
+      "destination": "/exit-calculator.html"
+    },
+    {
+      "source": "/country-index",
+      "destination": "/country-index.html"
+    },
+    {
+      "source": "/advisors",
+      "destination": "/advisors.html"
+    },
+    {
       "source": "/multiples",
       "destination": "/multiples.html"
     },

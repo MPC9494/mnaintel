@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exit Value Calculator · M&A Intelligence</title>
+<meta name="description" content="Calculate your exit value — normalised EBITDA, sector multiple, equity bridge, net proceeds. Built for SME owners thinking about a sale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;--off-white:#F8F6F2;--paper:#F2EEE6;
+  --navy:#0F1F3D;--navy-mid:#1B2F52;
+  --rule:#D8D0C0;--rule-light:#EAE4D8;
+  --black:#1A1A1A;--grey:#333333;--grey-mid:#555555;--grey-light:#777777;
+  --accent:#8B1A1A;--accent-dark:#6e1414;--accent-light:#f9eaea;
+  --green:#145214;--green-bg:#e6f3e6;
+  --amber:#6b4200;--amber-bg:#fdf0d8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px}
+
+/* SIDEBAR */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:300px;background:var(--navy);z-index:300;transform:translateX(-300px);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:2rem 1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:299}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sb-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.sb-logo-bar{width:2px;height:18px;background:var(--accent);flex-shrink:0}
+.sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--white)}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.5rem;cursor:pointer;line-height:1;padding:4px}
+.sb-close:hover{color:var(--white)}
+.sb-section{font-size:0.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin:1.5rem 0 0.6rem}
+.sb-link{display:block;padding:0.6rem 0;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color 0.15s}
+.sb-link:hover,.sb-link.active{color:var(--white)}
+.sb-link.active{font-weight:600}
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0.6rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left}
+.sb-dropdown-btn:hover{color:var(--white)}
+.sb-arrow{font-size:0.7rem;color:rgba(255,255,255,0.28);transition:transform 0.2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.5rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.35rem 0 0.35rem 0.85rem;font-size:0.82rem;color:rgba(255,255,255,0.4);text-decoration:none;line-height:1.45;transition:color 0.15s}
+.sb-sub-link:hover{color:rgba(255,255,255,0.85)}
+.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.85rem;width:100%;cursor:pointer;margin-top:2rem;transition:background 0.2s}
+.sb-cta:hover{background:var(--accent-dark)}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;gap:1rem}
+.nav-left{display:flex;align-items:center;gap:0.75rem;flex-shrink:0}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.6);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px 6px;flex-shrink:0}
+.hamburger span{display:block;width:22px;height:1.5px;background:currentColor}
+.hamburger:hover{color:var(--white)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-bar{width:2px;height:20px;background:var(--accent);flex-shrink:0}
+.nav-logo-text{font-size:0.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--white);white-space:nowrap}
+.nav-links{display:flex;align-items:center;flex-shrink:0}
+.nav-link{font-size:0.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;padding:0.4rem 0.9rem;transition:color 0.2s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--white)}
+.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.55rem 1.35rem;cursor:pointer;transition:background 0.2s;white-space:nowrap;flex-shrink:0}
+.nav-sub:hover{background:var(--accent-dark)}
+@media(max-width:767px){.nav-links{display:none}}
+@media(min-width:900px){nav{padding:0 2.75rem}}
+
+/* BACK BAR */
+.back-bar{background:var(--off-white);border-bottom:1px solid var(--rule);padding:0.6rem 2.5rem}
+.back-bar-inner{max-width:1200px;margin:0 auto}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:var(--grey-mid);text-decoration:none;transition:color 0.15s}
+.back-btn:hover{color:var(--navy)}
+
+/* HERO */
+.hero{border-bottom:2px solid var(--navy);padding:3rem 2.5rem 2.5rem;background:var(--paper)}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:end}
+@media(max-width:760px){.hero-inner{grid-template-columns:1fr}}
+.kicker{display:flex;align-items:center;gap:10px;margin-bottom:0.85rem}
+.kicker-bar{width:24px;height:2px;background:var(--accent);flex-shrink:0}
+.kicker-text{font-size:0.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;line-height:1.06;color:var(--navy);margin-bottom:0.65rem}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-deck{font-size:0.92rem;font-weight:400;line-height:1.75;color:var(--grey);max-width:580px}
+.hero-steps{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem}
+.hero-step{display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:600;color:var(--grey-mid)}
+.hero-step-num{width:20px;height:20px;background:var(--navy);color:var(--white);font-size:0.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hero-note{background:var(--white);border:1px solid var(--rule);padding:1rem 1.25rem;font-size:0.78rem;color:var(--grey);line-height:1.6;max-width:280px}
+.hero-note strong{font-weight:700;color:var(--navy);display:block;margin-bottom:0.25rem}
+@media(min-width:900px){.hero{padding:4rem 3rem 3rem}}
+
+/* LAYOUT */
+.page{max-width:1200px;margin:0 auto;padding:2rem 2.5rem 5rem;display:grid;grid-template-columns:1fr 380px;gap:2rem;align-items:start}
+@media(max-width:900px){.page{grid-template-columns:1fr;padding:1.5rem 1.25rem 4rem}}
+
+/* INPUT SECTIONS */
+.input-section{background:var(--white);border:2px solid var(--rule);margin-bottom:1.25rem}
+.input-section-header{padding:0.9rem 1.5rem;border-bottom:2px solid var(--rule);display:flex;align-items:center;gap:0.85rem;background:var(--paper)}
+.input-section-num{width:24px;height:24px;background:var(--navy);color:#fff;font-size:0.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.input-section-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--navy);flex:1}
+.input-section-sub{font-size:0.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--grey-light)}
+.input-section-body{padding:1.5rem}
+.form-row{margin-bottom:1rem}
+.form-row:last-child{margin-bottom:0}
+.form-label{font-size:0.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);margin-bottom:0.4rem;display:flex;align-items:center;justify-content:space-between}
+.form-label-right{font-weight:400;text-transform:none;letter-spacing:0;font-size:0.66rem;color:var(--grey-light)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem}
+.form-select,.form-input{width:100%;font-family:'DM Sans',sans-serif;font-size:0.92rem;color:var(--black);background:var(--white);border:1.5px solid var(--rule);padding:0.6rem 0.85rem;outline:none;transition:border-color 0.2s;font-weight:500}
+.form-select:focus,.form-input:focus{border-color:var(--navy)}
+.form-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23333' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.85rem center;padding-right:2.2rem}
+.input-unit{display:flex;align-items:center;gap:0.5rem}
+.input-unit .form-input{flex:1}
+.unit-label{font-size:0.88rem;font-weight:600;color:var(--grey-mid);white-space:nowrap}
+.hint{font-size:0.75rem;color:var(--grey-mid);margin-top:0.4rem;line-height:1.5}
+.hint.amber{background:var(--amber-bg);border-left:3px solid var(--amber);padding:0.55rem 0.75rem;color:var(--amber);font-weight:500}
+.hint strong{font-weight:700;color:var(--black)}
+
+/* ADD-BACK ROWS */
+.addback-list{display:flex;flex-direction:column;gap:0.5rem}
+.addback-row{display:grid;grid-template-columns:1fr 140px auto;gap:0.5rem;align-items:center}
+.addback-label-input{font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--black);background:var(--white);border:1.5px solid var(--rule);padding:0.5rem 0.75rem;outline:none;width:100%}
+.addback-label-input:focus{border-color:var(--navy)}
+.addback-amount{font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--black);background:var(--white);border:1.5px solid var(--rule);padding:0.5rem 0.75rem;outline:none;width:100%;text-align:right}
+.addback-amount:focus{border-color:var(--navy)}
+.addback-remove{background:transparent;border:none;color:var(--grey-light);cursor:pointer;font-size:1.1rem;padding:0 4px;transition:color 0.15s;flex-shrink:0}
+.addback-remove:hover{color:var(--accent)}
+.addback-total{display:flex;justify-content:space-between;padding:0.6rem 0;border-top:1.5px solid var(--rule);margin-top:0.5rem;font-size:0.85rem}
+.addback-total-label{font-weight:600;color:var(--grey-mid)}
+.addback-total-val{font-weight:700;color:var(--navy)}
+.btn-add{font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1.5px solid var(--rule);color:var(--navy);padding:0.45rem 0.9rem;cursor:pointer;transition:all 0.15s;margin-top:0.75rem}
+.btn-add:hover{border-color:var(--navy);background:var(--off-white)}
+
+/* RESULT PANEL */
+.result-panel{background:var(--navy);position:sticky;top:80px}
+@media(max-width:900px){.result-panel{position:static;order:-1}}
+
+/* TOP RESULT */
+.result-top{padding:1.5rem}
+.result-eyebrow{font-size:0.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.35rem}
+.result-ev{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;color:#fff;line-height:1}
+.result-ev-range{font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:0.35rem}
+.result-ctx{font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:0.25rem}
+
+/* EQUITY BRIDGE */
+.bridge{padding:0 1.5rem 1.5rem}
+.bridge-title{font-size:0.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.75rem}
+.bridge-row{display:flex;justify-content:space-between;align-items:center;padding:0.45rem 0;border-bottom:1px solid rgba(255,255,255,0.07)}
+.bridge-row:last-child{border-bottom:none}
+.bridge-row.total{padding-top:0.75rem;margin-top:0.25rem;border-top:1.5px solid rgba(255,255,255,0.2);border-bottom:none}
+.bridge-label{font-size:0.78rem;color:rgba(255,255,255,0.5)}
+.bridge-val{font-size:0.88rem;font-weight:700;color:#fff}
+.bridge-val.neg{color:#f4a0a0}
+.bridge-val.highlight{color:#7ff07f;font-size:1rem}
+
+/* SENSITIVITY TABLE */
+.sens-section{padding:0 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,0.1)}
+.sens-title{font-size:0.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:1rem 0 0.75rem}
+.sens-table{width:100%;border-collapse:collapse;font-size:0.75rem}
+.sens-table th{padding:0.4rem 0.5rem;text-align:center;color:rgba(255,255,255,0.35);font-weight:600;font-size:0.62rem;letter-spacing:.06em;text-transform:uppercase}
+.sens-table th:first-child{text-align:left}
+.sens-table td{padding:0.4rem 0.5rem;text-align:center;color:rgba(255,255,255,0.65);border-top:1px solid rgba(255,255,255,0.06)}
+.sens-table td:first-child{text-align:left;color:rgba(255,255,255,0.4)}
+.sens-table td.active{background:var(--accent);color:#fff;font-weight:700}
+.sens-table td.high{color:#7ff07f}
+.sens-table td.low{color:#f4a0a0}
+
+/* BENCHMARK */
+.bench-section{padding:0 1.5rem 1.5rem;border-top:1px solid rgba(255,255,255,0.1)}
+.bench-title{font-size:0.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:1rem 0 0.75rem}
+.bench-row{display:flex;align-items:center;gap:0.75rem;padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.bench-row:last-child{border-bottom:none}
+.bench-label{font-size:0.75rem;color:rgba(255,255,255,0.45);flex:1}
+.bench-bar-track{width:80px;height:4px;background:rgba(255,255,255,0.1);flex-shrink:0;position:relative}
+.bench-bar-fill{height:100%;background:rgba(255,255,255,0.35);transition:width 0.4s}
+.bench-bar-fill.you{background:var(--accent)}
+.bench-val{font-size:0.75rem;font-weight:600;color:#fff;min-width:32px;text-align:right}
+
+/* INTERPRETATION */
+.interp{padding:1rem 1.5rem;background:rgba(255,255,255,0.05);border-top:1px solid rgba(255,255,255,0.08);font-size:0.76rem;color:rgba(255,255,255,0.5);line-height:1.65}
+.interp strong{color:#fff}
+
+/* SOURCE NOTE */
+.source-note{background:var(--white);border:1.5px solid var(--rule);padding:1.25rem 1.5rem;font-size:0.76rem;color:var(--grey);line-height:1.65}
+.source-note strong{font-weight:700;color:var(--black)}
+.source-note ol{margin:0.75rem 0 0 1rem;display:flex;flex-direction:column;gap:0.4rem}
+
+/* FOOTER */
+footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.f-brand{display:flex;align-items:center;gap:8px;text-decoration:none}
+.f-brand-bar{width:2px;height:16px;background:var(--accent);flex-shrink:0}
+.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-links{display:flex;gap:1.75rem;flex-wrap:wrap}
+.f-links a{font-size:0.78rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s}
+.f-links a:hover{color:rgba(255,255,255,0.65)}
+.f-copy{font-size:0.68rem;color:rgba(255,255,255,0.18);width:100%;margin-top:0.25rem}
+@media(min-width:900px){footer{padding:2.5rem 3rem}}
+</style>
+</head>
+<body>
+
+<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sb-top">
+    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">×</button>
+  </div>
+  <div class="sb-section">Editorial</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
+    <div class="sb-dropdown-items" id="dropIssues">
+      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
+      <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
+      <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
+      <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
+    </div>
+  </div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')"><span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span></button>
+    <div class="sb-dropdown-items" id="dropCS">
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01. DSV / DB Schenker · 7.5×</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">02. DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">03. Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04. UPS / Frigo-Trans · 14.5×</a>
+    </div>
+  </div>
+  <div class="sb-section">Dashboard</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropDash')"><span>Dashboard</span><span class="sb-arrow" id="arrowDash">▾</span></button>
+    <div class="sb-dropdown-items" id="dropDash">
+      <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
+      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
+      <a href="/exit-calculator" class="sb-sub-link active" onclick="closeSidebar()">Exit Value Calculator</a>
+    </div>
+  </div>
+  <div class="sb-section">Info</div>
+  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free →</button>
+</div>
+
+<nav>
+  <div class="nav-left">
+    <button class="hamburger" onclick="openSidebar()"><span></span><span></span><span></span></button>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+  </div>
+  <div class="nav-links">
+    <a href="/about" class="nav-link">About</a>
+    <a href="/issues" class="nav-link">Issues</a>
+    <a href="/case-studies" class="nav-link">Case Studies</a>
+    <a href="/multiples" class="nav-link">Multiples</a>
+    <a href="/wacc" class="nav-link">WACC</a>
+  </div>
+  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+</nav>
+
+<div class="back-bar"><div class="back-bar-inner"><a href="/" class="back-btn">← Home</a></div></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="kicker"><div class="kicker-bar"></div><div class="kicker-text">Exit Planning · Buy-side logic</div></div>
+      <h1>What is your business<br><em>actually worth?</em></h1>
+      <p class="hero-deck">Normalise your EBITDA, apply a sector multiple, run the equity bridge. This is the calculation a buyer does before they make an offer. Now you can do it first.</p>
+      <div class="hero-steps">
+        <div class="hero-step"><div class="hero-step-num">1</div> Reported EBITDA</div>
+        <div class="hero-step"><div class="hero-step-num">2</div> Add-backs</div>
+        <div class="hero-step"><div class="hero-step-num">3</div> Sector multiple</div>
+        <div class="hero-step"><div class="hero-step-num">4</div> Equity bridge</div>
+        <div class="hero-step"><div class="hero-step-num">5</div> Net proceeds</div>
+      </div>
+    </div>
+    <div class="hero-note">
+      <strong>Private company discount</strong>
+      Public multiples are adjusted downward for private SMEs. This tool applies a size-based discount (20–40%) automatically based on your EBITDA size — the same logic a PE buyer uses.
+    </div>
+  </div>
+</div>
+
+<div class="page">
+<div class="inputs-col">
+
+<!-- SECTION 1: REPORTED EBITDA -->
+<div class="input-section">
+  <div class="input-section-header">
+    <div class="input-section-num">1</div>
+    <div class="input-section-title">Reported EBITDA</div>
+    <div class="input-section-sub">Last 12 months</div>
+  </div>
+  <div class="input-section-body">
+    <div class="form-row">
+      <div class="form-label">Revenue <span class="form-label-right">LTM</span></div>
+      <div class="input-unit"><input type="number" class="form-input" id="revenue" placeholder="e.g. 5000" min="0" oninput="calc()"><span class="unit-label">k</span></div>
+    </div>
+    <div class="form-row">
+      <div class="form-label">Reported EBITDA <span class="form-label-right">before add-backs</span></div>
+      <div class="input-unit"><input type="number" class="form-input" id="ebitdaReported" placeholder="e.g. 800" min="0" oninput="calc()"><span class="unit-label">k</span></div>
+      <div class="hint">This is what's in your accounts. Add-backs are applied in Step 2.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: ADD-BACKS -->
+<div class="input-section">
+  <div class="input-section-header">
+    <div class="input-section-num">2</div>
+    <div class="input-section-title">EBITDA Add-backs</div>
+    <div class="input-section-sub">Normalisation</div>
+  </div>
+  <div class="input-section-body">
+    <div class="hint amber" style="margin-bottom:1rem"><strong>What are add-backs?</strong> Items in your P&L that a buyer will exclude from recurring costs — owner salary above market rate, one-off legal costs, personal expenses run through the business, non-recurring capex. Each one increases your normalised EBITDA and your exit value.</div>
+    <div class="addback-list" id="addbackList">
+      <div class="addback-row">
+        <input type="text" class="addback-label-input" placeholder="e.g. Owner salary above market" oninput="calc()">
+        <input type="number" class="addback-amount" placeholder="0" min="0" oninput="calc()">
+        <button class="addback-remove" onclick="removeAddback(this)">×</button>
+      </div>
+    </div>
+    <div class="addback-total">
+      <span class="addback-total-label">Total add-backs</span>
+      <span class="addback-total-val" id="addbackTotal">0k</span>
+    </div>
+    <button class="btn-add" onclick="addAddback()">+ Add item</button>
+  </div>
+</div>
+
+<!-- SECTION 3: SECTOR & MULTIPLE -->
+<div class="input-section">
+  <div class="input-section-header">
+    <div class="input-section-num">3</div>
+    <div class="input-section-title">Sector & Multiple</div>
+    <div class="input-section-sub">Damodaran Jan 2026</div>
+  </div>
+  <div class="input-section-body">
+    <div class="form-row">
+      <div class="form-label">Sector</div>
+      <select class="form-select" id="sectorSelect" onchange="onSectorChange()"></select>
+      <div class="hint" id="sectorRef" style="margin-top:0.5rem"></div>
+    </div>
+    <div class="form-grid">
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">Public EV/EBITDA <span class="form-label-right">auto-filled</span></div>
+        <input type="number" class="form-input" id="publicMultiple" value="" step="0.1" min="1" max="100" oninput="calc()" style="background:var(--off-white);border-style:dashed">
+        <div class="hint" style="margin-top:0.35rem">Damodaran benchmark · editable</div>
+      </div>
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">Private multiple <span class="form-label-right">after discount</span></div>
+        <input type="number" class="form-input" id="privateMultiple" value="" step="0.1" min="0.5" max="50" oninput="calc()" style="background:var(--green-bg);border-color:var(--green)">
+        <div class="hint" id="discountNote" style="margin-top:0.35rem">Applied after size discount</div>
+      </div>
+    </div>
+    <div class="form-row" style="margin-top:0.85rem">
+      <div class="form-label">Buyer type <span class="form-label-right">affects multiple</span></div>
+      <select class="form-select" id="buyerType" onchange="calc()">
+        <option value="strategic">Strategic / Corporate (typically lower multiple)</option>
+        <option value="pe" selected>Private Equity (typically higher multiple)</option>
+        <option value="mgmt">Management Buyout (MBO)</option>
+        <option value="family">Family office / HNW individual</option>
+      </select>
+      <div class="hint" id="buyerNote" style="margin-top:0.35rem"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: EQUITY BRIDGE -->
+<div class="input-section">
+  <div class="input-section-header">
+    <div class="input-section-num">4</div>
+    <div class="input-section-title">Equity Bridge</div>
+    <div class="input-section-sub">EV → net proceeds</div>
+  </div>
+  <div class="input-section-body">
+    <div class="hint" style="margin-bottom:1rem">Enterprise value is not what you receive. This bridge goes from EV to the net equity value in your pocket — after debt, cash, and working capital adjustments.</div>
+    <div class="form-grid">
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">Net debt <span class="form-label-right">debt minus cash</span></div>
+        <div class="input-unit"><input type="number" class="form-input" id="netDebt" placeholder="0" oninput="calc()"><span class="unit-label">k</span></div>
+        <div class="hint">Enter 0 if cash-positive. Negative = net cash position.</div>
+      </div>
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">Working capital adj. <span class="form-label-right">if applicable</span></div>
+        <div class="input-unit"><input type="number" class="form-input" id="wcAdj" placeholder="0" oninput="calc()"><span class="unit-label">k</span></div>
+        <div class="hint">Negative = WC shortfall vs. peg. Often 0 at first pass.</div>
+      </div>
+    </div>
+    <div class="form-grid" style="margin-top:0.85rem">
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">Advisory / M&A fees <span class="form-label-right">est.</span></div>
+        <div class="input-unit"><input type="number" class="form-input" id="advisoryFee" placeholder="0" oninput="calc()"><span class="unit-label">k</span></div>
+        <div class="hint">Typical: 2–5% of EV for SME deals. Add legal + DD costs.</div>
+      </div>
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">Tax on gain <span class="form-label-right">% of equity value</span></div>
+        <div class="input-unit"><input type="number" class="form-input" id="taxRate" placeholder="e.g. 26" value="26" min="0" max="60" oninput="calc()"><span class="unit-label">%</span></div>
+        <div class="hint">Varies by country & structure. CH: ~0% (participation). IT: 26%. DE: ~25–28%.</div>
+      </div>
+    </div>
+    <div class="form-row" style="margin-top:0.85rem">
+      <div class="form-label">Earn-out / deferred consideration <span class="form-label-right">if expected</span></div>
+      <div class="input-unit"><input type="number" class="form-input" id="earnout" placeholder="0" oninput="calc()"><span class="unit-label">k</span></div>
+      <div class="hint">Portion of proceeds contingent on future performance. Common in PE deals. Enter 0 to ignore.</div>
+    </div>
+  </div>
+</div>
+
+<div class="source-note">
+  <strong>Data Sources & Methodology</strong>
+  <ol style="margin-top:0.6rem;padding-left:1.1rem;display:flex;flex-direction:column;gap:0.35rem;font-size:0.76rem;color:var(--grey)">
+    <li><strong>Public EV/EBITDA multiples</strong> — Damodaran, NYU Stern, January 2026. Positive-EBITDA firms, trailing 12-month data.</li>
+    <li><strong>Private company discount</strong> — DealStats Value Index Q1 2025; Bain &amp; Co M&A Report 2025; FE International 2025. Micro (&lt;€500k EBITDA): −55–65%; Small (€500k–€2M): −35–50%; Mid (€2M–€5M): −20–35%.</li>
+    <li><strong>Buyer type adjustments</strong> — CLFI M&amp;A EV/EBITDA report Q2 2025. PE median 10.1× vs Corporate 8.6× (US); EU: PE 11.2× vs Corporate 8.5×.</li>
+    <li><strong>Size-based multiple scaling</strong> — DealFlowAgent 2025; Comparables.ai 2025 guide. Micro businesses: 20–40% of public multiples; small: 40–70%.</li>
+  </ol>
+  <div style="margin-top:0.75rem;font-size:0.72rem;color:var(--grey-light)"><strong style="color:var(--black)">Not financial advice.</strong> This tool provides indicative ranges only. Always validate with a qualified M&A advisor before entering a sale process.</div>
+</div>
+
+</div><!-- /inputs-col -->
+
+<!-- RESULT PANEL -->
+<div class="result-panel">
+
+  <!-- EV -->
+  <div class="result-top">
+    <div class="result-eyebrow">Enterprise value (mid)</div>
+    <div class="result-ev" id="evDisplay">—</div>
+    <div class="result-ev-range" id="evRange">Enter EBITDA and sector to calculate</div>
+    <div class="result-ctx" id="evCtx"></div>
+  </div>
+
+  <!-- BRIDGE -->
+  <div class="bridge">
+    <div class="bridge-title">Equity bridge</div>
+    <div class="bridge-row"><span class="bridge-label">Enterprise value (mid)</span><span class="bridge-val" id="brEV">—</span></div>
+    <div class="bridge-row"><span class="bridge-label">− Net debt</span><span class="bridge-val neg" id="brDebt">—</span></div>
+    <div class="bridge-row"><span class="bridge-label">− Working capital adj.</span><span class="bridge-val neg" id="brWC">—</span></div>
+    <div class="bridge-row"><span class="bridge-label">− Advisory & legal fees</span><span class="bridge-val neg" id="brFees">—</span></div>
+    <div class="bridge-row"><span class="bridge-label">= Gross equity value</span><span class="bridge-val" id="brGrossEq">—</span></div>
+    <div class="bridge-row"><span class="bridge-label">− Tax on gain</span><span class="bridge-val neg" id="brTax">—</span></div>
+    <div class="bridge-row total"><span class="bridge-label" style="color:rgba(255,255,255,0.8);font-weight:600">= Net proceeds (cash)</span><span class="bridge-val highlight" id="brNet">—</span></div>
+    <div class="bridge-row" style="padding-top:0.6rem"><span class="bridge-label">+ Earn-out (deferred)</span><span class="bridge-val" id="brEarnout">—</span></div>
+    <div class="bridge-row"><span class="bridge-label">= Total consideration</span><span class="bridge-val" id="brTotal">—</span></div>
+  </div>
+
+  <!-- SENSITIVITY TABLE -->
+  <div class="sens-section">
+    <div class="sens-title">Sensitivity — EV by multiple & EBITDA</div>
+    <table class="sens-table" id="sensTable">
+      <thead><tr id="sensHead"></tr></thead>
+      <tbody id="sensBody"></tbody>
+    </table>
+  </div>
+
+  <!-- BENCHMARK -->
+  <div class="bench-section">
+    <div class="bench-title">Your multiple vs. market benchmarks</div>
+    <div id="benchRows"></div>
+  </div>
+
+  <!-- INTERPRETATION -->
+  <div class="interp" id="interp">Select a sector and enter your EBITDA to see your exit estimate.</div>
+</div>
+
+</div><!-- /page -->
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
+    <div class="f-links">
+      <a href="/about">About</a>
+      <a href="/issues">Issues</a>
+      <a href="/case-studies">Case Studies</a>
+      <a href="/multiples">Multiples</a>
+      <a href="/wacc">WACC</a>
+      <a href="/exit-calculator">Exit Calculator</a>
+      <a data-email href="#">Contact</a>
+    </div>
+    <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
+  </div>
+</footer>
+
+<script>
+// ─── SECTOR DATA (Damodaran Jan 2026 + private discount metadata) ─────────────
+const SECTORS = [
+  {name:"Advertising",ev:12.0},{name:"Aerospace / Defense",ev:21.58},
+  {name:"Air Transport",ev:7.58},{name:"Auto Parts",ev:6.43},
+  {name:"Beverage (Alcoholic)",ev:8.61},{name:"Beverage (Soft)",ev:16.90},
+  {name:"Building Materials",ev:11.61},{name:"Business Services",ev:14.26},
+  {name:"Chemical (Specialty)",ev:13.36},{name:"Computer Services",ev:14.10},
+  {name:"Construction",ev:17.18},{name:"Drugs (Biotech)",ev:15.78},
+  {name:"Drugs (Pharma)",ev:15.25},{name:"Electrical Equipment",ev:24.59},
+  {name:"Electronics (General)",ev:19.99},{name:"Entertainment",ev:19.41},
+  {name:"Environmental & Waste",ev:15.61},{name:"Food Processing",ev:10.01},
+  {name:"Healthcare Products",ev:19.78},{name:"Healthcare Services",ev:11.17},
+  {name:"Healthcare IT",ev:21.27},{name:"Hotel / Gaming",ev:14.93},
+  {name:"Household Products",ev:13.17},{name:"Logistics / Transport",ev:12.55},
+  {name:"Machinery",ev:16.22},{name:"Metals & Mining",ev:11.39},
+  {name:"Oil & Gas (E&P)",ev:5.15},{name:"Packaging",ev:9.71},
+  {name:"Power / Utilities",ev:12.38},{name:"R.E.I.T.",ev:19.87},
+  {name:"Restaurant / Dining",ev:17.49},{name:"Retail (General)",ev:17.38},
+  {name:"Semiconductor",ev:34.75},{name:"Software (System & App)",ev:24.48},
+  {name:"Software (Entertainment)",ev:22.01},{name:"Steel",ev:11.59},
+  {name:"Telecom Services",ev:6.54},{name:"Telecom Equipment",ev:24.07},
+  {name:"Trucking",ev:10.41},
+];
+
+// Private discount by EBITDA size (k)
+function getPrivateDiscount(ebitdaNorm, buyerType) {
+  let baseDiscount;
+  if (ebitdaNorm < 500)        baseDiscount = 0.60; // micro: ~40% of public
+  else if (ebitdaNorm < 2000)  baseDiscount = 0.45; // small: ~55%
+  else if (ebitdaNorm < 5000)  baseDiscount = 0.30; // lower-mid: ~70%
+  else                         baseDiscount = 0.20; // mid-market: ~80%
+
+  // Buyer type adjustments
+  const buyerAdj = {strategic:-0.05, pe:0, mgmt:-0.12, family:-0.08};
+  return Math.min(0.75, baseDiscount - (buyerAdj[buyerType]||0));
+}
+
+// Buyer type note
+const BUYER_NOTES = {
+  strategic: 'Strategics pay for synergies. Multiple adjusted −5% vs PE. Often faster close, less earn-out.',
+  pe: 'PE buyers: median 10.1× (US) vs 11.2× (EU) in Q2 2025. Higher upfront, more earn-out likely.',
+  mgmt: 'MBOs typically pay the lowest multiple — management lacks outside capital leverage.',
+  family: 'Family offices / HNW: selective, patient capital. Multiple between PE and strategic.',
+};
+
+// ─── POPULATE SECTORS ────────────────────────────────────────────────────────
+function populateSectors() {
+  const sel = document.getElementById('sectorSelect');
+  const def = document.createElement('option'); def.value=''; def.textContent='— Select a sector —'; sel.appendChild(def);
+  SECTORS.sort((a,b)=>a.name.localeCompare(b.name)).forEach(s=>{
+    const o = document.createElement('option'); o.value=s.name; o.textContent=s.name; sel.appendChild(o);
+  });
+}
+
+// ─── SECTOR CHANGE ───────────────────────────────────────────────────────────
+function onSectorChange() {
+  const name = document.getElementById('sectorSelect').value;
+  const s = SECTORS.find(x=>x.name===name);
+  if (!s) return;
+  document.getElementById('publicMultiple').value = s.ev.toFixed(1);
+  document.getElementById('sectorRef').textContent = `Public benchmark: ${s.ev.toFixed(1)}× EV/EBITDA · Damodaran Jan 2026`;
+  calc();
+}
+
+// ─── ADD-BACKS ───────────────────────────────────────────────────────────────
+function addAddback() {
+  const list = document.getElementById('addbackList');
+  const row = document.createElement('div');
+  row.className = 'addback-row';
+  row.innerHTML = `<input type="text" class="addback-label-input" placeholder="Add-back description" oninput="calc()">
+    <input type="number" class="addback-amount" placeholder="0" min="0" oninput="calc()">
+    <button class="addback-remove" onclick="removeAddback(this)">×</button>`;
+  list.appendChild(row);
+}
+function removeAddback(btn) {
+  btn.closest('.addback-row').remove();
+  calc();
+}
+function getAddbackTotal() {
+  let total = 0;
+  document.querySelectorAll('.addback-amount').forEach(inp=>{total += parseFloat(inp.value)||0});
+  return total;
+}
+
+// ─── FORMAT ──────────────────────────────────────────────────────────────────
+function fmtM(k) {
+  if (!k || isNaN(k)) return '—';
+  const m = k/1000;
+  if (Math.abs(m) >= 100) return '€' + m.toFixed(0) + 'M';
+  if (Math.abs(m) >= 10)  return '€' + m.toFixed(1) + 'M';
+  if (Math.abs(m) >= 1)   return '€' + m.toFixed(2) + 'M';
+  return '€' + k.toFixed(0) + 'k';
+}
+function fmtK(k) {
+  if (k===0) return '€0k';
+  if (!k||isNaN(k)) return '—';
+  return k >= 0 ? fmtM(k) : '−' + fmtM(Math.abs(k));
+}
+
+// ─── MAIN CALC ───────────────────────────────────────────────────────────────
+function calc() {
+  const revenue       = parseFloat(document.getElementById('revenue').value)||0;
+  const ebitdaRep     = parseFloat(document.getElementById('ebitdaReported').value)||0;
+  const addbacks      = getAddbackTotal();
+  const ebitdaNorm    = ebitdaRep + addbacks;
+  const publicMult    = parseFloat(document.getElementById('publicMultiple').value)||0;
+  const buyerType     = document.getElementById('buyerType').value;
+  const netDebt       = parseFloat(document.getElementById('netDebt').value)||0;
+  const wcAdj         = parseFloat(document.getElementById('wcAdj').value)||0;
+  const advisory      = parseFloat(document.getElementById('advisoryFee').value)||0;
+  const taxPct        = parseFloat(document.getElementById('taxRate').value)||0;
+  const earnout       = parseFloat(document.getElementById('earnout').value)||0;
+
+  // Update add-back total display
+  document.getElementById('addbackTotal').textContent = addbacks > 0 ? '+' + fmtM(addbacks) : '0k';
+
+  // Buyer note
+  document.getElementById('buyerNote').textContent = BUYER_NOTES[buyerType]||'';
+
+  if (!ebitdaNorm || !publicMult) {
+    // Clear outputs
+    ['evDisplay','evRange','evCtx','brEV','brDebt','brWC','brFees','brGrossEq','brTax','brNet','brEarnout','brTotal'].forEach(id=>{
+      document.getElementById(id).textContent='—';
+    });
+    document.getElementById('interp').innerHTML = 'Enter your EBITDA and select a sector to see your exit estimate.';
+    document.getElementById('benchRows').innerHTML = '';
+    document.getElementById('sensTable').style.display='none';
+    return;
+  }
+
+  // Private discount
+  const discount = getPrivateDiscount(ebitdaNorm, buyerType);
+  const privateMult = +(publicMult * (1 - discount)).toFixed(1);
+  document.getElementById('privateMultiple').value = privateMult;
+  document.getElementById('discountNote').textContent = `${(discount*100).toFixed(0)}% private discount applied (size + buyer type)`;
+
+  // EV range: -15% / mid / +15% on private multiple
+  const evLo  = ebitdaNorm * privateMult * 0.85;
+  const evMid = ebitdaNorm * privateMult;
+  const evHi  = ebitdaNorm * privateMult * 1.15;
+
+  // Display EV
+  document.getElementById('evDisplay').textContent = fmtM(evMid);
+  document.getElementById('evRange').textContent = `Range: ${fmtM(evLo)} – ${fmtM(evHi)}`;
+  const sectorName = document.getElementById('sectorSelect').value;
+  document.getElementById('evCtx').textContent = `${sectorName} · ${privateMult}× norm. EBITDA (${(discount*100).toFixed(0)}% disc.)`;
+
+  // Equity bridge (mid)
+  const grossEq   = evMid - netDebt - wcAdj - advisory;
+  const taxAmount = grossEq > 0 ? grossEq * taxPct / 100 : 0;
+  const netProc   = grossEq - taxAmount;
+  const totalConsid = netProc + earnout;
+
+  document.getElementById('brEV').textContent       = fmtK(evMid);
+  document.getElementById('brDebt').textContent     = netDebt  !== 0 ? fmtK(-netDebt)  : '—';
+  document.getElementById('brWC').textContent       = wcAdj    !== 0 ? fmtK(-wcAdj)    : '—';
+  document.getElementById('brFees').textContent     = advisory !== 0 ? fmtK(-advisory)  : '—';
+  document.getElementById('brGrossEq').textContent  = fmtK(grossEq);
+  document.getElementById('brTax').textContent      = taxAmount > 0 ? fmtK(-taxAmount) : '—';
+  document.getElementById('brNet').textContent      = fmtK(netProc);
+  document.getElementById('brEarnout').textContent  = earnout > 0 ? '+' + fmtM(earnout) : '—';
+  document.getElementById('brTotal').textContent    = totalConsid !== netProc ? fmtK(totalConsid) : fmtK(netProc);
+
+  // Sensitivity table (±20% EBITDA × 3 multiples)
+  buildSensTable(ebitdaNorm, privateMult);
+
+  // Benchmark bars
+  buildBenchmark(privateMult, publicMult, sectorName);
+
+  // Interpretation
+  const ebitdaM = ebitdaNorm/1000;
+  const evM = evMid/1000;
+  let msg = '';
+  if (privateMult < 5)
+    msg = `<strong>Multiple below 5×</strong> — typical for micro-cap SMEs in cyclical or capital-intensive sectors, or businesses with high customer concentration. The biggest lever here is not the multiple but normalising EBITDA and reducing dependency on the owner.`;
+  else if (privateMult < 8)
+    msg = `<strong>${privateMult.toFixed(1)}× normalised EBITDA</strong> — mid-range for a private SME. On €${ebitdaM.toFixed(2)}M EBITDA this implies an EV of ${fmtM(evMid)}. The gap between your range low (${fmtM(evLo)}) and high (${fmtM(evHi)}) is €${((evHi-evLo)/1000).toFixed(1)}M — that gap closes with preparation.`;
+  else if (privateMult < 12)
+    msg = `<strong>${privateMult.toFixed(1)}× — strong multiple</strong> for a private business. You are likely in a structurally growing sector with recurring revenue and low customer concentration. At this level, getting the multiple right matters less than protecting it through a clean DD process.`;
+  else
+    msg = `<strong>${privateMult.toFixed(1)}× — premium territory.</strong> This level implies a business with strong recurring revenue, high margins, or a strategic scarcity value. A buyer paying this will scrutinise your EBITDA normalisation hard. Every add-back needs to be bulletproof.`;
+
+  if (netProc > 0)
+    msg += ` <strong>Net to you: ${fmtM(netProc)}</strong> after debt, fees and tax${earnout>0?' (+ '+fmtM(earnout)+' earn-out)':''}.`;
+
+  document.getElementById('interp').innerHTML = msg;
+}
+
+// ─── SENSITIVITY TABLE ───────────────────────────────────────────────────────
+function buildSensTable(ebitdaNorm, baseMult) {
+  const table = document.getElementById('sensTable');
+  table.style.display = 'table';
+  const mults = [+(baseMult*0.8).toFixed(1), +(baseMult*0.9).toFixed(1), +baseMult.toFixed(1), +(baseMult*1.1).toFixed(1), +(baseMult*1.2).toFixed(1)];
+  const ebitdas = [+(ebitdaNorm*0.8).toFixed(0), +ebitdaNorm.toFixed(0), +(ebitdaNorm*1.2).toFixed(0)];
+  const labels = ['−20% EBITDA','Base EBITDA','+20% EBITDA'];
+
+  const head = document.getElementById('sensHead');
+  head.innerHTML = '<th>EBITDA / Multiple</th>' + mults.map(m=>`<th>${m}×</th>`).join('');
+  const body = document.getElementById('sensBody');
+  body.innerHTML = ebitdas.map((e,i)=>{
+    const cells = mults.map((m,j)=>{
+      const ev = e*m;
+      const isActive = (i===1 && j===2);
+      const cls = isActive?'active':(ev>ebitdas[1]*mults[2]*1.15?'high':ev<ebitdas[1]*mults[2]*0.85?'low':'');
+      return `<td class="${cls}">${fmtM(ev)}</td>`;
+    }).join('');
+    return `<tr><td>${labels[i]}</td>${cells}</tr>`;
+  }).join('');
+}
+
+// ─── BENCHMARK BARS ──────────────────────────────────────────────────────────
+function buildBenchmark(yourMult, publicMult, sectorName) {
+  const maxM = Math.max(yourMult, publicMult, 15) * 1.1;
+  const benchmarks = [
+    {label: 'Your estimate (private)', mult: yourMult, you: true},
+    {label: `${sectorName||'Sector'} (public, Damodaran)`, mult: publicMult, you: false},
+    {label: 'PE median (EU, Q2 2025)', mult: 11.2, you: false},
+    {label: 'Corporate median (EU, Q2 2025)', mult: 8.5, you: false},
+    {label: 'SME lower-mid market avg', mult: 7.0, you: false},
+  ];
+  document.getElementById('benchRows').innerHTML = benchmarks.map(b=>`
+    <div class="bench-row">
+      <span class="bench-label">${b.label}</span>
+      <div class="bench-bar-track"><div class="bench-bar-fill${b.you?' you':''}" style="width:${Math.min(100,b.mult/maxM*100).toFixed(0)}%"></div></div>
+      <span class="bench-val">${b.mult.toFixed(1)}×</span>
+    </div>`).join('');
+}
+
+// ─── SIDEBAR ─────────────────────────────────────────────────────────────────
+function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden'}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow=''}
+function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open')}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  populateSectors();
+  document.getElementById('sensTable').style.display='none';
+  document.querySelectorAll('[data-email]').forEach(el=>{el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com'});
+});
+</script>
+</body>
+</html>
