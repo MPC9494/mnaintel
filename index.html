@@ -3,143 +3,170 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>M&A Intelligence. The Buy-Side View on Selling Your Business</title>
-<meta name="description" content="Weekly M&A briefing for business owners thinking about selling. Valuation frameworks, deal intelligence, and buy-side tools. Free.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>M&A Intelligence · Buy-side M&A platform</title>
+<meta name="description" content="Valuation multiples, exit calculator, WACC, transaction costs, advisor directory. Free tools for European SME M&A.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-
-:root{--white:#FFFFFF;--off-white:#F8F6F2;--paper:#F2EEE6;--navy:#0F1F3D;--navy-mid:#1B2F52;--rule:#D8D0C0;--rule-light:#EAE4D8;--black:#111111;--grey:#444444;--grey-mid:#666666;--grey-light:#888888;--accent:#8B1A1A;--border:rgba(0,0,0,0.1)}
+:root{
+  --navy:#0A1628;--white:#fff;--bg:#F7F5F0;--paper:#EFECE5;
+  --rule:#D0CCC0;--rule2:#E8E4DC;
+  --b:#111;--g:#3A3A3A;--gm:#5A5A5A;--gl:#999;
+  --red:#8B1A1A;--red2:#6e1414;--grn:#0E4D1E;
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'DM Sans',sans-serif;
+  --serif:'Playfair Display',serif;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px}
+body{font-family:var(--sans);background:var(--white);color:var(--b);-webkit-font-smoothing:antialiased;font-size:14px;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:52px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.07)}
+.nav-left{display:flex;align-items:center;gap:0.65rem}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;display:flex;flex-direction:column;gap:4.5px;padding:7px 6px}
+.hamburger span{display:block;width:20px;height:1.5px;background:currentColor}
+.hamburger:hover{color:#fff}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:18px;background:var(--red);flex-shrink:0}
+.nav-logo-text{font-size:0.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.nav-links{display:flex;align-items:center}
+.nav-link{font-size:0.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.38rem 0.85rem;transition:color 0.15s;white-space:nowrap}
+.nav-link:hover{color:#fff}
+.nav-sub{font-family:var(--sans);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.2rem;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.nav-sub:hover{background:var(--red2)}
+@media(max-width:800px){.nav-links{display:none}}
+@media(min-width:900px){nav{padding:0 2.75rem}}
+
+/* SIDEBAR */
 .sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;background:var(--navy);z-index:300;transform:translateX(-280px);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
 .sidebar.open{transform:translateX(0)}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:299}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:299}
 .sb-overlay.open{display:block}
-.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)}
 .sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.sb-logo-bar{width:2px;height:16px;background:var(--accent);flex-shrink:0}
-.sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
-.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:1.4rem;cursor:pointer;line-height:1;padding:0 4px}
-.sb-close:hover{color:var(--white)}
-.sb-section{font-size:0.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:1.25rem 0 0.5rem}
-.sb-link{display:block;padding:0.55rem 0;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
-.sb-link:hover,.sb-link.active{color:var(--white)}
-.sb-link.active{font-weight:600}
-.sb-issue{display:block;padding:0.5rem 0;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s}
-.sb-issue:hover{color:rgba(255,255,255,0.65)}
-.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
-.sb-cta:hover{background:#7a1515}
-nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:62px;gap:1rem;flex-wrap:nowrap}
-.nav-left{display:flex;align-items:center;gap:0.5rem;flex-shrink:0}
-.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.7);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;flex-shrink:0}
-.hamburger span{display:block;width:22px;height:2px;background:currentColor;border-radius:1px;transition:all 0.2s}
-.hamburger:hover{color:var(--white)}
-.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-.nav-logo-bar{width:2px;height:18px;background:var(--accent);flex-shrink:0}
-.nav-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white);white-space:nowrap}
-.nav-links{display:flex;align-items:center;flex-shrink:0}
-.nav-link{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;padding:0.35rem 0.85rem;transition:color 0.2s;white-space:nowrap}
-.nav-link:hover,.nav-link.active{color:var(--white)}
-.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.5rem 1.25rem;cursor:pointer;transition:background 0.2s;white-space:nowrap;flex-shrink:0}
-.nav-sub:hover{background:#7a1515}
-footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255,0.07)}
+.sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
+.sb-logo-text{font-size:0.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.4rem;cursor:pointer;line-height:1}
+.sb-close:hover{color:#fff}
+.sb-section{font-size:0.56rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.25rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.88rem;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color 0.12s}
+.sb-link:hover{color:#fff}
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans);font-size:0.88rem;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.sb-dropdown-btn:hover{color:#fff}
+.sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform 0.2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.4rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color 0.12s}
+.sb-sub-link:hover{color:rgba(255,255,255,0.85)}
+.sb-cta{font-family:var(--sans);font-size:0.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
+.sb-cta:hover{background:var(--red2)}
+
+/* HERO — white, minimal */
+.hero{padding:3rem 2.75rem 2.5rem;border-bottom:1px solid var(--rule)}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end}
+@media(max-width:760px){.hero-inner{grid-template-columns:1fr;gap:1.5rem}}
+.hero-kicker{font-size:0.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gl);margin-bottom:0.85rem}
+.hero-h1{font-family:var(--serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;color:var(--navy);line-height:1.06;letter-spacing:-.02em;margin-bottom:0.85rem}
+.hero-h1 em{font-style:italic;color:var(--red)}
+.hero-deck{font-size:0.88rem;font-weight:300;line-height:1.8;color:var(--gm);max-width:480px}
+/* right: key data in mono */
+.hero-data{display:flex;flex-direction:column;gap:0;border-left:1px solid var(--rule);padding-left:2.5rem}
+@media(max-width:760px){.hero-data{border-left:none;border-top:1px solid var(--rule);padding-left:0;padding-top:1.5rem}}
+.hd-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.5rem 0;border-bottom:1px solid var(--rule2)}
+.hd-row:last-child{border-bottom:none}
+.hd-label{font-size:0.65rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--gl)}
+.hd-val{font-family:var(--mono);font-size:0.78rem;font-weight:600;color:var(--b)}
+.hd-val.grn{color:var(--grn)}
+.hd-val.red{color:var(--red)}
+@media(max-width:767px){.hero{padding:2rem 1.25rem 1.75rem}}
+
+/* TOOLS — the main section */
+.tools-wrap{max-width:1100px;margin:0 auto;padding:0 2.75rem}
+@media(max-width:767px){.tools-wrap{padding:0 1.25rem}}
+
+.section-label{font-size:0.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gl);padding:1.75rem 0 0.85rem;border-bottom:1px solid var(--navy);margin-bottom:0;display:flex;align-items:center;justify-content:space-between}
+.section-label span{font-weight:400;text-transform:none;letter-spacing:0;font-size:0.68rem;color:var(--gl)}
+
+/* 5-col tool grid */
+.tools-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;background:var(--rule);border:1px solid var(--rule);border-top:none;margin-bottom:0}
+@media(max-width:1050px){.tools-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.tools-grid{grid-template-columns:1fr 1fr}}
+
+.tool-card{background:var(--white);padding:1.25rem;text-decoration:none;display:block;transition:background 0.1s;position:relative;border-right:1px solid var(--rule2)}
+.tool-card:last-child{border-right:none}
+.tool-card:hover{background:var(--bg)}
+.tool-card.locked{cursor:pointer}
+
+/* locked state — subtle lock icon overlay on cta */
+.tc-num{font-family:var(--mono);font-size:0.58rem;color:var(--red);letter-spacing:.06em;margin-bottom:0.75rem;display:flex;align-items:center;justify-content:space-between}
+.tc-lock{font-size:0.65rem;color:var(--gl);display:flex;align-items:center;gap:3px}
+.tc-lock svg{opacity:.55}
+.tc-title{font-family:var(--serif);font-size:0.95rem;font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:0.4rem}
+.tc-desc{font-size:0.74rem;font-weight:300;color:var(--gm);line-height:1.55;margin-bottom:0.85rem}
+.tc-meta{font-family:var(--mono);font-size:0.62rem;color:var(--gl);border-top:1px solid var(--rule2);padding-top:0.6rem;line-height:1.5}
+.tc-cta{display:block;margin-top:0.75rem;font-size:0.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+.tool-card.locked .tc-cta{color:var(--gl)}
+
+/* SUBSCRIBE INLINE — shown only on locked hover, light */
+.sub-inline{background:var(--bg);border-top:1px solid var(--rule);padding:0.85rem 2.75rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+@media(max-width:767px){.sub-inline{padding:0.85rem 1.25rem;flex-direction:column;align-items:flex-start}}
+.sub-inline-text{font-size:0.75rem;color:var(--gm);line-height:1.5}
+.sub-inline-text strong{color:var(--navy);font-weight:600}
+.sub-inline-form{display:flex;gap:0;flex-shrink:0}
+.sub-inline-email{font-family:var(--sans);font-size:0.8rem;color:var(--b);background:var(--white);border:1px solid var(--rule);border-right:none;padding:0.45rem 0.85rem;outline:none;width:220px}
+.sub-inline-email::placeholder{color:#bbb}
+.sub-inline-btn{font-family:var(--sans);font-size:0.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--navy);color:#fff;border:none;padding:0.45rem 1rem;cursor:pointer;white-space:nowrap;transition:background 0.15s}
+.sub-inline-btn:hover{background:var(--red)}
+
+/* CONTENT SPLIT */
+.content-wrap{max-width:1100px;margin:0 auto;padding:0 2.75rem}
+@media(max-width:767px){.content-wrap{padding:0 1.25rem}}
+.content-grid{display:grid;grid-template-columns:1fr 300px;gap:0;background:var(--rule);border:1px solid var(--rule);border-top:none}
+@media(max-width:760px){.content-grid{grid-template-columns:1fr}}
+
+/* ISSUES */
+.issues-col{background:var(--white);padding:1.25rem 1.5rem 1.25rem 0}
+@media(max-width:760px){.issues-col{padding:1rem;border-bottom:1px solid var(--rule)}}
+.col-header{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:0.6rem;border-bottom:1px solid var(--navy);margin-bottom:0}
+.col-title{font-size:0.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy)}
+.col-all{font-size:0.65rem;color:var(--gl);text-decoration:none;letter-spacing:.02em}
+.col-all:hover{color:var(--red)}
+
+.ir{display:flex;gap:0.85rem;padding:0.75rem 0;border-bottom:1px solid var(--rule2);text-decoration:none;align-items:flex-start}
+.ir:last-child{border-bottom:none}
+.ir:hover .ir-title{color:var(--red)}
+.ir-num{font-family:var(--mono);font-size:0.6rem;font-weight:600;color:var(--gl);flex-shrink:0;padding-top:2px;width:20px}
+.ir-body{}
+.ir-title{font-size:0.85rem;font-weight:600;color:var(--navy);line-height:1.3;transition:color 0.12s}
+.ir-date{font-family:var(--mono);font-size:0.6rem;color:var(--gl);margin-top:0.2rem;display:block}
+
+/* CASE STUDIES */
+.cs-col{background:var(--bg);padding:1.25rem 0 1.25rem 1.25rem;border-left:1px solid var(--rule)}
+@media(max-width:760px){.cs-col{padding:1rem;border-left:none}}
+.csr{display:block;padding:0.75rem 0;border-bottom:1px solid var(--rule2);text-decoration:none}
+.csr:last-child{border-bottom:none}
+.csr:hover .csr-title{color:var(--red)}
+.csr-top{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.2rem}
+.csr-num{font-family:var(--mono);font-size:0.58rem;color:var(--gl)}
+.csr-badge{font-family:var(--mono);font-size:0.62rem;font-weight:600;color:var(--grn)}
+.csr-badge.fail{color:var(--red)}
+.csr-title{font-size:0.82rem;font-weight:600;color:var(--navy);line-height:1.3;transition:color 0.12s}
+.csr-deck{font-size:0.72rem;color:var(--gm);line-height:1.45;margin-top:0.15rem}
+
+/* FOOTER */
+footer{background:var(--navy);padding:1.5rem 2.75rem;border-top:1px solid rgba(255,255,255,0.06);margin-top:0}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
 .f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
-.f-brand-bar{width:2px;height:14px;background:var(--accent);flex-shrink:0}
-.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-brand-bar{width:2px;height:14px;background:var(--red);flex-shrink:0}
+.f-brand-text{font-size:0.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
 .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
-.f-links a{font-size:0.82rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s}
+.f-links a{font-size:0.72rem;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.15s}
 .f-links a:hover{color:rgba(255,255,255,0.65)}
-.f-copy{font-size:0.7rem;color:rgba(255,255,255,0.2);width:100%;margin-top:0.25rem}
-@media(min-width:900px){nav{padding:0 2.5rem;height:66px}footer{padding:2rem 3rem}}
-@media(max-width:767px){.nav-links{display:none}}
-
-.hero{border-bottom:2px solid var(--navy);padding:4rem 2rem 3rem}
-.hero-inner{max-width:1100px;margin:0 auto}
-.kicker{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
-.kicker-bar{width:20px;height:2px;background:var(--accent);flex-shrink:0}
-.kicker-text{font-size:0.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:700;line-height:1.06;letter-spacing:-.025em;color:var(--navy);margin-bottom:1rem}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero-deck{font-size:1.1rem;font-weight:300;line-height:1.75;color:var(--grey);margin-bottom:1.75rem;max-width:700px}
-.hero-form{display:flex;max-width:420px;margin-top:1.75rem;margin-bottom:0.5rem}
-.hero-email{flex:1;background:var(--white);border:1px solid var(--navy);border-right:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:0.92rem;padding:0.65rem 1rem;outline:none;min-width:0}
-.hero-email::placeholder{color:#bbb}
-.hero-btn{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1px solid var(--accent);padding:0.65rem 1.25rem;cursor:pointer;white-space:nowrap}
-.hero-btn:hover{background:#7a1515}
-.hero-note{font-size:0.72rem;color:var(--grey-light);margin-bottom:0}
-.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:2rem}
-.hs-cell{background:var(--white);padding:1.25rem 1.5rem}
-.hs-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:0.3rem}
-.hs-label{font-size:0.82rem;font-weight:400;color:var(--grey);line-height:1.4;margin-bottom:0.2rem}
-.hs-source{font-size:0.65rem;color:var(--grey-light);font-style:italic}
-.about-strip{background:var(--off-white);border-bottom:1px solid var(--rule);padding:1.25rem 2rem}
-.about-strip-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1.25rem}
-.about-photo{width:50px;height:50px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1px solid var(--rule)}
-.about-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.about-text{flex:1;min-width:0}
-.about-name{font-size:0.9rem;font-weight:600;color:var(--navy)}
-.about-role{font-size:0.8rem;font-weight:300;color:var(--grey)}
-.about-more{font-size:0.78rem;font-weight:600;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--rule);flex-shrink:0}
-.about-more:hover{border-color:var(--navy)}
-.issues-sec{padding:0 2rem;border-bottom:1px solid var(--rule)}
-.issues-inner{max-width:1100px;margin:0 auto}
-.issues-header{display:flex;align-items:baseline;justify-content:space-between;padding:1.75rem 0 0;border-bottom:3px solid var(--navy)}
-.issues-header-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy)}
-.issues-header-sub{font-size:0.75rem;color:var(--grey-light)}
-.issue-row{display:block;padding:1.25rem 0;border-bottom:1px solid var(--rule);text-decoration:none}
-.issue-row:last-child{border-bottom:none}
-.issue-row.published:hover .issue-row-title{text-decoration:underline;text-decoration-color:var(--navy)}
-.issue-row-top{display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;flex-wrap:wrap}
-.issue-row-num{font-size:0.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-.issue-row-cat{font-size:0.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light)}
-.issue-row-date{font-size:0.75rem;color:var(--grey-light);margin-left:auto}
-.issue-row-soon{font-size:0.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);background:var(--rule-light);padding:2px 8px;margin-left:auto}
-.issue-row-title{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,1.85rem);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:0.65rem}
-.issue-row.soon .issue-row-title{color:var(--grey-mid)}
-.issue-row-summary{font-size:1rem;font-weight:300;color:var(--grey);line-height:1.7;max-width:800px}
-.issue-row.soon .issue-row-summary{color:var(--grey-light)}
-.issue-row-read{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--navy);margin-top:0.85rem}
-.why-sec{background:var(--off-white);border-bottom:1px solid var(--rule);padding:3rem 2rem}
-.why-inner{max-width:1100px;margin:0 auto}
-.why-eyebrow{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.85rem;display:flex;align-items:center;gap:8px}
-.why-eyebrow::before{content:'';width:16px;height:2px;background:var(--accent);flex-shrink:0}
-.why-h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.85rem}
-.why-intro{font-size:1rem;font-weight:300;line-height:1.8;color:var(--grey);margin-bottom:2rem;max-width:700px}
-.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
-.why-card{background:var(--white);padding:1.75rem 1.5rem}
-.why-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:0.3rem}
-.why-label{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.4rem}
-.why-text{font-size:0.92rem;font-weight:300;color:var(--grey);line-height:1.6}
-.sub-sec{padding:2.5rem 2rem;border-bottom:1px solid var(--rule)}
-.sub-inner{max-width:560px;margin:0 auto;text-align:center}
-.sub-h2{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.5rem}
-.sub-h2 em{font-style:italic;color:var(--accent)}
-.sub-p{font-size:0.9rem;font-weight:300;color:var(--grey);margin-bottom:1.25rem;line-height:1.6}
-.sub-form{display:flex;max-width:440px;margin:0 auto 0.6rem}
-.sub-email{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.65rem 1rem;outline:none;min-width:0}
-.sub-email::placeholder{color:#bbb}
-.sub-btn{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1.5px solid var(--accent);padding:0.65rem 1.25rem;cursor:pointer;white-space:nowrap}
-.sub-btn:hover{background:#7a1515}
-.sub-note{font-size:0.75rem;color:var(--grey-light)}
-.mobile-sticky{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:2px solid var(--navy);padding:0.75rem 1.25rem;z-index:150;box-shadow:0 -4px 16px rgba(0,0,0,0.08)}
-.mobile-sticky form{display:flex;width:100%}
-.mobile-sticky input{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--black);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.75rem 1rem;outline:none;min-width:0}
-.mobile-sticky button{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:var(--white);border:1.5px solid var(--accent);padding:0.75rem 1.1rem;cursor:pointer;white-space:nowrap}
-@media(min-width:900px){.hero{padding:5rem 3rem 4rem}.about-strip,.issues-sec,.why-sec,.sub-sec{padding-left:3rem;padding-right:3rem}}
-@media(max-width:767px){body{font-size:16px}.hero{padding:2.5rem 1.5rem 2rem}.about-strip,.issues-sec,.why-sec,.sub-sec{padding-left:1.5rem;padding-right:1.5rem}.hero-form{flex-direction:column}.hero-email{border-right:1.5px solid var(--navy);border-bottom:none}.hero-btn{border-top:none}.hero-stats{grid-template-columns:1fr}.hs-num{font-size:1.8rem}.why-grid{grid-template-columns:1fr 1fr}.sub-form{flex-direction:column}.sub-email{border-right:1.5px solid var(--navy);border-bottom:none}.sub-btn{border-top:none}.mobile-sticky{display:block}}
-
-.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.06)}
-.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.65);font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:400;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left}
-.sb-dropdown-btn:hover{color:var(--white)}
-.sb-arrow{font-size:0.75rem;color:rgba(255,255,255,0.3);transition:transform 0.2s}
-.sb-arrow.open{transform:rotate(180deg)}
-.sb-dropdown-items{display:none;padding-bottom:0.5rem}
-.sb-dropdown-items.open{display:block}
-.sb-sub-link{display:block;padding:0.35rem 0 0.35rem 0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;line-height:1.4;transition:color 0.2s}
-.sb-sub-link:hover{color:rgba(255,255,255,0.8)}
-.sb-sub-link.muted{color:rgba(255,255,255,0.28)}
+.f-copy{font-size:0.62rem;color:rgba(255,255,255,0.15);width:100%;margin-top:0.2rem}
+@media(max-width:767px){footer{padding:1.5rem 1.25rem}}
 </style>
 </head>
 <body>
@@ -175,6 +202,9 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
     <div class="sb-dropdown-items" id="dropDash">
       <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
       <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
+      <a href="/exit-calculator" class="sb-sub-link" onclick="closeSidebar()">Exit Value Calculator</a>
+      <a href="/country-index" class="sb-sub-link" onclick="closeSidebar()">Transaction Cost Index</a>
+      <a href="/advisors" class="sb-sub-link" onclick="closeSidebar()">Advisor Directory</a>
     </div>
   </div>
   <div class="sb-section">Info</div>
@@ -184,117 +214,250 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 
 <nav>
   <div class="nav-left">
-    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="hamburger" onclick="openSidebar()"><span></span><span></span><span></span></button>
     <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
   </div>
-    <div class="nav-links">
+  <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
     <a href="/issues" class="nav-link">Issues</a>
     <a href="/case-studies" class="nav-link">Case Studies</a>
     <a href="/multiples" class="nav-link">Multiples</a>
-    <a href="/wacc" class="nav-link">WACC</a>
+    <a href="/exit-calculator" class="nav-link">Exit</a>
+    <a href="/advisors" class="nav-link">Advisors</a>
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="kicker"><div class="kicker-bar"></div><div class="kicker-text">Buy-side M&A · Written from the deal room</div></div>
-    <h1>M&A from the inside.<br><em>One deal per week.</em></h1>
-    <p class="hero-deck">The side of the table you never see.</p>
-  </div>
-</div>
-
-<div class="about-strip">
-  <div class="about-strip-inner">
-    <div class="about-photo" style="background:var(--navy);display:flex;align-items:center;justify-content:center"><span style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--white)">M</span></div>
-    <div class="about-text">
-      <div class="about-name">The Editor</div>
-      <div class="about-role">M&A and Business Development · Passed CFA Level II · Buy-side analyst</div>
+    <div>
+      <div class="hero-kicker">M&A Intelligence · Buy-side · European SME</div>
+      <h1 class="hero-h1">The buy-side view.<br><em>Free tools. Real data.</em></h1>
+      <p class="hero-deck">Five tools. Weekly analysis. Written by a buy-side analyst for founders and professionals who need to understand how deals actually get priced.</p>
     </div>
-    <a href="/about" class="about-more">Full profile →</a>
-  </div>
-</div>
-
-<div class="issues-sec">
-  <div class="issues-inner">
-    <div class="issues-header">
-      <div class="issues-header-title">Issues</div>
-    </div>
-    <a href="/issue-01" class="issue-row published" style="display:block">
-      <div class="issue-row-top"><span class="issue-row-num">No. 01</span><span class="issue-row-cat">Valuation</span><span class="issue-row-date">March 2026</span></div>
-      <div class="issue-row-title">Your business is not worth what you put into it.</div>
-      <div class="issue-row-summary">The first thing a buyer does is recast your P&L. Every add-back, every owner expense, every one-off cost gets scrutinised before they build a number. Most founders find out what that number is when it's too late to change it.</div>
-      <div class="issue-row-read">Read →</div>
-    </a>
-    <a href="/issue-02" class="issue-row published" style="display:block">
-      <div class="issue-row-top"><span class="issue-row-num">No. 02</span><span class="issue-row-cat">M&A Process</span><span class="issue-row-date">April 2026</span></div>
-      <div class="issue-row-title">Why most SME sales take 3 years. and how to cut that to 12 months.</div>
-      <div class="issue-row-summary">It's not the market. It's not the buyer. It's the seller. who starts the process before they're ready, and spends the next 18 months fixing things that should have been fixed before the first conversation.</div>
-      <div class="issue-row-read">Read →</div>
-    </a>
-    <a href="/issue-03" class="issue-row published" style="display:block">
-      <div class="issue-row-top"><span class="issue-row-num">No. 03</span><span class="issue-row-cat">Due Diligence</span><span class="issue-row-date">April 2026</span></div>
-      <div class="issue-row-title">The 5 things a buyer checks in the first 48 hours of due diligence.</div>
-      <div class="issue-row-summary">Due diligence is not a formality. It's the moment the price gets renegotiated. or the deal dies. Five things, checked fast, before the buyer decides whether to keep going.</div>
-      <div class="issue-row-read">Read →</div>
-    </a>
-    <a href="/issue-04" class="issue-row published" style="display:block">
-      <div class="issue-row-top"><span class="issue-row-num">No. 04</span><span class="issue-row-cat">Buyer Psychology</span><span class="issue-row-date">May 2026</span></div>
-      <div class="issue-row-title">Why your business sells to someone you already know. and how to find them.</div>
-      <div class="issue-row-summary">Most SME transactions happen through existing relationships. The buyer who pays a premium and moves fast is already in your network. The question is whether you've mapped them yet.</div>
-      <div class="issue-row-read">Read →</div>
-    </a>
-  </div>
-</div>
-
-<div class="why-sec">
-  <div class="why-inner">
-    <div class="why-eyebrow">The numbers</div>
-    <h2 class="why-h2">Most business owners sell once.<br>Buyers do it for a living.</h2>
-    <p class="why-intro">Buyers acquire businesses for a living. Most founders sell once. That asymmetry. in knowledge, preparation, and leverage. is where value disappears. M&A Intelligence brings the buy-side view to the other side of the table.</p>
-    <div class="why-grid">
-      <div class="why-card"><div class="why-num">70%</div><div class="why-label">SME sales that never close</div><div class="why-text">Most fail before a buyer makes a formal offer. Almost always preventable.</div></div>
-      <div class="why-card"><div class="why-num">23%</div><div class="why-label">Value left on the table</div><div class="why-text">Unprepared sellers accept an average 23% discount vs. a structured process.</div></div>
-      <div class="why-card"><div class="why-num">1 in 3</div><div class="why-label">Lost in due diligence</div><div class="why-text">After months of process and legal fees. Almost always visible 18 months earlier.</div></div>
-      <div class="why-card"><div class="why-num">4× vs 8×</div><div class="why-label">The multiple gap</div><div class="why-text">On CHF 1M EBITDA, the difference between a bad and a good exit is CHF 4 million.</div></div>
+    <div class="hero-data">
+      <div class="hd-row"><span class="hd-label">Software EV/EBITDA</span><span class="hd-val grn">24.5×</span></div>
+      <div class="hd-row"><span class="hd-label">Industrials EV/EBITDA</span><span class="hd-val">16.2×</span></div>
+      <div class="hd-row"><span class="hd-label">Logistics EV/EBITDA</span><span class="hd-val">12.6×</span></div>
+      <div class="hd-row"><span class="hd-label">SME private discount</span><span class="hd-val red">−30%</span></div>
+      <div class="hd-row"><span class="hd-label">Advisory fee (€5M deal)</span><span class="hd-val red">5.5%</span></div>
+      <div class="hd-row"><span class="hd-label">CH capital gains tax</span><span class="hd-val grn">0%</span></div>
     </div>
   </div>
 </div>
 
+<!-- TOOLS -->
+<div class="tools-wrap">
+  <div class="section-label">
+    Dashboard — five tools
+    <span>Damodaran Jan 2026 · Firmex/DealCircle 2024–2025</span>
+  </div>
+</div>
+<div class="tools-wrap" style="padding-top:0;padding-bottom:0">
+  <div class="tools-grid">
+
+    <!-- 01 MULTIPLES — free -->
+    <a href="/multiples" class="tool-card">
+      <div class="tc-num">
+        <span>01 · MULTIPLES</span>
+        <span style="font-size:0.55rem;color:var(--grn);font-weight:700;letter-spacing:.08em">FREE</span>
+      </div>
+      <div class="tc-title">Valuation Multiples</div>
+      <div class="tc-desc">EV/EBITDA by sector, 2019–2026. US & Europe. Cycle position. Compare sectors.</div>
+      <div class="tc-meta">39 sectors · Damodaran</div>
+      <span class="tc-cta">Open →</span>
+    </a>
+
+    <!-- 02 WACC — locked -->
+    <div class="tool-card locked" onclick="showSubPrompt()">
+      <div class="tc-num">
+        <span>02 · WACC</span>
+        <span class="tc-lock">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="2" y="4.5" width="6" height="4.5" rx="0.5" stroke="currentColor" stroke-width="1"/><path d="M3.5 4.5V3a1.5 1.5 0 013 0v1.5" stroke="currentColor" stroke-width="1"/></svg>
+          Subscribers
+        </span>
+      </div>
+      <div class="tc-title">WACC Calculator</div>
+      <div class="tc-desc">Cost of capital from Damodaran ERP + sector beta. 55 countries. Links to DCF.</div>
+      <div class="tc-meta">55 countries · 39 sectors</div>
+      <span class="tc-cta" style="color:var(--gl)">Subscribe to access →</span>
+    </div>
+
+    <!-- 03 EXIT — locked -->
+    <div class="tool-card locked" onclick="showSubPrompt()">
+      <div class="tc-num">
+        <span>03 · EXIT VALUE</span>
+        <span class="tc-lock">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="2" y="4.5" width="6" height="4.5" rx="0.5" stroke="currentColor" stroke-width="1"/><path d="M3.5 4.5V3a1.5 1.5 0 013 0v1.5" stroke="currentColor" stroke-width="1"/></svg>
+          Subscribers
+        </span>
+      </div>
+      <div class="tc-title">Exit Calculator</div>
+      <div class="tc-desc">EBITDA → add-backs → multiple → equity bridge → net proceeds. Sensitivity table.</div>
+      <div class="tc-meta">37 sectors · dynamic</div>
+      <span class="tc-cta" style="color:var(--gl)">Subscribe to access →</span>
+    </div>
+
+    <!-- 04 COST INDEX — locked -->
+    <div class="tool-card locked" onclick="showSubPrompt()">
+      <div class="tc-num">
+        <span>04 · COST INDEX</span>
+        <span class="tc-lock">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="2" y="4.5" width="6" height="4.5" rx="0.5" stroke="currentColor" stroke-width="1"/><path d="M3.5 4.5V3a1.5 1.5 0 013 0v1.5" stroke="currentColor" stroke-width="1"/></svg>
+          Subscribers
+        </span>
+      </div>
+      <div class="tc-title">Transaction Costs</div>
+      <div class="tc-desc">Advisory, legal, DD, CGT, stamp duty by country. 20 European jurisdictions.</div>
+      <div class="tc-meta">20 countries · 2025–2026</div>
+      <span class="tc-cta" style="color:var(--gl)">Subscribe to access →</span>
+    </div>
+
+    <!-- 05 ADVISORS — locked -->
+    <div class="tool-card locked" onclick="showSubPrompt()" style="border-right:none">
+      <div class="tc-num">
+        <span>05 · DIRECTORY</span>
+        <span class="tc-lock">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="2" y="4.5" width="6" height="4.5" rx="0.5" stroke="currentColor" stroke-width="1"/><path d="M3.5 4.5V3a1.5 1.5 0 013 0v1.5" stroke="currentColor" stroke-width="1"/></svg>
+          Subscribers
+        </span>
+      </div>
+      <div class="tc-title">Advisor Directory</div>
+      <div class="tc-desc">20 European sell-side advisors. Filter by country, size, sector. Curated, no sponsorship.</div>
+      <div class="tc-meta">20 firms · boutique/bank/big4</div>
+      <span class="tc-cta" style="color:var(--gl)">Subscribe to access →</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- SUBSCRIBE PROMPT — shown when locked tool clicked -->
+<div class="sub-inline" id="subPrompt" style="display:none">
+  <div class="sub-inline-text"><strong>Subscribe free</strong> to access all five tools — WACC, Exit Calculator, Cost Index, and Advisor Directory. Takes 10 seconds.</div>
+  <form class="sub-inline-form" onsubmit="handleSub(event)">
+    <input type="email" class="sub-inline-email" placeholder="your@email.com" required id="subEmail">
+    <button type="submit" class="sub-inline-btn">Subscribe →</button>
+  </form>
+</div>
+
+<!-- EDITORIAL -->
+<div class="content-wrap">
+  <div class="section-label">
+    Editorial
+    <span>Issues · Case Studies · Buy-side perspective</span>
+  </div>
+</div>
+<div class="content-wrap" style="padding-top:0;padding-bottom:0">
+  <div class="content-grid">
+
+    <div class="issues-col">
+      <div class="col-header">
+        <span class="col-title">Issues — Weekly analysis</span>
+        <a href="/issues" class="col-all">All issues →</a>
+      </div>
+      <a href="/issue-04" class="ir">
+        <span class="ir-num">04</span>
+        <div class="ir-body">
+          <div class="ir-title">Why your business sells to someone you know</div>
+          <span class="ir-date">May 2026</span>
+        </div>
+      </a>
+      <a href="/issue-03" class="ir">
+        <span class="ir-num">03</span>
+        <div class="ir-body">
+          <div class="ir-title">What a buyer checks in 48 hours</div>
+          <span class="ir-date">Apr 2026</span>
+        </div>
+      </a>
+      <a href="/issue-02" class="ir">
+        <span class="ir-num">02</span>
+        <div class="ir-body">
+          <div class="ir-title">Why most SME sales take 3 years</div>
+          <span class="ir-date">Apr 2026</span>
+        </div>
+      </a>
+      <a href="/issue-01" class="ir">
+        <span class="ir-num">01</span>
+        <div class="ir-body">
+          <div class="ir-title">Your business is not worth what you think</div>
+          <span class="ir-date">Mar 2026</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="cs-col">
+      <div class="col-header">
+        <span class="col-title">Case Studies</span>
+        <a href="/case-studies" class="col-all">All →</a>
+      </div>
+      <a href="/case-study-04" class="csr">
+        <div class="csr-top"><span class="csr-num">04</span><span class="csr-badge">14.5×</span></div>
+        <div class="csr-title">UPS / Frigo-Trans</div>
+        <div class="csr-deck">Strategic premium in cold chain logistics</div>
+      </a>
+      <a href="/case-study-03" class="csr">
+        <div class="csr-top"><span class="csr-num">03</span><span class="csr-badge fail">Collapsed</span></div>
+        <div class="csr-title">Deal killed in due diligence</div>
+        <div class="csr-deck">What the buyer found that ended a €12M deal</div>
+      </a>
+      <a href="/case-study-02" class="csr">
+        <div class="csr-top"><span class="csr-num">02</span><span class="csr-badge">4× vs 7×</span></div>
+        <div class="csr-title">DACH Manufacturer</div>
+        <div class="csr-deck">Same business, two buyers, 3× multiple gap</div>
+      </a>
+      <a href="/case-study-01" class="csr">
+        <div class="csr-top"><span class="csr-num">01</span><span class="csr-badge">7.5×</span></div>
+        <div class="csr-title">DSV / DB Schenker</div>
+        <div class="csr-deck">€14.3B logistics deal deconstructed</div>
+      </a>
+    </div>
+
+  </div>
+</div>
 
 <footer>
   <div class="footer-inner">
     <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
-        <div class="f-links">
+    <div class="f-links">
       <a href="/about">About</a>
       <a href="/issues">Issues</a>
       <a href="/case-studies">Case Studies</a>
       <a href="/multiples">Multiples</a>
       <a href="/wacc">WACC</a>
+      <a href="/exit-calculator">Exit</a>
+      <a href="/country-index">Cost Index</a>
+      <a href="/advisors">Advisors</a>
       <a data-email href="#">Contact</a>
     </div>
     <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function openSidebar(){
-  document.getElementById('sidebar').classList.add('open');
-  document.getElementById('sbOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
+<script>
+function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
+function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');}
+
+function showSubPrompt(){
+  var p=document.getElementById('subPrompt');
+  p.style.display='flex';
+  p.scrollIntoView({behavior:'smooth',block:'nearest'});
+  document.getElementById('subEmail').focus();
 }
-function closeSidebar(){
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sbOverlay').classList.remove('open');
-  document.body.style.overflow='';
-}
+
 function handleSub(e){
   e.preventDefault();
-  var inp=e.target.querySelector('input[type=email]');
-  var btn=e.target.querySelector('button[type=submit]')||e.target.querySelector('button');
+  var inp=document.getElementById('subEmail');
+  var btn=e.target.querySelector('button');
   window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(inp.value),'_blank');
-  var orig=btn.textContent;btn.textContent='✓ Opening Beehiiv...';inp.value='';
-  setTimeout(function(){btn.textContent=orig},3000);
+  btn.textContent='✓ Done';inp.value='';
+  setTimeout(()=>{btn.textContent='Subscribe →';},3000);
 }
-window.addEventListener('DOMContentLoaded',fu
+
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('[data-email]').forEach(function(el){el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com';});
+});
+</script>
+</body>
+</html>
