@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cost of Capital Calculator · M&A Intelligence</title>
+<meta name="description" content="Build your WACC using Damodaran data or your own inputs. Estimate enterprise value via multiples and DCF. Free M&A tool.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFDF7;
+  --off-white:#F5F0E8;
+  --paper:#EDE8DC;
+  --navy:#0F1F3D;--navy-mid:#1B2F52;
+  --rule:#C8BFA8;--rule-light:#DDD7C8;
+  --black:#1A1A1A;--grey:#333333;--grey-mid:#555555;--grey-light:#777777;
+  --accent:#8B1A1A;--accent-dark:#6e1414;--accent-light:#f9eaea;
+  --green:#145214;--green-bg:#e6f3e6;
+  --amber:#6b4200;--amber-bg:#fdf0d8;
+  --blue:#1a4a1a;--blue-bg:#e8f3e8;
+  /* result panel stays navy for contrast */
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;gap:1rem}
+.nav-left{display:flex;align-items:center;gap:0.75rem}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.6);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px 6px}
+.hamburger span{display:block;width:22px;height:1.5px;background:currentColor}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-bar{width:2px;height:20px;background:var(--accent);flex-shrink:0}
+.nav-logo-text{font-size:0.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--white);white-space:nowrap}
+.nav-links{display:flex;align-items:center}
+.nav-link{font-size:0.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;padding:0.4rem 0.9rem;transition:color 0.2s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--white)}
+.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.55rem 1.35rem;cursor:pointer;transition:background 0.2s;white-space:nowrap}
+.nav-sub:hover{background:var(--accent-dark)}
+@media(max-width:767px){.nav-links{display:none}}
+@media(min-width:900px){nav{padding:0 2.75rem}}
+
+/* SIDEBAR */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:300px;background:var(--navy);z-index:300;transform:translateX(-300px);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:2rem 1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:299}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sb-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.sb-logo-bar{width:2px;height:18px;background:var(--accent);flex-shrink:0}
+.sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--white)}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.5rem;cursor:pointer;line-height:1;padding:4px}
+.sb-section{font-size:0.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin:1.5rem 0 0.6rem}
+.sb-link{display:block;padding:0.6rem 0;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color 0.15s}
+.sb-link:hover,.sb-link.active{color:var(--white)}
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0.6rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.sb-dropdown-btn:hover{color:var(--white)}
+.sb-arrow{font-size:0.7rem;color:rgba(255,255,255,0.28);transition:transform 0.2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.5rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.35rem 0 0.35rem 0.85rem;font-size:0.82rem;color:rgba(255,255,255,0.4);text-decoration:none;line-height:1.45;transition:color 0.15s}
+.sb-sub-link:hover{color:rgba(255,255,255,0.85)}
+.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.85rem;width:100%;cursor:pointer;margin-top:2rem;transition:background 0.2s}
+.sb-cta:hover{background:var(--accent-dark)}
+
+/* HERO */
+.hero{background:var(--paper);padding:3rem 2.5rem 2.5rem;border-bottom:2px solid var(--navy)}
+.hero-inner{max-width:1100px;margin:0 auto}
+.kicker{display:flex;align-items:center;gap:10px;margin-bottom:0.85rem}
+.kicker-bar{width:24px;height:2px;background:var(--accent);flex-shrink:0}
+.kicker-text{font-size:0.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;line-height:1.08;color:var(--navy);margin-bottom:0.65rem}
+.hero h1 em{font-style:italic;color:var(--grey-mid)}
+.hero-deck{font-size:0.92rem;font-weight:400;line-height:1.75;color:var(--grey);max-width:680px}
+.formula-strip{margin-top:1.25rem;padding:1rem 1.25rem;background:var(--white);border:1.5px solid var(--rule);border-left:3px solid var(--accent);font-size:0.82rem;color:var(--grey);line-height:2}
+.formula-strip .f{font-weight:700;color:var(--navy);font-size:0.92rem}
+.formula-strip .dim{color:var(--grey-mid);font-size:0.75rem}
+@media(min-width:900px){.hero{padding:3.5rem 3rem 3rem}}
+
+/* LAYOUT */
+.page{max-width:1100px;margin:0 auto;padding:2rem 2.5rem 5rem;display:grid;grid-template-columns:1fr 360px;gap:1.75rem;align-items:start}
+@media(max-width:900px){.page{grid-template-columns:1fr;padding:1.5rem 1.25rem 4rem}}
+
+/* ── RESULT PANEL ── */
+.result-panel{background:var(--navy);position:sticky;top:80px;border:2px solid var(--navy)}
+@media(max-width:900px){.result-panel{position:static;order:-1}}
+.result-header{padding:1.5rem;border-bottom:2px solid rgba(255,255,255,0.12)}
+.result-eyebrow{font-size:0.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:0.4rem}
+.result-wacc{font-family:'Playfair Display',serif;font-size:3.4rem;font-weight:700;color:#fff;line-height:1}
+.result-wacc-ctx{font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:0.35rem}
+.result-body{padding:1.25rem 1.5rem}
+.result-block{margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.1)}
+.result-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.result-block-title{font-size:0.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:0.7rem}
+.result-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.4rem 0}
+.result-row-label{font-size:0.8rem;color:rgba(255,255,255,0.6)}
+.result-row-val{font-size:0.9rem;font-weight:700;color:#fff}
+.result-row-val.muted{color:rgba(255,255,255,0.55);font-weight:400}
+/* wacc bar */
+.wacc-bar-track{height:8px;background:rgba(255,255,255,0.12);margin:0.75rem 0 0.35rem;overflow:hidden}
+.wacc-bar-fill{height:100%;background:var(--accent);transition:width 0.4s}
+.wacc-bar-labels{display:flex;justify-content:space-between;font-size:0.65rem;color:rgba(255,255,255,0.35)}
+/* valuation block */
+.val-big{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:#fff;line-height:1;margin-bottom:0.2rem}
+.val-sub{font-size:0.75rem;color:rgba(255,255,255,0.5)}
+.val-range{font-size:0.8rem;color:rgba(255,255,255,0.55);margin-top:0.35rem}
+/* interpretation */
+.interpretation{padding:1rem 1.25rem;background:rgba(255,255,255,0.06);border-left:3px solid var(--accent);font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.65;margin-top:0.75rem}
+.interpretation strong{color:#fff}
+
+/* ── INPUT SECTION ── */
+.input-section{background:var(--white);border:2px solid var(--rule);margin-bottom:1.25rem;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.input-section-header{padding:1rem 1.5rem;border-bottom:2px solid var(--rule);display:flex;align-items:center;gap:0.85rem;background:var(--paper)}
+.input-section-num{width:26px;height:26px;background:var(--navy);color:#fff;font-size:0.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.input-section-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--navy);flex:1}
+/* mode toggle pill */
+.mode-pill{display:flex;border:1.5px solid var(--navy);overflow:hidden;flex-shrink:0}
+.mode-btn{font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--navy);border:none;padding:0.35rem 0.85rem;cursor:pointer;transition:all 0.15s;white-space:nowrap}
+.mode-btn.active{background:var(--navy);color:#fff}
+.input-section-body{padding:1.5rem}
+
+/* damodaran ref strip */
+.damo-ref{background:var(--paper);border:1.5px solid var(--rule);padding:0.7rem 0.9rem;margin-bottom:1rem;font-size:0.78rem;color:var(--grey);display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap}
+.damo-ref-label{font-weight:700;color:var(--navy);font-size:0.68rem;letter-spacing:.08em;text-transform:uppercase;margin-right:0.25rem}
+.damo-ref-val{background:var(--white);border:1.5px solid var(--rule);padding:2px 8px;font-weight:700;color:var(--black);white-space:nowrap;font-size:0.82rem}
+.damo-ref.hidden{display:none}
+
+/* form elements */
+.form-row{margin-bottom:1.1rem}
+.form-row:last-child{margin-bottom:0}
+.form-label{font-size:0.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);margin-bottom:0.45rem;display:flex;align-items:center;justify-content:space-between}
+.form-label-right{font-weight:400;text-transform:none;letter-spacing:0;color:var(--grey-light);font-size:0.68rem}
+.form-select,.form-input{width:100%;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:var(--black);background:var(--white);border:1.5px solid var(--rule);padding:0.6rem 0.85rem;outline:none;transition:border-color 0.2s;font-weight:500}
+.form-select:focus,.form-input:focus{border-color:var(--navy);background:#fff}
+.form-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23333' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.85rem center;padding-right:2.2rem}
+.form-input.own{border-color:var(--blue);background:#edf5ed;color:var(--blue)}
+.form-input.locked{background:var(--paper);color:var(--grey-mid);pointer-events:none;border-style:dashed}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.input-unit{display:flex;align-items:center;gap:0.5rem}
+.input-unit .form-input{flex:1}
+.unit-label{font-size:0.88rem;font-weight:600;color:var(--grey);white-space:nowrap}
+/* absolute inputs for capital structure */
+.abs-inputs{display:none}
+.abs-inputs.visible{display:block}
+.pct-inputs{display:block}
+.pct-inputs.hidden{display:none}
+/* hint note */
+.hint{font-size:0.78rem;color:var(--grey-mid);margin-top:0.45rem;line-height:1.55}
+.hint strong{color:var(--black);font-weight:600}
+.hint.blue{background:var(--blue-bg);border-left:3px solid var(--blue);padding:0.6rem 0.75rem;color:var(--blue)}
+.hint.amber{background:var(--amber-bg);border-left:3px solid var(--amber);padding:0.6rem 0.75rem;color:var(--amber)}
+/* computed badge */
+.computed-badge{display:inline-flex;align-items:center;gap:4px;font-size:0.7rem;font-weight:600;padding:3px 8px;margin-top:0.4rem}
+.computed-badge.damo{background:var(--paper);color:var(--grey);border:1px solid var(--rule)}
+.computed-badge.own{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue)}
+
+/* divider */
+.or-divider{display:flex;align-items:center;gap:0.75rem;margin:0.85rem 0;color:var(--grey-light);font-size:0.75rem}
+.or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:var(--rule)}
+
+/* source note */
+.source-note{background:var(--white);border:1.5px solid var(--rule);padding:1.25rem 1.5rem;font-size:0.78rem;color:var(--grey);line-height:1.7;margin-bottom:1.25rem}
+.source-note strong{font-weight:700;color:var(--black)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.f-brand{display:flex;align-items:center;gap:8px;text-decoration:none}
+.f-brand-bar{width:2px;height:16px;background:var(--accent);flex-shrink:0}
+.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-links{display:flex;gap:1.75rem;flex-wrap:wrap}
+.f-links a{font-size:0.78rem;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.2s}
+.f-links a:hover{color:rgba(255,255,255,0.65)}
+.f-copy{font-size:0.68rem;color:rgba(255,255,255,0.18);width:100%;margin-top:0.25rem}
+@media(min-width:900px){footer{padding:2.5rem 3rem}}
+</style>
+</head>
+<body>
+
+<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sb-top">
+    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">×</button>
+  </div>
+  <div class="sb-section">Navigate</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
+    <div class="sb-dropdown-items" id="dropIssues">
+      <a href="/issue-01" class="sb-sub-link">01. Your business is not worth what you think</a>
+      <a href="/issue-02" class="sb-sub-link">02. Why most SME sales take 3 years</a>
+      <a href="/issue-03" class="sb-sub-link">03. What a buyer checks in 48 hours</a>
+      <a href="/issue-04" class="sb-sub-link">04. Why your business sells to someone you know</a>
+    </div>
+  </div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')"><span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span></button>
+    <div class="sb-dropdown-items" id="dropCS">
+      <a href="/case-study-01" class="sb-sub-link">01. DSV / DB Schenker · 7.5×</a>
+      <a href="/case-study-02" class="sb-sub-link">02. DACH manufacturer · 4× vs 7×</a>
+    </div>
+  </div>
+  <a href="/multiples" class="sb-link">Multiples</a>
+  <a href="/wacc" class="sb-link active">WACC Calculator</a>
+  <a href="/about" class="sb-link">About</a>
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free →</button>
+</div>
+
+<nav>
+  <div class="nav-left">
+    <button class="hamburger" onclick="openSidebar()"><span></span><span></span><span></span></button>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+  </div>
+  <div class="nav-links">
+    <a href="/about" class="nav-link">About</a>
+    <a href="/issues" class="nav-link">Issues</a>
+    <a href="/case-studies" class="nav-link">Case Studies</a>
+    <a href="/multiples" class="nav-link">Multiples</a>
+    <a href="/wacc" class="nav-link active">WACC</a>
+  </div>
+  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="kicker"><div class="kicker-bar"></div><div class="kicker-text">Damodaran Data · Jan 2026</div></div>
+    <h1>Cost of Capital.<br><em>Built on real data.</em></h1>
+    <p class="hero-deck">Select country and sector — Damodaran's ERP and beta load automatically. Override any input with your own figures: term sheet rate, audited D/E, analyst beta. Results update instantly.</p>
+    <div class="formula-strip">
+      <span class="f">WACC = Ke × E/(D+E) + Kd×(1−t) × D/(D+E)</span><br>
+      <span class="dim">Ke = Rf + β<sub>L</sub> × ERP &nbsp;·&nbsp; β<sub>L</sub> = β<sub>U</sub> × [1+(1−t)×D/E] &nbsp;·&nbsp; EV ≈ EBITDA × sector multiple &nbsp;or&nbsp; FCF / WACC</span>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+<div class="inputs-col">
+
+<!-- ── SECTION 1: COUNTRY & ERP ── -->
+<div class="input-section">
+  <div class="input-section-header">
+    <div class="input-section-num">1</div>
+    <div class="input-section-title">Country & ERP</div>
+    <div class="mode-pill">
+      <button class="mode-btn active" id="erpModeDamo" onclick="setMode('erp','damo')">Damodaran</button>
+      <button class="mode-btn" id="erpModeOwn" onclick="setMode('erp','own')">Own input</button>
+    </div>
+  </div>
+  <div class="input-section-body">
+    <!-- Damodaran mode -->
+    <div id="erpDamoBlock">
+      <div class="form-row">
+        <div class="form-label">Country of operation</div>
+        <select class="form-select" id="countrySelect" onchange="onCountryChange()"></select>
+      </div>
+      <div id="countryRefStrip" class="damo-ref hidden">
+        <span class="damo-ref-label">Moody's</span><span class="damo-ref-val" id="refRating">—</span>
+        <span class="damo-ref-label" style="margin-left:0.5rem">Total ERP</span><span class="damo-ref-val" id="refERP">—</span>
+        <span class="damo-ref-label" style="margin-left:0.5rem">Corp. tax</span><span class="damo-ref-val" id="refTax">—</span>
+      </div>
+    </div>
+    <!-- Own mode -->
+    <div id="erpOwnBlock" style="display:none">
+      <div class="hint blue" style="margin-bottom:0.85rem"><strong>Own input mode.</strong> Enter your ERP estimate directly. Reference: mature market ERP = 4.23% (Damodaran Jan 2026).</div>
+    </div>
+    <!-- Shared fields -->
+    <div class="form-grid" style="margin-top:0.85rem">
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">Risk-free rate <span class="form-label-right">10Y govt bond</span></div>
+        <div class="input-unit"><input type="number" class="form-input" id="rfRate" value="3.80" step="0.05" min="0" max="20" onchange="calc()"><span class="unit-label">%</span></div>
+        <div class="hint" style="margin-top:0.35rem">EUR 3.8% · USD 4.2% · GBP 4.1%</div>
+      </div>
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">Equity risk premium <span class="form-label-right" id="erpSourceLabel">auto-filled</span></div>
+        <div class="input-unit"><input type="number" class="form-input locked" id="erpInput" value="4.23" step="0.01" min="0" max="50" onchange="calc()"><span class="unit-label">%</span></div>
+        <div id="erpBadge" class="computed-badge damo">↑ Damodaran Jan 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 2: SECTOR & BETA ── -->
+<div class="input-section">
+  <div class="input-section-header">
+    <div class="input-section-num">2</div>
+    <div class="input-section-title">Sector & Beta</div>
+    <div class="mode-pill">
+      <button class="mode-btn active" id="betaModeDamo" onclick="setMode('beta','damo')">Damodaran</button>
+      <button class="mode-btn" id="betaModeOwn" onclick="setMode('beta','own')">Own input</button>
+    </div>
+  </div>
+  <div class="input-section-body">
+    <div id="betaDamoBlock">
+      <div class="form-row">
+        <div class="form-label">Sector</div>
+        <select class="form-select" id="sectorSelect" onchange="onSectorChange()"></select>
+      </div>
+      <div id="sectorRefStrip" class="damo-ref hidden">
+        <span class="damo-ref-label">β unlevered</span><span class="damo-ref-val" id="refBeta">—</span>
+        <span class="damo-ref-label" style="margin-left:0.5rem">Sector D/E</span><span class="damo-ref-val" id="refDE">—</span>
+        <span class="damo-ref-label" style="margin-left:0.5rem">Firms</span><span class="damo-ref-val" id="refFirms">—</span>
+      </div>
+    </div>
+    <div id="betaOwnBlock" style="display:none">
+      <div class="hint blue" style="margin-bottom:0.85rem"><strong>Own input mode.</strong> Enter your beta estimate directly — from your financial advisor, Bloomberg, or a bottom-up analysis.</div>
+    </div>
+    <div class="form-grid" style="margin-top:0.85rem">
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">Unlevered beta (β<sub>U</sub>) <span class="form-label-right" id="betaUSourceLabel">auto-filled</span></div>
+        <input type="number" class="form-input locked" id="betaUnlevered" value="0.90" step="0.01" min="0" max="5" onchange="calc()">
+        <div id="betaUBadge" class="computed-badge damo">↑ Damodaran Jan 2026</div>
+      </div>
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">Relevered beta (β<sub>L</sub>) <span class="form-label-right">computed</span></div>
+        <input type="number" class="form-input locked" id="betaRelevered" value="—" step="0.01" min="0" max="10">
+        <div class="computed-badge damo" id="betaLBadge">β<sub>U</sub> × [1+(1−t)×D/E]</div>
+      </div>
+    </div>
+    <div class="hint" style="margin-top:0.75rem">
+      Relevered to your capital structure (Section 3).
+      <span id="privateNote" style="display:none"> &nbsp;·&nbsp; <strong>Private company mode active:</strong> total beta applied (÷ 0.55 correlation).</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 3: CAPITAL STRUCTURE ── -->
+<div class="input-section">
+  <div class="input-section-header">
+    <div class="input-section-num">3</div>
+    <div class="input-section-title">Capital Structure</div>
+    <div class="mode-pill">
+      <button class="mode-btn active" id="csModePct" onclick="setCSMode('pct')">% weights</button>
+      <button class="mode-btn" id="csModeAbs" onclick="setCSMode('abs')">Absolute (€/£/$)</button>
+    </div>
+  </div>
+  <div class="input-section-body">
+
+    <!-- PCT MODE -->
+    <div class="pct-inputs" id="pctBlock">
+      <div class="form-row">
+        <div class="form-label">
+          Debt weight — D/(D+E)
+          <span class="form-label-right" id="debtPctLabel" style="font-weight:700;color:var(--navy);font-size:0.75rem">30%</span>
+        </div>
+        <input type="range" class="form-input" id="debtWeightSlider" min="0" max="85" value="30" step="1"
+               oninput="document.getElementById('debtPctLabel').textContent=this.value+'%';document.getElementById('debtWeightNum').value=this.value;calc()">
+      </div>
+      <div class="form-row">
+        <div class="form-label">Or enter directly <span class="form-label-right">syncs with slider</span></div>
+        <div class="input-unit">
+          <input type="number" class="form-input" id="debtWeightNum" value="30" min="0" max="85" step="1"
+                 onchange="document.getElementById('debtWeightSlider').value=this.value;document.getElementById('debtPctLabel').textContent=this.value+'%';calc()">
+          <span class="unit-label">% debt</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABSOLUTE MODE -->
+    <div class="abs-inputs" id="absBlock">
+      <div class="hint blue" style="margin-bottom:0.85rem"><strong>Absolute mode.</strong> Enter balance sheet figures. The tool computes D/(D+E) automatically.</div>
+      <div class="form-grid">
+        <div class="form-row" style="margin-bottom:0">
+          <div class="form-label">Net debt <span class="form-label-right">from last accounts</span></div>
+          <div class="input-unit"><input type="number" class="form-input own" id="netDebt" value="" placeholder="e.g. 2500" min="0" onchange="calcAbsWeights()"><span class="unit-label">k</span></div>
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <div class="form-label">Equity (book or mkt) <span class="form-label-right">market cap or BV</span></div>
+          <div class="input-unit"><input type="number" class="form-input own" id="bookEquity" value="" placeholder="e.g. 6000" min="0" onchange="calcAbsWeights()"><span class="unit-label">k</span></div>
+        </div>
+      </div>
+      <div id="absComputedWeights" class="hint" style="margin-top:0.65rem;display:none">
+        Computed: <strong id="absDebtWt">—</strong> debt · <strong id="absEquityWt">—</strong> equity
+        → D/E ratio: <strong id="absDERatio">—</strong>
+      </div>
+    </div>
+
+    <div class="form-grid" style="margin-top:0.85rem">
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">Pre-tax cost of debt <span class="form-label-right" id="kdSourceLabel">estimate</span></div>
+        <div class="input-unit">
+          <input type="number" class="form-input" id="costDebt" value="5.50" step="0.05" min="0" max="30" onchange="setKdOwn();calc()">
+          <span class="unit-label">%</span>
+        </div>
+        <div class="hint" style="margin-top:0.35rem" id="kdHint">Rf + credit spread. Typical: Rf + 1.5% (IG) to Rf + 3.5% (sub-IG). <strong>Enter your bank term sheet rate to override.</strong></div>
+      </div>
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">Corporate tax rate <span class="form-label-right" id="taxSourceLabel">from country</span></div>
+        <div class="input-unit">
+          <input type="number" class="form-input" id="taxRate" value="25.00" step="0.5" min="0" max="60" onchange="calc()">
+          <span class="unit-label">%</span>
+        </div>
+        <div class="hint" style="margin-top:0.35rem">Auto-filled from country. Override with your effective rate.</div>
+      </div>
+    </div>
+
+    <div class="hint amber" style="margin-top:1rem">
+      <strong>Private company?</strong>
+      <label style="display:inline-flex;align-items:center;gap:0.5rem;cursor:pointer;margin-left:0.5rem">
+        <input type="checkbox" id="privateToggle" onchange="calc()"> Apply total beta (undiversified owner risk)
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 4: VALUATION ── -->
+<div class="input-section">
+  <div class="input-section-header">
+    <div class="input-section-num">4</div>
+    <div class="input-section-title">Valuation Bridge</div>
+    <div style="font-size:0.68rem;color:var(--grey-light);margin-left:auto">Optional</div>
+  </div>
+  <div class="input-section-body">
+    <div class="hint" style="margin-bottom:1rem">Enter your EBITDA to estimate Enterprise Value — via the sector multiple from Damodaran <em>and</em> via a simplified DCF using the WACC above.</div>
+    <div class="form-grid">
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">EBITDA <span class="form-label-right">last 12 months</span></div>
+        <div class="input-unit">
+          <input type="number" class="form-input own" id="ebitda" value="" placeholder="e.g. 1000" min="0" onchange="calc()">
+          <span class="unit-label">k</span>
+        </div>
+      </div>
+      <div class="form-row" style="margin-bottom:0">
+        <div class="form-label">Long-term growth rate <span class="form-label-right">for DCF terminal</span></div>
+        <div class="input-unit">
+          <input type="number" class="form-input" id="growthRate" value="2.5" step="0.1" min="0" max="15" onchange="calc()">
+          <span class="unit-label">%</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-row" style="margin-top:0.85rem">
+      <div class="form-label">EBITDA → FCF conversion <span class="form-label-right" id="fcfPctLabel">55%</span></div>
+      <input type="range" class="form-input" id="fcfConversion" min="20" max="90" value="55" step="1"
+             oninput="document.getElementById('fcfPctLabel').textContent=this.value+'%';calc()">
+      <div class="hint" style="margin-top:0.35rem">Typical: 45–65% (after capex, working capital, taxes). Adjust for your sector.</div>
+    </div>
+  </div>
+</div>
+
+<div class="source-note">
+  <strong>Data:</strong> ERP by country — Damodaran Jan 2026, Moody's sovereign ratings + equity volatility adjustment. Unlevered beta by sector — Damodaran US Jan 2026, corrected for cash. Sector EV/EBITDA multiples — Damodaran Jan 2026. <strong>Not financial advice.</strong> Validate with a qualified advisor before use in transactions. Override any input with your own figures using the mode toggles.
+</div>
+
+</div><!-- /inputs-col -->
+
+<!-- ── RESULT PANEL ── -->
+<div class="result-panel">
+  <div class="result-header">
+    <div class="result-eyebrow">WACC estimate</div>
+    <div class="result-wacc" id="waccDisplay">—</div>
+    <div class="result-wacc-ctx" id="waccCtx">Fill inputs to calculate</div>
+  </div>
+  <div class="result-body">
+
+    <div class="result-block">
+      <div class="result-block-title">Cost of equity (Ke)</div>
+      <div class="result-row"><span class="result-row-label">Risk-free rate (Rf)</span><span class="result-row-val" id="rfOut">—</span></div>
+      <div class="result-row"><span class="result-row-label">Beta (relevered)</span><span class="result-row-val" id="betaOut">—</span></div>
+      <div class="result-row"><span class="result-row-label">ERP (country)</span><span class="result-row-val" id="erpOut">—</span></div>
+      <div class="result-row" style="padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.07);margin-top:0.25rem">
+        <span class="result-row-label" style="font-weight:600;color:rgba(255,255,255,0.65)">Ke = Rf + β×ERP</span>
+        <span class="result-row-val" id="keOut">—</span>
+      </div>
+    </div>
+
+    <div class="result-block">
+      <div class="result-block-title">Cost of debt (Kd after tax)</div>
+      <div class="result-row"><span class="result-row-label">Pre-tax Kd</span><span class="result-row-val" id="kdPreOut">—</span></div>
+      <div class="result-row"><span class="result-row-label">Tax shield (1−t)</span><span class="result-row-val" id="taxShieldOut">—</span></div>
+      <div class="result-row" style="padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.07);margin-top:0.25rem">
+        <span class="result-row-label" style="font-weight:600;color:rgba(255,255,255,0.65)">Kd × (1−t)</span>
+        <span class="result-row-val" id="kdOut">—</span>
+      </div>
+    </div>
+
+    <div class="result-block">
+      <div class="result-block-title">Weights</div>
+      <div class="result-row"><span class="result-row-label">Equity E/(D+E)</span><span class="result-row-val" id="eWtOut">—</span></div>
+      <div class="result-row"><span class="result-row-label">Debt D/(D+E)</span><span class="result-row-val" id="dWtOut">—</span></div>
+      <div class="result-row"><span class="result-row-label">D/E ratio</span><span class="result-row-val" id="deOut">—</span></div>
+    </div>
+
+    <div class="result-block">
+      <div class="result-block-title">WACC</div>
+      <div class="result-row">
+        <span class="result-row-label">Central estimate</span>
+        <span class="result-row-val" id="waccCentral">—</span>
+      </div>
+      <div class="result-row">
+        <span class="result-row-label">Range (±0.15β)</span>
+        <span class="result-row-val muted" id="waccRange">—</span>
+      </div>
+      <div class="wacc-bar-track"><div class="wacc-bar-fill" id="waccBar" style="width:0%"></div></div>
+      <div class="wacc-bar-labels"><span>0%</span><span>10%</span><span>20%+</span></div>
+    </div>
+
+    <!-- VALUATION BLOCK — shown only when EBITDA is set -->
+    <div class="result-block" id="valBlock" style="display:none">
+      <div class="result-block-title">Enterprise value estimate</div>
+
+      <div style="margin-bottom:0.85rem">
+        <div class="result-row-label" style="margin-bottom:0.3rem">Via sector multiple (EV/EBITDA)</div>
+        <div class="val-big" id="evMultiple">—</div>
+        <div class="val-sub" id="evMultipleSub">—</div>
+        <div class="val-range" id="evMultipleRange">—</div>
+      </div>
+
+      <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:0.85rem">
+        <div class="result-row-label" style="margin-bottom:0.3rem">Via DCF (Gordon growth, simplified)</div>
+        <div class="val-big" id="evDCF">—</div>
+        <div class="val-sub" id="evDCFSub">—</div>
+      </div>
+
+      <div class="result-row" style="margin-top:0.75rem;border-top:1px solid rgba(255,255,255,0.07);padding-top:0.75rem">
+        <span class="result-row-label">Private market discount (−30%)</span>
+        <span class="result-row-val muted" id="evPrivate">—</span>
+      </div>
+    </div>
+
+    <div class="interpretation" id="interpretation">
+      Select a country and sector to see results.
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
+    <div class="f-links">
+      <a href="/about">About</a>
+      <a href="/issues">Issues</a>
+      <a href="/case-studies">Case Studies</a>
+      <a href="/multiples">Multiples</a>
+      <a href="/wacc">WACC</a>
+      <a data-email href="#">Contact</a>
+    </div>
+    <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
+  </div>
+</footer>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+const COUNTRIES = [
+  {name:"Australia",rating:"Aaa",erp:4.23,tax:30},{name:"Austria",rating:"Aa1",erp:4.59,tax:23},
+  {name:"Belgium",rating:"Aa3",erp:5.01,tax:25},{name:"Bulgaria",rating:"Baa1",erp:6.30,tax:10},
+  {name:"Canada",rating:"Aaa",erp:4.23,tax:26.14},{name:"Chile",rating:"A2",erp:5.33,tax:27},
+  {name:"China",rating:"A1",erp:5.14,tax:25},{name:"Colombia",rating:"Baa3",erp:7.08,tax:35},
+  {name:"Croatia",rating:"A3",erp:5.78,tax:18},{name:"Cyprus",rating:"A3",erp:5.78,tax:12.5},
+  {name:"Czech Republic",rating:"Aa3",erp:5.01,tax:21},{name:"Denmark",rating:"Aaa",erp:4.23,tax:22},
+  {name:"Estonia",rating:"A1",erp:5.14,tax:20},{name:"Finland",rating:"Aa1",erp:4.59,tax:20},
+  {name:"France",rating:"Aa3",erp:5.01,tax:25.83},{name:"Germany",rating:"Aaa",erp:4.23,tax:29.93},
+  {name:"Greece",rating:"Baa3",erp:7.08,tax:22},{name:"Hong Kong",rating:"Aa3",erp:5.01,tax:16.5},
+  {name:"Hungary",rating:"Baa2",erp:6.69,tax:9},{name:"Iceland",rating:"A1",erp:5.14,tax:21},
+  {name:"India",rating:"Baa3",erp:7.08,tax:30},{name:"Indonesia",rating:"Baa2",erp:6.69,tax:22},
+  {name:"Ireland",rating:"Aa3",erp:5.01,tax:12.5},{name:"Israel",rating:"Baa1",erp:6.30,tax:23},
+  {name:"Italy",rating:"Baa2",erp:6.69,tax:27.81},{name:"Japan",rating:"A1",erp:5.14,tax:29.74},
+  {name:"Korea",rating:"Aa2",erp:4.87,tax:26.4},{name:"Latvia",rating:"A3",erp:5.78,tax:20},
+  {name:"Lithuania",rating:"A2",erp:5.33,tax:15},{name:"Luxembourg",rating:"Aaa",erp:4.23,tax:24.94},
+  {name:"Malaysia",rating:"A3",erp:5.78,tax:24},{name:"Mexico",rating:"Baa2",erp:6.69,tax:30},
+  {name:"Netherlands",rating:"Aaa",erp:4.23,tax:25.8},{name:"New Zealand",rating:"Aaa",erp:4.23,tax:28},
+  {name:"Norway",rating:"Aaa",erp:4.23,tax:22},{name:"Poland",rating:"A2",erp:5.33,tax:19},
+  {name:"Portugal",rating:"A3",erp:5.78,tax:31.5},{name:"Romania",rating:"Baa3",erp:7.08,tax:16},
+  {name:"Saudi Arabia",rating:"Aa3",erp:5.01,tax:20},{name:"Singapore",rating:"Aaa",erp:4.23,tax:17},
+  {name:"Slovakia",rating:"A3",erp:5.78,tax:21},{name:"Slovenia",rating:"A3",erp:5.78,tax:22},
+  {name:"South Africa",rating:"Ba2",erp:8.13,tax:27},{name:"Spain",rating:"A3",erp:5.78,tax:25},
+  {name:"Sweden",rating:"Aaa",erp:4.23,tax:20.6},{name:"Switzerland",rating:"Aaa",erp:4.23,tax:19.61},
+  {name:"Taiwan",rating:"Aa3",erp:5.01,tax:20},{name:"Thailand",rating:"Baa1",erp:6.30,tax:20},
+  {name:"Turkey",rating:"Ba3",erp:8.89,tax:25},{name:"United Arab Emirates",rating:"Aa2",erp:4.87,tax:9},
+  {name:"United Kingdom",rating:"Aa3",erp:5.01,tax:25},{name:"United States",rating:"Aa1",erp:4.46,tax:25},
+  {name:"Vietnam",rating:"Ba2",erp:8.13,tax:20},
+];
+
+const SECTORS = [
+  {name:"Advertising",bu:1.01,de:40.20,ev:12.0},{name:"Aerospace / Defense",bu:0.87,de:15.56,ev:21.58},
+  {name:"Air Transport",bu:0.76,de:91.17,ev:7.58},{name:"Auto Parts",bu:1.13,de:41.46,ev:6.43},
+  {name:"Beverage (Alcoholic)",bu:0.63,de:43.34,ev:8.61},{name:"Beverage (Soft)",bu:0.58,de:20.59,ev:16.90},
+  {name:"Building Materials",bu:0.96,de:26.00,ev:11.61},{name:"Business Services",bu:0.81,de:19.72,ev:14.26},
+  {name:"Chemical (Specialty)",bu:0.82,de:29.88,ev:13.36},{name:"Computer Services",bu:0.96,de:25.10,ev:14.10},
+  {name:"Construction",bu:1.14,de:14.01,ev:17.18},{name:"Drugs (Biotech)",bu:1.08,de:13.04,ev:15.78},
+  {name:"Drugs (Pharma)",bu:0.92,de:14.54,ev:15.25},{name:"Electrical Equipment",bu:1.19,de:12.00,ev:24.59},
+  {name:"Electronics (General)",bu:0.94,de:11.01,ev:19.99},{name:"Entertainment",bu:0.76,de:15.91,ev:19.41},
+  {name:"Environmental & Waste",bu:0.82,de:21.45,ev:15.61},{name:"Food Processing",bu:0.47,de:43.73,ev:10.01},
+  {name:"Healthcare Products",bu:0.86,de:12.79,ev:19.78},{name:"Healthcare Services",bu:0.74,de:35.43,ev:11.17},
+  {name:"Healthcare IT",bu:1.02,de:15.74,ev:21.27},{name:"Hotel / Gaming",bu:0.88,de:39.75,ev:14.93},
+  {name:"Household Products",bu:0.74,de:18.15,ev:13.17},{name:"Logistics / Transport",bu:0.71,de:36.45,ev:12.55},
+  {name:"Machinery",bu:0.89,de:14.69,ev:16.22},{name:"Metals & Mining",bu:1.01,de:10.98,ev:11.39},
+  {name:"Oil & Gas (E&P)",bu:0.58,de:37.59,ev:5.15},{name:"Packaging",bu:0.75,de:55.11,ev:9.71},
+  {name:"Power / Utilities",bu:0.31,de:74.15,ev:12.38},{name:"R.E.I.T.",bu:0.40,de:84.46,ev:19.87},
+  {name:"Restaurant / Dining",bu:0.78,de:27.22,ev:17.49},{name:"Retail (General)",bu:0.78,de:7.94,ev:17.38},
+  {name:"Semiconductor",bu:1.50,de:2.59,ev:34.75},{name:"Software (System & App)",bu:1.25,de:5.58,ev:24.48},
+  {name:"Software (Entertainment)",bu:1.02,de:2.04,ev:22.01},{name:"Steel",bu:0.94,de:23.51,ev:11.59},
+  {name:"Telecom Services",bu:0.38,de:96.06,ev:6.54},{name:"Telecom Equipment",bu:0.89,de:9.22,ev:24.07},
+  {name:"Trucking",bu:0.87,de:25.23,ev:10.41},
+];
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let erpMode = 'damo'; // 'damo' | 'own'
+let betaMode = 'damo';
+let csMode = 'pct';   // 'pct' | 'abs'
+let kdOwn = false;
+
+// ─── POPULATE ────────────────────────────────────────────────────────────────
+function populateSelects() {
+  const cs = document.getElementById('countrySelect');
+  COUNTRIES.sort((a,b)=>a.name.localeCompare(b.name)).forEach(c => {
+    const o = document.createElement('option');
+    o.value = c.name; o.textContent = c.name;
+    if (c.name === 'Germany') o.selected = true;
+    cs.appendChild(o);
+  });
+  const ss = document.getElementById('sectorSelect');
+  const def = document.createElement('option'); def.value=''; def.textContent='— Select a sector —'; ss.appendChild(def);
+  SECTORS.sort((a,b)=>a.name.localeCompare(b.name)).forEach(s => {
+    const o = document.createElement('option'); o.value=s.name; o.textContent=s.name; ss.appendChild(o);
+  });
+}
+
+// ─── MODE TOGGLES ────────────────────────────────────────────────────────────
+function setMode(field, mode) {
+  if (field === 'erp') {
+    erpMode = mode;
+    document.getElementById('erpModeDamo').classList.toggle('active', mode==='damo');
+    document.getElementById('erpModeOwn').classList.toggle('active', mode==='own');
+    document.getElementById('erpDamoBlock').style.display = mode==='damo' ? '' : 'none';
+    document.getElementById('erpOwnBlock').style.display  = mode==='own'  ? '' : 'none';
+    const inp = document.getElementById('erpInput');
+    inp.classList.toggle('locked', mode==='damo');
+    inp.classList.toggle('own', mode==='own');
+    document.getElementById('erpSourceLabel').textContent = mode==='damo' ? 'auto-filled' : 'your input';
+    document.getElementById('erpBadge').className = 'computed-badge ' + (mode==='damo'?'damo':'own');
+    document.getElementById('erpBadge').textContent = mode==='damo' ? '↑ Damodaran Jan 2026' : '↑ Your input';
+    if (mode==='damo') onCountryChange();
+  }
+  if (field === 'beta') {
+    betaMode = mode;
+    document.getElementById('betaModeDamo').classList.toggle('active', mode==='damo');
+    document.getElementById('betaModeOwn').classList.toggle('active', mode==='own');
+    document.getElementById('betaDamoBlock').style.display = mode==='damo' ? '' : 'none';
+    document.getElementById('betaOwnBlock').style.display  = mode==='own'  ? '' : 'none';
+    const inp = document.getElementById('betaUnlevered');
+    inp.classList.toggle('locked', mode==='damo');
+    inp.classList.toggle('own', mode==='own');
+    document.getElementById('betaUSourceLabel').textContent = mode==='damo' ? 'auto-filled' : 'your input';
+    document.getElementById('betaUBadge').className = 'computed-badge ' + (mode==='damo'?'damo':'own');
+    document.getElementById('betaUBadge').textContent = mode==='damo' ? '↑ Damodaran Jan 2026' : '↑ Your input';
+    if (mode==='own') document.getElementById('betaUnlevered').removeAttribute('readonly');
+    else if (mode==='damo') onSectorChange();
+  }
+  calc();
+}
+
+function setCSMode(mode) {
+  csMode = mode;
+  document.getElementById('csModePct').classList.toggle('active', mode==='pct');
+  document.getElementById('csModeAbs').classList.toggle('active', mode==='abs');
+  document.getElementById('pctBlock').classList.toggle('hidden', mode==='abs');
+  document.getElementById('pctBlock').classList.toggle('pct-inputs', true);
+  document.getElementById('absBlock').classList.toggle('visible', mode==='abs');
+  if (mode==='abs') document.getElementById('absBlock').style.display='block';
+  else document.getElementById('absBlock').style.display='none';
+  calc();
+}
+
+function setKdOwn() {
+  kdOwn = true;
+  document.getElementById('kdSourceLabel').textContent = 'your input';
+  document.getElementById('kdHint').innerHTML = '<strong>Using your term sheet / bank rate.</strong> Tax shield applied at your corporate rate.';
+}
+
+// ─── COUNTRY CHANGE ──────────────────────────────────────────────────────────
+function onCountryChange() {
+  if (erpMode !== 'damo') return;
+  const name = document.getElementById('countrySelect').value;
+  const c = COUNTRIES.find(x=>x.name===name); if (!c) return;
+  document.getElementById('erpInput').value = c.erp.toFixed(2);
+  document.getElementById('taxRate').value  = c.tax.toFixed(1);
+  document.getElementById('refRating').textContent = c.rating;
+  document.getElementById('refERP').textContent = c.erp.toFixed(2) + '%';
+  document.getElementById('refTax').textContent = c.tax + '%';
+  document.getElementById('countryRefStrip').classList.remove('hidden');
+  if (!kdOwn) {
+    const rf = parseFloat(document.getElementById('rfRate').value);
+    document.getElementById('costDebt').value = (rf + 1.75).toFixed(2);
+  }
+  calc();
+}
+
+// ─── SECTOR CHANGE ───────────────────────────────────────────────────────────
+function onSectorChange() {
+  if (betaMode !== 'damo') return;
+  const name = document.getElementById('sectorSelect').value;
+  const s = SECTORS.find(x=>x.name===name); if (!s) return;
+  document.getElementById('betaUnlevered').value = s.bu.toFixed(2);
+  document.getElementById('refBeta').textContent  = s.bu.toFixed(2);
+  document.getElementById('refDE').textContent    = s.de.toFixed(1) + '%';
+  document.getElementById('refFirms').textContent = '—';
+  document.getElementById('sectorRefStrip').classList.remove('hidden');
+  calc();
+}
+
+// ─── ABSOLUTE WEIGHTS ────────────────────────────────────────────────────────
+function calcAbsWeights() {
+  const d = parseFloat(document.getElementById('netDebt').value)||0;
+  const e = parseFloat(document.getElementById('bookEquity').value)||0;
+  const total = d + e;
+  if (total <= 0) { document.getElementById('absComputedWeights').style.display='none'; return; }
+  const dWt = d/total*100;
+  const eWt = e/total*100;
+  const de  = e > 0 ? (d/e*100).toFixed(1) : '∞';
+  document.getElementById('absDebtWt').textContent   = dWt.toFixed(1) + '%';
+  document.getElementById('absEquityWt').textContent  = eWt.toFixed(1) + '%';
+  document.getElementById('absDERatio').textContent   = de + '%';
+  document.getElementById('absComputedWeights').style.display = 'block';
+  // sync slider and num
+  document.getElementById('debtWeightSlider').value = Math.min(85, dWt).toFixed(0);
+  document.getElementById('debtWeightNum').value    = Math.min(85, dWt).toFixed(0);
+  document.getElementById('debtPctLabel').textContent = dWt.toFixed(1) + '%';
+  calc();
+}
+
+// ─── MAIN CALC ───────────────────────────────────────────────────────────────
+function calc() {
+  const rf      = parseFloat(document.getElementById('rfRate').value)/100;
+  const erp     = parseFloat(document.getElementById('erpInput').value)/100;
+  const buRaw   = parseFloat(document.getElementById('betaUnlevered').value);
+  const dWt     = parseFloat(document.getElementById('debtWeightNum').value)/100;
+  const eWt     = 1 - dWt;
+  const tax     = parseFloat(document.getElementById('taxRate').value)/100;
+  const kdPre   = parseFloat(document.getElementById('costDebt').value)/100;
+  const isPriv  = document.getElementById('privateToggle').checked;
+  const ebitda  = parseFloat(document.getElementById('ebitda').value)||0;
+  const growth  = parseFloat(document.getElementById('growthRate').value)/100;
+  const fcfPct  = parseFloat(document.getElementById('fcfConversion').value)/100;
+
+  if ([rf,erp,buRaw,dWt,tax,kdPre].some(isNaN)) return;
+
+  const de = eWt > 0 ? dWt/eWt : 0;
+  let betaL = buRaw * (1 + (1-tax)*de);
+  if (isPriv) betaL /= 0.55;
+  document.getElementById('betaRelevered').value = betaL.toFixed(2);
+  document.getElementById('privateNote').style.display = isPriv ? 'inline' : 'none';
+
+  const ke   = rf + betaL * erp;
+  const kd   = kdPre * (1-tax);
+  const wacc = ke*eWt + kd*dWt;
+
+  const bLo = Math.max(0.01, betaL-0.15), bHi = betaL+0.15;
+  const wLo = (rf+bLo*erp)*eWt + kd*dWt;
+  const wHi = (rf+bHi*erp)*eWt + kd*dWt;
+
+  const fmt  = v => (v*100).toFixed(2)+'%';
+  const fmtN = v => v.toFixed(2)+'×';
+  const fmtM = v => {
+    if (v >= 1e6) return '€'+(v/1e6).toFixed(1)+'M';
+    if (v >= 1e3) return '€'+(v/1e3).toFixed(0)+'k';
+    return '€'+v.toFixed(0);
+  };
+
+  // WACC outputs
+  document.getElementById('waccDisplay').textContent  = fmt(wacc);
+  document.getElementById('waccCentral').textContent  = fmt(wacc);
+  document.getElementById('waccRange').textContent    = fmt(wLo)+' – '+fmt(wHi);
+  document.getElementById('rfOut').textContent        = fmt(rf);
+  document.getElementById('betaOut').textContent      = betaL.toFixed(2);
+  document.getElementById('erpOut').textContent       = fmt(erp);
+  document.getElementById('keOut').textContent        = fmt(ke);
+  document.getElementById('kdPreOut').textContent     = fmt(kdPre);
+  document.getElementById('taxShieldOut').textContent = ((1-tax)*100).toFixed(1)+'%';
+  document.getElementById('kdOut').textContent        = fmt(kd);
+  document.getElementById('eWtOut').textContent       = (eWt*100).toFixed(1)+'%';
+  document.getElementById('dWtOut').textContent       = (dWt*100).toFixed(1)+'%';
+  document.getElementById('deOut').textContent        = (de*100).toFixed(1)+'%';
+  document.getElementById('waccBar').style.width      = Math.min(wacc/0.20*100,100)+'%';
+
+  const sectorName = document.getElementById('sectorSelect').value;
+  const sector     = SECTORS.find(s=>s.name===sectorName);
+  document.getElementById('waccCtx').textContent =
+    (sectorName ? sectorName+' · ' : '') +
+    (document.getElementById('countrySelect').value || '');
+
+  // VALUATION
+  if (ebitda > 0) {
+    document.getElementById('valBlock').style.display = 'block';
+    const ev_mult  = sector ? ebitda * sector.ev : null;
+    const evLo     = sector ? ebitda * (sector.ev * 0.85) : null;
+    const evHi     = sector ? ebitda * (sector.ev * 1.15) : null;
+    const fcf      = ebitda * fcfPct;
+    const terminalV= wacc > growth ? fcf*(1+growth)/(wacc-growth) : null;
+    const ev_dcf   = terminalV; // simplified: terminal only (no explicit NOPAT period)
+
+    if (ev_mult !== null) {
+      document.getElementById('evMultiple').textContent    = fmtM(ev_mult*1000);
+      document.getElementById('evMultipleSub').textContent = `${sector.ev.toFixed(1)}× EV/EBITDA · ${sectorName}`;
+      document.getElementById('evMultipleRange').textContent= `Range: ${fmtM(evLo*1000)} – ${fmtM(evHi*1000)} (±15% on multiple)`;
+    } else {
+      document.getElementById('evMultiple').textContent = '—';
+      document.getElementById('evMultipleSub').textContent = 'Select a sector for multiple-based EV';
+      document.getElementById('evMultipleRange').textContent = '';
+    }
+
+    if (ev_dcf !== null && ev_dcf > 0) {
+      document.getElementById('evDCF').textContent    = fmtM(ev_dcf*1000);
+      document.getElementById('evDCFSub').textContent = `FCF ${fmtM(fcf*1000)} · WACC ${fmt(wacc)} · g ${(growth*100).toFixed(1)}%`;
+    } else {
+      document.getElementById('evDCF').textContent    = '—';
+      document.getElementById('evDCFSub').textContent = 'WACC must exceed growth rate';
+    }
+
+    const baseEV = ev_mult !== null ? ev_mult : (ev_dcf||0);
+    document.getElementById('evPrivate').textContent = baseEV > 0 ? fmtM(baseEV*1000*0.70) : '—';
+  } else {
+    document.getElementById('valBlock').style.display = 'none';
+  }
+
+  // interpretation
+  const wPct = wacc*100;
+  let msg = '';
+  if (wPct < 7)       msg = `<strong>${fmt(wacc)} — Low WACC.</strong> Mature, stable sector in a low-risk market with conservative leverage. Buyers applying a DCF here discount cash flows lightly — implying high multiples. Favourable conditions for a seller.`;
+  else if (wPct < 10) msg = `<strong>${fmt(wacc)} — Mid-range WACC.</strong> Standard range for European SMEs. At this rate, DCF-implied multiples typically land at 7–10× EBITDA for businesses with stable, growing cash flows.`;
+  else if (wPct < 14) msg = `<strong>${fmt(wacc)} — Elevated WACC.</strong> Higher risk — cyclical sector, emerging market exposure, or significant leverage. Buyers discount aggressively. Expect multiple compression vs. lower-risk peers.`;
+  else                msg = `<strong>${fmt(wacc)} — High WACC.</strong> Significant risk premium. Deals at this rate typically command 4–6× EBITDA or less. De-risking the business before a sale process would have material impact on price.`;
+  document.getElementById('interpretation').innerHTML = msg;
+}
+
+// ─── SIDEBAR ─────────────────────────────────────────────────────────────────
+function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden'}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow=''}
+function toggleDrop(id){var el=document.getElementById(id);var arrow=el.previousElementSibling.querySelector('.sb-arrow');el.classList.toggle('open');arrow.classList.toggle('open')}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  populateSelects();
+  onCountryChange();
+  calc();
+  document.querySelectorAll('[data-email]').forEach(el=>{el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com'});
+});
+</script>
+</body>
+</html>
