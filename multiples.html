@@ -12,12 +12,14 @@
 :root{
   --navy:#0A1628;--navy2:#142035;
   --white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;
-  --rule:#D4CFC7;--rule2:#E8E5DF;
-  --b:#111;--g:#333;--gm:#5A5A5A;--gl:#999;
+  --rule:#E5E7EB;--rule2:#F0EEE9;
+  --b:#111;--g:#222;--gm:#4A4A4A;--gl:#888;
   --red:#8B1A1A;--red2:#6e1414;
   --grn:#0A5C1E;--grn2:#D6EAD9;
-  --shadow:0 2px 12px rgba(0,0,0,0.08);
-  --shadow-md:0 4px 24px rgba(0,0,0,0.12);
+  --amber:#B45309;--amber2:#FEF3C7;
+  --input-bg:#FFFDE7;--input-border:#C8B400;
+  --shadow:0 1px 6px rgba(0,0,0,0.06);
+  --shadow-md:0 2px 16px rgba(0,0,0,0.10);
   --mono:'IBM Plex Mono',monospace;
   --sans:'DM Sans',sans-serif;
   --serif:'Playfair Display',serif;
@@ -207,6 +209,54 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
 .back-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:#666;text-decoration:none;transition:color 0.15s}
 .back-btn:hover{color:#0F1F3D}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ── MARKET PULSE ── */
+.market-pulse{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
+.market-pulse::-webkit-scrollbar{display:none}
+.mp-brand{display:flex;align-items:center;gap:6px;padding:.3rem 1.25rem .3rem .75rem;border-right:1px solid rgba(255,255,255,0.07);flex-shrink:0}
+.mp-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:mp-pulse 2.5s infinite}
+@keyframes mp-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+.mp-label{font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.mp-item{display:flex;align-items:center;gap:.5rem;padding:.28rem .9rem;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0}
+.mp-item:last-child{border-right:none}
+.mp-name{font-size:.58rem;color:rgba(255,255,255,.32);white-space:nowrap}
+.mp-val{font-family:var(--mono);font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
+.mp-chg{font-family:var(--mono);font-size:.55rem;white-space:nowrap}
+.mp-chg.up{color:#4ade80}.mp-chg.dn{color:#f87171}.mp-chg.neu{color:rgba(255,255,255,.3)}
+
+
+/* ── QUICK FILTERS ── */
+.qf-bar{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap}
+.qf-btn{font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:0.5px solid var(--rule);color:var(--gm);padding:.22rem .65rem;cursor:pointer;transition:all .12s;white-space:nowrap}
+.qf-btn:hover{border-color:var(--navy);color:var(--navy)}
+.qf-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.qf-sep{width:1px;height:14px;background:var(--rule);flex-shrink:0}
+
+/* ── SPARKLINE ── */
+.spark{display:inline-flex;align-items:flex-end;gap:1.5px;height:16px;vertical-align:middle}
+.spark-bar{width:3px;border-radius:1px;background:var(--rule);flex-shrink:0;transition:background .2s}
+
+/* ── TABLE REFINEMENTS ── */
+thead th{position:sticky;top:0;z-index:10;background:var(--navy);font-family:var(--mono)!important;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:.6rem .85rem;text-align:left;white-space:nowrap;cursor:pointer;user-select:none;border-right:0.5px solid rgba(255,255,255,.06)}
+thead th.num,tbody td.num{text-align:right;font-family:var(--mono)}
+tbody tr{border-bottom:0.5px solid var(--rule)}
+tbody td{font-family:var(--sans);padding:.42rem .85rem;font-size:.75rem;color:var(--g)}
+tbody td.sector-name{font-weight:500;color:var(--navy)}
+tbody td.mono-num{font-family:var(--mono)!important;font-weight:600;text-align:right}
+.val-hi{color:var(--grn)}.val-lo{color:var(--red)}.val-mid{color:var(--navy)}.val-warn{color:var(--amber)}
+.cycle-wrap{display:flex;align-items:center;gap:.4rem}
+.cycle-track{width:44px;height:3px;background:var(--rule);border-radius:2px;overflow:hidden;flex-shrink:0}
+.cycle-fill{height:100%;border-radius:2px;transition:width .3s}
+.cycle-pct{font-family:var(--mono);font-size:.6rem;color:var(--gm)}
+.cyc-badge{font-size:.52rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:1px 5px;border:0.5px solid;white-space:nowrap}
+.cyc-badge.hot{color:var(--amber);border-color:rgba(180,83,9,.3);background:rgba(180,83,9,.06)}
+.cyc-badge.cold{color:var(--grn);border-color:rgba(10,92,30,.3);background:rgba(10,92,30,.06)}
+.cyc-badge.mid{color:var(--gl);border-color:var(--rule);background:var(--bg)}
+
+
+/* ── GATED NAV LINKS ── */
+.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
+.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
 </style>
 </head>
 <body>
@@ -248,10 +298,10 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
     <button class="sb-dropdown-btn" onclick="toggleDrop('dropDash')"><span>Dashboard</span><span class="sb-arrow" id="arrowDash">▾</span></button>
     <div class="sb-dropdown-items" id="dropDash">
       <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
-      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
-      <a href="/exit-calculator" class="sb-sub-link" onclick="closeSidebar()">Exit Value Calculator</a>
-      <a href="/country-index" class="sb-sub-link" onclick="closeSidebar()">Transaction Cost Index</a>
-      <a href="/advisors" class="sb-sub-link" onclick="closeSidebar()">Advisor Directory</a>
+      <a href="/wacc" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/wacc')">WACC Calculator</a>
+      <a href="/exit-calculator" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/exit-calculator')">Exit Value Calculator</a>
+      <a href="/country-index" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/country-index')">Transaction Cost Index</a>
+      <a href="/advisors" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/advisors')">Advisor Directory</a>
     </div>
   </div>
   <div class="sb-section">Info</div>
@@ -274,6 +324,18 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>
+<!-- MARKET PULSE -->
+<div class="market-pulse">
+  <div class="mp-brand"><span class="mp-dot"></span><span class="mp-label">Market Pulse</span></div>
+  <div class="mp-item"><span class="mp-name">10Y Bund (Rf)</span><span class="mp-val">2.68%</span><span class="mp-chg neu">ECB</span></div>
+  <div class="mp-item"><span class="mp-name">ERP EU avg</span><span class="mp-val">5.84%</span><span class="mp-chg neu">Damodaran 2026</span></div>
+  <div class="mp-item"><span class="mp-name">S&amp;P Fwd P/E</span><span class="mp-val">20.8×</span><span class="mp-chg dn">above hist. avg</span></div>
+  <div class="mp-item"><span class="mp-name">EU Deal Vol</span><span class="mp-val">−14%</span><span class="mp-chg dn">YoY · Mergermarket</span></div>
+  <div class="mp-item"><span class="mp-name">Software EV/EBITDA</span><span class="mp-val">24.5×</span><span class="mp-chg up">Damodaran Jan 2026</span></div>
+  <div class="mp-item"><span class="mp-name">Logistics EV/EBITDA</span><span class="mp-val">12.6×</span><span class="mp-chg neu">Damodaran Jan 2026</span></div>
+  <div class="mp-item"><span class="mp-name">CH CGT</span><span class="mp-val">0%</span><span class="mp-chg up">lowest EU</span></div>
+  <div class="mp-item"><span class="mp-name">DK CGT</span><span class="mp-val">42%</span><span class="mp-chg dn">highest EU</span></div>
+</div>
 <div class="back-bar"><div class="back-bar-inner"><a href="/" class="back-btn">← Home</a></div></div>
 
 <!-- HERO -->
@@ -385,7 +447,7 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
         <tr>
           <th onclick="sortTable('sector')">Sector</th>
           <th onclick="sortTable('multiple')" class="sort-desc">EV/EBITDA</th>
-          <th onclick="sortTable('avg5y')">5Y Avg</th>
+          <th onclick="sortTable('avg5y')" class="num">5Y Avg</th><th>Trend</th>
           <th>Cycle position</th>
           <th onclick="sortTable('vs2021')">vs 2021 Peak</th>
           <th onclick="sortTable('private')">Private est.</th>
@@ -783,14 +845,142 @@ function renderSbTicker(){
 }
 document.addEventListener('DOMContentLoaded',function(){renderSbTicker();setInterval(renderSbTicker,5000);});
 
+
+// ── ACCESS COOKIE SYSTEM ─────────────────────────────────────────────────────
+function setCookie(name,val,days){
+  var d=new Date();d.setTime(d.getTime()+(days*24*60*60*1000));
+  document.cookie=name+'='+val+';expires='+d.toUTCString()+';path=/;SameSite=Lax';
+}
+function getCookie(name){
+  var n=name+'=',ca=document.cookie.split(';');
+  for(var i=0;i<ca.length;i++){var c=ca[i].trim();if(c.indexOf(n)===0)return c.substring(n.length);}
+  return '';
+}
+function hasAccess(){return getCookie('mnaintel_access')==='1';}
+function grantAccess(){setCookie('mnaintel_access','1',365);}
+
+// Called by any unlock form submission
+function handleUnlock(e){
+  if(e) e.preventDefault();
+  var form=e?e.target:null;
+  var inp=form?form.querySelector('input[type=email]'):null;
+  var email=inp?inp.value:'';
+  grantAccess();
+  if(email){
+    window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(email),'_blank');
+  }
+  unlockPage();
+  return false;
+}
+
+// Remove all blurs and gates on this page
+function unlockPage(){
+  // Remove blur classes
+  document.querySelectorAll('.blurred-text,.gate-blur,.lc-data,.lc-sub,.sens-table').forEach(function(el){
+    el.style.filter='none';el.style.userSelect='auto';el.style.pointerEvents='auto';
+  });
+  // Hide all gate overlays
+  document.querySelectorAll('.gate-overlay,.rh-gate,.nb-gate,.exitNetGate,.waccGateOverlay,.rh-gate-visible,.rh-gate.visible,[id$="Gate"],[id$="GateBox"],[id$="GateOverlay"]').forEach(function(el){
+    el.style.display='none';
+  });
+  // Show hidden result sections
+  document.querySelectorAll('.result-cards,.val-section,.sens-section').forEach(function(el){
+    if(el.style.display==='none') el.style.display='grid';
+  });
+  // Remove paywall fades on editorial pages
+  document.querySelectorAll('.paywall-fade').forEach(function(el){
+    el.style.maxHeight='none';el.style.overflow='visible';
+    el.classList.remove('paywall-fade');
+  });
+  document.querySelectorAll('.paywall-gate,.pg-form').forEach(function(el){
+    el.style.display='none';
+  });
+  // Remove blur on locked card data in index
+  document.querySelectorAll('.lc').forEach(function(el){
+    el.style.cursor='default';
+    el.onclick=null;
+  });
+}
+
+// On page load: if already has access, unlock everything immediately
+document.addEventListener('DOMContentLoaded',function(){
+  if(hasAccess()) unlockPage();
+});
+
+
+// Sidebar locked links: check access before navigating
+function gatedNav(url){
+  if(hasAccess()){window.location.href=url;}
+  else{
+    // Close sidebar and show unlock prompt
+    closeSidebar();
+    var bar=document.getElementById('subBar');
+    if(bar){bar.classList.add('show');bar.scrollIntoView({behavior:'smooth',block:'nearest'});
+      var em=document.getElementById('sbEmail');if(em)setTimeout(function(){em.focus();},350);}
+    else{
+      // Tool pages: show their gate
+      var gate=document.querySelector('.rh-gate,.nb-gate');
+      if(gate){gate.style.display='block';gate.scrollIntoView({behavior:'smooth',block:'nearest'});}
+    }
+  }
+}
+
 function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden'}
 function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow=''}
 function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn.querySelector('.sb-arrow');el.classList.toggle('open');arrow.classList.toggle('open')}
+
+
+// ─── QUICK FILTER ────────────────────────────────────────────────────────────
+let activeQF = '';
+const QF_MAP = {
+  'TMT':['Software','Computer Services','Electronics','Telecom','Entertainment','Semiconductor','Internet'],
+  'Industrial':['Machinery','Electrical Equipment','Aerospace','Auto','Environmental','Chemical','Building Materials','Construction'],
+  'Consumer':['Food Processing','Beverage','Retail','Apparel','Restaurant'],
+  'Healthcare':['Healthcare Products','Drugs (Biotech)','Drugs (Pharma)','Healthcare (Support Services)','Hospital'],
+  'Financial':['Banks','Financial Services','Insurance']
+};
+function setQF(btn,cat){
+  activeQF=cat;
+  document.querySelectorAll('.qf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTable();
+}
+function getSorted_orig(){return getSorted();}
+const _origGetSorted=getSorted;
+function getSorted(){
+  let data=_origGetSorted();
+  if(activeQF && QF_MAP[activeQF]){
+    data=data.filter(r=>QF_MAP[activeQF].some(k=>r.sector.includes(k)));
+  }
+  return data;
+}
+
+// ─── SPARKLINE ───────────────────────────────────────────────────────────────
+function buildSparkline(row){
+  const years=[2022,2023,2024,2025,2026];
+  const vals=years.map(y=>getM(row,y)).filter(v=>v&&v>0);
+  if(!vals.length)return '<span class="spark"></span>';
+  const mn=Math.min(...vals),mx=Math.max(...vals),range=mx-mn||1;
+  const bars=vals.map((v,i)=>{
+    const h=Math.round(4+((v-mn)/range)*12);
+    const isLast=(i===vals.length-1);
+    const trend=vals.length>1?v>=vals[vals.length-2]:true;
+    const col=isLast?(trend?'#0A5C1E':'#8B1A1A'):'#D4CFC7';
+    return `<span class="spark-bar" style="height:${h}px;background:${col}"></span>`;
+  }).join('');
+  return `<span class="spark">${bars}</span>`;
+}
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', ()=>{
   try { renderTable(); } catch(e) { console.error("renderTable error:", e); }
   document.querySelectorAll('thead th')[1]?.classList.add('sort-desc');
+  
+  // Mark gated links as unlocked in sidebar
+  if(hasAccess()){
+    document.querySelectorAll('[data-gated]').forEach(function(el){el.classList.add('unlocked');});
+  }
+
   document.querySelectorAll('[data-email]').forEach(el=>{el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com'});
 });
 </script>

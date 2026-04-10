@@ -267,6 +267,10 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
 
 .tc-data{font-family:var(--mono)!important;}
 .tc-name{font-family:var(--sans)}
+
+/* ── GATED NAV LINKS ── */
+.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
+.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
 </style>
 </head>
 <body>
@@ -302,10 +306,10 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
     <button class="sb-dropdown-btn" onclick="toggleDrop('dropDash')"><span>Dashboard</span><span class="sb-arrow" id="arrowDash">▾</span></button>
     <div class="sb-dropdown-items" id="dropDash">
       <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
-      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
-      <a href="/exit-calculator" class="sb-sub-link" onclick="closeSidebar()">Exit Value Calculator</a>
-      <a href="/country-index" class="sb-sub-link" onclick="closeSidebar()">Transaction Cost Index</a>
-      <a href="/advisors" class="sb-sub-link" onclick="closeSidebar()">Advisor Directory</a>
+      <a href="/wacc" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/wacc')">WACC Calculator</a>
+      <a href="/exit-calculator" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/exit-calculator')">Exit Value Calculator</a>
+      <a href="/country-index" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/country-index')">Transaction Cost Index</a>
+      <a href="/advisors" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/advisors')">Advisor Directory</a>
     </div>
   </div>
   <div class="sb-section">Info</div>
@@ -327,7 +331,7 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
     <a href="/country-index" class="nav-link">Cost Index</a>
     <a href="/advisors" class="nav-link">Advisors</a>
   </div>
-  <button class="nav-sub" onclick="showSub()">Get Full Access</button>
+  <button class="nav-sub" onclick="hasAccess()?window.location.href=this.dataset.url:showSub()">Get Full Access</button>
 </nav>
 <!-- MARKET PULSE -->
 <div class="market-pulse">
@@ -456,31 +460,31 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="white" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="white" stroke-width="1.2"/></svg>
           Professional access — unlock proprietary valuation models and market intelligence
         </div>
-        <button class="btn-unlock" onclick="showSub()">Get Full Access — Free →</button>
+        <button class="btn-unlock" onclick="hasAccess()?window.location.href=this.dataset.url:showSub()">Get Full Access — Free →</button>
       </div>
       <div class="locked-grid">
-        <div class="lc" onclick="showSub()">
+        <div class="lc" onclick="hasAccess()?window.location.href=this.dataset.url:showSub()">
           <div class="lc-top"><span class="lc-num">02 · WACC</span><svg width="10" height="10" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="#999" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="#999" stroke-width="1.2"/></svg></div>
           <div class="lc-name">WACC Calculator</div>
           <div class="lc-data">9.2%</div>
           <div class="lc-sub">IT · Germany · 55 countries</div>
           <div class="lc-hint">Get access →</div>
         </div>
-        <div class="lc" onclick="showSub()">
+        <div class="lc" onclick="hasAccess()?window.location.href=this.dataset.url:showSub()">
           <div class="lc-top"><span class="lc-num">03 · EXIT VALUE</span><svg width="10" height="10" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="#999" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="#999" stroke-width="1.2"/></svg></div>
           <div class="lc-name">Exit Calculator</div>
           <div class="lc-data">€8.8M</div>
           <div class="lc-sub">€1M EBITDA · 12.6× · −30%</div>
           <div class="lc-hint">Get access →</div>
         </div>
-        <div class="lc" onclick="showSub()">
+        <div class="lc" onclick="hasAccess()?window.location.href=this.dataset.url:showSub()">
           <div class="lc-top"><span class="lc-num">04 · COST INDEX</span><svg width="10" height="10" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="#999" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="#999" stroke-width="1.2"/></svg></div>
           <div class="lc-name">Transaction Costs</div>
           <div class="lc-data">0% → 42%</div>
           <div class="lc-sub">CGT range · 20 countries</div>
           <div class="lc-hint">Get access →</div>
         </div>
-        <div class="lc" onclick="showSub()">
+        <div class="lc" onclick="hasAccess()?window.location.href=this.dataset.url:showSub()">
           <div class="lc-top"><span class="lc-num">05 · ADVISORS</span><svg width="10" height="10" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="#999" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="#999" stroke-width="1.2"/></svg></div>
           <div class="lc-name">Advisor Directory</div>
           <div class="lc-data">20</div>
@@ -495,7 +499,7 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
 <!-- SUBSCRIBE BAR -->
 <div class="sub-bar" id="subBar">
   <div class="sb-msg"><strong>Get full access.</strong> Join the professional briefing to unlock all tools and receive weekly institutional-grade deal analysis.</div>
-  <form class="sb-form" onsubmit="handleSub(event)">
+  <form class="sb-form" onsubmit="handleUnlock(event)">
     <input type="email" class="sb-email" id="sbEmail" placeholder="your@email.com" required>
     <button type="submit" class="sb-btn">Get Full Access →</button>
   </form>
@@ -669,14 +673,7 @@ function showSub(){
   b.scrollIntoView({behavior:'smooth',block:'nearest'});
   setTimeout(()=>document.getElementById('sbEmail').focus(),350);
 }
-function handleSub(e){
-  e.preventDefault();
-  const inp=document.getElementById('sbEmail');
-  const btn=e.target.querySelector('button');
-  window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(inp.value),'_blank');
-  btn.textContent='✓ Done'; inp.value='';
-  setTimeout(()=>btn.textContent='Get Full Access →',3000);
-}
+function handleSub(e){handleUnlock(e);}
 
 // ── SIDEBAR ──────────────────────────────────────────────────────────────────
 
@@ -695,11 +692,97 @@ function renderSbTicker(){
 }
 document.addEventListener('DOMContentLoaded',function(){renderSbTicker();setInterval(renderSbTicker,5000);});
 
+
+// ── ACCESS COOKIE SYSTEM ─────────────────────────────────────────────────────
+function setCookie(name,val,days){
+  var d=new Date();d.setTime(d.getTime()+(days*24*60*60*1000));
+  document.cookie=name+'='+val+';expires='+d.toUTCString()+';path=/;SameSite=Lax';
+}
+function getCookie(name){
+  var n=name+'=',ca=document.cookie.split(';');
+  for(var i=0;i<ca.length;i++){var c=ca[i].trim();if(c.indexOf(n)===0)return c.substring(n.length);}
+  return '';
+}
+function hasAccess(){return getCookie('mnaintel_access')==='1';}
+function grantAccess(){setCookie('mnaintel_access','1',365);}
+
+// Called by any unlock form submission
+function handleUnlock(e){
+  if(e) e.preventDefault();
+  var form=e?e.target:null;
+  var inp=form?form.querySelector('input[type=email]'):null;
+  var email=inp?inp.value:'';
+  grantAccess();
+  if(email){
+    window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(email),'_blank');
+  }
+  unlockPage();
+  return false;
+}
+
+// Remove all blurs and gates on this page
+function unlockPage(){
+  // Remove blur classes
+  document.querySelectorAll('.blurred-text,.gate-blur,.lc-data,.lc-sub,.sens-table').forEach(function(el){
+    el.style.filter='none';el.style.userSelect='auto';el.style.pointerEvents='auto';
+  });
+  // Hide all gate overlays
+  document.querySelectorAll('.gate-overlay,.rh-gate,.nb-gate,.exitNetGate,.waccGateOverlay,.rh-gate-visible,.rh-gate.visible,[id$="Gate"],[id$="GateBox"],[id$="GateOverlay"]').forEach(function(el){
+    el.style.display='none';
+  });
+  // Show hidden result sections
+  document.querySelectorAll('.result-cards,.val-section,.sens-section').forEach(function(el){
+    if(el.style.display==='none') el.style.display='grid';
+  });
+  // Remove paywall fades on editorial pages
+  document.querySelectorAll('.paywall-fade').forEach(function(el){
+    el.style.maxHeight='none';el.style.overflow='visible';
+    el.classList.remove('paywall-fade');
+  });
+  document.querySelectorAll('.paywall-gate,.pg-form').forEach(function(el){
+    el.style.display='none';
+  });
+  // Remove blur on locked card data in index
+  document.querySelectorAll('.lc').forEach(function(el){
+    el.style.cursor='default';
+    el.onclick=null;
+  });
+}
+
+// On page load: if already has access, unlock everything immediately
+document.addEventListener('DOMContentLoaded',function(){
+  if(hasAccess()) unlockPage();
+});
+
+
+// Sidebar locked links: check access before navigating
+function gatedNav(url){
+  if(hasAccess()){window.location.href=url;}
+  else{
+    // Close sidebar and show unlock prompt
+    closeSidebar();
+    var bar=document.getElementById('subBar');
+    if(bar){bar.classList.add('show');bar.scrollIntoView({behavior:'smooth',block:'nearest'});
+      var em=document.getElementById('sbEmail');if(em)setTimeout(function(){em.focus();},350);}
+    else{
+      // Tool pages: show their gate
+      var gate=document.querySelector('.rh-gate,.nb-gate');
+      if(gate){gate.style.display='block';gate.scrollIntoView({behavior:'smooth',block:'nearest'});}
+    }
+  }
+}
+
 function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
 function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
 function toggleDrop(id){const el=document.getElementById(id);const btn=el.previousElementSibling;const arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');}
 
 document.addEventListener('DOMContentLoaded',()=>{
+  
+  // Mark gated links as unlocked in sidebar
+  if(hasAccess()){
+    document.querySelectorAll('[data-gated]').forEach(function(el){el.classList.add('unlocked');});
+  }
+
   document.querySelectorAll('[data-email]').forEach(el=>{el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com';});
 });
 </script>
