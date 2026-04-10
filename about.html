@@ -3,105 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About · M&A Intelligence</title>
-<meta name="description" content="M&A Intelligence is written by a buy-side analyst with hands-on experience in cross-border M&A, joint ventures, and debt financing across Europe and Latin America.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Platform Methodology · M&A Intelligence</title>
+<meta name="description" content="How M&A Intelligence sources, verifies and publishes institutional-grade M&A data for European transactions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-
-:root{--white:#FFFFFF;--off-white:#F8F6F2;--paper:#F2EEE6;--navy:#0F1F3D;--navy-mid:#1B2F52;--rule:#D8D0C0;--rule-light:#EAE4D8;--black:#111111;--grey:#444444;--grey-mid:#666666;--grey-light:#888888;--accent:#8B1A1A;--border:rgba(0,0,0,0.1)}
+:root{--navy:#0A1628;--navy2:#142035;--white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;--rule:#D4CFC7;--rule2:#E8E5DF;--b:#111;--g:#333;--gm:#5A5A5A;--gl:#999;--red:#8B1A1A;--red2:#6e1414;--grn:#0A5C1E;--grn2:#D6EAD9;--shadow:0 2px 12px rgba(0,0,0,0.08);--shadow-md:0 4px 24px rgba(0,0,0,0.12);--mono:'IBM Plex Mono',monospace;--sans:'DM Sans',sans-serif;--serif:'Playfair Display',serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px}
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;background:var(--navy);z-index:300;transform:translateX(-280px);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
-.sidebar.open{transform:translateX(0)}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:299}
-.sb-overlay.open{display:block}
-.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.1)}
-.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.sb-logo-bar{width:2px;height:16px;background:var(--accent);flex-shrink:0}
-.sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
-.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:1.4rem;cursor:pointer;line-height:1;padding:0 4px}
-.sb-close:hover{color:var(--white)}
-.sb-section{font-size:0.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:1.25rem 0 0.5rem}
-.sb-link{display:block;padding:0.55rem 0;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
-.sb-link:hover,.sb-link.active{color:var(--white)}
-.sb-link.active{font-weight:600}
-.sb-issue{display:block;padding:0.5rem 0;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s}
-.sb-issue:hover{color:rgba(255,255,255,0.65)}
-.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
-.sb-cta:hover{background:#7a1515}
-nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:62px;gap:1rem;flex-wrap:nowrap}
-.nav-left{display:flex;align-items:center;gap:0.5rem;flex-shrink:0}
-.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.7);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;flex-shrink:0}
-.hamburger span{display:block;width:22px;height:2px;background:currentColor;border-radius:1px;transition:all 0.2s}
-.hamburger:hover{color:var(--white)}
+body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-smoothing:antialiased;font-size:15px;overflow-x:hidden}
+nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:52px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-left{display:flex;align-items:center;gap:0.65rem}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.5);cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:6px}
+.hamburger span{display:block;width:18px;height:1.5px;background:currentColor}
+.hamburger:hover{color:#fff}
 .nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-.nav-logo-bar{width:2px;height:18px;background:var(--accent);flex-shrink:0}
-.nav-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white);white-space:nowrap}
-.nav-links{display:flex;align-items:center;flex-shrink:0}
-.nav-link{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;padding:0.35rem 0.85rem;transition:color 0.2s;white-space:nowrap}
-.nav-link:hover,.nav-link.active{color:var(--white)}
-.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.5rem 1.25rem;cursor:pointer;transition:background 0.2s;white-space:nowrap;flex-shrink:0}
-.nav-sub:hover{background:#7a1515}
-footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255,0.07)}
+.nav-logo-bar{width:2px;height:18px;background:var(--red);flex-shrink:0}
+.nav-logo-text{font-size:0.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.nav-links{display:flex;align-items:center}
+.nav-link{font-size:0.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;padding:0.35rem 0.8rem;transition:color .15s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:#fff}
+.nav-sub{font-family:var(--sans);font-size:0.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.2rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.nav-sub:hover{background:var(--red2)}
+@media(max-width:800px){.nav-links{display:none}}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:285px;background:var(--navy);z-index:300;transform:translateX(-285px);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:299;backdrop-filter:blur(2px)}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
+.sb-logo-text{font-size:0.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.4rem;cursor:pointer;line-height:1}
+.sb-close:hover{color:#fff}
+.sb-section{font-size:0.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.35rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.88rem;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s}
+.sb-link:hover,.sb-link.active{color:#fff}
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans);font-size:0.88rem;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.sb-dropdown-btn:hover{color:#fff}
+.sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform .2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.4rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color .12s}
+.sb-sub-link:hover{color:rgba(255,255,255,0.85)}
+.sb-cta{font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.8rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
+.sb-cta:hover{background:var(--red2)}
+.back-bar{background:var(--bg2);border-bottom:1px solid var(--rule);padding:0.55rem 2.5rem}
+.back-bar-inner{max-width:1100px;margin:0 auto}
+.back-btn{display:inline-flex;align-items:center;gap:5px;font-size:0.72rem;font-weight:500;color:var(--gl);text-decoration:none}
+.back-btn:hover{color:var(--navy)}
+footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(255,255,255,0.06)}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
 .f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
-.f-brand-bar{width:2px;height:14px;background:var(--accent);flex-shrink:0}
-.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-brand-bar{width:2px;height:14px;background:var(--red);flex-shrink:0}
+.f-brand-text{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
 .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
-.f-links a{font-size:0.82rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s}
-.f-links a:hover{color:rgba(255,255,255,0.65)}
-.f-copy{font-size:0.7rem;color:rgba(255,255,255,0.2);width:100%;margin-top:0.25rem}
-@media(min-width:900px){nav{padding:0 2.5rem;height:66px}footer{padding:2rem 3rem}}
-@media(max-width:767px){.nav-links{display:none}}
+.f-links a{font-size:0.7rem;color:rgba(255,255,255,0.25);text-decoration:none;transition:color .15s}
+.f-links a:hover{color:rgba(255,255,255,0.7)}
+.f-copy{font-size:0.6rem;color:rgba(255,255,255,0.15);width:100%;margin-top:0.15rem}
+@media(min-width:900px){footer{padding:1.75rem 3rem}.back-bar{padding:0.55rem 3rem}}
+@media(max-width:767px){footer{padding:1.5rem 1.25rem}.back-bar{padding:0.55rem 1.25rem}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-.page{padding:3rem 2rem;max-width:700px;margin:0 auto}
-.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;color:var(--grey-mid);text-decoration:none;margin-bottom:2rem}
-.back-link:hover{color:var(--navy)}
-.page-eyebrow{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1.75rem;display:flex;align-items:center;gap:8px}
-.page-eyebrow::before{content:'';width:16px;height:2px;background:var(--accent);flex-shrink:0}
-.profile{display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:2.5rem;border-bottom:1px solid var(--rule);margin-bottom:2.5rem}
-.profile-avatar{width:110px;height:110px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;flex-shrink:0}
-.profile-avatar-text{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--white)}
-.profile-name{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:0.25rem}
-.profile-role{font-size:0.95rem;font-weight:400;color:var(--grey-mid);margin-bottom:2rem}
-.profile-bio{text-align:left;width:100%}
-.bio-item{display:flex;gap:1rem;padding:0.9rem 0;border-bottom:1px solid var(--rule-light);align-items:flex-start}
-.bio-item:first-child{padding-top:0}
-.bio-item:last-child{border-bottom:none}
-.bio-line{font-size:0.98rem;font-weight:300;line-height:1.85;color:var(--black);margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--rule-light)}
-.bio-line:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.bio-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px}
-.bio-text{font-size:1rem;font-weight:300;line-height:1.8;color:var(--black)}
-.bio-text strong{font-weight:600;color:var(--navy)}
-.about-block{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--rule)}
-.about-block:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.about-block-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:0.85rem}
-.about-block p{font-size:1rem;font-weight:300;line-height:1.85;color:var(--black);margin-bottom:0.75rem}
-.about-block p:last-child{margin-bottom:0}
-.about-block strong{font-weight:600;color:var(--navy)}
-@media(min-width:900px){.page{padding:4rem 3rem}}
-@media(max-width:767px){body{font-size:16px}.page{padding:2.5rem 1.5rem}}
+/* PAGE */
+.page-hero{background:var(--white);border-bottom:1px solid var(--rule);padding:3rem 2.5rem 2.5rem}
+.page-hero-inner{max-width:1100px;margin:0 auto}
+.ph-kicker{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.ph-kicker::before{content:'';width:16px;height:2px;background:var(--red);flex-shrink:0}
+.ph-h1{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--navy);line-height:1.08;letter-spacing:-.02em;margin-bottom:0.75rem}
+.ph-sub{font-size:0.92rem;font-weight:300;color:var(--gm);line-height:1.8;max-width:620px}
+@media(max-width:767px){.page-hero{padding:2rem 1.25rem}}
 
-.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.06)}
-.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.65);font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:400;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left}
-.sb-dropdown-btn:hover{color:var(--white)}
-.sb-arrow{font-size:0.75rem;color:rgba(255,255,255,0.3);transition:transform 0.2s}
-.sb-arrow.open{transform:rotate(180deg)}
-.sb-dropdown-items{display:none;padding-bottom:0.5rem}
-.sb-dropdown-items.open{display:block}
-.sb-sub-link{display:block;padding:0.35rem 0 0.35rem 0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;line-height:1.4;transition:color 0.2s}
-.sb-sub-link:hover{color:rgba(255,255,255,0.8)}
-.sb-sub-link.muted{color:rgba(255,255,255,0.28)}
+.content{max-width:1100px;margin:0 auto;padding:2.5rem 2.5rem 5rem;display:grid;grid-template-columns:1fr 380px;gap:3rem;align-items:start}
+@media(max-width:800px){.content{grid-template-columns:1fr;padding:2rem 1.25rem 4rem}}
 
-.back-bar{background:#F8F6F2;border-bottom:1px solid #D8D0C0;padding:0.6rem 2.5rem}
-.back-bar-inner{max-width:780px;margin:0 auto}
-.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:#666;text-decoration:none;transition:color 0.15s}
-.back-btn:hover{color:#0F1F3D}
+/* LEFT: mission */
+.mission-block{margin-bottom:2.5rem}
+.mb-label{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:0.85rem;display:flex;align-items:center;gap:8px}
+.mb-label::before{content:'';width:16px;height:2px;background:var(--red);flex-shrink:0}
+.mb-h{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:0.75rem;line-height:1.25}
+.mb-p{font-size:0.88rem;font-weight:300;line-height:1.85;color:var(--g);margin-bottom:0.85rem}
+.mb-p:last-child{margin-bottom:0}
+.mb-p strong{font-weight:600;color:var(--navy)}
+
+/* model steps */
+.model-steps{display:flex;flex-direction:column;gap:0;border:1px solid var(--rule);background:var(--white);box-shadow:var(--shadow);overflow:hidden;margin-top:2rem}
+.ms-row{display:grid;grid-template-columns:48px 1fr;gap:0;border-bottom:1px solid var(--rule2)}
+.ms-row:last-child{border-bottom:none}
+.ms-num{background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.6)}
+.ms-body{padding:0.85rem 1rem}
+.ms-title{font-size:0.8rem;font-weight:600;color:var(--navy);margin-bottom:0.2rem}
+.ms-desc{font-size:0.75rem;color:var(--gm);line-height:1.55}
+.ms-formula{font-family:var(--mono);font-size:0.68rem;color:var(--red);margin-top:0.3rem}
+
+/* RIGHT: sources card */
+.sources-card{background:var(--white);border:1px solid var(--rule);box-shadow:var(--shadow);overflow:hidden;position:sticky;top:68px}
+@media(max-width:800px){.sources-card{position:static}}
+.sc-header{background:var(--navy);padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.sc-h{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.6)}
+.sc-badge{font-family:var(--mono);font-size:0.55rem;color:rgba(255,255,255,0.35)}
+.sc-row{display:grid;grid-template-columns:32px 1fr;border-bottom:1px solid var(--rule2)}
+.sc-row:last-child{border-bottom:none}
+.sc-num{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.65rem;font-weight:600;color:var(--red);background:rgba(139,26,26,0.04);border-right:1px solid var(--rule2)}
+.sc-body{padding:0.85rem 1rem}
+.sc-name{font-size:0.8rem;font-weight:600;color:var(--navy);margin-bottom:0.2rem}
+.sc-detail{font-family:var(--mono);font-size:0.6rem;color:var(--gl);line-height:1.55}
+.sc-detail span{color:var(--gm)}
+.sc-foot{background:var(--bg2);padding:0.75rem 1rem;border-top:1px solid var(--rule)}
+.sc-foot-text{font-size:0.7rem;color:var(--gl);line-height:1.55}
+.sc-foot-text strong{color:var(--g);font-weight:600}
 </style>
 </head>
 <body>
-
 
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 <div class="sidebar" id="sidebar">
@@ -109,7 +124,11 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
     <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
     <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
-  <div class="sb-section">Navigate</div>
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
+    <div style="font-size:0.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#0A5C1E;display:inline-block;animation:pulse 2s infinite"></span>Live Benchmarks</div>
+    <div style="display:flex;flex-direction:column;gap:0.3rem" id="sbTicker"></div>
+  </div>
+  <div class="sb-section">Editorial</div>
   <div class="sb-dropdown">
     <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
     <div class="sb-dropdown-items" id="dropIssues">
@@ -128,87 +147,163 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
       <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04. UPS / Frigo-Trans · 14.5×</a>
     </div>
   </div>
-  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+  <div class="sb-section">Dashboard</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropDash')"><span>Dashboard</span><span class="sb-arrow" id="arrowDash">▾</span></button>
+    <div class="sb-dropdown-items" id="dropDash">
+      <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
+      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
+      <a href="/exit-calculator" class="sb-sub-link" onclick="closeSidebar()">Exit Value Calculator</a>
+      <a href="/country-index" class="sb-sub-link" onclick="closeSidebar()">Transaction Cost Index</a>
+      <a href="/advisors" class="sb-sub-link" onclick="closeSidebar()">Advisor Directory</a>
+    </div>
+  </div>
+  <div class="sb-section">Info</div>
+  <a href="/about" class="sb-link active" onclick="closeSidebar()">About</a>
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
 </div>
 
 <nav>
   <div class="nav-left">
-    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="hamburger" onclick="openSidebar()"><span></span><span></span><span></span></button>
     <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
   </div>
   <div class="nav-links">
     <a href="/about" class="nav-link active">About</a>
     <a href="/issues" class="nav-link">Issues</a>
-    <a href="/case-studies" class="nav-link">Case Studies</a>
-    <a href="/tools" class="nav-link">Tools</a>
-    <a href="/plans" class="nav-link">Plans</a>
+    <a href="/multiples" class="nav-link">Multiples</a>
+    <a href="/advisors" class="nav-link">Advisors</a>
   </div>
-  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>
 <div class="back-bar"><div class="back-bar-inner"><a href="/" class="back-btn">← Home</a></div></div>
-<div class="page" style="padding-bottom:5rem">
-  <a href="/" class="back-link">Back to home</a>
-  <div class="page-eyebrow">About</div>
 
-  <div class="about-block">
-    <div class="about-block-h">The information gap in SME M&A.</div>
-    <p>Buyers acquire businesses for a living. Most founders sell once. That asymmetry produces a predictable outcome: money left on the table, not because the business is bad, but because the founder never understood how it was being priced on the other side.</p>
-    <p>The buy-side analyst runs the same mental model on every target. Normalised EBITDA, sector multiple, net debt bridge. The founder sitting across the table has never seen that model. M&A Intelligence exists to change that.</p>
-    <p>Not as a broker. Not as an advisor with a mandate. As an analyst who writes down what he actually sees.</p>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="ph-kicker">Platform Methodology</div>
+    <h1 class="ph-h1">How we source and verify<br>M&A data.</h1>
+    <p class="ph-sub">M&A Intelligence is an independent data provider for European transaction benchmarks. Every number published on this platform is sourced from primary institutional datasets and cross-verified before publication.</p>
+  </div>
+</div>
+
+<div class="content">
+
+  <div>
+    <div class="mission-block">
+      <div class="mb-label">Mission</div>
+      <h2 class="mb-h">Closing the information asymmetry in European M&A.</h2>
+      <p class="mb-p">Professional buyers — strategic acquirers and private equity funds — operate with institutional-grade valuation models, sector benchmarks and transaction cost data. Founders, independent advisors and analysts on the other side of the table rarely have access to the same inputs.</p>
+      <p class="mb-p">M&A Intelligence publishes the analytical infrastructure of the buy side — multiples, cost of capital, transaction costs, deal structure — in a format that is accurate, sourced, and accessible without an institutional subscription.</p>
+      <p class="mb-p"><strong>No sponsored content. No advisor referral fees. No undisclosed relationships.</strong> All data is attributed to its primary source. All analysis represents an independent editorial perspective.</p>
+    </div>
+
+    <div class="mission-block">
+      <div class="mb-label">Valuation Methodology</div>
+      <h2 class="mb-h">How valuation multiples are computed and applied.</h2>
+      <p class="mb-p">The EV/EBITDA multiples published in the Valuation Multiples dashboard are sourced from Damodaran's annual dataset (NYU Stern School of Business, January 2026). The dataset covers positive-EBITDA firms only, using trailing 12-month data. Sector classifications follow Damodaran's own taxonomy.</p>
+      <p class="mb-p">Private market discounts are applied separately. The academic consensus for SME illiquidity discounts ranges from 20–40%. The default applied in the Exit Calculator (30%) represents the midpoint of this range for a business with average liquidity characteristics. Users can override this input.</p>
+    </div>
+
+    <div class="model-steps">
+      <div class="ms-row">
+        <div class="ms-num">01</div>
+        <div class="ms-body">
+          <div class="ms-title">EBITDA Normalisation</div>
+          <div class="ms-desc">Reported EBITDA is adjusted for owner-specific costs, non-recurring items and above/below-market management compensation. The resulting normalised EBITDA is the base for all valuation calculations.</div>
+          <div class="ms-formula">Normalised EBITDA = Reported EBITDA + Verified Add-backs</div>
+        </div>
+      </div>
+      <div class="ms-row">
+        <div class="ms-num">02</div>
+        <div class="ms-body">
+          <div class="ms-title">Enterprise Value via Multiple</div>
+          <div class="ms-desc">EV is estimated by applying the sector EV/EBITDA multiple (public market) discounted by the private market illiquidity factor. The range shown (±15%) reflects typical spread between low and high bids in a competitive process.</div>
+          <div class="ms-formula">EV = Normalised EBITDA × (Public Multiple × (1 − Private Discount))</div>
+        </div>
+      </div>
+      <div class="ms-row">
+        <div class="ms-num">03</div>
+        <div class="ms-body">
+          <div class="ms-title">Equity Bridge</div>
+          <div class="ms-desc">Enterprise Value is bridged to Equity Value by deducting net financial debt (bank loans minus unrestricted cash), pension liabilities, earnout obligations and other debt-like items.</div>
+          <div class="ms-formula">Equity Value = EV − Net Debt − Debt-like Items + Cash</div>
+        </div>
+      </div>
+      <div class="ms-row">
+        <div class="ms-num">04</div>
+        <div class="ms-body">
+          <div class="ms-title">WACC — Cost of Capital</div>
+          <div class="ms-desc">WACC is computed using the CAPM for cost of equity (Ke = Rf + β × ERP), applying Damodaran's country-level Equity Risk Premium and sector unlevered beta. The Hamada equation is used to relever beta for the target capital structure.</div>
+          <div class="ms-formula">WACC = (E/V) × Ke + (D/V) × Kd × (1 − t)</div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="about-block">
-    <div class="about-block-h">The editor.</div>
-    <ul class="bio-list">
-      <li>Currently working in M&A and Business Development at an international operating group, covering buy-side transactions, joint ventures, and debt financings across Southern Europe, DACH, and Latin America.</li>
-      <li>Previously Financial Advisory at Deloitte Luxembourg, leading Vendor Due Diligence mandates and raising over €200M across fundraising assignments for financial institutions.</li>
-      <li>Before that, Deal Advisory at KPMG Milan, focused on Distressed M&A, restructuring, and buy-side due diligence on UTP portfolios.</li>
-      <li>Passed CFA Level II.</li>
-    </ul>
+  <!-- RIGHT -->
+  <div class="sources-card">
+    <div class="sc-header">
+      <span class="sc-h">Primary Data Sources</span>
+      <span class="sc-badge">4 sources · verified annually</span>
+    </div>
+    <div class="sc-row">
+      <div class="sc-num">01</div>
+      <div class="sc-body">
+        <div class="sc-name">Damodaran · NYU Stern</div>
+        <div class="sc-detail"><span>EV/EBITDA multiples · Unlevered beta by sector · Equity Risk Premium by country</span><br>Updated January 2026 · 39+ sectors · 150+ countries · Positive-EBITDA firms only</div>
+      </div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-num">02</div>
+      <div class="sc-body">
+        <div class="sc-name">Firmex / DealCircle / Axial</div>
+        <div class="sc-detail"><span>European M&A Fee Guide 2024–2025</span><br>289 advisors surveyed · Success fee benchmarks by deal size and geography</div>
+      </div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-num">03</div>
+      <div class="sc-body">
+        <div class="sc-name">EY / KPMG Country Tax Guides</div>
+        <div class="sc-detail"><span>Capital gains tax rates by jurisdiction</span><br>National tax authority cross-reference · Updated annually · 20 European countries</div>
+      </div>
+    </div>
+    <div class="sc-row">
+      <div class="sc-num">04</div>
+      <div class="sc-body">
+        <div class="sc-name">Transaction records · Public sources</div>
+        <div class="sc-detail"><span>Case study data</span><br>SEC filings · Press releases · Company announcements · Verified third-party reporting</div>
+      </div>
+    </div>
+    <div class="sc-foot">
+      <p class="sc-foot-text"><strong>Not financial advice.</strong> All data is verified against primary sources and updated at least annually. Validate all figures with qualified advisors before use in any transaction or investment decision. Rates, multiples and tax rules change — always check current data.</p>
+    </div>
   </div>
 
-  <div class="about-block">
-    <div class="about-block-h">Who this is for.</div>
-    <ul class="bio-list">
-      <li>Business owners thinking about an exit, in one year or five. This is the manual that should have been available from day one.</li>
-      <li>Finance professionals, consultants, and advisors who want the buy-side perspective that most courses skip entirely.</li>
-      <li>Anyone at the start of a career in M&A, investment banking, or private equity who wants to understand how deals actually get priced, structured, and closed.</li>
-    </ul>
-  </div>
 </div>
 
 <footer>
   <div class="footer-inner">
     <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
     <div class="f-links">
-      <a href="/about">About</a>
-      <a href="/issue-01">Issues</a>
-      <a href="/case-studies">Case Studies</a>
-      <a href="/tools">Tools</a>
-      <a href="/plans">Plans</a>
+      <a href="/about">About</a><a href="/issues">Issues</a><a href="/case-studies">Case Studies</a>
+      <a href="/multiples">Multiples</a><a href="/wacc">WACC</a><a href="/exit-calculator">Exit</a>
+      <a href="/country-index">Cost Index</a><a href="/advisors">Advisors</a>
       <a data-email href="#">Contact</a>
     </div>
     <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function openSidebar(){
-  document.getElementById('sidebar').classList.add('open');
-  document.getElementById('sbOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeSidebar(){
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sbOverlay').classList.remove('open');
-  document.body.style.overflow='';
-}
-function handleSub(e){
-  e.preventDefault();
-  var inp=e.target.querySelector('input[type=email]');
-  var btn=e.target.querySelector('button[type=submit]')||e.target.querySelector('button');
-  window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(inp.value),'_blank');
-  var orig=btn.textContent;btn.textContent='✓ Opening Beehiiv...';inp.value='';
-  setTimeout(function(){btn.textContent=orig},3000);
-}
-window.addEventListener('DOMContentLoaded',fu
+<script>
+var SB_TICKS=[['Software EV/EBITDA','24.5×'],['Logistics EV/EBITDA','12.6×'],['CH CGT','0%'],['IT CGT','26%'],['Advisory €5M','5.5%'],['SME Discount','−30%'],['Healthcare EV/EBITDA','19.8×']];
+function renderSbTicker(){var el=document.getElementById('sbTicker');if(!el)return;var s=Math.floor(Math.random()*SB_TICKS.length);var items=SB_TICKS.slice(s,s+3).concat(SB_TICKS.slice(0,Math.max(0,3-(SB_TICKS.length-s))));el.innerHTML=items.map(function(t){return'<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4)">'+t[0]+'</span><span style="font-family:\'IBM Plex Mono\',monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');}
+function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
+function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');}
+document.addEventListener('DOMContentLoaded',function(){
+  renderSbTicker();setInterval(renderSbTicker,5000);
+  document.querySelectorAll('[data-email]').forEach(function(el){el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com';});
+});
+</script>
+</body>
+</html>
