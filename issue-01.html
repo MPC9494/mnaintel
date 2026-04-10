@@ -8,17 +8,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--white:#FFFFFF;--off-white:#F8F6F2;--paper:#F2EEE6;--navy:#0F1F3D;--navy-mid:#1B2F52;--rule:#D8D0C0;--rule-light:#EAE4D8;--black:#111111;--grey:#444444;--grey-mid:#666666;--grey-light:#888888;--accent:#8B1A1A;--border:rgba(0,0,0,0.1)}
+:root{
+  --navy:#0A1628;--navy2:#142035;
+  --white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;
+  --rule:#D4CFC7;--rule2:#E8E5DF;
+  --b:#111;--g:#333;--gm:#5A5A5A;--gl:#999;
+  --red:#8B1A1A;--red2:#6e1414;
+  --grn:#0A5C1E;--grn2:#D6EAD9;
+  --shadow:0 2px 12px rgba(0,0,0,0.08);
+  --shadow-md:0 4px 24px rgba(0,0,0,0.12);
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'DM Sans',sans-serif;
+  --serif:'Playfair Display',serif;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:18px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--b);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:18px}
 .sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;background:var(--navy);z-index:300;transform:translateX(-280px);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
 .sidebar.open{transform:translateX(0)}
 .sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:299}
 .sb-overlay.open{display:block}
 .sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.1)}
 .sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.sb-logo-bar{width:2px;height:16px;background:var(--accent);flex-shrink:0}
+.sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
 .sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
 .sb-close{background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:1.4rem;cursor:pointer;line-height:1;padding:0 4px}
 .sb-close:hover{color:var(--white)}
@@ -35,18 +47,18 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px s
 .hamburger span{display:block;width:20px;height:1.5px;background:currentColor;border-radius:1px}
 .hamburger:hover{color:var(--white)}
 .nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-.nav-logo-bar{width:2px;height:18px;background:var(--accent);flex-shrink:0}
+.nav-logo-bar{width:2px;height:18px;background:var(--red);flex-shrink:0}
 .nav-logo-text{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white);white-space:nowrap}
 .nav-links{display:flex;gap:0;align-items:center;flex-shrink:0}
 .nav-link{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;padding:0.35rem 0.9rem;transition:color 0.2s;white-space:nowrap}
 .nav-link:hover,.nav-link.active{color:var(--white)}
 .nav-link.active{font-weight:600}
-.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--white);border:none;padding:0.5rem 1rem;cursor:pointer;transition:background 0.2s;white-space:nowrap;flex-shrink:0}
+.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:var(--white);border:none;padding:0.5rem 1rem;cursor:pointer;transition:background 0.2s;white-space:nowrap;flex-shrink:0}
 .nav-sub:hover{background:#7a1515}
 footer{background:var(--navy);padding:1.75rem;border-top:1px solid rgba(255,255,255,0.07)}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
 .f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
-.f-brand-bar{width:2px;height:14px;background:var(--accent);flex-shrink:0}
+.f-brand-bar{width:2px;height:14px;background:var(--red);flex-shrink:0}
 .f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
 .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
 .f-links a{font-size:0.78rem;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.2s}
@@ -57,38 +69,38 @@ footer{background:var(--navy);padding:1.75rem;border-top:1px solid rgba(255,255,
 
 .page{padding:3rem 1.5rem}
 .page-inner{max-width:720px;margin:0 auto}
-.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;color:var(--grey-mid);text-decoration:none;margin-bottom:2rem;transition:color 0.2s}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;color:var(--gm);text-decoration:none;margin-bottom:2rem;transition:color 0.2s}
 .back-link:hover{color:var(--navy)}
 .issue-masthead{border-bottom:2px solid var(--navy);padding-bottom:1.25rem;margin-bottom:2rem}
-.issue-pub{font-size:0.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.5rem}
+.issue-pub{font-size:0.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:0.5rem}
 .issue-meta{display:flex;align-items:center;gap:0.9rem;margin-bottom:0.75rem;flex-wrap:wrap}
-.issue-tag{font-size:0.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:rgba(139,26,26,0.08);padding:3px 9px}
-.issue-date{font-size:0.75rem;color:var(--grey-light)}
+.issue-tag{font-size:0.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--red);background:rgba(139,26,26,0.08);padding:3px 9px}
+.issue-date{font-size:0.75rem;color:var(--gl)}
 .issue-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.75rem}
-.issue-deck{font-size:1.05rem;font-weight:300;font-style:italic;color:var(--grey);line-height:1.65}
+.issue-deck{font-size:1.05rem;font-weight:300;font-style:italic;color:var(--gm);line-height:1.65}
 .issue-body{margin-top:2rem}
-.issue-body p{font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--black);margin-bottom:1.1rem}
+.issue-body p{font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--b);margin-bottom:1.1rem}
 .issue-body strong{font-weight:600;color:var(--navy)}
 .blur-wrap{position:relative;overflow:hidden;margin-top:0.5rem}
 .blurred{filter:blur(4px);user-select:none;pointer-events:none}
-.blurred p{font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--black);margin-bottom:1.1rem}
+.blurred p{font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--b);margin-bottom:1.1rem}
 .paywall{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0.97) 32%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 1rem 2.5rem;gap:0.75rem;text-align:center}
 .paywall-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--navy)}
-.paywall-sub{font-size:0.92rem;font-weight:300;color:var(--grey);max-width:340px;line-height:1.6}
+.paywall-sub{font-size:0.92rem;font-weight:300;color:var(--gm);max-width:340px;line-height:1.6}
 .paywall-form{display:flex;flex-direction:column;gap:0;width:100%;max-width:400px}
-.paywall-email{background:var(--white);border:1.5px solid var(--navy);color:var(--black);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.85rem 1rem;outline:none}
+.paywall-email{background:var(--white);border:1.5px solid var(--navy);color:var(--b);font-family:'DM Sans',sans-serif;font-size:1rem;padding:0.85rem 1rem;outline:none}
 .paywall-email::placeholder{color:#bbb}
 .paywall-btn{font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--navy);color:var(--white);border:1.5px solid var(--navy);padding:0.85rem;cursor:pointer}
-.issue-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.5rem;margin-top:2rem;border-top:1px solid var(--rule-light)}
-.issue-footer-note{font-size:0.75rem;color:var(--grey-light)}
+.issue-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.5rem;margin-top:2rem;border-top:1px solid var(--rule2)}
+.issue-footer-note{font-size:0.75rem;color:var(--gl)}
 .share-wrap{position:relative;display:inline-block}
-.share-btn{background:transparent;border:1px solid var(--border);color:var(--grey-mid);font-size:0.75rem;font-weight:500;font-family:'DM Sans',sans-serif;padding:5px 11px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.share-btn{background:transparent;border:1px solid var(--border);color:var(--gm);font-size:0.75rem;font-weight:500;font-family:'DM Sans',sans-serif;padding:5px 11px;cursor:pointer;display:flex;align-items:center;gap:6px}
 .share-btn:hover{border-color:var(--navy);color:var(--navy)}
 .share-menu{position:absolute;right:0;top:calc(100% + 6px);background:var(--white);border:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,0.1);z-index:50;min-width:155px;opacity:0;pointer-events:none;transform:translateY(-4px);transition:all 0.18s}
 .share-wrap:hover .share-menu{opacity:1;pointer-events:all;transform:translateY(0)}
-.share-item{display:flex;align-items:center;gap:10px;padding:0.65rem 1rem;font-size:0.88rem;font-family:'DM Sans',sans-serif;color:var(--grey);text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--rule-light)}
+.share-item{display:flex;align-items:center;gap:10px;padding:0.65rem 1rem;font-size:0.88rem;font-family:'DM Sans',sans-serif;color:var(--gm);text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--rule2)}
 .share-item:last-child{border-bottom:none}
-.share-item:hover{background:var(--off-white);color:var(--navy)}
+.share-item:hover{background:var(--bg);color:var(--navy)}
 .si-icon{width:14px;height:14px;flex-shrink:0}
 @media(min-width:768px){.page{padding:3.5rem 2.25rem}.paywall-form{flex-direction:row}.paywall-email{flex:1;border-right:none}.paywall-btn{white-space:nowrap;border-left:none}}
 
@@ -107,6 +119,31 @@ footer{background:var(--navy);padding:1.75rem;border-top:1px solid rgba(255,255,
 .back-bar-inner{max-width:1200px;margin:0 auto}
 .back-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:var(--grey-mid,#666);text-decoration:none;transition:color 0.15s}
 .back-btn:hover{color:var(--navy,#0F1F3D)}
+
+/* ── SOFT PAYWALL ── */
+.paywall-wrap{position:relative;margin-top:1.5rem}
+.paywall-fade{position:relative;overflow:hidden;max-height:320px}
+.paywall-fade::after{content:'';position:absolute;bottom:0;left:0;right:0;height:180px;background:linear-gradient(to bottom,transparent,#fff)}
+.paywall-gate{text-align:center;padding:2rem 1rem 1rem;border-top:1px solid #E8E4DC}
+.pg-label{font-size:0.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8B1A1A;margin-bottom:0.75rem;display:flex;align-items:center;justify-content:center;gap:8px}
+.pg-label::before,.pg-label::after{content:'';flex:1;height:1px;background:#E8E4DC}
+.pg-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#0A1628;margin-bottom:0.35rem}
+.pg-sub{font-size:0.82rem;color:#5A5A5A;line-height:1.65;max-width:420px;margin:0 auto 1.25rem}
+.pg-form{display:flex;max-width:400px;margin:0 auto}
+.pg-email{flex:1;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:#111;background:#fff;border:1.5px solid #0A1628;border-right:none;padding:0.65rem 1rem;outline:none;min-width:0}
+.pg-email::placeholder{color:#bbb}
+.pg-btn{font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#0A1628;color:#fff;border:1.5px solid #0A1628;padding:0.65rem 1.1rem;cursor:pointer;white-space:nowrap;transition:background .15s}
+.pg-btn:hover{background:#8B1A1A;border-color:#8B1A1A}
+.pg-note{font-size:0.68rem;color:#999;margin-top:0.5rem}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ── INTELLIGENCE BOX ── */
+.intel-box{background:var(--bg2);border:1px solid var(--rule);border-left:3px solid var(--red);padding:1rem 1.25rem;margin:1.5rem 0;display:grid;grid-template-columns:auto 1fr;gap:0.85rem;align-items:start}
+.intel-box-icon{font-family:var(--mono);font-size:0.56rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);background:rgba(139,26,26,0.08);padding:3px 7px;white-space:nowrap;margin-top:2px}
+.intel-box-content{}
+.intel-box-title{font-size:0.72rem;font-weight:700;color:var(--navy);margin-bottom:0.25rem}
+.intel-box-body{font-size:0.8rem;color:var(--gm);line-height:1.6}
+.intel-box-data{font-family:var(--mono);font-size:0.88rem;font-weight:600;color:var(--navy);margin-top:0.3rem}
 </style>
 </head>
 <body>
@@ -117,6 +154,13 @@ footer{background:var(--navy);padding:1.75rem;border-top:1px solid rgba(255,255,
     <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
     <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
+
+  <!-- Live benchmarks mini-strip -->
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
+    <div style="font-size:0.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#0A5C1E;display:inline-block;animation:pulse 2s infinite"></span>Live Benchmarks</div>
+    <div style="display:flex;flex-direction:column;gap:0.3rem" id="sbTicker"></div>
+  </div>
+
   <div class="sb-section">Editorial</div>
   <div class="sb-dropdown">
     <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
@@ -149,7 +193,7 @@ footer{background:var(--navy);padding:1.75rem;border-top:1px solid rgba(255,255,
   </div>
   <div class="sb-section">Info</div>
   <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
-  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free →</button>
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
 </div>
 
 <nav>
@@ -164,7 +208,7 @@ footer{background:var(--navy);padding:1.75rem;border-top:1px solid rgba(255,255,
     <a href="/multiples" class="nav-link">Multiples</a>
     <a href="/wacc" class="nav-link">WACC</a>
   </div>
-  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>
 <div class="back-bar"><div class="back-bar-inner"><a href="/issues" class="back-btn">← Issues</a></div></div>
 <div class="page">
@@ -223,6 +267,34 @@ footer{background:var(--navy);padding:1.75rem;border-top:1px solid rgba(255,255,
   </div>
 </footer>
 <script>
+
+function handlePW(e){
+  e.preventDefault();
+  var inp=e.target.querySelector('input[type=email]');
+  var btn=e.target.querySelector('button');
+  window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(inp.value),'_blank');
+  var gate=e.target.closest('.paywall-gate');
+  var fade=gate&&gate.previousElementSibling;
+  if(fade){fade.style.maxHeight='none';fade.style.overflow='visible';if(fade.classList.contains('paywall-fade'))fade.classList.remove('paywall-fade');}
+  gate.innerHTML='<div style="text-align:center;padding:1rem;font-size:0.82rem;color:#0A5C1E;font-weight:600">✓ Access granted. Thank you.</div>';
+}
+
+
+// Sidebar live ticker
+var SB_TICKS=[
+  ['Software EV/EBITDA','24.5×'],['Logistics EV/EBITDA','12.6×'],
+  ['CH CGT','0%'],['IT CGT','26%'],['Advisory €5M','5.5%'],
+  ['SME Discount','−30%'],['Healthcare EV/EBITDA','19.8×'],
+];
+function renderSbTicker(){
+  var el=document.getElementById('sbTicker');
+  if(!el)return;
+  var start=Math.floor(Math.random()*SB_TICKS.length);
+  var items=SB_TICKS.slice(start,start+3).concat(SB_TICKS.slice(0,Math.max(0,3-(SB_TICKS.length-start))));
+  el.innerHTML=items.map(function(t){return '<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4);font-family:'DM Sans',sans-serif">'+t[0]+'</span><span style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');
+}
+document.addEventListener('DOMContentLoaded',function(){renderSbTicker();setInterval(renderSbTicker,5000);});
+
 function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
 function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
 function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');}
