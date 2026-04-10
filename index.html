@@ -11,12 +11,16 @@
 :root{
   --navy:#0A1628;--navy2:#142035;
   --white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;
-  --rule:#D4CFC7;--rule2:#E8E5DF;
-  --b:#111;--g:#333;--gm:#5A5A5A;--gl:#999;
+  --rule:#E5E7EB;--rule2:#F0EEE9;
+  --b:#111;--g:#222;--gm:#4A4A4A;--gl:#888;
   --red:#8B1A1A;--red2:#6e1414;
   --grn:#0A5C1E;--grn2:#D6EAD9;
-  --shadow:0 2px 12px rgba(0,0,0,0.08);
-  --shadow-md:0 4px 24px rgba(0,0,0,0.12);
+  --amber:#B45309;--amber2:#FEF3C7;
+  --input-bg:#FFFDE7;
+  --amber:#B45309;--amber2:#FEF3C7;
+  --input-bg:#FFFDE7;--input-border:#C8B400;
+  --shadow:0 1px 6px rgba(0,0,0,0.06);
+  --shadow-md:0 2px 16px rgba(0,0,0,0.10);
   --mono:'IBM Plex Mono',monospace;
   --sans:'DM Sans',sans-serif;
   --serif:'Playfair Display',serif;
@@ -68,7 +72,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 .sb-cta:hover{background:var(--red2)}
 
 /* ── HERO ── */
-.hero{background:var(--white);padding:3rem 2.5rem 0;border-bottom:1px solid var(--rule)}
+.hero{background:var(--white);padding:3rem 2.5rem 0;border-bottom:0.5px solid var(--rule)}
 .hero-wrap{max-width:1140px;margin:0 auto}
 
 /* live badge */
@@ -86,7 +90,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 @media(max-width:880px){.hero-grid{grid-template-columns:1fr}}
 
 /* data card — the rotating number */
-.data-card{background:var(--white);border:1px solid var(--rule);box-shadow:var(--shadow-md);padding:1.75rem;margin-bottom:1.25rem;position:relative;overflow:hidden}
+.data-card{background:var(--white);border:0.5px solid var(--rule);box-shadow:var(--shadow-md);padding:1.75rem;margin-bottom:1.25rem;position:relative;overflow:hidden}
 .data-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--red)}
 .dc-label{font-size:0.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:0.5rem}
 .dc-num{font-family:var(--mono);font-size:clamp(3rem,7vw,5.5rem);font-weight:600;color:var(--b);line-height:1;letter-spacing:-.04em;transition:opacity .25s}
@@ -99,7 +103,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 /* sector selector */
 .sector-selector{display:flex;align-items:center;gap:0.5rem;margin-top:1rem;flex-wrap:wrap}
 .ss-label{font-size:0.62rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gl)}
-.ss-select{font-family:var(--mono);font-size:0.8rem;color:var(--b);background:var(--bg);border:1px solid var(--rule);padding:0.35rem 0.65rem;outline:none;cursor:pointer;transition:border-color .15s}
+.ss-select{font-family:var(--mono);font-size:0.8rem;color:var(--b);background:var(--bg);border:0.5px solid var(--rule);padding:0.35rem 0.65rem;outline:none;cursor:pointer;transition:border-color .15s}
 .ss-select:focus{border-color:var(--navy)}
 
 .dc-dots{display:flex;gap:5px;margin-top:0.85rem}
@@ -114,18 +118,18 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 .btn-free-note{font-size:0.68rem;color:var(--gl)}
 
 /* right: EV/EBITDA table card */
-.table-card{background:var(--white);border:1px solid var(--rule);box-shadow:var(--shadow);overflow:hidden}
-.tc-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem 0.75rem;border-bottom:1px solid var(--rule);background:var(--bg)}
+.table-card{background:var(--white);border:0.5px solid var(--rule);box-shadow:var(--shadow);overflow:hidden}
+.tc-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem 0.75rem;border-bottom:0.5px solid var(--rule);background:var(--bg)}
 .tc-head-title{font-size:0.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy)}
 .tc-head-badge{font-family:var(--mono);font-size:0.58rem;color:var(--gl)}
-.tc-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:0.65rem 1.25rem;border-bottom:1px solid var(--rule2);transition:background .1s;cursor:pointer}
+.tc-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:0.65rem 1.25rem;border-bottom:0.5px solid var(--rule2);transition:background .1s;cursor:pointer}
 .tc-row:last-child{border-bottom:none}
 .tc-row:hover{background:var(--bg)}
 .tc-row.selected{background:rgba(10,22,40,0.04)}
 .tc-sector{font-size:0.78rem;color:var(--g)}
 .tc-val{font-family:var(--mono);font-size:0.85rem;font-weight:600}
 .tc-val.hi{color:var(--grn)}.tc-val.mid{color:var(--navy)}.tc-val.lo{color:var(--red)}
-.tc-foot{padding:0.65rem 1.25rem;display:flex;align-items:center;justify-content:space-between;background:var(--bg);border-top:1px solid var(--rule)}
+.tc-foot{padding:0.65rem 1.25rem;display:flex;align-items:center;justify-content:space-between;background:var(--bg);border-top:0.5px solid var(--rule)}
 .tc-foot-src{font-family:var(--mono);font-size:0.58rem;color:var(--gl)}
 .tc-foot-link{font-size:0.68rem;font-weight:700;color:var(--navy);text-decoration:none;letter-spacing:.04em}
 .tc-foot-link:hover{color:var(--red)}
@@ -133,7 +137,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 @media(max-width:767px){.hero{padding:2rem 1.25rem 0}}
 
 /* ── TOOLS SECTION ── */
-.tools-wrap{background:var(--white);border-top:1px solid var(--rule)}
+.tools-wrap{background:var(--white);border-top:0.5px solid var(--rule)}
 .tools-inner{max-width:1140px;margin:0 auto;padding:2rem 2.5rem}
 @media(max-width:767px){.tools-inner{padding:1.5rem 1.25rem}}
 
@@ -193,28 +197,28 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 @media(max-width:900px){.bottom-wrap{grid-template-columns:1fr 1fr;padding:1.5rem 1.25rem}}
 @media(max-width:550px){.bottom-wrap{grid-template-columns:1fr}}
 
-.data-block{background:var(--white);border:1px solid var(--rule);box-shadow:var(--shadow)}
-.db-header{padding:0.85rem 1.1rem 0.75rem;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:0.6rem;background:var(--bg)}
+.data-block{background:var(--white);border:0.5px solid var(--rule);box-shadow:var(--shadow)}
+.db-header{padding:0.85rem 1.1rem 0.75rem;border-bottom:0.5px solid var(--rule);display:flex;align-items:center;gap:0.6rem;background:var(--bg)}
 .db-icon{width:16px;height:16px;color:var(--navy);flex-shrink:0;opacity:.7}
 .db-title{font-size:0.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy)}
-.db-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.65rem 1.1rem;border-bottom:1px solid var(--rule2)}
+.db-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.65rem 1.1rem;border-bottom:0.5px solid var(--rule2)}
 .db-row:last-child{border-bottom:none}
 .db-lbl{font-size:0.78rem;color:var(--gm)}
 .db-val{font-family:var(--mono);font-size:0.78rem;font-weight:600}
 .db-val.g{color:var(--grn)}.db-val.r{color:var(--red)}.db-val.n{color:var(--navy)}.db-val.m{color:var(--gl);font-weight:400}
-.db-foot{padding:0.65rem 1.1rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;background:var(--bg)}
+.db-foot{padding:0.65rem 1.1rem;border-top:0.5px solid var(--rule);display:flex;justify-content:space-between;align-items:center;background:var(--bg)}
 .db-src{font-family:var(--mono);font-size:0.58rem;color:var(--gl)}
 .db-link{font-size:0.68rem;font-weight:700;color:var(--navy);text-decoration:none}
 .db-link:hover{color:var(--red)}
 
 /* issue / case study rows */
-.ir{display:block;padding:0.75rem 1.1rem;border-bottom:1px solid var(--rule2);text-decoration:none;transition:background .1s}
+.ir{display:block;padding:0.75rem 1.1rem;border-bottom:0.5px solid var(--rule2);text-decoration:none;transition:background .1s}
 .ir:last-child{border-bottom:none}
 .ir:hover{background:var(--bg)}
 .ir:hover .ir-title{color:var(--red);transform:translateX(4px)}
 .ir-meta{font-family:var(--mono);font-size:0.6rem;color:var(--gl);margin-bottom:0.25rem}
 .ir-title{font-size:0.85rem;font-weight:600;color:var(--navy);line-height:1.35;transition:color .12s,transform .15s}
-.csr{display:block;padding:0.75rem 1.1rem;border-bottom:1px solid var(--rule2);text-decoration:none;transition:background .1s}
+.csr{display:block;padding:0.75rem 1.1rem;border-bottom:0.5px solid var(--rule2);text-decoration:none;transition:background .1s}
 .csr:last-child{border-bottom:none}
 .csr:hover{background:var(--bg)}
 .csr:hover .csr-title{color:var(--red);transform:translateX(4px)}
@@ -245,6 +249,24 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
 .f-links a:hover{color:rgba(255,255,255,0.7)}
 .f-copy{font-size:0.6rem;color:rgba(255,255,255,0.15);width:100%;margin-top:0.15rem}
 @media(max-width:767px){footer{padding:1.5rem 1.25rem}}
+
+/* ── MARKET PULSE ── */
+.market-pulse{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
+.market-pulse::-webkit-scrollbar{display:none}
+.mp-brand{display:flex;align-items:center;gap:6px;padding:.3rem 1.25rem .3rem .75rem;border-right:1px solid rgba(255,255,255,0.07);flex-shrink:0}
+.mp-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:mp-pulse 2.5s infinite}
+@keyframes mp-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+.mp-label{font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.mp-item{display:flex;align-items:center;gap:.5rem;padding:.28rem .9rem;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0}
+.mp-item:last-child{border-right:none}
+.mp-name{font-size:.58rem;color:rgba(255,255,255,.32);white-space:nowrap}
+.mp-val{font-family:var(--mono);font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
+.mp-chg{font-family:var(--mono);font-size:.55rem;white-space:nowrap}
+.mp-chg.up{color:#4ade80}.mp-chg.dn{color:#f87171}.mp-chg.neu{color:rgba(255,255,255,.3)}
+
+
+.tc-data{font-family:var(--mono)!important;}
+.tc-name{font-family:var(--sans)}
 </style>
 </head>
 <body>
@@ -307,39 +329,63 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
   </div>
   <button class="nav-sub" onclick="showSub()">Get Full Access</button>
 </nav>
+<!-- MARKET PULSE -->
+<div class="market-pulse">
+  <div class="mp-brand"><span class="mp-dot"></span><span class="mp-label">Market Pulse</span></div>
+  <div class="mp-item"><span class="mp-name">10Y Bund (Rf)</span><span class="mp-val">2.68%</span><span class="mp-chg neu">ECB</span></div>
+  <div class="mp-item"><span class="mp-name">ERP EU avg</span><span class="mp-val">5.84%</span><span class="mp-chg neu">Damodaran 2026</span></div>
+  <div class="mp-item"><span class="mp-name">S&amp;P Fwd P/E</span><span class="mp-val">20.8×</span><span class="mp-chg dn">above hist. avg</span></div>
+  <div class="mp-item"><span class="mp-name">EU Deal Vol</span><span class="mp-val">−14%</span><span class="mp-chg dn">YoY · Mergermarket</span></div>
+  <div class="mp-item"><span class="mp-name">Software EV/EBITDA</span><span class="mp-val">24.5×</span><span class="mp-chg up">Damodaran Jan 2026</span></div>
+  <div class="mp-item"><span class="mp-name">Logistics EV/EBITDA</span><span class="mp-val">12.6×</span><span class="mp-chg neu">Damodaran Jan 2026</span></div>
+  <div class="mp-item"><span class="mp-name">CH CGT</span><span class="mp-val">0%</span><span class="mp-chg up">lowest EU</span></div>
+  <div class="mp-item"><span class="mp-name">DK CGT</span><span class="mp-val">42%</span><span class="mp-chg dn">highest EU</span></div>
+</div>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-wrap">
     <div class="live-badge"><span class="live-dot"></span>Institutional-grade data · Updated Jan 2026</div>
     <h1 class="hero-h1">Stop guessing<br>your <span>valuation.</span></h1>
-    <p class="hero-tagline">Independent buy-side intelligence for European M&A transactions.</p>
+    <p class="hero-tagline">Independent M&A data. Institutional precision.</p>
 
     <div class="hero-grid">
       <!-- LEFT: rotating data card + CTA -->
       <div>
         <div class="data-card">
-          <div class="dc-label" id="dcLabel">EV/EBITDA Multiple</div>
+          <div class="dc-label" id="dcLabel">10-Year Bund Yield</div>
           <div>
-            <span class="dc-num" id="dcNum">24.5</span><span class="dc-unit" id="dcUnit">×</span>
+            <span class="dc-num" id="dcNum">2.68</span><span class="dc-unit" id="dcUnit">%</span>
           </div>
           <div class="dc-sublabel" id="dcSublabel">Software (System & App)</div>
-          <div class="dc-source" id="dcSource">Damodaran Jan 2026 · US public markets</div>
+          <div class="dc-source" id="dcSource">ECB · April 2026 · benchmark for European WACC</div>
           <div class="sector-selector">
             <span class="ss-label">Change sector:</span>
             <select class="ss-select" id="sectorPick" onchange="pickSector()">
-              <option value="Software (System &amp; App)|24.5|×|EV/EBITDA Multiple|Damodaran Jan 2026 · US public markets" selected>Software</option>
-              <option value="Healthcare Products|19.8|×|EV/EBITDA Multiple|Damodaran Jan 2026 · US public markets">Healthcare</option>
-              <option value="Machinery|16.2|×|EV/EBITDA Multiple|Damodaran Jan 2026 · US public markets">Machinery</option>
-              <option value="Business Services|14.3|×|EV/EBITDA Multiple|Damodaran Jan 2026 · US public markets">Business Services</option>
-              <option value="Logistics / Transport|12.6|×|EV/EBITDA Multiple|Damodaran Jan 2026 · US public markets">Logistics</option>
-              <option value="Food Processing|10.0|×|EV/EBITDA Multiple|Damodaran Jan 2026 · US public markets">Food Processing</option>
-              <option value="Oil &amp; Gas (E&amp;P)|5.2|×|EV/EBITDA Multiple|Damodaran Jan 2026 · US public markets">Oil &amp; Gas</option>
-              <option value="Switzerland|0%||Capital Gains Tax · individual|Share deal · participation exemption">CH Capital Gains Tax</option>
-              <option value="Italy|26%||Capital Gains Tax · individual|Imposta sostitutiva · share deal">IT Capital Gains Tax</option>
-              <option value="Denmark|42%||Capital Gains Tax · top rate|27% to DKK 63k · 42% above">DK Capital Gains Tax</option>
-              <option value="€5M deal advisory|5.5%||Advisory Fee · European average|Firmex / DealCircle EU Fee Guide 2024–2025">Advisory Fee (€5M)</option>
-              <option value="Private market discount|−30%||Illiquidity discount · SME|Academic consensus · typical 25–40%">SME Discount</option>
+              <optgroup label="── Macro ──">
+              <option value="Risk-free rate · Germany|2.68|%|10-Year Bund Yield|ECB · April 2026 · benchmark for European WACC" selected>Bund 10Y (Rf)</option>
+              <option value="EU average · Damodaran Jan 2026|5.84|%|Equity Risk Premium|Country ERP applied in WACC calculator">ERP EU avg</option>
+              <option value="US public market · consensus estimate|20.8|×|S&amp;P 500 Forward P/E|FactSet Q1 2026 · above 20-year avg of 15.7×">S&amp;P Fwd P/E</option>
+              <option value="Year-on-year · Q1 2026|−14|%|EU M&amp;A Deal Volume|Mergermarket · deal count vs Q1 2025">EU Deal Vol (YoY)</option>
+              <option value="European Central Bank · current rate|4.1|%|ECB Deposit Rate|Effective March 2024 · impacts debt cost">ECB Rate</option>
+              </optgroup>
+              <optgroup label="── EV/EBITDA Multiples ──">
+              <option value="System &amp; Application Software|24.5|×|EV/EBITDA · Software|Damodaran Jan 2026 · US public market · 214 firms">Software</option>
+              <option value="Medical devices &amp; diagnostics|19.8|×|EV/EBITDA · Healthcare Products|Damodaran Jan 2026 · US public market · 186 firms">Healthcare Products</option>
+              <option value="Industrial machinery &amp; equipment|16.2|×|EV/EBITDA · Machinery|Damodaran Jan 2026 · US public market · 127 firms">Machinery</option>
+              <option value="Professional &amp; outsourced services|14.3|×|EV/EBITDA · Business Services|Damodaran Jan 2026 · US public market · 155 firms">Business Services</option>
+              <option value="Transportation &amp; logistics|12.6|×|EV/EBITDA · Logistics|Damodaran Jan 2026 · US public market · 89 firms">Logistics</option>
+              <option value="Food manufacturing &amp; processing|10.0|×|EV/EBITDA · Food Processing|Damodaran Jan 2026 · US public market · 93 firms">Food Processing</option>
+              <option value="Airline &amp; air freight|7.6|×|EV/EBITDA · Air Transport|Damodaran Jan 2026 · US public market · 23 firms">Air Transport</option>
+              <option value="Exploration &amp; production|5.2|×|EV/EBITDA · Oil &amp; Gas E&amp;P|Damodaran Jan 2026 · US public market · 311 firms">Oil &amp; Gas E&amp;P</option>
+              </optgroup>
+              <optgroup label="── Transaction Costs ──">
+              <option value="Individual shareholder · share deal|0|%|Capital Gains Tax · Switzerland|Participation exemption · no CGT on qualifying stakes">CH CGT (0%)</option>
+              <option value="Individual shareholder · share deal|26|%|Capital Gains Tax · Italy|Imposta sostitutiva · flat rate">IT CGT (26%)</option>
+              <option value="Individual shareholder · top rate|42|%|Capital Gains Tax · Denmark|27% to DKK 63k · 42% above">DK CGT (42%)</option>
+              <option value="European average · €5M deal size|5.5|%|M&amp;A Advisory Fee|Firmex / DealCircle EU Fee Guide 2024–2025">Advisory Fee €5M</option>
+              <option value="SME illiquidity · public market|−30|%|Private Market Discount|Academic consensus range 25–40%">SME Discount (−30%)</option>
+              </optgroup>
             </select>
           </div>
           <div class="dc-dots" id="dcDots"></div>
@@ -538,14 +584,28 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
 <script>
 // ── DATA CARD: rotating auto + click from table ─────────────────────────────
 const AUTO = [
-  ['24.5','×','EV/EBITDA Multiple','Software (System & App)','Damodaran Jan 2026 · US public markets'],
-  ['12.6','×','EV/EBITDA Multiple','Logistics / Transport','Damodaran Jan 2026 · US public markets'],
-  ['0%','','Capital Gains Tax · individual','Switzerland','Share deal · participation exemption'],
-  ['5.5%','','Advisory Fee · European average','€5M deal','Firmex / DealCircle EU Fee Guide 2024–2025'],
-  ['−30%','','Illiquidity discount · SME','Private market','Academic consensus · typical 25–40%'],
-  ['19.8','×','EV/EBITDA Multiple','Healthcare Products','Damodaran Jan 2026 · US public markets'],
-  ['42%','','Capital Gains Tax · top rate','Denmark','27% below DKK 63k · 42% above'],
-  ['16.2','×','EV/EBITDA Multiple','Machinery','Damodaran Jan 2026 · US public markets'],
+  // ── MACRO ─────────────────────────────────────────────────────────────────
+  ['2.68','%','10-Year Bund Yield','Risk-free rate · Germany','ECB · April 2026 · benchmark for European WACC'],
+  ['5.84','%','Equity Risk Premium','EU average · Damodaran Jan 2026','Country ERP applied in WACC calculator'],
+  ['20.8','×','S&P 500 Forward P/E','US public market · consensus estimate','FactSet Q1 2026 · above 20-year avg of 15.7×'],
+  ['−14','%','European M&A Deal Volume','Year-on-year · Q1 2026','Mergermarket · deal count vs Q1 2025'],
+  ['4.1','%','ECB Deposit Rate','European Central Bank · current rate','Effective March 2024 · impacts debt cost (Kd)'],
+  ['3.15','%','EUR 10Y Swap Rate','Interbank benchmark','ICE Benchmark Administration · April 2026'],
+  // ── VALUATION MULTIPLES ───────────────────────────────────────────────────
+  ['24.5','×','EV/EBITDA · Software','System & Application Software','Damodaran Jan 2026 · US public market · 214 firms'],
+  ['19.8','×','EV/EBITDA · Healthcare Products','Medical devices & diagnostics','Damodaran Jan 2026 · US public market · 186 firms'],
+  ['16.2','×','EV/EBITDA · Machinery','Industrial machinery & equipment','Damodaran Jan 2026 · US public market · 127 firms'],
+  ['14.3','×','EV/EBITDA · Business Services','Professional & outsourced services','Damodaran Jan 2026 · US public market · 155 firms'],
+  ['12.6','×','EV/EBITDA · Logistics','Transportation & logistics','Damodaran Jan 2026 · US public market · 89 firms'],
+  ['10.0','×','EV/EBITDA · Food Processing','Food manufacturing & processing','Damodaran Jan 2026 · US public market · 93 firms'],
+  ['7.6','×','EV/EBITDA · Air Transport','Airline & air freight','Damodaran Jan 2026 · US public market · 23 firms'],
+  ['5.2','×','EV/EBITDA · Oil & Gas E&P','Exploration & production','Damodaran Jan 2026 · US public market · 311 firms'],
+  // ── TRANSACTION COSTS ─────────────────────────────────────────────────────
+  ['0','%','Capital Gains Tax · Switzerland','Individual shareholder · share deal','Participation exemption applies · no CGT on qualifying stakes'],
+  ['26','%','Capital Gains Tax · Italy','Individual shareholder · share deal','Imposta sostitutiva · flat rate on capital gains'],
+  ['42','%','Capital Gains Tax · Denmark','Individual shareholder · top rate','27% up to DKK 63,300 threshold · 42% above'],
+  ['5.5','%','M&A Advisory Fee','European average · €5M deal size','Firmex / DealCircle EU Fee Guide 2024–2025 · 289 advisors'],
+  ['−30','%','Private Market Discount','SME illiquidity discount · applied to public multiple','Academic consensus range 25–40% · default in Exit Calculator'],
 ];
 let cur=0, timer;
 const numEl=document.getElementById('dcNum');
