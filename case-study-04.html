@@ -316,7 +316,7 @@ function renderSbTicker(){
   if(!el)return;
   var start=Math.floor(Math.random()*SB_TICKS.length);
   var items=SB_TICKS.slice(start,start+3).concat(SB_TICKS.slice(0,Math.max(0,3-(SB_TICKS.length-start))));
-  el.innerHTML=items.map(function(t){return '<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4);font-family:'DM Sans',sans-serif">'+t[0]+'</span><span style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');
+  el.innerHTML=items.map(function(t){return '<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4);">'+t[0]+'</span><span style="font-family:monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');
 }
 document.addEventListener('DOMContentLoaded',function(){renderSbTicker();setInterval(renderSbTicker,5000);});
 

@@ -2,16 +2,22 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/about", "destination": "/about.html" },
-    { "source": "/issues", "destination": "/issues.html" },
-    { "source": "/issue-01", "destination": "/issue-01.html" },
-    { "source": "/case-studies", "destination": "/case-studies.html" },
-    { "source": "/case-study-01", "destination": "/case-study-01.html" },
-    { "source": "/readiness", "destination": "/readiness.html" },
-    { "source": "/multiples", "destination": "/multiples.html" },
-    { "source": "/wacc", "destination": "/wacc.html" },
-    { "source": "/exit-calculator", "destination": "/exit-calculator.html" },
-    { "source": "/advisors", "destination": "/advisors.html" },
-    { "source": "/country-index", "destination": "/country-index.html" }
+    { "source": "/about",          "destination": "/about.html" },
+    { "source": "/issues",         "destination": "/issues.html" },
+    { "source": "/issue-01",       "destination": "/issue-01.html" },
+    { "source": "/issue-02",       "destination": "/issue-02.html" },
+    { "source": "/issue-03",       "destination": "/issue-03.html" },
+    { "source": "/issue-04",       "destination": "/issue-04.html" },
+    { "source": "/case-studies",   "destination": "/case-studies.html" },
+    { "source": "/case-study-01",  "destination": "/case-study-01.html" },
+    { "source": "/case-study-02",  "destination": "/case-study-02.html" },
+    { "source": "/case-study-03",  "destination": "/case-study-03.html" },
+    { "source": "/case-study-04",  "destination": "/case-study-04.html" },
+    { "source": "/multiples",      "destination": "/multiples.html" },
+    { "source": "/wacc",           "destination": "/wacc.html" },
+    { "source": "/exit-calculator","destination": "/exit-calculator.html" },
+    { "source": "/country-index",  "destination": "/country-index.html" },
+    { "source": "/advisors",       "destination": "/advisors.html" },
+    { "source": "/readiness",      "destination": "/readiness.html" }
   ]
 }

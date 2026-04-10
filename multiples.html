@@ -7,7 +7,7 @@
 <meta name="description" content="EV/EBITDA multiples by sector, Damodaran data 2019–2026. Compare sectors, track cycles, estimate private market value.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
 <style>
 :root{
   --navy:#0A1628;--navy2:#142035;
@@ -681,6 +681,7 @@ function renderPanel() {
 }
 
 function renderTrendChart(rows) {
+  if(typeof Chart === "undefined") return;
   const ctx = document.getElementById('trendChart').getContext('2d');
   if (trendChart) trendChart.destroy();
   trendChart = new Chart(ctx, {
@@ -778,7 +779,7 @@ function renderSbTicker(){
   if(!el)return;
   var start=Math.floor(Math.random()*SB_TICKS.length);
   var items=SB_TICKS.slice(start,start+3).concat(SB_TICKS.slice(0,Math.max(0,3-(SB_TICKS.length-start))));
-  el.innerHTML=items.map(function(t){return '<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4);font-family:'DM Sans',sans-serif">'+t[0]+'</span><span style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');
+  el.innerHTML=items.map(function(t){return '<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4);">'+t[0]+'</span><span style="font-family:monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');
 }
 document.addEventListener('DOMContentLoaded',function(){renderSbTicker();setInterval(renderSbTicker,5000);});
 
@@ -788,7 +789,7 @@ function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousEl
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', ()=>{
-  renderTable();
+  try { renderTable(); } catch(e) { console.error("renderTable error:", e); }
   document.querySelectorAll('thead th')[1]?.classList.add('sort-desc');
   document.querySelectorAll('[data-email]').forEach(el=>{el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com'});
 });

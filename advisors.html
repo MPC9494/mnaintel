@@ -171,6 +171,18 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 
 .note-bar{padding:0.85rem 2.5rem;font-size:0.68rem;color:var(--gl);border-top:1px solid var(--rule);max-width:100%}
 @media(max-width:767px){.submit-band{padding:1.25rem}.main-layout{padding:1.25rem}.note-bar{padding:0.85rem 1.25rem}}
+
+/* ── SEARCH DROPDOWN ── */
+.search-wrap{position:relative;flex:1;max-width:300px}
+.fp-search{width:100%;font-family:var(--sans);font-size:0.82rem;color:var(--b);background:var(--bg);border:1px solid var(--rule);padding:0.45rem 0.7rem;outline:none;transition:border-color .15s;position:relative;z-index:2}
+.fp-search:focus{border-color:var(--navy);background:var(--white)}
+.search-dropdown{display:none;position:absolute;top:100%;left:0;right:0;background:var(--white);border:1px solid var(--navy);border-top:none;max-height:220px;overflow-y:auto;z-index:100;box-shadow:var(--shadow-md)}
+.search-dropdown.open{display:block}
+.sd-item{padding:0.5rem 0.85rem;font-size:0.8rem;color:var(--g);cursor:pointer;border-bottom:1px solid var(--rule2);transition:background .1s;display:flex;justify-content:space-between;align-items:center}
+.sd-item:last-child{border-bottom:none}
+.sd-item:hover,.sd-item.focused{background:var(--bg2)}
+.sd-item-type{font-size:0.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gl)}
+.sd-empty{padding:0.75rem 0.85rem;font-size:0.78rem;color:var(--gl);font-style:italic}
 </style>
 </head>
 <body>
@@ -251,7 +263,11 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
   <!-- FILTER PANEL -->
   <div class="filter-panel">
     <div class="fp-title">Filter advisors</div>
-    <input type="text" class="fp-search" id="fpSearch" placeholder="Search firm or sector…" oninput="render()">
+    <div class="search-wrap">
+      <input type="text" class="fp-search" id="fpSearch" placeholder="Search firm, sector or market…" 
+             oninput="onSearchInput()" onfocus="openDropdown()" autocomplete="off">
+      <div class="search-dropdown" id="searchDropdown"></div>
+    </div>
     <div class="fp-section">
       <span class="fp-section-label">Type</span>
       <label class="fp-option"><input type="checkbox" value="boutique" onchange="render()" checked> Independent Boutique</label>
@@ -312,27 +328,38 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 
 <script>
 const ADVISORS=[
-  {name:'Oaklins',type:'boutique',hq:'Amsterdam',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€5M–€500M',deals:'700+ global / yr',sectors:['Industrials','Technology','Food & Bev','Healthcare','Business Services'],desc:'Global network, 850+ professionals in 45+ countries. Strong European mid-market sell-side track record.',web:'oaklins.com',badges:['Cross-border','Mid-Market Focus','Network: 45 countries']},
-  {name:'IMAP',type:'boutique',hq:'Vienna',market:'DACH',sizes:['small','mid','large'],sizeLabel:'€10M–€300M',deals:'200+ closed / yr',sectors:['Industrials','Technology','Healthcare','Consumer'],desc:'International M&A partnership. Deep DACH and Southern Europe expertise.',web:'imap.com',badges:['DACH Specialist','Mid-Market Focus','Family Business']},
-  {name:'Clairfield International',type:'boutique',hq:'Paris',market:'Pan-European',sizes:['small','mid'],sizeLabel:'€5M–€200M',deals:'100+ closed / yr',sectors:['Technology','Healthcare','Industrials','Business Services'],desc:'Independent mid-market M&A. 200+ professionals across Europe. Founder-led transaction expertise.',web:'clairfield.com',badges:['Founder-led Exits','Mid-Market Focus','Cross-border']},
-  {name:'Lincoln International',type:'boutique',hq:'Frankfurt',market:'DACH',sizes:['mid','large'],sizeLabel:'€50M–€1B+',deals:'Large-cap mid-mkt',sectors:['Industrials','Technology','Healthcare','Business Services'],desc:'Global mid-market investment bank. Strong European PE and corporate sell-side credentials.',web:'lincolninternational.com',badges:['PE-backed Exits','Large Mid-Market','Cross-border']},
-  {name:'Houlihan Lokey',type:'bank',hq:'London / Frankfurt',market:'Northern Europe',sizes:['mid','large'],sizeLabel:'€50M–€5B+',deals:'Top-ranked EU',sectors:['Technology','Industrials','Healthcare','Financial Services'],desc:'Global investment bank. Deep European mid-market and large-cap advisory.',web:'hl.com',badges:['Large Cap','Cross-border','PE Relationships']},
-  {name:'Alantra',type:'boutique',hq:'Madrid',market:'Southern Europe',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'200+ closed / yr',sectors:['Technology','Healthcare','Consumer','Industrials','Business Services'],desc:'Independent investment banking. Strong Southern Europe and cross-border coverage.',web:'alantra.com',badges:['Southern Europe','Mid-Market Focus','Cross-border']},
-  {name:'KPMG Corporate Finance',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€10M–€1B+',deals:'Full service',sectors:['All sectors'],desc:'Big Four corporate finance. Full-service DD, valuation, and sell-side across Europe.',web:'kpmg.com',badges:['Full Service','Integrated DD','All Sectors']},
-  {name:'PwC Deals',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€10M–€1B+',deals:'Market leader',sectors:['All sectors'],desc:'Integrated sell-side advisory with tax, legal and DD capabilities.',web:'pwc.com',badges:['Full Service','Tax Integration','Market Leader']},
-  {name:'Deloitte Financial Advisory',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€20M–€2B+',deals:'Complex cross-border',sectors:['All sectors'],desc:'M&A advisory with deep sector and cross-border expertise.',web:'deloitte.com',badges:['Cross-border','Complex Deals','Sector Depth']},
-  {name:'Rothschild & Co',type:'bank',hq:'Paris / London',market:'Pan-European',sizes:['large'],sizeLabel:'€100M+',deals:'Top-10 EU by value',sectors:['Industrials','Consumer','Financial Services','Technology'],desc:'Leading independent financial advisor. Strong VDD and large-cap sell-side mandates.',web:'rothschildandco.com',badges:['Large Cap','Top-10 EU','Independent']},
-  {name:'Mediobanca',type:'bank',hq:'Milan',market:'Southern Europe',sizes:['mid','large'],sizeLabel:'€50M–€5B+',deals:'#1 Italy by value',sectors:['Industrials','Consumer','Financial Services','Real Estate'],desc:'Leading Italian investment bank. Strong sell-side for mid-to-large Italian corporates.',web:'mediobanca.com',badges:['Italy Specialist','Large Cap','Financial Services']},
-  {name:'GCA Altium',type:'boutique',hq:'London / Munich',market:'Northern Europe',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'#1 EU tech M&A',sectors:['Technology','Software','Business Services','FinTech'],desc:'Technology-focused M&A advisory with strong PE relationships.',web:'gcaaltium.com',badges:['Tech Specialist','PE Relationships','Cross-border']},
-  {name:'DC Advisory',type:'boutique',hq:'London',market:'Northern Europe',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'Strong PE expertise',sectors:['Industrials','Technology','Healthcare','Consumer','Business Services'],desc:'European mid-market independent advisor. Backed by Daiwa Securities Group.',web:'dcadvisory.com',badges:['Mid-Market Focus','PE Relationships','Cross-border']},
-  {name:'Livingstone',type:'boutique',hq:'London',market:'UK/Ireland',sizes:['small','mid'],sizeLabel:'€10M–€150M',deals:'300+ completed',sectors:['Technology','Business Services','Healthcare','Consumer'],desc:'Independent mid-market advisor. Strong tech and business services sector expertise.',web:'livingstonepartners.com',badges:['Mid-Market Focus','Tech & Services','UK Specialist']},
-  {name:'Capitalmind',type:'boutique',hq:'Amsterdam / Paris',market:'Northern Europe',sizes:['micro','small','mid'],sizeLabel:'€5M–€100M',deals:'Benelux & France',sectors:['Technology','Business Services','Healthcare','Industrials'],desc:'Independent European M&A. Strong tech-enabled business services focus.',web:'capitalmind.eu',badges:['Lower Mid-Market','Tech Specialist','Benelux & France']},
-  {name:'Metzler',type:'bank',hq:'Frankfurt',market:'DACH',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'Leading DACH boutique',sectors:['Industrials','Technology','Healthcare','Financial Services'],desc:'German private bank with strong DACH M&A advisory. Family-owned, independent.',web:'metzler.com',badges:['DACH Specialist','Independent','Family-owned']},
-  {name:'Baird International',type:'boutique',hq:'London',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M–€1B+',deals:'Top-ranked mid-mkt',sectors:['Technology','Healthcare','Industrials','Consumer','Business Services'],desc:'US investment bank with strong European mid-market M&A presence.',web:'rwbaird.com',badges:['US-European Bridge','Mid-Market Focus','Cross-border']},
-  {name:'Lazard',type:'bank',hq:'Paris / London',market:'Pan-European',sizes:['large'],sizeLabel:'€200M+',deals:'Top-5 EU by value',sectors:['All sectors'],desc:'Global independent investment bank. Premier large-cap sell-side advisory.',web:'lazard.com',badges:['Large Cap','Top-5 EU','Full Independence']},
-  {name:'BNP Paribas CIB',type:'bank',hq:'Paris',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M+',deals:'Pan-European',sectors:['Industrials','Technology','Healthcare','Consumer','Energy'],desc:'European investment banking powerhouse with comprehensive sell-side advisory.',web:'bnpparibas.com',badges:['Pan-European','Energy Sector','Large Scale']},
-  {name:'Société Générale CIB',type:'bank',hq:'Paris',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M+',deals:'Strong energy focus',sectors:['Industrials','Real Estate','Energy','Consumer'],desc:'French bank with strong European M&A and leveraged finance capabilities.',web:'sgcib.com',badges:['Leveraged Finance','Energy Focus','Pan-European']},
-];
+  // ── INDEPENDENT BOUTIQUES ─────────────────────────────────────────────────
+  {name:'Oaklins',type:'boutique',hq:'Amsterdam',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€5M–€500M',deals:'700+ global / yr',sectors:['Industrials','Technology','Food & Bev','Healthcare','Business Services'],desc:'Global network of 850+ M&A professionals across 45+ countries. One of Europe\'s most active sell-side advisors for founder-led mid-market businesses.',web:'oaklins.com',badges:['Cross-border','Mid-Market','45 Countries']},
+  {name:'IMAP',type:'boutique',hq:'Vienna',market:'DACH',sizes:['small','mid','large'],sizeLabel:'€10M–€300M',deals:'200+ closed / yr',sectors:['Industrials','Technology','Healthcare','Consumer'],desc:'International M&A partnership with 40 offices. Deep DACH and Southern Europe sell-side expertise for owner-managed businesses.',web:'imap.com',badges:['DACH Specialist','Family Business','Owner-led Exits']},
+  {name:'Clairfield International',type:'boutique',hq:'Paris',market:'Pan-European',sizes:['small','mid'],sizeLabel:'€5M–€200M',deals:'100+ closed / yr',sectors:['Technology','Healthcare','Industrials','Business Services'],desc:'Independent mid-market M&A with 200+ professionals across Europe. Strong technology-enabled business services focus.',web:'clairfield.com',badges:['Founder-led Exits','Mid-Market','Cross-border']},
+  {name:'Lincoln International',type:'boutique',hq:'Frankfurt',market:'DACH',sizes:['mid','large'],sizeLabel:'€50M–€1B+',deals:'Large-cap mid-mkt',sectors:['Industrials','Technology','Healthcare','Business Services'],desc:'Global mid-market investment bank with strong European PE and corporate sell-side credentials. Particularly active in German-speaking markets.',web:'lincolninternational.com',badges:['PE-backed Exits','Large Mid-Market','Cross-border']},
+  {name:'GCA Altium',type:'boutique',hq:'London / Munich',market:'Northern Europe',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'#1 EU tech M&A',sectors:['Technology','Software','Business Services','FinTech'],desc:'Europe\'s leading technology-focused M&A advisor. Strong PE and corporate buyer relationships in software and SaaS.',web:'gcaaltium.com',badges:['Tech Specialist','PE Relationships','SaaS Focus']},
+  {name:'DC Advisory',type:'boutique',hq:'London',market:'Northern Europe',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'Strong PE expertise',sectors:['Industrials','Technology','Healthcare','Consumer','Business Services'],desc:'European mid-market independent advisor backed by Daiwa Securities. 150+ professionals across 8 European offices.',web:'dcadvisory.com',badges:['Mid-Market','PE Relationships','Cross-border']},
+  {name:'Livingstone',type:'boutique',hq:'London',market:'UK/Ireland',sizes:['small','mid'],sizeLabel:'€10M–€150M',deals:'300+ completed',sectors:['Technology','Business Services','Healthcare','Consumer'],desc:'Independent mid-market advisor. Particularly strong in tech-enabled business services. Deep UK and Irish transaction history.',web:'livingstonepartners.com',badges:['UK Specialist','Tech & Services','Mid-Market']},
+  {name:'Capitalmind',type:'boutique',hq:'Amsterdam / Paris',market:'Northern Europe',sizes:['micro','small','mid'],sizeLabel:'€5M–€100M',deals:'Benelux & France',sectors:['Technology','Business Services','Healthcare','Industrials'],desc:'Independent European M&A with a strong lower mid-market and technology-enabled business services focus.',web:'capitalmind.eu',badges:['Lower Mid-Market','Tech Specialist','Benelux & France']},
+  {name:'Alantra',type:'boutique',hq:'Madrid',market:'Southern Europe',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'200+ closed / yr',sectors:['Technology','Healthcare','Consumer','Industrials','Business Services'],desc:'Independent investment banking with strong Southern Europe coverage and cross-border capabilities.',web:'alantra.com',badges:['Southern Europe','Mid-Market','Cross-border']},
+  {name:'Metzler',type:'boutique',hq:'Frankfurt',market:'DACH',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'Leading DACH boutique',sectors:['Industrials','Technology','Healthcare','Financial Services'],desc:'German private bank with independent M&A advisory. Family-owned since 1674. Strong DACH mid-market sell-side focus.',web:'metzler.com',badges:['DACH Specialist','Independent','German Heritage']},
+  {name:'Arma Partners',type:'boutique',hq:'London',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€30M–€1B+',deals:'Tech M&A specialist',sectors:['Technology','Software','Internet','Digital Media'],desc:'Technology-focused investment bank specialising in software, internet and digital services. Strong cross-Atlantic reach.',web:'armapartners.com',badges:['Tech Specialist','Cross-Atlantic','Software Focus']},
+  {name:'Silverfleet Capital (Advisory)',type:'boutique',hq:'London / Munich',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M–€300M',deals:'PE-focused sells',sectors:['Business Services','Healthcare','Consumer','Technology'],desc:'European mid-market specialist with deep private equity relationships and operational value creation expertise.',web:'silverfleetcapital.com',badges:['PE Relationships','Mid-Market','Value Creation']},
+  {name:'Nielen Schuman',type:'boutique',hq:'Amsterdam',market:'Northern Europe',sizes:['micro','small','mid'],sizeLabel:'€5M–€75M',deals:'Benelux SME specialist',sectors:['Industrials','Technology','Business Services','Consumer'],desc:'Leading Benelux boutique for SME M&A. Deep local networks in Netherlands and Belgium. Founder-led business expertise.',web:'nielenschuman.nl',badges:['SME Specialist','Benelux','Founder-led']},
+  {name:'Andersch',type:'boutique',hq:'Munich',market:'DACH',sizes:['micro','small','mid'],sizeLabel:'€5M–€100M',deals:'DACH SME focus',sectors:['Industrials','Technology','Healthcare','Business Services'],desc:'German boutique focused on mid-market sell-side mandates. Strong reach into family-owned and owner-managed businesses.',web:'andersch.de',badges:['DACH Specialist','SME Focus','Family Business']},
+  {name:'Pinova',type:'boutique',hq:'Munich',market:'DACH',sizes:['small','mid'],sizeLabel:'€10M–€150M',deals:'German mid-market',sectors:['Industrials','Technology','Consumer','Business Services'],desc:'Independent Munich-based M&A boutique with a strong track record in German Mittelstand sell-side transactions.',web:'pinovaadvisors.com',badges:['Mittelstand','DACH Specialist','Independent']},
+  {name:'Waterland Corporate Finance',type:'boutique',hq:'Amsterdam',market:'Northern Europe',sizes:['small','mid'],sizeLabel:'€10M–€200M',deals:'Benelux mid-market',sectors:['Healthcare','Business Services','Industrials','Technology'],desc:'Corporate finance boutique focused on buy-side and sell-side M&A in Benelux and wider Northern Europe.',web:'waterland.nu',badges:['Benelux','Buy & Sell-side','Healthcare Focus']},
+  {name:'OAKNORTH (CF Division)',type:'boutique',hq:'London',market:'UK/Ireland',sizes:['micro','small','mid'],sizeLabel:'€2M–€50M',deals:'SME focused',sectors:['Technology','Business Services','Consumer','Healthcare'],desc:'Boutique corporate finance arm focused on UK SME transactions. Strong relationships with strategic and PE buyers.',web:'oaknorth.com',badges:['UK SME','Lower Mid-Market','PE Network']},
+  {name:'Angermann M&A',type:'boutique',hq:'Hamburg',market:'DACH',sizes:['micro','small','mid'],sizeLabel:'€3M–€75M',deals:'Northern Germany',sectors:['Industrials','Maritime','Logistics','Consumer'],desc:'German boutique with particular strength in Northern Germany and maritime/logistics sector transactions.',web:'angermann.de',badges:['Northern Germany','Maritime','SME Specialist']},
+  {name:'Rothschild & Co',type:'bank',hq:'Paris / London',market:'Pan-European',sizes:['large'],sizeLabel:'€100M+',deals:'Top-10 EU by value',sectors:['Industrials','Consumer','Financial Services','Technology'],desc:'Leading independent financial advisor. Top-ranked for European M&A advisory. Strong VDD and large-cap sell-side.',web:'rothschildandco.com',badges:['Large Cap','Top-10 EU','Independent']},
+  {name:'Lazard',type:'bank',hq:'Paris / London',market:'Pan-European',sizes:['large'],sizeLabel:'€200M+',deals:'Top-5 EU by value',sectors:['All sectors'],desc:'Global independent investment bank. Premier large-cap sell-side advisory across all sectors. Strategic advisory focus.',web:'lazard.com',badges:['Large Cap','Top-5 EU','Strategic Advisory']},
+  {name:'Houlihan Lokey',type:'bank',hq:'London / Frankfurt',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M–€5B+',deals:'#1 global M&A deals',sectors:['Technology','Industrials','Healthcare','Financial Services'],desc:'Global investment bank consistently ranked #1 by M&A deal count. Deep European mid-market and large-cap credentials.',web:'hl.com',badges:['#1 Deal Count','Large Mid-Market','PE Relationships']},
+  {name:'Mediobanca',type:'bank',hq:'Milan',market:'Southern Europe',sizes:['mid','large'],sizeLabel:'€50M–€5B+',deals:'#1 Italy by value',sectors:['Industrials','Consumer','Financial Services','Real Estate'],desc:'Leading Italian investment bank. Premier sell-side advisor for Italian corporates and family-controlled groups.',web:'mediobanca.com',badges:['Italy Specialist','Large Cap','Family Groups']},
+  {name:'BNP Paribas CIB',type:'bank',hq:'Paris',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M+',deals:'Pan-European coverage',sectors:['Industrials','Technology','Healthcare','Consumer','Energy'],desc:'European investment banking powerhouse with comprehensive sell-side advisory and financing capabilities.',web:'bnpparibas.com',badges:['Pan-European','Energy Sector','Financing']},
+  {name:'Baird International',type:'bank',hq:'London',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M–€1B+',deals:'Top-ranked mid-mkt',sectors:['Technology','Healthcare','Industrials','Consumer','Business Services'],desc:'US investment bank with strong European mid-market M&A. Particularly active in healthcare and technology.',web:'rwbaird.com',badges:['US-European Bridge','Healthcare & Tech','Mid-Market']},
+  {name:'Société Générale CIB',type:'bank',hq:'Paris',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M+',deals:'Strong energy focus',sectors:['Industrials','Real Estate','Energy','Consumer'],desc:'French bank with strong European M&A and leveraged finance capabilities. Energy sector expertise.',web:'sgcib.com',badges:['Leveraged Finance','Energy Focus','Pan-European']},
+  {name:'KPMG Corporate Finance',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€10M–€1B+',deals:'Full service',sectors:['All sectors'],desc:'Big Four corporate finance. Full-service DD, valuation, and sell-side advisory across all sectors and geographies.',web:'kpmg.com',badges:['Full Service','Integrated DD','All Sectors']},
+  {name:'PwC Deals',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€10M–€1B+',deals:'Market leader',sectors:['All sectors'],desc:'Integrated sell-side advisory with tax, legal and DD capabilities. Largest professional services M&A practice in Europe.',web:'pwc.com',badges:['Full Service','Tax Integration','Market Leader']},
+  {name:'Deloitte Financial Advisory',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€20M–€2B+',deals:'Complex cross-border',sectors:['All sectors'],desc:'M&A advisory with deep sector and cross-border expertise. Strong restructuring and distressed transaction capabilities.',web:'deloitte.com',badges:['Cross-border','Complex Deals','Restructuring']},
+  {name:'EY-Parthenon',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€10M–€1B+',deals:'Strategy + M&A',sectors:['All sectors'],desc:'Strategy and transaction advisory combining EY\'s global platform with Parthenon\'s strategic expertise.',web:'ey.com',badges:['Strategy + M&A','Full Service','All Sectors']},
+  {name:'Grant Thornton CF',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['micro','small','mid'],sizeLabel:'€2M–€100M',deals:'SME focused',sectors:['All sectors'],desc:'Mid-tier professional services firm with strong SME-focused corporate finance practice. Active across all European markets.',web:'grantthornton.eu',badges:['SME Specialist','Lower Mid-Market','All Sectors']},
+];;
 
 const TYPE_LABEL={boutique:'Independent Boutique',bank:'Investment Bank',big4:'Big 4 / Consulting'};
 let selCard=null;
@@ -352,7 +379,7 @@ function render(){
     if(sizes.length&&!sizes.some(s=>a.sizes.includes(s)))return false;
     if(markets.length&&!markets.includes(a.market)&&!markets.includes('Pan-European'))return false;
     if(a.market==='Pan-European'&&!markets.includes('Pan-European'))return false;
-    if(q&&!a.name.toLowerCase().includes(q)&&!a.sectors.join(' ').toLowerCase().includes(q)&&!a.desc.toLowerCase().includes(q))return false;
+    if(q&&!a.name.toLowerCase().includes(q)&&!a.sectors.join(' ').toLowerCase().includes(q)&&!a.desc.toLowerCase().includes(q)&&!a.market.toLowerCase().includes(q))return false;
     return true;
   });
   document.getElementById('fpCount').textContent=data.length+' advisor'+(data.length!==1?'s':'')+' shown';
@@ -393,6 +420,56 @@ function resetFilters(){document.querySelectorAll('input[type=checkbox]').forEac
 
 var SB_TICKS=[['Software EV/EBITDA','24.5×'],['Logistics EV/EBITDA','12.6×'],['CH CGT','0%'],['IT CGT','26%'],['Advisory €5M','5.5%'],['SME Discount','−30%'],['Healthcare EV/EBITDA','19.8×']];
 function renderSbTicker(){var el=document.getElementById('sbTicker');if(!el)return;var s=Math.floor(Math.random()*SB_TICKS.length);var items=SB_TICKS.slice(s,s+3).concat(SB_TICKS.slice(0,Math.max(0,3-(SB_TICKS.length-s))));el.innerHTML=items.map(function(t){return'<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4)">'+t[0]+'</span><span style="font-family:\'IBM Plex Mono\',monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');}
+
+
+// ── SEARCH DROPDOWN ──────────────────────────────────────────────────────────
+function onSearchInput(){
+  const q = document.getElementById('fpSearch').value.toLowerCase();
+  render();
+  updateDropdown(q);
+}
+
+function updateDropdown(q){
+  const dd = document.getElementById('searchDropdown');
+  if(!q){dd.classList.remove('open');return;}
+  // Match by firm name, sector, market
+  const matches = [];
+  ADVISORS.forEach(a=>{
+    if(a.name.toLowerCase().includes(q)) matches.push({label:a.name,sub:TYPE_LABEL[a.type],val:a.name,kind:'firm'});
+    a.sectors.forEach(s=>{
+      if(s.toLowerCase().includes(q) && !matches.find(m=>m.val===s&&m.kind==='sector'))
+        matches.push({label:s,sub:'Sector',val:s,kind:'sector'});
+    });
+  });
+  if(!matches.length){
+    dd.innerHTML='<div class="sd-empty">No results found</div>';
+    dd.classList.add('open');
+    return;
+  }
+  dd.innerHTML = matches.slice(0,8).map((m,i)=>
+    `<div class="sd-item" data-val="${m.val}" data-kind="${m.kind}" onclick="selectSuggestion('${m.val.replace(/'/g,"\'")}','${m.kind}')">
+       <span>${m.label}</span><span class="sd-item-type">${m.sub}</span>
+     </div>`
+  ).join('');
+  dd.classList.add('open');
+}
+
+function selectSuggestion(val, kind){
+  const inp = document.getElementById('fpSearch');
+  inp.value = val;
+  document.getElementById('searchDropdown').classList.remove('open');
+  render();
+}
+
+function openDropdown(){
+  const q = document.getElementById('fpSearch').value.toLowerCase();
+  if(q) updateDropdown(q);
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.search-wrap')) document.getElementById('searchDropdown').classList.remove('open');
+});
 
 function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
 function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}

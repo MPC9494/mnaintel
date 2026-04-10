@@ -201,16 +201,16 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
 /* ── TERMINAL LAYOUT ── */
-.terminal-wrap{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:420px 1fr;min-height:auto;align-items:start}
-@media(max-width:1100px){.terminal-wrap{grid-template-columns:1fr}}
-.terminal-inputs{background:var(--bg2);border-right:1px solid var(--rule)}
-@media(max-width:1100px){.terminal-inputs{border-right:none;border-bottom:1px solid var(--rule)}}
+.terminal-wrap{max-width:1300px;margin:0 auto;display:block}
+
+
+
 .ti-header{background:var(--navy);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--red)}
 .ti-title{font-family:var(--serif);font-size:1rem;font-weight:700;color:#fff}
 .ti-badge{font-family:var(--mono);font-size:0.58rem;color:rgba(255,255,255,0.4);letter-spacing:.08em;text-transform:uppercase}
 .ti-body{padding:1.25rem 1.5rem}
 .terminal-results{background:var(--white);padding:2rem 2.5rem}
-@media(max-width:960px){.terminal-results{padding:1.5rem 1.25rem}}
+
 
 /* input overrides */
 .sec{background:var(--white);border:1px solid var(--rule);margin-bottom:0.85rem;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
@@ -381,6 +381,7 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 
 <div class="layout">
 
+<div class="layout">
 <!-- ── INPUTS ── -->
 <div class="inputs">
 
@@ -646,6 +647,7 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 
 <div class="src-note"><strong>Sources:</strong> EV/EBITDA multiples — Damodaran, NYU Stern, Jan 2026 (US, positive-EBITDA firms). Advisory fees — Firmex/Axial/DealCircle M&A Fee Guide 2024–2025. Private market discount — 25–40% illiquidity discount standard for SME transactions. Not financial advice.</div>
 
+</div><!-- /layout -->
 <footer>
   <div class="footer-inner">
     <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
@@ -791,7 +793,7 @@ function renderSbTicker(){
   if(!el)return;
   var start=Math.floor(Math.random()*SB_TICKS.length);
   var items=SB_TICKS.slice(start,start+3).concat(SB_TICKS.slice(0,Math.max(0,3-(SB_TICKS.length-start))));
-  el.innerHTML=items.map(function(t){return '<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4);font-family:'DM Sans',sans-serif">'+t[0]+'</span><span style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');
+  el.innerHTML=items.map(function(t){return '<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4);">'+t[0]+'</span><span style="font-family:monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');
 }
 document.addEventListener('DOMContentLoaded',function(){renderSbTicker();setInterval(renderSbTicker,5000);});
 
