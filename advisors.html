@@ -4,138 +4,173 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Advisor Directory · M&A Intelligence</title>
-<meta name="description" content="Find the right M&A advisor for your SME exit. Filter by country, sector, deal size, and type. Free matchmaking tool.">
+<meta name="description" content="Professional directory of European M&A advisors. Filter by country, deal size, sector, type.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--white:#fff;--off-white:#F8F6F2;--paper:#F2EEE6;--navy:#0F1F3D;--rule:#D8D0C0;--rule-light:#EAE4D8;--black:#1A1A1A;--grey:#333;--grey-mid:#555;--grey-light:#777;--accent:#8B1A1A;--accent-dark:#6e1414;--green:#145214;--green-bg:#e6f3e6}
+:root{
+  --navy:#0A1628;--navy2:#142035;
+  --white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;
+  --rule:#D4CFC7;--rule2:#E8E5DF;
+  --b:#111;--g:#333;--gm:#5A5A5A;--gl:#999;
+  --red:#8B1A1A;--red2:#6e1414;
+  --grn:#0A5C1E;--grn2:#D6EAD9;
+  --shadow:0 2px 12px rgba(0,0,0,0.08);
+  --shadow-md:0 4px 24px rgba(0,0,0,0.12);
+  --mono:'IBM Plex Mono',monospace;--sans:'DM Sans',sans-serif;--serif:'Playfair Display',serif;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:#fff;color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px}
-nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;gap:1rem}
-.nav-left{display:flex;align-items:center;gap:0.75rem}
-.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.6);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px 6px}
-.hamburger span{display:block;width:22px;height:1.5px;background:currentColor}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo-bar{width:2px;height:20px;background:var(--accent);flex-shrink:0}
-.nav-logo-text{font-size:0.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff;white-space:nowrap}
+body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-smoothing:antialiased;font-size:15px;overflow-x:hidden}
+nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:52px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-left{display:flex;align-items:center;gap:0.65rem}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.5);cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:6px}
+.hamburger span{display:block;width:18px;height:1.5px;background:currentColor}
+.hamburger:hover{color:#fff}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:18px;background:var(--red);flex-shrink:0}
+.nav-logo-text{font-size:0.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
 .nav-links{display:flex;align-items:center}
-.nav-link{font-size:0.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;padding:0.4rem 0.9rem;transition:color 0.2s;white-space:nowrap}
+.nav-link{font-size:0.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;padding:0.35rem 0.8rem;transition:color .15s;white-space:nowrap}
 .nav-link:hover,.nav-link.active{color:#fff}
-.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:0.55rem 1.35rem;cursor:pointer;transition:background 0.2s;white-space:nowrap}
-.nav-sub:hover{background:var(--accent-dark)}
-@media(max-width:767px){.nav-links{display:none}}
-@media(min-width:900px){nav{padding:0 2.75rem}}
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:300px;background:var(--navy);z-index:300;transform:translateX(-300px);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:2rem 1.75rem;overflow-y:auto}
+.nav-sub{font-family:var(--sans);font-size:0.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.2rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.nav-sub:hover{background:var(--red2)}
+@media(max-width:800px){.nav-links{display:none}}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:285px;background:var(--navy);z-index:300;transform:translateX(-285px);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
 .sidebar.open{transform:translateX(0)}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:299}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:299;backdrop-filter:blur(2px)}
 .sb-overlay.open{display:block}
-.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.sb-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.sb-logo-bar{width:2px;height:18px;background:var(--accent);flex-shrink:0}
-.sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff}
-.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.5rem;cursor:pointer;line-height:1;padding:4px}
-.sb-section{font-size:0.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin:1.5rem 0 0.6rem}
-.sb-link{display:block;padding:0.6rem 0;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color 0.15s}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
+.sb-logo-text{font-size:0.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.4rem;cursor:pointer;line-height:1}
+.sb-close:hover{color:#fff}
+.sb-section{font-size:0.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.35rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.88rem;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s}
 .sb-link:hover,.sb-link.active{color:#fff}
 .sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
-.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0.6rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans);font-size:0.88rem;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
 .sb-dropdown-btn:hover{color:#fff}
-.sb-arrow{font-size:0.7rem;color:rgba(255,255,255,0.28);transition:transform 0.2s}
+.sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform .2s}
 .sb-arrow.open{transform:rotate(180deg)}
-.sb-dropdown-items{display:none;padding-bottom:0.5rem}
+.sb-dropdown-items{display:none;padding-bottom:0.4rem}
 .sb-dropdown-items.open{display:block}
-.sb-sub-link{display:block;padding:0.35rem 0 0.35rem 0.85rem;font-size:0.82rem;color:rgba(255,255,255,0.4);text-decoration:none;line-height:1.45;transition:color 0.15s}
+.sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color .12s}
 .sb-sub-link:hover{color:rgba(255,255,255,0.85)}
-.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:0.85rem;width:100%;cursor:pointer;margin-top:2rem;transition:background 0.2s}
-.sb-cta:hover{background:var(--accent-dark)}
-.back-bar{background:var(--off-white);border-bottom:1px solid var(--rule);padding:0.6rem 2.5rem}
+.sb-cta{font-family:var(--sans);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.8rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
+.sb-cta:hover{background:var(--red2)}
+.back-bar{background:var(--bg2);border-bottom:1px solid var(--rule);padding:0.55rem 2.5rem}
 .back-bar-inner{max-width:1200px;margin:0 auto}
-.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:var(--grey-mid);text-decoration:none;transition:color 0.15s}
+.back-btn{display:inline-flex;align-items:center;gap:5px;font-size:0.72rem;font-weight:500;color:var(--gl);text-decoration:none;transition:color .12s}
 .back-btn:hover{color:var(--navy)}
-footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,255,0.06)}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.f-brand{display:flex;align-items:center;gap:8px;text-decoration:none}
-.f-brand-bar{width:2px;height:16px;background:var(--accent);flex-shrink:0}
-.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
-.f-links{display:flex;gap:1.75rem;flex-wrap:wrap}
-.f-links a{font-size:0.78rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s}
-.f-links a:hover{color:rgba(255,255,255,0.65)}
-.f-copy{font-size:0.68rem;color:rgba(255,255,255,0.18);width:100%;margin-top:0.25rem}
-@media(min-width:900px){footer{padding:2.5rem 3rem}}
+footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+.f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
+.f-brand-bar{width:2px;height:14px;background:var(--red);flex-shrink:0}
+.f-brand-text{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.f-links a{font-size:0.7rem;color:rgba(255,255,255,0.25);text-decoration:none;transition:color .15s}
+.f-links a:hover{color:rgba(255,255,255,0.7)}
+.f-copy{font-size:0.6rem;color:rgba(255,255,255,0.15);width:100%;margin-top:0.15rem}
+@media(min-width:900px){footer{padding:1.75rem 3rem}.back-bar{padding:0.55rem 3rem}}
+@media(max-width:767px){footer{padding:1.5rem 1.25rem}.back-bar{padding:0.55rem 1.25rem}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-/* HERO */
-.hero{background:var(--paper);border-bottom:2px solid var(--navy);padding:3rem 2.5rem 2.5rem}
-.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:3rem;align-items:start}
-@media(max-width:860px){.hero-inner{grid-template-columns:1fr}}
-.kicker{display:flex;align-items:center;gap:10px;margin-bottom:0.85rem}
-.kicker-bar{width:24px;height:2px;background:var(--accent);flex-shrink:0}
-.kicker-text{font-size:0.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;line-height:1.06;color:var(--navy);margin-bottom:0.65rem}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero-deck{font-size:0.92rem;font-weight:400;line-height:1.75;color:var(--grey);max-width:580px}
-/* SUBMIT FORM */
-.submit-box{background:var(--navy);padding:1.5rem}
-.submit-box-title{font-size:0.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:1rem}
-.submit-box p{font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:1rem}
-.submit-box input,.submit-box select,.submit-box textarea{width:100%;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--black);background:#fff;border:none;padding:0.55rem 0.8rem;outline:none;margin-bottom:0.6rem}
-.submit-box select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23333' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.8rem center;padding-right:2rem}
-.submit-box textarea{resize:none;height:70px;font-size:0.82rem}
-.submit-btn{width:100%;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:0.75rem;cursor:pointer;transition:background 0.2s}
-.submit-btn:hover{background:var(--accent-dark)}
-@media(min-width:900px){.hero{padding:3.5rem 3rem 3rem}}
+/* PAGE HEADER */
+.page-header{background:var(--white);border-bottom:1px solid var(--rule);padding:2.5rem 2.5rem 2rem}
+.page-header-inner{max-width:1200px;margin:0 auto}
+.ph-kicker{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);margin-bottom:0.85rem;display:flex;align-items:center;gap:8px}
+.ph-kicker::before{content:'';width:16px;height:2px;background:var(--red);flex-shrink:0}
+.ph-h1{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--navy);line-height:1.1;margin-bottom:0.5rem;letter-spacing:-.02em}
+.ph-sub{font-size:0.85rem;color:var(--gm);line-height:1.65;max-width:580px}
+.ph-policy{margin-top:0.85rem;font-family:var(--mono);font-size:0.62rem;color:var(--gl);display:flex;align-items:center;gap:6px}
+.ph-policy::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--grn);flex-shrink:0}
 
-/* CONTROLS */
-.controls{background:var(--off-white);border-bottom:1px solid var(--rule);padding:1rem 2.5rem;position:sticky;top:64px;z-index:50}
-.controls-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:0.85rem;flex-wrap:wrap}
-.ctrl-label{font-size:0.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-light);white-space:nowrap}
-.ctrl-select{font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--navy);background:#fff;border:1.5px solid var(--rule);padding:0.42rem 0.8rem;outline:none;min-width:150px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23333' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.8rem center;padding-right:2rem}
-.ctrl-select:focus{border-color:var(--navy)}
-.ctrl-input{font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--navy);background:#fff;border:1.5px solid var(--rule);padding:0.42rem 0.8rem;outline:none;flex:1;min-width:160px;max-width:240px}
-.ctrl-input::placeholder{color:#bbb}
-.ctrl-count{font-size:0.72rem;color:var(--grey-light);margin-left:auto;white-space:nowrap}
-@media(max-width:767px){.controls{padding:0.85rem 1.25rem}.ctrl-count{display:none}}
+/* LAYOUT: sidebar filters + card grid */
+.main-layout{max-width:1200px;margin:0 auto;padding:2rem 2.5rem;display:grid;grid-template-columns:220px 1fr;gap:2rem;align-items:start}
+@media(max-width:800px){.main-layout{grid-template-columns:1fr;padding:1.25rem}}
 
-/* MAIN */
-.main{max-width:1200px;margin:0 auto;padding:2rem 2.5rem 5rem}
-@media(max-width:767px){.main{padding:1.5rem 1.25rem 4rem}}
+/* FILTER SIDEBAR */
+.filter-panel{background:var(--white);border:1px solid var(--rule);box-shadow:var(--shadow);padding:1.25rem;position:sticky;top:68px}
+@media(max-width:800px){.filter-panel{position:static}}
+.fp-title{font-size:0.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid var(--rule)}
+.fp-section{margin-bottom:1.1rem}
+.fp-section-label{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:0.5rem;display:block}
+.fp-option{display:flex;align-items:center;gap:0.5rem;padding:0.3rem 0;cursor:pointer;font-size:0.8rem;color:var(--gm);transition:color .12s;user-select:none}
+.fp-option:hover{color:var(--navy)}
+.fp-option input[type=checkbox]{width:13px;height:13px;cursor:pointer;accent-color:var(--navy)}
+.fp-option.active{color:var(--navy);font-weight:600}
+.fp-search{width:100%;font-family:var(--sans);font-size:0.82rem;color:var(--b);background:var(--bg);border:1px solid var(--rule);padding:0.45rem 0.7rem;outline:none;transition:border-color .15s;margin-bottom:1rem}
+.fp-search:focus{border-color:var(--navy)}
+.fp-search::placeholder{color:#bbb}
+.fp-count{font-family:var(--mono);font-size:0.65rem;color:var(--gl);margin-top:0.85rem;padding-top:0.85rem;border-top:1px solid var(--rule)}
+.fp-reset{background:transparent;border:none;font-family:var(--sans);font-size:0.68rem;color:var(--gl);cursor:pointer;text-decoration:underline;padding:0}
+.fp-reset:hover{color:var(--red)}
 
-/* ADVISOR GRID */
-.advisor-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
-@media(max-width:680px){.advisor-grid{grid-template-columns:1fr}}
+/* CARD GRID */
+.cards-area{}
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:640px){.cards-grid{grid-template-columns:1fr}}
 
-/* ADVISOR CARD */
-.advisor-card{background:#fff;padding:1.5rem;transition:background 0.12s;cursor:pointer;position:relative}
-.advisor-card:hover{background:var(--off-white)}
-.ac-type{font-size:0.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem}
-.ac-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:0.15rem}
-.ac-hq{font-size:0.78rem;color:var(--grey-mid);margin-bottom:0.85rem}
-.ac-tags{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.85rem}
-.ac-tag{font-size:0.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border:1px solid var(--rule);color:var(--grey-mid)}
-.ac-tag.sector{background:var(--paper);border-color:var(--rule)}
-.ac-metrics{display:grid;grid-template-columns:1fr 1fr;gap:0.4rem}
-.ac-metric{background:var(--off-white);padding:0.45rem 0.65rem}
-.ac-metric-label{font-size:0.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey-light);margin-bottom:0.15rem}
-.ac-metric-val{font-size:0.82rem;font-weight:600;color:var(--navy)}
-.ac-contact{margin-top:0.85rem;padding-top:0.85rem;border-top:1px solid var(--rule-light);display:flex;align-items:center;justify-content:space-between}
-.ac-contact-btn{font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--navy);color:#fff;border:none;padding:0.4rem 0.85rem;cursor:pointer;text-decoration:none;transition:background 0.15s}
-.ac-contact-btn:hover{background:var(--accent)}
-.ac-listed{font-size:0.65rem;color:var(--grey-light)}
+.advisor-card{background:var(--white);border:1px solid var(--rule);box-shadow:var(--shadow);padding:1.5rem;transition:box-shadow .15s,border-color .15s;cursor:pointer;position:relative}
+.advisor-card:hover{box-shadow:var(--shadow-md);border-color:var(--navy)}
+.advisor-card.selected{border-color:var(--navy);border-width:2px;box-shadow:var(--shadow-md)}
 
-/* EMPTY STATE */
-.empty-state{grid-column:1/-1;padding:3rem;text-align:center;color:var(--grey-light)}
-.empty-state-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--navy);margin-bottom:0.5rem}
+/* card top row */
+.ac-top{display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;margin-bottom:0.85rem}
+.ac-type-badge{font-size:0.55rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 7px;border:1px solid}
+.ac-type-badge.boutique{color:#1B2F52;border-color:rgba(27,47,82,0.3);background:rgba(27,47,82,0.05)}
+.ac-type-badge.bank{color:var(--red);border-color:rgba(139,26,26,0.3);background:rgba(139,26,26,0.05)}
+.ac-type-badge.big4{color:var(--grn);border-color:rgba(10,92,30,0.3);background:var(--grn2)}
+.ac-vetted{font-family:var(--mono);font-size:0.52rem;font-weight:600;letter-spacing:.08em;color:var(--grn);border:1px solid rgba(10,92,30,0.2);padding:2px 6px;display:flex;align-items:center;gap:3px}
+.ac-vetted::before{content:'✓'}
 
-/* CTA BAND */
-.cta-band{background:var(--navy);padding:2.5rem;margin-top:2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
-@media(max-width:600px){.cta-band{grid-template-columns:1fr}}
-.cta-band-h{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:0.4rem}
-.cta-band-p{font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.6}
-.cta-band-btn{font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;border:none;padding:0.85rem 1.75rem;cursor:pointer;white-space:nowrap;transition:background 0.2s}
-.cta-band-btn:hover{background:var(--accent-dark)}
+/* card name + hq */
+.ac-name{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:0.15rem;line-height:1.2}
+.ac-hq{font-family:var(--mono);font-size:0.65rem;color:var(--gl);margin-bottom:0.85rem}
 
-.note{font-size:0.75rem;color:var(--grey-light);line-height:1.65;padding:1.25rem 0;border-top:1px solid var(--rule);margin-top:0.5rem}
-.note strong{color:var(--grey)}
+/* metrics row */
+.ac-metrics{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:0.85rem}
+.ac-metric{background:var(--bg);padding:0.45rem 0.65rem}
+.ac-metric-label{font-size:0.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:0.15rem}
+.ac-metric-val{font-family:var(--mono);font-size:0.8rem;font-weight:600;color:var(--navy)}
+
+/* description */
+.ac-desc{font-size:0.78rem;font-weight:300;color:var(--gm);line-height:1.6;margin-bottom:0.85rem}
+
+/* tech badges */
+.ac-badges{display:flex;gap:0.35rem;flex-wrap:wrap;margin-bottom:0.85rem}
+.ac-badge{font-size:0.58rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gm);border:1px solid var(--rule2);padding:2px 7px;background:var(--bg)}
+
+/* footer */
+.ac-foot{display:flex;align-items:center;justify-content:space-between;padding-top:0.75rem;border-top:1px solid var(--rule2)}
+.ac-foot-src{font-family:var(--mono);font-size:0.6rem;color:var(--gl)}
+.ac-foot-link{font-size:0.68rem;font-weight:700;color:var(--navy);text-decoration:none;letter-spacing:.04em}
+.ac-foot-link:hover{color:var(--red)}
+
+/* detail expanded */
+.ac-detail{display:none;margin-top:0.85rem;padding-top:0.85rem;border-top:1px solid var(--rule2);grid-column:span 2}
+.advisor-card.selected .ac-detail{display:block}
+.ac-detail-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+@media(max-width:500px){.ac-detail-grid{grid-template-columns:1fr}}
+.ac-detail-block-title{font-size:0.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);margin-bottom:0.5rem;padding-bottom:0.35rem;border-bottom:1px solid var(--rule2)}
+.ac-detail-row{display:flex;justify-content:space-between;padding:0.25rem 0;border-bottom:1px solid var(--rule2);font-size:0.75rem}
+.ac-detail-row:last-child{border-bottom:none}
+.ac-detail-lbl{color:var(--gm)}
+.ac-detail-val{font-family:var(--mono);font-weight:600;color:var(--navy)}
+
+/* submit band */
+.submit-band{background:var(--navy);padding:1.5rem 2.5rem;margin-top:2rem}
+.submit-band-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+@media(max-width:600px){.submit-band-inner{grid-template-columns:1fr}}
+.sb-band-h{font-family:var(--serif);font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.25rem}
+.sb-band-p{font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.5}
+.sb-band-btn{font-family:var(--sans);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.65rem 1.35rem;cursor:pointer;white-space:nowrap;transition:background .15s;flex-shrink:0}
+.sb-band-btn:hover{background:var(--red2)}
+
+.note-bar{padding:0.85rem 2.5rem;font-size:0.68rem;color:var(--gl);border-top:1px solid var(--rule);max-width:100%}
+@media(max-width:767px){.submit-band{padding:1.25rem}.main-layout{padding:1.25rem}.note-bar{padding:0.85rem 1.25rem}}
 </style>
 </head>
 <body>
@@ -145,6 +180,10 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
   <div class="sb-top">
     <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
     <button class="sb-close" onclick="closeSidebar()">×</button>
+  </div>
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
+    <div style="font-size:0.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#0A5C1E;display:inline-block;animation:pulse 2s infinite"></span>Live Benchmarks</div>
+    <div style="display:flex;flex-direction:column;gap:0.3rem" id="sbTicker"></div>
   </div>
   <div class="sb-section">Editorial</div>
   <div class="sb-dropdown">
@@ -178,7 +217,7 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
   </div>
   <div class="sb-section">Info</div>
   <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
-  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free →</button>
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
 </div>
 
 <nav>
@@ -189,117 +228,82 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
     <a href="/issues" class="nav-link">Issues</a>
-    <a href="/case-studies" class="nav-link">Case Studies</a>
     <a href="/multiples" class="nav-link">Multiples</a>
+    <a href="/exit-calculator" class="nav-link">Exit</a>
+    <a href="/country-index" class="nav-link">Cost Index</a>
     <a href="/advisors" class="nav-link active">Advisors</a>
   </div>
-  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Subscribe Free</button>
+  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>
-
 <div class="back-bar"><div class="back-bar-inner"><a href="/" class="back-btn">← Home</a></div></div>
 
-<div class="hero">
-  <div class="hero-inner">
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="ph-kicker">Advisor Directory · European M&A · Sell-side Focus</div>
+    <h1 class="ph-h1">Find the right M&A advisor.</h1>
+    <p class="ph-sub">Professional database of European sell-side M&A advisors. Filter by country, deal size, sector and firm type. All listings independently curated.</p>
+    <div class="ph-policy">No sponsored listings · No pay-to-play · Editorial curation only</div>
+  </div>
+</div>
+
+<div class="main-layout">
+
+  <!-- FILTER PANEL -->
+  <div class="filter-panel">
+    <div class="fp-title">Filter advisors</div>
+    <input type="text" class="fp-search" id="fpSearch" placeholder="Search firm or sector…" oninput="render()">
+    <div class="fp-section">
+      <span class="fp-section-label">Type</span>
+      <label class="fp-option"><input type="checkbox" value="boutique" onchange="render()" checked> Independent Boutique</label>
+      <label class="fp-option"><input type="checkbox" value="bank" onchange="render()" checked> Investment Bank</label>
+      <label class="fp-option"><input type="checkbox" value="big4" onchange="render()" checked> Big 4 / Consulting</label>
+    </div>
+    <div class="fp-section">
+      <span class="fp-section-label">Deal size</span>
+      <label class="fp-option"><input type="checkbox" value="micro" onchange="render()" checked> €1–5M</label>
+      <label class="fp-option"><input type="checkbox" value="small" onchange="render()" checked> €5–20M</label>
+      <label class="fp-option"><input type="checkbox" value="mid" onchange="render()" checked> €20–100M</label>
+      <label class="fp-option"><input type="checkbox" value="large" onchange="render()" checked> €100M+</label>
+    </div>
+    <div class="fp-section">
+      <span class="fp-section-label">Market</span>
+      <label class="fp-option"><input type="checkbox" value="DACH" onchange="render()" checked> DACH</label>
+      <label class="fp-option"><input type="checkbox" value="Southern Europe" onchange="render()" checked> Southern Europe</label>
+      <label class="fp-option"><input type="checkbox" value="Northern Europe" onchange="render()" checked> Northern Europe</label>
+      <label class="fp-option"><input type="checkbox" value="CEE" onchange="render()" checked> CEE</label>
+      <label class="fp-option"><input type="checkbox" value="UK/Ireland" onchange="render()" checked> UK / Ireland</label>
+      <label class="fp-option"><input type="checkbox" value="Pan-European" onchange="render()" checked> Pan-European</label>
+    </div>
+    <div class="fp-count" id="fpCount"></div>
+    <button class="fp-reset" onclick="resetFilters()">Reset all filters</button>
+  </div>
+
+  <!-- CARDS AREA -->
+  <div class="cards-area">
+    <div class="cards-grid" id="cardsGrid"></div>
+  </div>
+
+</div>
+
+<div class="submit-band">
+  <div class="submit-band-inner">
     <div>
-      <div class="kicker"><div class="kicker-bar"></div><div class="kicker-text">Sell-side advisory · European SME focus</div></div>
-      <h1>Find the right<br><em>M&A advisor.</em></h1>
-      <p class="hero-deck">Filter by country, sector, deal size, and firm type. Every advisor listed works on sell-side mandates for European SMEs. No sponsored listings. No pay-to-play.</p>
-      <div style="margin-top:1.25rem;font-size:0.8rem;color:var(--grey-mid);line-height:1.6">
-        <strong style="color:var(--navy)">How it works:</strong> Filter the directory to match your deal. Contact advisors directly. If your advisor is missing, submit their details using the form.
-      </div>
+      <div class="sb-band-h">Is your firm missing?</div>
+      <p class="sb-band-p">M&A advisors active on European sell-side mandates can apply for inclusion. Free. Editorially curated. We review within 5 business days.</p>
     </div>
-    <div class="submit-box">
-      <div class="submit-box-title">List your firm</div>
-      <p>M&A advisors active on European SME sell-side mandates can apply to be listed. Free. Curated.</p>
-      <input type="text" placeholder="Firm name">
-      <input type="email" placeholder="Contact email">
-      <select>
-        <option value="">Primary market</option>
-        <option>DACH</option>
-        <option>Southern Europe</option>
-        <option>Northern Europe</option>
-        <option>CEE</option>
-        <option>UK / Ireland</option>
-        <option>Pan-European</option>
-      </select>
-      <select>
-        <option value="">Typical deal size</option>
-        <option>€1–5M</option>
-        <option>€5–20M</option>
-        <option>€20–100M</option>
-        <option>€100M+</option>
-      </select>
-      <textarea placeholder="Brief description of your focus and deal experience"></textarea>
-      <button class="submit-btn" onclick="submitAdvisor()">Submit for review →</button>
-    </div>
+    <button class="sb-band-btn" onclick="alert('Thank you. Submit your details to deals@news.mnaintel.com and we will review within 5 business days.')">Submit your firm →</button>
   </div>
 </div>
 
-<!-- CONTROLS -->
-<div class="controls">
-  <div class="controls-inner">
-    <span class="ctrl-label">Country</span>
-    <select class="ctrl-select" id="filterCountry" onchange="renderAdvisors()">
-      <option value="">All countries</option>
-      <option>Switzerland</option>
-      <option>Germany</option>
-      <option>Austria</option>
-      <option>Italy</option>
-      <option>France</option>
-      <option>Spain</option>
-      <option>United Kingdom</option>
-      <option>Netherlands</option>
-      <option>Belgium</option>
-      <option>Sweden</option>
-      <option>Pan-European</option>
-    </select>
-    <span class="ctrl-label">Deal size</span>
-    <select class="ctrl-select" id="filterSize" onchange="renderAdvisors()">
-      <option value="">All sizes</option>
-      <option value="micro">€1–5M</option>
-      <option value="small">€5–20M</option>
-      <option value="mid">€20–100M</option>
-      <option value="large">€100M+</option>
-    </select>
-    <span class="ctrl-label">Type</span>
-    <select class="ctrl-select" id="filterType" onchange="renderAdvisors()">
-      <option value="">All types</option>
-      <option value="boutique">Boutique</option>
-      <option value="bank">Investment Bank</option>
-      <option value="big4">Big 4 / Consulting</option>
-    </select>
-    <input type="text" class="ctrl-input" id="filterSearch" placeholder="Search name or sector…" oninput="renderAdvisors()">
-    <span class="ctrl-count" id="advisorCount"></span>
-  </div>
-</div>
-
-<div class="main">
-  <div class="advisor-grid" id="advisorGrid"></div>
-
-  <div class="cta-band">
-    <div>
-      <div class="cta-band-h">Is your firm missing?</div>
-      <p class="cta-band-p">We're building the most comprehensive directory of sell-side M&A advisors for European SMEs. Submit your firm's details and we'll review within 5 business days.</p>
-    </div>
-    <button class="cta-band-btn" onclick="document.querySelector('.submit-box input').focus();window.scrollTo({top:0,behavior:'smooth'})">List your firm →</button>
-  </div>
-
-  <div class="note">
-    <strong>Editorial policy:</strong> Listings are curated. Advisors pay no fee to be included. Inclusion does not constitute endorsement by M&A Intelligence. Always conduct your own due diligence before engaging an advisor. Verify credentials, references, and fee structures directly. · <strong>Not financial advice.</strong>
-  </div>
-</div>
+<div class="note-bar"><strong>Editorial policy:</strong> No fee to be listed. Inclusion does not constitute endorsement. Always conduct your own due diligence. Not financial advice.</div>
 
 <footer>
   <div class="footer-inner">
     <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
     <div class="f-links">
-      <a href="/about">About</a>
-      <a href="/issues">Issues</a>
-      <a href="/multiples">Multiples</a>
-      <a href="/wacc">WACC</a>
-      <a href="/exit-calculator">Exit</a>
-      <a href="/country-index">Cost Index</a>
-      <a href="/advisors">Advisors</a>
+      <a href="/about">About</a><a href="/issues">Issues</a><a href="/case-studies">Case Studies</a>
+      <a href="/multiples">Multiples</a><a href="/wacc">WACC</a><a href="/exit-calculator">Exit</a>
+      <a href="/country-index">Cost Index</a><a href="/advisors">Advisors</a>
       <a data-email href="#">Contact</a>
     </div>
     <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
@@ -307,101 +311,96 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
 </footer>
 
 <script>
-// ── DATA ─────────────────────────────────────────────────────────────────────
-// Representative advisors — real firms active in European SME M&A
-const ADVISORS = [
-  {name:'Oaklins',type:'boutique',hq:'Amsterdam (Pan-European)',countries:['Netherlands','Germany','France','Spain','Italy','Switzerland','United Kingdom','Pan-European'],sectors:['Industrials','Technology','Food & Beverage','Healthcare','Business Services'],sizeMin:'5M',sizeMax:'500M',sizes:['small','mid','large'],description:'Global network of 850+ M&A professionals in 45+ countries. Strong European mid-market sell-side track record.',website:'oaklins.com',deals:'700+ transactions per year globally'},
-  {name:'IMAP',type:'boutique',hq:'Vienna (Pan-European)',countries:['Austria','Germany','Switzerland','Italy','Pan-European'],sectors:['Industrials','Technology','Healthcare','Consumer'],sizeMin:'10M',sizeMax:'300M',sizes:['small','mid','large'],description:'International M&A partnership with 450+ professionals in 40 countries. Deep DACH and Southern Europe expertise.',website:'imap.com',deals:'200+ closed transactions per year'},
-  {name:'Clairfield International',type:'boutique',hq:'Paris (Pan-European)',countries:['France','Germany','Italy','Spain','Switzerland','Pan-European'],sectors:['Technology','Healthcare','Industrials','Business Services','Consumer'],sizeMin:'5M',sizeMax:'200M',sizes:['small','mid'],description:'Independent mid-market M&A advisor with 200+ professionals across Europe. Founder-led transaction expertise.',website:'clairfield.com',deals:'100+ transactions per year'},
-  {name:'Lincoln International',type:'boutique',hq:'Chicago / Frankfurt',countries:['Germany','United Kingdom','Pan-European'],sectors:['Industrials','Technology','Healthcare','Business Services'],sizeMin:'50M',sizeMax:'1000M',sizes:['mid','large'],description:'Global mid-market investment bank with strong European PE and corporate sell-side credentials.',website:'lincolninternational.com',deals:'Large-cap mid-market focus'},
-  {name:'Houlihan Lokey (Europe)',type:'bank',hq:'London / Frankfurt',countries:['United Kingdom','Germany','Pan-European'],sectors:['Technology','Industrials','Healthcare','Financial Services','Consumer'],sizeMin:'50M',sizeMax:'5000M',sizes:['mid','large'],description:'Global investment bank with deep European mid-market and large-cap advisory capabilities.',website:'hl.com',deals:'Top-ranked European M&A advisor by deal count'},
-  {name:'Alantra',type:'boutique',hq:'Madrid (Pan-European)',countries:['Spain','Italy','Germany','France','Pan-European'],sectors:['Technology','Healthcare','Consumer','Industrials','Business Services'],sizeMin:'20M',sizeMax:'500M',sizes:['mid','large'],description:'Independent investment banking focused on European mid-market. Strong Southern Europe coverage.',website:'alantra.com',deals:'200+ transactions per year'},
-  {name:'KPMG Corporate Finance',type:'big4',hq:'Pan-European',countries:['Germany','France','Italy','Spain','Netherlands','Belgium','Switzerland','Sweden','United Kingdom','Austria','Pan-European'],sectors:['All sectors'],sizeMin:'10M',sizeMax:'1000M',sizes:['small','mid','large'],description:'Big Four corporate finance advisory. Full-service DD, valuation, and sell-side mandate capabilities across Europe.',website:'kpmg.com',deals:'Full service across all deal sizes'},
-  {name:'PwC Deals',type:'big4',hq:'Pan-European',countries:['Germany','France','Italy','Spain','Netherlands','Belgium','Switzerland','Sweden','United Kingdom','Austria','Pan-European'],sectors:['All sectors'],sizeMin:'10M',sizeMax:'1000M',sizes:['small','mid','large'],description:'PwC Deals practice — integrated sell-side advisory with tax, legal and DD capabilities.',website:'pwc.com',deals:'Market leader in European mid-market'},
-  {name:'Deloitte Financial Advisory',type:'big4',hq:'Pan-European',countries:['Germany','France','Italy','Spain','Netherlands','Belgium','Switzerland','Sweden','United Kingdom','Austria','Pan-European'],sectors:['All sectors'],sizeMin:'20M',sizeMax:'2000M',sizes:['mid','large'],description:'Deloitte FAR (Financial Advisory) — M&A advisory with deep sector and cross-border expertise.',website:'deloitte.com',deals:'Strongest in complex cross-border deals'},
-  {name:'Rothschild & Co',type:'bank',hq:'Paris / London',countries:['France','United Kingdom','Germany','Pan-European'],sectors:['Industrials','Consumer','Financial Services','Technology','Healthcare'],sizeMin:'100M',sizeMax:'50000M',sizes:['large'],description:'Leading independent financial advisor. Strong vendor due diligence and large-cap sell-side mandates.',website:'rothschildandco.com',deals:'Top-10 European M&A advisor by value'},
-  {name:'Mediobanca',type:'bank',hq:'Milan',countries:['Italy','Pan-European'],sectors:['Industrials','Consumer','Financial Services','Real Estate'],sizeMin:'50M',sizeMax:'5000M',sizes:['mid','large'],description:'Leading Italian investment bank with strong sell-side credentials for mid-to-large Italian corporate transactions.',website:'mediobanca.com',deals:'#1 Italian M&A advisor by value'},
-  {name:'BNP Paribas Corporate Finance',type:'bank',hq:'Paris (Pan-European)',countries:['France','Germany','Italy','Spain','Netherlands','Belgium','Pan-European'],sectors:['Industrials','Technology','Healthcare','Consumer','Energy'],sizeMin:'50M',sizeMax:'10000M',sizes:['mid','large'],description:'European investment banking powerhouse with comprehensive sell-side advisory.',website:'bnpparibas.com',deals:'Pan-European coverage across all sectors'},
-  {name:'Société Générale CIB',type:'bank',hq:'Paris',countries:['France','Germany','Pan-European'],sectors:['Industrials','Real Estate','Energy','Consumer'],sizeMin:'50M',sizeMax:'5000M',sizes:['mid','large'],description:'French bank with strong European M&A and leveraged finance capabilities.',website:'sgcib.com',deals:'Strong in energy and infrastructure'},
-  {name:'Livingstone',type:'boutique',hq:'London / Chicago',countries:['United Kingdom','Germany','Netherlands','Pan-European'],sectors:['Technology','Business Services','Healthcare','Consumer'],sizeMin:'10M',sizeMax:'150M',sizes:['small','mid'],description:'Independent mid-market advisor with strong tech and business services sector expertise.',website:'livingstonepartners.com',deals:'300+ transactions completed'},
-  {name:'DC Advisory',type:'boutique',hq:'London (Pan-European)',countries:['United Kingdom','France','Germany','Netherlands','Pan-European'],sectors:['Industrials','Technology','Healthcare','Consumer','Business Services'],sizeMin:'20M',sizeMax:'500M',sizes:['mid','large'],description:'European mid-market independent advisor backed by Daiwa Securities Group.',website:'dcadvisory.com',deals:'Strong cross-border and PE expertise'},
-  {name:'Metzler',type:'bank',hq:'Frankfurt',countries:['Germany','Austria','Switzerland'],sectors:['Industrials','Technology','Healthcare','Financial Services'],sizeMin:'20M',sizeMax:'500M',sizes:['mid','large'],description:'German private bank with strong DACH M&A advisory. Family-owned, independent.',website:'metzler.com',deals:'Leading DACH mid-market boutique'},
-  {name:'Capitalmind',type:'boutique',hq:'Amsterdam / Paris',countries:['Netherlands','Belgium','France','Pan-European'],sectors:['Technology','Business Services','Healthcare','Industrials'],sizeMin:'5M',sizeMax:'100M',sizes:['micro','small','mid'],description:'Independent European M&A advisor with specific strength in tech-enabled business services.',website:'capitalmind.eu',deals:'Strong Benelux and France mid-market'},
-  {name:'GCA Altium',type:'boutique',hq:'London / Munich',countries:['United Kingdom','Germany','Pan-European'],sectors:['Technology','Software','Business Services','FinTech'],sizeMin:'20M',sizeMax:'500M',sizes:['mid','large'],description:'Technology-focused M&A advisory with strong PE relationships.',website:'gcaaltium.com',deals:'#1 in European tech M&A by deal count (multiple years)'},
-  {name:'Baird International',type:'boutique',hq:'London (Pan-European)',countries:['United Kingdom','Germany','France','Pan-European'],sectors:['Technology','Healthcare','Industrials','Consumer','Business Services'],sizeMin:'50M',sizeMax:'1000M',sizes:['mid','large'],description:'US investment bank with strong European mid-market M&A presence.',website:'rwbaird.com',deals:'Top-ranked mid-market advisor'},
-  {name:'Lazard',type:'bank',hq:'Paris / London',countries:['France','United Kingdom','Germany','Pan-European'],sectors:['All sectors'],sizeMin:'200M',sizeMax:'50000M',sizes:['large'],description:'Global independent investment bank. Premier large-cap sell-side advisory.',website:'lazard.com',deals:'Top-5 European M&A advisor by value'},
+const ADVISORS=[
+  {name:'Oaklins',type:'boutique',hq:'Amsterdam',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€5M–€500M',deals:'700+ global / yr',sectors:['Industrials','Technology','Food & Bev','Healthcare','Business Services'],desc:'Global network, 850+ professionals in 45+ countries. Strong European mid-market sell-side track record.',web:'oaklins.com',badges:['Cross-border','Mid-Market Focus','Network: 45 countries']},
+  {name:'IMAP',type:'boutique',hq:'Vienna',market:'DACH',sizes:['small','mid','large'],sizeLabel:'€10M–€300M',deals:'200+ closed / yr',sectors:['Industrials','Technology','Healthcare','Consumer'],desc:'International M&A partnership. Deep DACH and Southern Europe expertise.',web:'imap.com',badges:['DACH Specialist','Mid-Market Focus','Family Business']},
+  {name:'Clairfield International',type:'boutique',hq:'Paris',market:'Pan-European',sizes:['small','mid'],sizeLabel:'€5M–€200M',deals:'100+ closed / yr',sectors:['Technology','Healthcare','Industrials','Business Services'],desc:'Independent mid-market M&A. 200+ professionals across Europe. Founder-led transaction expertise.',web:'clairfield.com',badges:['Founder-led Exits','Mid-Market Focus','Cross-border']},
+  {name:'Lincoln International',type:'boutique',hq:'Frankfurt',market:'DACH',sizes:['mid','large'],sizeLabel:'€50M–€1B+',deals:'Large-cap mid-mkt',sectors:['Industrials','Technology','Healthcare','Business Services'],desc:'Global mid-market investment bank. Strong European PE and corporate sell-side credentials.',web:'lincolninternational.com',badges:['PE-backed Exits','Large Mid-Market','Cross-border']},
+  {name:'Houlihan Lokey',type:'bank',hq:'London / Frankfurt',market:'Northern Europe',sizes:['mid','large'],sizeLabel:'€50M–€5B+',deals:'Top-ranked EU',sectors:['Technology','Industrials','Healthcare','Financial Services'],desc:'Global investment bank. Deep European mid-market and large-cap advisory.',web:'hl.com',badges:['Large Cap','Cross-border','PE Relationships']},
+  {name:'Alantra',type:'boutique',hq:'Madrid',market:'Southern Europe',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'200+ closed / yr',sectors:['Technology','Healthcare','Consumer','Industrials','Business Services'],desc:'Independent investment banking. Strong Southern Europe and cross-border coverage.',web:'alantra.com',badges:['Southern Europe','Mid-Market Focus','Cross-border']},
+  {name:'KPMG Corporate Finance',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€10M–€1B+',deals:'Full service',sectors:['All sectors'],desc:'Big Four corporate finance. Full-service DD, valuation, and sell-side across Europe.',web:'kpmg.com',badges:['Full Service','Integrated DD','All Sectors']},
+  {name:'PwC Deals',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€10M–€1B+',deals:'Market leader',sectors:['All sectors'],desc:'Integrated sell-side advisory with tax, legal and DD capabilities.',web:'pwc.com',badges:['Full Service','Tax Integration','Market Leader']},
+  {name:'Deloitte Financial Advisory',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€20M–€2B+',deals:'Complex cross-border',sectors:['All sectors'],desc:'M&A advisory with deep sector and cross-border expertise.',web:'deloitte.com',badges:['Cross-border','Complex Deals','Sector Depth']},
+  {name:'Rothschild & Co',type:'bank',hq:'Paris / London',market:'Pan-European',sizes:['large'],sizeLabel:'€100M+',deals:'Top-10 EU by value',sectors:['Industrials','Consumer','Financial Services','Technology'],desc:'Leading independent financial advisor. Strong VDD and large-cap sell-side mandates.',web:'rothschildandco.com',badges:['Large Cap','Top-10 EU','Independent']},
+  {name:'Mediobanca',type:'bank',hq:'Milan',market:'Southern Europe',sizes:['mid','large'],sizeLabel:'€50M–€5B+',deals:'#1 Italy by value',sectors:['Industrials','Consumer','Financial Services','Real Estate'],desc:'Leading Italian investment bank. Strong sell-side for mid-to-large Italian corporates.',web:'mediobanca.com',badges:['Italy Specialist','Large Cap','Financial Services']},
+  {name:'GCA Altium',type:'boutique',hq:'London / Munich',market:'Northern Europe',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'#1 EU tech M&A',sectors:['Technology','Software','Business Services','FinTech'],desc:'Technology-focused M&A advisory with strong PE relationships.',web:'gcaaltium.com',badges:['Tech Specialist','PE Relationships','Cross-border']},
+  {name:'DC Advisory',type:'boutique',hq:'London',market:'Northern Europe',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'Strong PE expertise',sectors:['Industrials','Technology','Healthcare','Consumer','Business Services'],desc:'European mid-market independent advisor. Backed by Daiwa Securities Group.',web:'dcadvisory.com',badges:['Mid-Market Focus','PE Relationships','Cross-border']},
+  {name:'Livingstone',type:'boutique',hq:'London',market:'UK/Ireland',sizes:['small','mid'],sizeLabel:'€10M–€150M',deals:'300+ completed',sectors:['Technology','Business Services','Healthcare','Consumer'],desc:'Independent mid-market advisor. Strong tech and business services sector expertise.',web:'livingstonepartners.com',badges:['Mid-Market Focus','Tech & Services','UK Specialist']},
+  {name:'Capitalmind',type:'boutique',hq:'Amsterdam / Paris',market:'Northern Europe',sizes:['micro','small','mid'],sizeLabel:'€5M–€100M',deals:'Benelux & France',sectors:['Technology','Business Services','Healthcare','Industrials'],desc:'Independent European M&A. Strong tech-enabled business services focus.',web:'capitalmind.eu',badges:['Lower Mid-Market','Tech Specialist','Benelux & France']},
+  {name:'Metzler',type:'bank',hq:'Frankfurt',market:'DACH',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'Leading DACH boutique',sectors:['Industrials','Technology','Healthcare','Financial Services'],desc:'German private bank with strong DACH M&A advisory. Family-owned, independent.',web:'metzler.com',badges:['DACH Specialist','Independent','Family-owned']},
+  {name:'Baird International',type:'boutique',hq:'London',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M–€1B+',deals:'Top-ranked mid-mkt',sectors:['Technology','Healthcare','Industrials','Consumer','Business Services'],desc:'US investment bank with strong European mid-market M&A presence.',web:'rwbaird.com',badges:['US-European Bridge','Mid-Market Focus','Cross-border']},
+  {name:'Lazard',type:'bank',hq:'Paris / London',market:'Pan-European',sizes:['large'],sizeLabel:'€200M+',deals:'Top-5 EU by value',sectors:['All sectors'],desc:'Global independent investment bank. Premier large-cap sell-side advisory.',web:'lazard.com',badges:['Large Cap','Top-5 EU','Full Independence']},
+  {name:'BNP Paribas CIB',type:'bank',hq:'Paris',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M+',deals:'Pan-European',sectors:['Industrials','Technology','Healthcare','Consumer','Energy'],desc:'European investment banking powerhouse with comprehensive sell-side advisory.',web:'bnpparibas.com',badges:['Pan-European','Energy Sector','Large Scale']},
+  {name:'Société Générale CIB',type:'bank',hq:'Paris',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M+',deals:'Strong energy focus',sectors:['Industrials','Real Estate','Energy','Consumer'],desc:'French bank with strong European M&A and leveraged finance capabilities.',web:'sgcib.com',badges:['Leveraged Finance','Energy Focus','Pan-European']},
 ];
 
-function sizeMatch(adv, filter){
-  if(!filter)return true;
-  return adv.sizes.includes(filter);
+const TYPE_LABEL={boutique:'Independent Boutique',bank:'Investment Bank',big4:'Big 4 / Consulting'};
+let selCard=null;
+
+function getFilters(){
+  const types=[...document.querySelectorAll('input[type=checkbox][value=boutique],input[type=checkbox][value=bank],input[type=checkbox][value=big4]')].filter(c=>c.checked).map(c=>c.value);
+  const sizes=[...document.querySelectorAll('input[type=checkbox][value=micro],input[type=checkbox][value=small],input[type=checkbox][value=mid],input[type=checkbox][value=large]')].filter(c=>c.checked).map(c=>c.value);
+  const markets=[...document.querySelectorAll('input[type=checkbox][value=DACH],input[type=checkbox][value="Southern Europe"],input[type=checkbox][value="Northern Europe"],input[type=checkbox][value=CEE],input[type=checkbox][value="UK/Ireland"],input[type=checkbox][value="Pan-European"]')].filter(c=>c.checked).map(c=>c.value);
+  const q=document.getElementById('fpSearch').value.toLowerCase();
+  return{types,sizes,markets,q};
 }
 
-function renderAdvisors(){
-  const country=document.getElementById('filterCountry').value;
-  const size=document.getElementById('filterSize').value;
-  const type=document.getElementById('filterType').value;
-  const q=document.getElementById('filterSearch').value.toLowerCase();
-
-  let data=ADVISORS.filter(a=>{
-    if(country&&!a.countries.includes(country))return false;
-    if(type&&a.type!==type)return false;
-    if(!sizeMatch(a,size))return false;
-    if(q&&!a.name.toLowerCase().includes(q)&&!a.sectors.join(' ').toLowerCase().includes(q)&&!a.description.toLowerCase().includes(q))return false;
+function render(){
+  const {types,sizes,markets,q}=getFilters();
+  const data=ADVISORS.filter(a=>{
+    if(types.length&&!types.includes(a.type))return false;
+    if(sizes.length&&!sizes.some(s=>a.sizes.includes(s)))return false;
+    if(markets.length&&!markets.includes(a.market)&&!markets.includes('Pan-European'))return false;
+    if(a.market==='Pan-European'&&!markets.includes('Pan-European'))return false;
+    if(q&&!a.name.toLowerCase().includes(q)&&!a.sectors.join(' ').toLowerCase().includes(q)&&!a.desc.toLowerCase().includes(q))return false;
     return true;
   });
-
-  document.getElementById('advisorCount').textContent=data.length+' advisor'+(data.length!==1?'s':'');
-
-  const grid=document.getElementById('advisorGrid');
-  if(data.length===0){
-    grid.innerHTML='<div class="empty-state"><div class="empty-state-title">No advisors match your filters.</div><p>Try broadening your search, or use the form above to suggest a firm.</p></div>';
-    return;
-  }
-
-  const typeLabel={boutique:'Independent Boutique',bank:'Investment Bank',big4:'Big 4 / Consulting'};
-
-  grid.innerHTML=data.map(a=>`
-    <div class="advisor-card">
-      <div class="ac-type">${typeLabel[a.type]}</div>
+  document.getElementById('fpCount').textContent=data.length+' advisor'+(data.length!==1?'s':'')+' shown';
+  const grid=document.getElementById('cardsGrid');
+  if(!data.length){grid.innerHTML='<div style="grid-column:span 2;padding:2rem;text-align:center;color:var(--gl);font-size:0.85rem">No advisors match your filters.</div>';return;}
+  grid.innerHTML=data.map(a=>{
+    const isSelected=selCard===a.name;
+    return `<div class="advisor-card${isSelected?' selected':''}" onclick="selectCard('${a.name.replace(/'/g,"\\'")}')">
+      <div class="ac-top">
+        <span class="ac-type-badge ${a.type}">${TYPE_LABEL[a.type]}</span>
+        <span class="ac-vetted">Vetted for SME</span>
+      </div>
       <div class="ac-name">${a.name}</div>
-      <div class="ac-hq">${a.hq}</div>
-      <div class="ac-tags">
-        ${a.sizes.includes('micro')?'<span class="ac-tag">€1–5M</span>':''}
-        ${a.sizes.includes('small')?'<span class="ac-tag">€5–20M</span>':''}
-        ${a.sizes.includes('mid')?'<span class="ac-tag">€20–100M</span>':''}
-        ${a.sizes.includes('large')?'<span class="ac-tag">€100M+</span>':''}
-        ${a.sectors.slice(0,3).map(s=>`<span class="ac-tag sector">${s}</span>`).join('')}
-      </div>
-      <div style="font-size:0.82rem;color:var(--grey);line-height:1.6;margin-bottom:0.85rem">${a.description}</div>
+      <div class="ac-hq">${a.hq} · ${a.market}</div>
       <div class="ac-metrics">
-        <div class="ac-metric">
-          <div class="ac-metric-label">Deal range</div>
-          <div class="ac-metric-val">${a.sizeMin} – ${a.sizeMax}</div>
-        </div>
-        <div class="ac-metric">
-          <div class="ac-metric-label">Track record</div>
-          <div class="ac-metric-val" style="font-size:0.75rem">${a.deals}</div>
-        </div>
+        <div class="ac-metric"><div class="ac-metric-label">Deal range</div><div class="ac-metric-val">${a.sizeLabel}</div></div>
+        <div class="ac-metric"><div class="ac-metric-label">Activity</div><div class="ac-metric-val" style="font-size:0.72rem">${a.deals}</div></div>
       </div>
-      <div class="ac-contact">
-        <span class="ac-listed">mnaintel.com listing</span>
-        <a href="https://${a.website}" target="_blank" class="ac-contact-btn">Visit website →</a>
+      <div class="ac-desc">${a.desc}</div>
+      <div class="ac-badges">${a.badges.map(b=>`<span class="ac-badge">${b}</span>`).join('')}</div>
+      <div class="ac-foot">
+        <span class="ac-foot-src">mnaintel.com · curated listing</span>
+        <a href="https://${a.web}" target="_blank" class="ac-foot-link" onclick="event.stopPropagation()">Visit website →</a>
       </div>
-    </div>
-  `).join('');
+      ${isSelected?`<div class="ac-detail">
+        <div class="ac-detail-grid">
+          <div><div class="ac-detail-block-title">Sector focus</div>${a.sectors.map(s=>`<div class="ac-detail-row"><span class="ac-detail-lbl">${s}</span><span class="ac-detail-val">✓</span></div>`).join('')}</div>
+          <div><div class="ac-detail-block-title">Deal sizes</div>${['micro','small','mid','large'].map(s=>{const labels={micro:'€1–5M',small:'€5–20M',mid:'€20–100M',large:'€100M+'};return`<div class="ac-detail-row"><span class="ac-detail-lbl">${labels[s]}</span><span class="ac-detail-val">${a.sizes.includes(s)?'✓':'—'}</span></div>`;}).join('')}</div>
+          <div><div class="ac-detail-block-title">Profile</div><div class="ac-detail-row"><span class="ac-detail-lbl">Market</span><span class="ac-detail-val">${a.market}</span></div><div class="ac-detail-row"><span class="ac-detail-lbl">Type</span><span class="ac-detail-val">${TYPE_LABEL[a.type].split(' ')[0]}</span></div><div class="ac-detail-row"><span class="ac-detail-lbl">Website</span><a href="https://${a.web}" target="_blank" class="ac-detail-val" style="text-decoration:underline;color:var(--red)">${a.web}</a></div></div>
+        </div>
+      </div>`:''}
+    </div>`;
+  }).join('');
 }
 
-function submitAdvisor(){
-  alert('Thank you. We review all submissions within 5 business days. If your firm qualifies, you will be contacted at the email provided.');
-}
+function selectCard(name){selCard=selCard===name?null:name;render();}
+function resetFilters(){document.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=true);document.getElementById('fpSearch').value='';render();}
+
+var SB_TICKS=[['Software EV/EBITDA','24.5×'],['Logistics EV/EBITDA','12.6×'],['CH CGT','0%'],['IT CGT','26%'],['Advisory €5M','5.5%'],['SME Discount','−30%'],['Healthcare EV/EBITDA','19.8×']];
+function renderSbTicker(){var el=document.getElementById('sbTicker');if(!el)return;var s=Math.floor(Math.random()*SB_TICKS.length);var items=SB_TICKS.slice(s,s+3).concat(SB_TICKS.slice(0,Math.max(0,3-(SB_TICKS.length-s))));el.innerHTML=items.map(function(t){return'<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4)">'+t[0]+'</span><span style="font-family:\'IBM Plex Mono\',monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');}
 
 function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
 function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
-function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn?btn.querySelector('.sb-arrow'):null;el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');}
+function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');}
 
 document.addEventListener('DOMContentLoaded',function(){
-  renderAdvisors();
+  render();
+  renderSbTicker();setInterval(renderSbTicker,5000);
   document.querySelectorAll('[data-email]').forEach(function(el){el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com';});
 });
 </script>
