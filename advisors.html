@@ -207,6 +207,43 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 /* ── GATED NAV LINKS ── */
 .sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
 .sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
+
+/* ── ADVISOR TABLE ROW LAYOUT ── */
+.adv-table-wrap{background:var(--white);border:0.5px solid var(--rule);overflow:hidden}
+.adv-table-head{display:grid;grid-template-columns:1fr 90px 130px 1fr 100px 60px;gap:0;background:var(--navy);padding:.5rem .9rem;align-items:center;border-bottom:2px solid var(--red)}
+.adv-th{font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.adv-row{display:grid;grid-template-columns:1fr 90px 130px 1fr 100px 60px;gap:0;padding:.52rem .9rem;border-bottom:0.5px solid var(--rule);cursor:pointer;transition:background .1s;align-items:center}
+.adv-row:last-child{border-bottom:none}
+.adv-row:hover{background:var(--bg)}
+.adv-row.selected{background:#EBF0F8;border-left:2px solid var(--navy)}
+.adv-row-name{font-size:.78rem;font-weight:600;color:var(--navy)}
+.adv-row-hq{font-family:var(--mono);font-size:.6rem;color:var(--gl);margin-top:.05rem}
+.adv-row-type{font-size:.54rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border:0.5px solid;display:inline-block}
+.adv-row-type.boutique{color:#1B2F52;border-color:rgba(27,47,82,.3);background:rgba(27,47,82,.05)}
+.adv-row-type.bank{color:var(--red);border-color:rgba(139,26,26,.3);background:rgba(139,26,26,.05)}
+.adv-row-type.big4{color:var(--grn);border-color:rgba(10,92,30,.3);background:var(--grn2)}
+.adv-row-range{font-family:var(--mono);font-size:.68rem;color:var(--gm)}
+.adv-row-sectors{display:flex;gap:.2rem;flex-wrap:wrap}
+.adv-row-sector{font-family:var(--mono);font-size:.52rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--gl);background:var(--bg);border:0.5px solid var(--rule2);padding:1px 5px}
+.adv-row-vetted{font-family:var(--mono);font-size:.6rem;font-weight:700;color:var(--grn);text-align:right}
+/* Detail panel */
+.adv-detail-panel{display:none;background:var(--navy);border-top:0.5px solid rgba(255,255,255,.08)}
+.adv-detail-panel.visible{display:grid;grid-template-columns:1fr 1fr 1fr}
+.adp-col{padding:1rem 1.1rem;border-right:0.5px solid rgba(255,255,255,.08)}
+.adp-col:last-child{border-right:none}
+.adp-title{font-family:var(--mono);font-size:.52rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:0.5px solid rgba(255,255,255,.08)}
+.adp-row{display:flex;justify-content:space-between;align-items:baseline;padding:.2rem 0;border-bottom:0.5px solid rgba(255,255,255,.05);font-size:.7rem}
+.adp-row:last-child{border-bottom:none}
+.adp-lbl{color:rgba(255,255,255,.4)}
+.adp-val{font-family:var(--mono);font-weight:600;color:#fff}
+.adp-val.grn{color:#4ade80}
+.adp-desc{font-size:.7rem;color:rgba(255,255,255,.5);line-height:1.65;margin-top:.5rem}
+.adp-badges{display:flex;gap:.2rem;flex-wrap:wrap;margin-top:.55rem}
+.adp-badge{font-family:var(--mono);font-size:.52rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.4);border:0.5px solid rgba(255,255,255,.12);padding:1px 6px}
+.adp-link{display:inline-block;margin-top:.65rem;font-family:var(--mono);font-size:.65rem;font-weight:600;color:rgba(255,255,255,.6);text-decoration:none;border-bottom:0.5px solid rgba(255,255,255,.2);padding-bottom:1px}
+.adp-link:hover{color:#fff}
+@media(max-width:800px){.adv-table-head{display:none}.adv-row{grid-template-columns:1fr auto;gap:.5rem}.adv-row>*:nth-child(3),.adv-row>*:nth-child(4){display:none}.adv-detail-panel.visible{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -306,7 +343,7 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
     </div>
     <div class="fp-section">
       <span class="fp-section-label">Type</span>
-      <label class="fp-option"><input type="checkbox" value="boutique" onchange="render()" checked> Independent Boutique</label>
+      <label class="fp-option"><input type="checkbox" value="boutique" onchange="render()" checked> Boutique</label>
       <label class="fp-option"><input type="checkbox" value="bank" onchange="render()" checked> Investment Bank</label>
       <label class="fp-option"><input type="checkbox" value="big4" onchange="render()" checked> Big 4 / Consulting</label>
     </div>
@@ -330,11 +367,21 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
     <button class="fp-reset" onclick="resetFilters()">Reset all filters</button>
   </div>
 
-  <!-- CARDS AREA -->
+  <!-- TABLE AREA -->
   <div class="cards-area">
-    <div class="cards-grid" id="cardsGrid"></div>
+    <div class="adv-table-wrap">
+      <div class="adv-table-head">
+        <span class="adv-th">Firm</span>
+        <span class="adv-th">Type</span>
+        <span class="adv-th">HQ / Market</span>
+        <span class="adv-th">Sector focus</span>
+        <span class="adv-th">Deal range</span>
+        <span class="adv-th">Vetted</span>
+      </div>
+      <div id="cardsGrid"></div>
+      <div class="adv-detail-panel" id="advDetailPanel"></div>
+    </div>
   </div>
-
 </div>
 
 <div class="submit-band">
@@ -397,7 +444,7 @@ const ADVISORS=[
   {name:'Grant Thornton CF',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['micro','small','mid'],sizeLabel:'€2M–€100M',deals:'SME focused',sectors:['All sectors'],desc:'Mid-tier professional services firm with strong SME-focused corporate finance practice. Active across all European markets.',web:'grantthornton.eu',badges:['SME Specialist','Lower Mid-Market','All Sectors']},
 ];;
 
-const TYPE_LABEL={boutique:'Independent Boutique',bank:'Investment Bank',big4:'Big 4 / Consulting'};
+const TYPE_LABEL={boutique:'Boutique',bank:'Investment Bank',big4:'Big 4 / Consulting'};
 let selCard=null;
 
 function getFilters(){
@@ -423,35 +470,50 @@ function render(){
   if(!data.length){grid.innerHTML='<div style="grid-column:span 2;padding:2rem;text-align:center;color:var(--gl);font-size:0.85rem">No advisors match your filters.</div>';return;}
   grid.innerHTML=data.map(a=>{
     const isSelected=selCard===a.name;
-    return `<div class="advisor-card${isSelected?' selected':''}" onclick="selectCard('${a.name.replace(/'/g,"\\'")}')">
-      <div class="ac-top">
-        <span class="ac-type-badge ${a.type}">${TYPE_LABEL[a.type]}</span>
-        <span class="ac-vetted">Vetted for SME</span>
+    const topSectors=a.sectors.slice(0,3);
+    return `<div class="adv-row${isSelected?' selected':''}" onclick="selectCard('${a.name.replace(/'/g,"\\'")}')" role="row">
+      <div>
+        <div class="adv-row-name">${a.name}</div>
+        <div class="adv-row-hq">${a.hq}</div>
       </div>
-      <div class="ac-name">${a.name}</div>
-      <div class="ac-hq">${a.hq} · ${a.market}</div>
-      <div class="ac-metrics">
-        <div class="ac-metric"><div class="ac-metric-label">Deal range</div><div class="ac-metric-val">${a.sizeLabel}</div></div>
-        <div class="ac-metric"><div class="ac-metric-label">Activity</div><div class="ac-metric-val" style="font-size:0.72rem">${a.deals}</div></div>
-      </div>
-      <div class="ac-desc">${a.desc}</div>
-      <div class="ac-badges">${a.badges.map(b=>`<span class="ac-badge">${b}</span>`).join('')}</div>
-      <div class="ac-foot">
-        <span class="ac-foot-src">mnaintel.com · curated listing</span>
-        <a href="https://${a.web}" target="_blank" class="ac-foot-link" onclick="event.stopPropagation()">Visit website →</a>
-      </div>
-      ${isSelected?`<div class="ac-detail">
-        <div class="ac-detail-grid">
-          <div><div class="ac-detail-block-title">Sector focus</div>${a.sectors.map(s=>`<div class="ac-detail-row"><span class="ac-detail-lbl">${s}</span><span class="ac-detail-val">✓</span></div>`).join('')}</div>
-          <div><div class="ac-detail-block-title">Deal sizes</div>${['micro','small','mid','large'].map(s=>{const labels={micro:'€1–5M',small:'€5–20M',mid:'€20–100M',large:'€100M+'};return`<div class="ac-detail-row"><span class="ac-detail-lbl">${labels[s]}</span><span class="ac-detail-val">${a.sizes.includes(s)?'✓':'—'}</span></div>`;}).join('')}</div>
-          <div><div class="ac-detail-block-title">Profile</div><div class="ac-detail-row"><span class="ac-detail-lbl">Market</span><span class="ac-detail-val">${a.market}</span></div><div class="ac-detail-row"><span class="ac-detail-lbl">Type</span><span class="ac-detail-val">${TYPE_LABEL[a.type].split(' ')[0]}</span></div><div class="ac-detail-row"><span class="ac-detail-lbl">Website</span><a href="https://${a.web}" target="_blank" class="ac-detail-val" style="text-decoration:underline;color:var(--red)">${a.web}</a></div></div>
-        </div>
-      </div>`:''}
+      <div><span class="adv-row-type ${a.type}">${TYPE_LABEL[a.type]}</span></div>
+      <div class="adv-row-range">${a.market}</div>
+      <div class="adv-row-sectors">${topSectors.map(s=>`<span class="adv-row-sector">${s}</span>`).join('')}</div>
+      <div class="adv-row-range">${a.sizeLabel}</div>
+      <div class="adv-row-vetted">✓ SME</div>
     </div>`;
   }).join('');
 }
 
-function selectCard(name){selCard=selCard===name?null:name;render();}
+function selectCard(name){
+  selCard=selCard===name?null:name;
+  render();
+  var panel=document.getElementById('advDetailPanel');
+  if(!selCard){panel.className='adv-detail-panel';panel.innerHTML='';return;}
+  var a=ADVISORS.find(function(x){return x.name===selCard;});
+  if(!a){panel.className='adv-detail-panel';return;}
+  panel.className='adv-detail-panel visible';
+  panel.innerHTML=`<div class="adp-col">
+    <div class="adp-title">Profile</div>
+    <div class="adp-row"><span class="adp-lbl">Type</span><span class="adp-val">${TYPE_LABEL[a.type]}</span></div>
+    <div class="adp-row"><span class="adp-lbl">HQ</span><span class="adp-val">${a.hq}</span></div>
+    <div class="adp-row"><span class="adp-lbl">Market</span><span class="adp-val">${a.market}</span></div>
+    <div class="adp-row"><span class="adp-lbl">Deal range</span><span class="adp-val">${a.sizeLabel}</span></div>
+    <div class="adp-row"><span class="adp-lbl">Activity</span><span class="adp-val">${a.deals}</span></div>
+    <div class="adp-row"><span class="adp-lbl">SME vetted</span><span class="adp-val grn">✓ Yes</span></div>
+    <a href="https://${a.web}" target="_blank" class="adp-link">${a.web} →</a>
+  </div>
+  <div class="adp-col">
+    <div class="adp-title">Sector focus</div>
+    ${a.sectors.map(s=>`<div class="adp-row"><span class="adp-lbl">${s}</span><span class="adp-val grn">✓</span></div>`).join('')}
+  </div>
+  <div class="adp-col">
+    <div class="adp-title">About</div>
+    <div class="adp-desc">${a.desc}</div>
+    <div class="adp-badges">${a.badges.map(b=>`<span class="adp-badge">${b}</span>`).join('')}</div>
+  </div>`;
+  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
 function resetFilters(){document.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=true);document.getElementById('fpSearch').value='';render();}
 
 var SB_TICKS=[['Software EV/EBITDA','24.5×'],['Logistics EV/EBITDA','12.6×'],['CH CGT','0%'],['IT CGT','26%'],['Advisory €5M','5.5%'],['SME Discount','−30%'],['Healthcare EV/EBITDA','19.8×']];
