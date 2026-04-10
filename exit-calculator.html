@@ -201,10 +201,10 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
 /* ── TERMINAL LAYOUT ── */
-.terminal-wrap{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:360px 1fr;min-height:calc(100vh - 120px);align-items:start}
-@media(max-width:960px){.terminal-wrap{grid-template-columns:1fr}}
-.terminal-inputs{background:var(--bg2);border-right:1px solid var(--rule);position:sticky;top:52px;max-height:calc(100vh - 52px);overflow-y:auto}
-@media(max-width:960px){.terminal-inputs{position:static;max-height:none;border-right:none;border-bottom:1px solid var(--rule)}}
+.terminal-wrap{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:420px 1fr;min-height:auto;align-items:start}
+@media(max-width:1100px){.terminal-wrap{grid-template-columns:1fr}}
+.terminal-inputs{background:var(--bg2);border-right:1px solid var(--rule)}
+@media(max-width:1100px){.terminal-inputs{border-right:none;border-bottom:1px solid var(--rule)}}
 .ti-header{background:var(--navy);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--red)}
 .ti-title{font-family:var(--serif);font-size:1rem;font-weight:700;color:#fff}
 .ti-badge{font-family:var(--mono);font-size:0.58rem;color:rgba(255,255,255,0.4);letter-spacing:.08em;text-transform:uppercase}

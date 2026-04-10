@@ -106,8 +106,8 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 .qr-val.red{color:#f09090}
 
 /* MAIN TABLE */
-.main{max-width:1300px;margin:0 auto;padding:0 2.5rem 2rem}
-@media(max-width:767px){.main{padding:0 1.25rem 2rem}}
+.main{max-width:1200px;margin:0 auto;padding:1.25rem 2.5rem 2rem}
+@media(max-width:767px){.main{padding:1rem 1.25rem 2rem}}
 .tbl-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:0.8rem;min-width:800px}
 thead th{background:var(--navy);color:rgba(255,255,255,0.55);font-size:0.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:0.6rem 0.85rem;text-align:left;white-space:nowrap;cursor:pointer;user-select:none;border-bottom:2px solid var(--red)}
@@ -157,7 +157,7 @@ td.bar-cell{min-width:100px}
 .risk-high{background:rgba(139,26,26,0.07);color:#8B1A1A;border:1px solid rgba(139,26,26,0.2)}
 
 /* ── COUNTRY CARDS ── */
-.country-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
+.country-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.85rem;margin:1rem 0 2rem}
 @media(max-width:900px){.country-card-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:550px){.country-card-grid{grid-template-columns:1fr}}
 .cc{background:var(--white);border:1px solid var(--rule);box-shadow:var(--shadow);cursor:pointer;transition:border-color .15s,box-shadow .15s;position:relative;overflow:hidden}
@@ -315,7 +315,8 @@ td.bar-cell{min-width:100px}
 <div class="detail" id="detailPanel"></div>
 
 <div class="main">
-  <div class="tbl-wrap">
+  <div id="countryGrid" class="country-card-grid"></div>
+<div class="tbl-wrap" style="display:none">
     <table id="mainTbl">
       <thead>
         <tr>
