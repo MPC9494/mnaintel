@@ -587,7 +587,10 @@ function getSorted() {
 
 // ─── RENDER TABLE ────────────────────────────────────────────────────────────
 function renderTable() {
-  const data = getSorted();
+  let data = getSorted();
+  if(activeQF && QF_MAP[activeQF]){
+    data=data.filter(r=>QF_MAP[activeQF].some(k=>r.sector.includes(k)));
+  }
   document.getElementById('rowCount').textContent = data.length + ' sectors';
   document.getElementById('rowCount2').textContent = data.length + ' sectors';
   const body = document.getElementById('tableBody');
@@ -944,15 +947,6 @@ function setQF(btn,cat){
   document.querySelectorAll('.qf-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   renderTable();
-}
-function getSorted_orig(){return getSorted();}
-const _origGetSorted=getSorted;
-function getSorted(){
-  let data=_origGetSorted();
-  if(activeQF && QF_MAP[activeQF]){
-    data=data.filter(r=>QF_MAP[activeQF].some(k=>r.sector.includes(k)));
-  }
-  return data;
 }
 
 // ─── SPARKLINE ───────────────────────────────────────────────────────────────
