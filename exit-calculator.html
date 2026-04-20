@@ -6,7 +6,7 @@
 <title>Exit Value Calculator · M&A Intelligence</title>
 <meta name="description" content="EBITDA normalisation → sector multiple → equity bridge → net proceeds. Professional M&A exit valuation tool.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#0A1628;--navy2:#142035;
@@ -15,17 +15,13 @@
   --b:#111;--g:#222;--gm:#4A4A4A;--gl:#888;
   --red:#8B1A1A;--red2:#6e1414;
   --grn:#0A5C1E;--grn2:#D6EAD9;
-  --amber:#B45309;--amber2:#FEF3C7;
-  --input-bg:#FFFDE7;--input-border:#C8B400;
   --shadow:0 1px 6px rgba(0,0,0,0.06);
   --shadow-md:0 2px 16px rgba(0,0,0,0.10);
-  --mono:'IBM Plex Mono',monospace;
-  --sans:'DM Sans',sans-serif;
-  --serif:'Playfair Display',serif;
+  --f:'DM Sans',sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--w);color:var(--b);-webkit-font-smoothing:antialiased;font-size:14px;overflow-x:hidden}
+body{font-family:var(--f);background:var(--bg);color:var(--b);-webkit-font-smoothing:antialiased;font-size:14px;overflow-x:hidden}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:52px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
@@ -34,11 +30,11 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-
 .hamburger span{display:block;width:18px;height:1.5px;background:currentColor}
 .nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
 .nav-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
-.nav-logo-text{font-size:0.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.9);white-space:nowrap}
+.nav-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.9);white-space:nowrap}
 .nav-links{display:flex;align-items:center}
-.nav-link{font-size:0.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.35rem 0.75rem;transition:color 0.15s;white-space:nowrap}
+.nav-link{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.35rem 0.75rem;transition:color 0.15s;white-space:nowrap}
 .nav-link:hover,.nav-link.active{color:#fff}
-.nav-sub{font-family:var(--sans);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.1rem;cursor:pointer;white-space:nowrap}
+.nav-sub{font-family:var(--f);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.1rem;cursor:pointer;white-space:nowrap}
 @media(max-width:767px){.nav-links{display:none}}
 @media(min-width:900px){nav{padding:0 2.5rem}}
 
@@ -50,13 +46,13 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-
 .sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)}
 .sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
 .sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
-.sb-logo-text{font-size:0.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.sb-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}
 .sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.4rem;cursor:pointer;line-height:1}
-.sb-section{font-size:0.56rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.25rem 0 0.5rem}
+.sb-section{font-size:0.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.25rem 0 0.5rem}
 .sb-link{display:block;padding:0.55rem 0;font-size:0.88rem;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color 0.12s}
 .sb-link:hover,.sb-link.active{color:#fff}
 .sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
-.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans);font-size:0.88rem;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--f);font-size:0.88rem;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
 .sb-dropdown-btn:hover{color:#fff}
 .sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform 0.2s}
 .sb-arrow.open{transform:rotate(180deg)}
@@ -64,7 +60,9 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-
 .sb-dropdown-items.open{display:block}
 .sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color 0.12s}
 .sb-sub-link:hover{color:rgba(255,255,255,0.85)}
-.sb-cta{font-family:var(--sans);font-size:0.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
+.sb-cta{font-family:var(--f);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
+.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
+.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
 
 /* BACK BAR */
 .back-bar{background:var(--bg);border-bottom:0.5px solid var(--rule);padding:0.5rem 2.5rem}
@@ -75,16 +73,16 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-
 /* HEADER STRIP */
 .header-strip{background:var(--navy);padding:1.5rem 2.5rem;border-bottom:3px solid var(--red)}
 .header-strip-inner{max-width:1300px;margin:0 auto;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:0.5rem}
-.hs-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;letter-spacing:-.01em}
-.hs-meta{font-size:0.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.38)}
+.hs-title{font-size:1.5rem;font-weight:700;color:#fff;letter-spacing:-.01em}
+.hs-meta{font-size:0.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.38)}
 .hs-steps{display:flex;gap:0;margin-top:0.75rem}
-.hs-step{font-size:0.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);padding:0.35rem 0.85rem;border-right:1px solid rgba(255,255,255,0.1)}
+.hs-step{font-size:0.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);padding:0.35rem 0.85rem;border-right:1px solid rgba(255,255,255,0.1)}
 .hs-step:first-child{padding-left:0}
 .hs-step.done{color:rgba(255,255,255,0.7)}
 .hs-step.active{color:#fff;border-bottom:2px solid var(--red)}
 
 /* LAYOUT */
-.layout{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:0;align-items:start}
+.layout{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 340px;gap:0;align-items:start}
 @media(max-width:960px){.layout{grid-template-columns:1fr}}
 
 /* LEFT: INPUTS */
@@ -92,227 +90,148 @@ nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-
 @media(max-width:960px){.inputs{border-right:none;padding:1.25rem}}
 
 /* SECTION */
-.sec{margin-bottom:0;border-bottom:0.5px solid var(--rule2)}
-.sec:last-child{border-bottom:none}
-.sec-header{display:flex;align-items:center;gap:0.85rem;padding:1rem 0 0.85rem;border-bottom:0.5px solid var(--rule);margin-bottom:1rem;cursor:pointer}
-.sec-num{font-family:var(--mono);font-size:0.7rem;font-weight:600;color:var(--red);letter-spacing:.08em;width:20px}
-.sec-title{font-size:0.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);flex:1}
-.sec-status{font-family:var(--mono);font-size:0.65rem;color:var(--gl)}
-.sec-body{padding-bottom:1.25rem}
+.sec{background:var(--white);border:1px solid var(--rule);margin-bottom:10px}
+.sec-header{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg2);border-bottom:1px solid var(--rule)}
+.sec-num{font-size:13px;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums}
+.sec-title{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--navy)}
+.sec-status{font-size:11px;font-weight:500;color:var(--gl);margin-left:auto}
+.sec-body{padding:10px 14px}
 
 /* FIELD */
-.field{display:grid;grid-template-columns:200px 1fr auto;align-items:center;gap:0.5rem;padding:0.35rem 0;border-bottom:0.5px solid var(--rule2)}
+.field{display:grid;grid-template-columns:1fr 110px 28px;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #E8E5DF}
 .field:last-child{border-bottom:none}
-.field-label{font-size:0.65rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gl);line-height:1.3}
-.field-label small{display:block;font-weight:400;text-transform:none;letter-spacing:0;color:var(--gl);opacity:0.7;margin-top:1px}
-.field-input{font-family:var(--mono);font-size:0.92rem;font-weight:600;color:var(--b);background:transparent;border:none;border-bottom:1.5px solid var(--rule);padding:0.2rem 0.4rem;outline:none;width:100%;text-align:right;transition:border-color 0.15s}
+.field-label{font-size:13px;font-weight:500;color:#3A3A3A;line-height:1.3}
+.field-label small{display:block;font-size:11px;font-weight:400;color:#999;margin-top:2px}
+.field-input{font-size:16px;font-weight:700;color:var(--b);font-variant-numeric:tabular-nums;text-align:right;background:transparent;border:none;border-bottom:2px solid #C8C4BC;padding:3px 4px;outline:none;width:100%;font-family:var(--f);transition:border-color .15s}
 .field-input:focus{border-color:var(--navy)}
-.field-input::placeholder{color:#bbb;font-weight:400}
-.field-select{font-family:var(--sans);font-size:0.82rem;color:var(--b);background:transparent;border:none;border-bottom:1.5px solid var(--rule);padding:0.25rem 0.4rem;outline:none;width:100%;transition:border-color 0.15s;cursor:pointer;appearance:none}
+.field-input::placeholder{color:#C0BCB5;font-weight:400}
+.field-input.red{color:#7A1515}
+.field-input.grn{color:var(--grn)}
+.field-select{font-size:13px;font-weight:500;color:var(--b);background:transparent;border:none;border-bottom:2px solid #C8C4BC;padding:4px 4px;outline:none;width:100%;cursor:pointer;appearance:none;font-family:var(--f);transition:border-color .15s}
 .field-select:focus{border-color:var(--navy)}
-.field-unit{font-family:var(--mono);font-size:0.7rem;color:var(--gl);white-space:nowrap;min-width:24px}
+.field-unit{font-size:13px;font-weight:500;color:var(--gl);font-variant-numeric:tabular-nums}
+.field-span2{grid-column:span 2}
 
-/* ADDBACKS TABLE */
+/* ADDBACKS */
 .ab-table{width:100%;margin:0.5rem 0}
-.ab-row{display:grid;grid-template-columns:1fr 120px 28px;gap:0.4rem;align-items:center;padding:0.3rem 0;border-bottom:0.5px solid var(--rule2)}
+.ab-row{display:grid;grid-template-columns:1fr 110px 26px;gap:6px;align-items:center;padding:5px 0;border-bottom:1px solid #EEE}
 .ab-row:last-child{border-bottom:none}
-.ab-desc{font-family:var(--sans);font-size:0.8rem;color:var(--b);background:transparent;border:none;border-bottom:0.5px solid var(--rule);padding:0.15rem 0.25rem;outline:none;width:100%}
-.ab-val{font-family:var(--mono);font-size:0.85rem;font-weight:600;color:var(--grn);background:transparent;border:none;border-bottom:0.5px solid var(--rule);padding:0.15rem 0.4rem;outline:none;width:100%;text-align:right}
+.ab-desc{font-size:13px;font-weight:400;color:var(--b);background:transparent;border:none;border-bottom:1px solid var(--rule);padding:3px 4px;outline:none;width:100%;font-family:var(--f)}
+.ab-val{font-size:14px;font-weight:700;color:var(--grn);font-variant-numeric:tabular-nums;background:transparent;border:none;border-bottom:1px solid var(--rule);padding:3px 4px;outline:none;width:100%;text-align:right;font-family:var(--f)}
 .ab-val:focus,.ab-desc:focus{border-color:var(--navy)}
-.ab-rm{background:transparent;border:none;color:var(--gl);cursor:pointer;font-size:1.1rem;padding:2px;line-height:1}
+.ab-rm{background:transparent;border:none;color:var(--gl);cursor:pointer;font-size:16px;padding:2px;line-height:1;font-family:var(--f)}
 .ab-rm:hover{color:var(--red)}
-.ab-add{background:transparent;border:1px dashed var(--rule);color:var(--gm);font-family:var(--sans);font-size:0.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:0.35rem 0.75rem;cursor:pointer;margin-top:0.5rem;transition:border-color 0.15s}
+.ab-add{background:transparent;border:1px dashed #C8C4BC;color:var(--gm);font-family:var(--f);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;cursor:pointer;margin-top:6px;transition:border-color .15s;width:100%}
 .ab-add:hover{border-color:var(--navy);color:var(--navy)}
+.hint{font-size:11px;color:var(--gl);margin-top:5px;line-height:1.45}
 
 /* NORMALISED ROW */
-.norm-row{display:grid;grid-template-columns:200px 1fr auto;align-items:center;gap:0.5rem;padding:0.5rem 0;background:var(--navy);margin:0.75rem -0.5rem;padding:0.6rem 0.75rem}
-.norm-label{font-size:0.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.6)}
-.norm-val{font-family:var(--mono);font-size:1.05rem;font-weight:600;color:#fff;text-align:right}
+.norm-row{display:grid;grid-template-columns:1fr 110px 28px;align-items:center;gap:8px;padding:9px 12px;background:var(--navy);margin:8px -2px -2px}
+.norm-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.7)}
+.norm-val{font-size:20px;font-weight:700;color:#fff;text-align:right;font-variant-numeric:tabular-nums}
+
+/* APPLIED MULTIPLE HIGHLIGHT */
+.applied-row{display:grid;grid-template-columns:1fr 110px 28px;align-items:center;gap:8px;background:#F0EEE9;padding:7px 10px;margin:6px -2px;border:1px solid #D4D0C8}
+.applied-label{font-size:13px;font-weight:700;color:var(--navy)}
+.applied-input{font-size:20px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums;text-align:right;background:transparent;border:none;border-bottom:2px solid var(--navy);padding:3px 4px;outline:none;width:100%;font-family:var(--f)}
 
 /* RIGHT: RESULT PANEL */
 .result-panel{background:var(--navy);position:sticky;top:52px;border-left:1px solid rgba(255,255,255,0.06)}
 @media(max-width:960px){.result-panel{position:static;border-left:none;border-top:3px solid var(--red)}}
 
-.rp-header{padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.rp-label{font-size:0.58rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.3rem}
-.rp-ev{font-family:var(--mono);font-size:1.75rem;font-weight:600;color:#fff;line-height:1;letter-spacing:-.02em}
-.rp-range{font-family:var(--mono);font-size:0.7rem;color:rgba(255,255,255,0.4);margin-top:0.25rem}
+/* EV HEADER */
+.rp-header{padding:20px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.12)}
+.rp-eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:6px}
+.rp-ev{font-size:38px;font-weight:700;color:#fff;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.rp-range{font-size:13px;font-weight:400;color:rgba(255,255,255,0.55);margin-top:6px}
+.rp-badge{display:none;align-items:center;gap:8px;margin-top:10px;background:rgba(139,26,26,0.3);border:1px solid rgba(139,26,26,0.6);padding:5px 12px}
+.rp-badge-mult{font-size:17px;font-weight:700;color:#F5A0A0;font-variant-numeric:tabular-nums}
+.rp-badge-sector{font-size:12px;font-weight:400;color:rgba(255,255,255,0.55)}
 
 /* WATERFALL */
-.waterfall{padding:1rem 1.5rem}
-.wf-group{margin-bottom:0.75rem}
-.wf-group-title{font-size:0.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.28);padding-bottom:0.35rem;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:0.35rem}
-.wf-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.22rem 0}
-.wf-lbl{font-size:0.72rem;color:rgba(255,255,255,0.45);font-weight:400}
-.wf-val{font-family:var(--mono);font-size:0.78rem;font-weight:600;color:#fff}
-.wf-val.red{color:#f09090}
+.waterfall{padding:16px 20px}
+.wf-group{margin-bottom:14px}
+.wf-group-title{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:6px}
+.wf-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0}
+.wf-lbl{font-size:13px;font-weight:400;color:rgba(255,255,255,0.7)}
+.wf-val{font-size:14px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+.wf-val.red{color:#F5A0A0}
 .wf-val.grn{color:#7dd87d}
-.wf-val.muted{color:rgba(255,255,255,0.35);font-weight:400}
-.wf-divider{height:1px;background:rgba(255,255,255,0.1);margin:0.5rem 0}
-.wf-total{display:flex;justify-content:space-between;align-items:baseline;padding:0.4rem 0}
-.wf-total-lbl{font-size:0.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,0.7)}
-.wf-total-val{font-family:var(--mono);font-size:1.05rem;font-weight:600;color:#fff}
+.wf-val.muted{color:rgba(255,255,255,0.45);font-weight:500}
+.wf-divider{height:1px;background:rgba(255,255,255,0.12);margin:8px 0}
+.wf-total{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0}
+.wf-total-lbl{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,0.8)}
+.wf-total-val{font-size:18px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
 
-/* NET PROCEEDS BOX */
-.net-box{margin:0.75rem 1.5rem;padding:1rem;background:rgba(255,255,255,0.05);border-left:3px solid var(--red)}
-.net-label{font-size:0.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.3rem}
-.net-val{font-family:var(--mono);font-size:1.5rem;font-weight:600;color:#fff;line-height:1}
-.net-sub{font-family:var(--mono);font-size:0.68rem;color:rgba(255,255,255,0.38);margin-top:0.25rem}
+/* NET PROCEEDS */
+.net-box{margin:4px 20px 16px;padding:16px 18px;border-left:3px solid var(--red);background:rgba(255,255,255,0.06);position:relative}
+.net-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:6px}
+.net-val{font-size:36px;font-weight:700;color:#fff;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.net-sub{font-size:12px;font-weight:400;color:rgba(255,255,255,0.5);margin-top:5px}
+
+/* COST PILLS */
+.cost-pills{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:0 20px 16px}
+.cp{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:8px 10px;text-align:center}
+.cp-val{font-size:14px;font-weight:700;color:#F5A0A0;font-variant-numeric:tabular-nums}
+.cp-lbl{font-size:11px;font-weight:500;color:rgba(255,255,255,0.45);margin-top:3px;letter-spacing:.04em;text-transform:uppercase}
 
 /* SENSITIVITY */
-.sens{padding:0 1.5rem 1rem}
-.sens-title{font-size:0.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.6rem}
-.sens-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.7rem}
-.sens-table th{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);font-weight:600;font-size:0.6rem;padding:0.35rem 0.5rem;text-align:center;border:1px solid rgba(255,255,255,0.06)}
-.sens-table td{padding:0.35rem 0.5rem;text-align:center;border:1px solid rgba(255,255,255,0.05);color:rgba(255,255,255,0.55)}
-.sens-table td.base{background:var(--red);color:#fff;font-weight:600}
-.sens-table .row-lbl{text-align:left;color:rgba(255,255,255,0.35);font-size:0.6rem}
+.sens{padding:0 20px 16px}
+.sens-title{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:8px}
+.sens-table{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+.sens-table th{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.6);font-weight:700;font-size:11px;padding:5px 7px;text-align:center;border:1px solid rgba(255,255,255,0.08)}
+.sens-table td{padding:5px 7px;text-align:center;border:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.7);font-weight:500}
+.sens-table td.base{background:var(--red);color:#fff;font-weight:700}
+.sens-table .row-lbl{text-align:left;color:rgba(255,255,255,0.45);font-size:11px;font-weight:500}
 
 /* INTERPRETATION */
-.interp{margin:0 1.5rem 1.25rem;padding:0.75rem;border-left:2px solid rgba(255,255,255,0.15);font-size:0.72rem;color:rgba(255,255,255,0.4);line-height:1.6}
-.interp strong{color:rgba(255,255,255,0.75)}
+.interp{margin:0 20px 20px;padding:10px 12px;border-left:2px solid rgba(255,255,255,0.2);font-size:13px;font-weight:400;color:rgba(255,255,255,0.6);line-height:1.65}
+.interp strong{color:#fff;font-weight:600}
+
+/* GATE OVERLAY */
+.gate-wrap{position:relative}
+.gate-blur{filter:blur(6px);user-select:none;pointer-events:none;transition:filter .3s}
+.rh-gate{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.25rem;background:linear-gradient(to bottom,rgba(10,22,40,0) 0%,rgba(10,22,40,0.88) 30%,rgba(10,22,40,0.98) 100%);z-index:10}
+.gate-icon{font-size:1.1rem;margin-bottom:0.65rem;opacity:.55}
+.gate-title{font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:0.3rem;line-height:1.3}
+.gate-sub{font-size:0.72rem;color:rgba(255,255,255,0.5);line-height:1.55;max-width:240px;margin-bottom:0.75rem}
+.gate-form{display:flex;gap:0;max-width:260px}
+.gate-email{font-family:var(--f);font-size:0.78rem;color:#111;background:#fff;border:none;padding:0.45rem 0.7rem;outline:none;flex:1;min-width:0}
+.gate-email::placeholder{color:#bbb}
+.gate-submit{font-family:var(--f);font-size:0.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 0.85rem;cursor:pointer;white-space:nowrap}
+.gate-note{font-size:0.58rem;color:rgba(255,255,255,0.3);margin-top:.35rem}
+
+/* MARKET PULSE */
+.market-pulse{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
+.market-pulse::-webkit-scrollbar{display:none}
+.mp-brand{display:flex;align-items:center;gap:6px;padding:.3rem 1.25rem .3rem .75rem;border-right:1px solid rgba(255,255,255,0.07);flex-shrink:0}
+.mp-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:mp-pulse 2.5s infinite}
+@keyframes mp-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+.mp-label{font-size:.54rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.mp-item{display:flex;align-items:center;gap:.5rem;padding:.28rem .9rem;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0}
+.mp-item:last-child{border-right:none}
+.mp-name{font-size:.58rem;color:rgba(255,255,255,.38);white-space:nowrap}
+.mp-val{font-size:.66rem;font-weight:700;color:rgba(255,255,255,.85);white-space:nowrap;font-variant-numeric:tabular-nums}
+.mp-chg{font-size:.55rem;white-space:nowrap}
+.mp-chg.up{color:#4ade80}.mp-chg.dn{color:#f87171}.mp-chg.neu{color:rgba(255,255,255,.3)}
+
+/* SOURCE NOTE */
+.src-note{padding:0.75rem 2.5rem;background:var(--bg);border-top:0.5px solid var(--rule);font-size:0.68rem;color:var(--gl)}
+.src-note strong{color:var(--gm)}
 
 /* FOOTER */
 footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(255,255,255,0.06)}
 .footer-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
 .f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
 .f-brand-bar{width:2px;height:14px;background:var(--red);flex-shrink:0}
-.f-brand-text{font-size:0.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-brand-text{font-size:0.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
 .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
 .f-links a{font-size:0.72rem;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.15s}
 .f-links a:hover{color:rgba(255,255,255,0.65)}
 .f-copy{font-size:0.62rem;color:rgba(255,255,255,0.15);width:100%;margin-top:0.2rem}
 @media(min-width:900px){footer{padding:1.75rem 3rem}}
 
-/* SOURCE NOTE */
-.src-note{padding:0.75rem 2.5rem;background:var(--bg);border-top:0.5px solid var(--rule);font-size:0.68rem;color:var(--gl)}
-.src-note strong{color:var(--gm)}
-
-/* ── GATING OVERLAY ── */
-.gate-wrap{position:relative}
-.gate-blur{filter:blur(6px);user-select:none;pointer-events:none;transition:filter .3s}
-.gate-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.5rem;background:linear-gradient(to bottom,rgba(10,22,40,0) 0%,rgba(10,22,40,0.85) 35%,rgba(10,22,40,0.97) 100%);z-index:10}
-.gate-icon{font-size:1.2rem;margin-bottom:0.75rem;opacity:.6}
-.gate-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.4rem;line-height:1.3}
-.gate-sub{font-size:0.72rem;color:rgba(255,255,255,0.55);line-height:1.6;max-width:260px;margin-bottom:1rem}
-.gate-form{display:flex;gap:0;max-width:280px}
-.gate-email{font-family:'DM Sans',sans-serif;font-size:0.8rem;color:#111;background:#fff;border:none;padding:0.5rem 0.75rem;outline:none;flex:1;min-width:0}
-.gate-email::placeholder{color:#bbb}
-.gate-submit{font-family:'DM Sans',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#8B1A1A;color:#fff;border:none;padding:0.5rem 0.85rem;cursor:pointer;white-space:nowrap}
-.gate-note{font-size:0.6rem;color:rgba(255,255,255,0.3);margin-top:.4rem}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* ── TERMINAL LAYOUT ── */
-.terminal-wrap{max-width:1300px;margin:0 auto;display:block}
-
-
-
-.ti-header{background:var(--navy);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--red)}
-.ti-title{font-family:var(--serif);font-size:1rem;font-weight:700;color:#fff}
-.ti-badge{font-family:var(--mono);font-size:0.58rem;color:rgba(255,255,255,0.4);letter-spacing:.08em;text-transform:uppercase}
-.ti-body{padding:1.25rem 1.5rem}
-.terminal-results{background:var(--white);padding:2rem 2.5rem}
-
-
-/* input overrides */
-.sec{background:var(--white);border:0.5px solid var(--rule);margin-bottom:0.85rem;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
-.sec-header{background:var(--bg2);padding:0.65rem 1rem;display:flex;align-items:center;gap:0.6rem;border-bottom:0.5px solid var(--rule);cursor:pointer}
-.sec-num{font-family:var(--mono);font-size:0.65rem;font-weight:600;color:var(--red);width:22px}
-.sec-title{font-size:0.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);flex:1}
-.sec-body{padding:0.85rem 1rem}
-.field{display:grid;grid-template-columns:1fr 90px 28px;align-items:center;gap:0.4rem;padding:0.3rem 0;border-bottom:0.5px solid var(--rule2)}
-.field:last-child{border-bottom:none}
-.field-label{font-size:0.62rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--gl);line-height:1.3}
-.field-label small{display:block;font-weight:400;text-transform:none;letter-spacing:0;color:var(--gl);opacity:.7;font-size:0.6rem}
-.field-input{font-family:var(--mono);font-size:0.85rem;font-weight:600;color:var(--b);background:transparent;border:none;border-bottom:1.5px solid var(--rule);padding:0.2rem 0.35rem;outline:none;width:100%;text-align:right;transition:border-color .15s}
-.field-input:focus{border-color:var(--navy)}
-.field-input::placeholder{color:#ccc;font-weight:400}
-.field-select{font-family:var(--sans);font-size:0.78rem;color:var(--b);background:transparent;border:none;border-bottom:1.5px solid var(--rule);padding:0.25rem 0.35rem;outline:none;width:100%;cursor:pointer;appearance:none;transition:border-color .15s}
-.field-select:focus{border-color:var(--navy)}
-.field-unit{font-family:var(--mono);font-size:0.62rem;color:var(--gl);white-space:nowrap}
-.norm-row{display:grid;grid-template-columns:1fr 90px 28px;align-items:center;gap:0.4rem;padding:0.5rem 0.75rem;background:var(--navy);margin:0.5rem -0.1rem}
-.norm-label{font-size:0.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.65)}
-.norm-val{font-family:var(--mono);font-size:0.95rem;font-weight:600;color:#fff;text-align:right}
-.ab-row{display:grid;grid-template-columns:1fr 90px 24px;gap:0.4rem;align-items:center;padding:0.25rem 0;border-bottom:0.5px solid var(--rule2)}
-.ab-desc{font-family:var(--sans);font-size:0.75rem;color:var(--b);background:transparent;border:none;border-bottom:0.5px solid var(--rule);padding:0.15rem 0.25rem;outline:none;width:100%}
-.ab-val{font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--grn);background:transparent;border:none;border-bottom:0.5px solid var(--rule);padding:0.15rem 0.35rem;outline:none;width:100%;text-align:right}
-.ab-rm{background:transparent;border:none;color:var(--gl);cursor:pointer;font-size:1rem;padding:2px;line-height:1}
-.ab-rm:hover{color:var(--red)}
-.ab-add{background:transparent;border:1px dashed var(--rule);color:var(--gm);font-family:var(--sans);font-size:0.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:0.35rem 0.75rem;cursor:pointer;margin-top:0.5rem;width:100%;transition:border-color .15s}
-.ab-add:hover{border-color:var(--navy);color:var(--navy)}
-.hint{font-size:0.65rem;color:var(--gl);margin-top:0.3rem;line-height:1.45}
-
-/* results area */
-.rh-kicker{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
-.rh-kicker::before{content:'';width:16px;height:2px;background:var(--red);flex-shrink:0}
-
-/* waterfall card */
-.waterfall-card{background:var(--navy);padding:1.5rem;margin-bottom:1.25rem;box-shadow:var(--shadow-md)}
-.wc-title{font-size:0.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem}
-.wc-group{margin-bottom:0.85rem;padding-bottom:0.85rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.wc-group:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.wc-group-title{font-size:0.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.5rem}
-.wc-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.22rem 0}
-.wc-lbl{font-size:0.72rem;color:rgba(255,255,255,0.5)}
-.wc-val{font-family:var(--mono);font-size:0.8rem;font-weight:600;color:#fff}
-.wc-val.red{color:#f09090}.wc-val.grn{color:#7dd87d}.wc-val.muted{color:rgba(255,255,255,0.35);font-weight:400}
-.wc-divider{height:1px;background:rgba(255,255,255,0.1);margin:0.6rem 0}
-.wc-total-row{display:flex;justify-content:space-between;align-items:baseline}
-.wc-total-lbl{font-size:0.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,0.75)}
-.wc-total-val{font-family:var(--mono);font-size:1rem;font-weight:600;color:#fff}
-
-/* net proceeds box — blurred */
-.net-box{background:rgba(255,255,255,0.06);border-left:3px solid var(--red);padding:1rem 1.25rem;margin-top:0.85rem;position:relative}
-.nb-gate{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,22,40,0) 0%,rgba(10,22,40,0.9) 40%,rgba(10,22,40,0.98) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1rem;z-index:5}
-.nb-gate-title{font-size:0.68rem;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:0.25rem}
-.nb-gate-sub{font-size:0.62rem;color:rgba(255,255,255,0.45);margin-bottom:0.65rem;line-height:1.4}
-.nb-gate-form{display:flex;gap:0;max-width:240px}
-.nb-gate-email{flex:1;font-family:var(--sans);font-size:0.75rem;color:var(--b);background:#fff;border:none;padding:0.4rem 0.65rem;outline:none;min-width:0}
-.nb-gate-email::placeholder{color:#bbb}
-.nb-gate-btn{font-family:var(--sans);font-size:0.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.4rem 0.75rem;cursor:pointer;white-space:nowrap}
-.nb-gate-note{font-size:0.58rem;color:rgba(255,255,255,0.3);margin-top:0.3rem}
-.nb-label{font-size:0.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.3rem}
-.nb-val{font-family:var(--mono);font-size:1.5rem;font-weight:600;color:#fff;line-height:1}
-.nb-val.blurred-text{filter:blur(6px);user-select:none}
-.nb-sub{font-family:var(--mono);font-size:0.65rem;color:rgba(255,255,255,0.4);margin-top:0.2rem}
-
-/* sensitivity table */
-.sens-section{margin-top:1.25rem}
-.ss-label{font-family:var(--mono);font-size:0.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:0.65rem}
-.sens-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.72rem;filter:blur(4px);user-select:none;pointer-events:none}
-.sens-table th{background:var(--navy);color:rgba(255,255,255,0.5);font-size:0.6rem;font-weight:600;padding:0.4rem 0.6rem;text-align:center;border:1px solid rgba(255,255,255,0.06)}
-.sens-table td{padding:0.38rem 0.6rem;text-align:center;border:0.5px solid var(--rule2);color:var(--gm)}
-.sens-table td.base{background:var(--navy);color:#fff;font-weight:600}
-.sens-table .row-lbl{text-align:left;color:var(--gl);font-size:0.62rem}
-
-/* interpretation */
-.interp-card{background:var(--navy);padding:1rem 1.25rem;margin-top:1rem;border-left:2px solid var(--red)}
-.ic-label{font-size:0.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.4rem}
-.ic-text{font-size:0.78rem;color:rgba(255,255,255,0.65);line-height:1.65}
-.ic-text strong{color:#fff}
-
-/* source bar */
-.src-bar{font-size:0.68rem;color:var(--gl);padding:0.85rem 0;border-top:0.5px solid var(--rule);margin-top:1.25rem}
-.src-bar strong{color:var(--gm)}
-
-
-.market-pulse{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
-.market-pulse::-webkit-scrollbar{display:none}
-.mp-brand{display:flex;align-items:center;gap:6px;padding:.3rem 1.25rem .3rem .75rem;border-right:1px solid rgba(255,255,255,0.07);flex-shrink:0}
-.mp-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:mp-pulse 2.5s infinite}
-@keyframes mp-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
-.mp-label{font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
-.mp-item{display:flex;align-items:center;gap:.5rem;padding:.28rem .9rem;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0}
-.mp-item:last-child{border-right:none}
-.mp-name{font-size:.58rem;color:rgba(255,255,255,.32);white-space:nowrap}
-.mp-val{font-family:var(--mono);font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
-.mp-chg{font-family:var(--mono);font-size:.55rem;white-space:nowrap}
-.mp-chg.up{color:#4ade80}.mp-chg.dn{color:#f87171}.mp-chg.neu{color:rgba(255,255,255,.3)}
-
-
-/* ── GATED NAV LINKS ── */
-.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
-.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
 </style>
 </head>
 <body>
@@ -323,13 +242,10 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
     <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
     <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
-
-  <!-- Live benchmarks mini-strip -->
   <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
     <div style="font-size:0.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#0A5C1E;display:inline-block;animation:pulse 2s infinite"></span>Live Benchmarks</div>
     <div style="display:flex;flex-direction:column;gap:0.3rem" id="sbTicker"></div>
   </div>
-
   <div class="sb-section">Editorial</div>
   <div class="sb-dropdown">
     <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
@@ -380,11 +296,12 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>
+
 <div class="market-pulse">
   <div class="mp-brand"><span class="mp-dot"></span><span class="mp-label">Market Pulse</span></div>
   <div class="mp-item"><span class="mp-name">10Y Bund (Rf)</span><span class="mp-val">2.68%</span><span class="mp-chg neu">ECB</span></div>
   <div class="mp-item"><span class="mp-name">ERP EU avg</span><span class="mp-val">5.84%</span><span class="mp-chg neu">Damodaran 2026</span></div>
-  <div class="mp-item"><span class="mp-name">S&amp;P Fwd P/E</span><span class="mp-val">20.8×</span><span class="mp-chg dn">above hist. avg</span></div>
+  <div class="mp-item"><span class="mp-name">S&P Fwd P/E</span><span class="mp-val">20.8×</span><span class="mp-chg dn">above hist. avg</span></div>
   <div class="mp-item"><span class="mp-name">EU Deal Vol</span><span class="mp-val">−14%</span><span class="mp-chg dn">YoY</span></div>
   <div class="mp-item"><span class="mp-name">Software EV/EBITDA</span><span class="mp-val">24.5×</span><span class="mp-chg up">Jan 2026</span></div>
   <div class="mp-item"><span class="mp-name">CH CGT</span><span class="mp-val">0%</span><span class="mp-chg up">lowest EU</span></div>
@@ -398,7 +315,7 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
       <div class="hs-title">Exit Value Calculator</div>
       <div class="hs-meta">EBITDA Normalisation · Sector Multiple · Equity Bridge · Net Proceeds · Damodaran Jan 2026</div>
     </div>
-    <div class="hs-steps" style="margin-top:0.75rem">
+    <div class="hs-steps">
       <div class="hs-step active">01 EBITDA</div>
       <div class="hs-step">02 Multiple</div>
       <div class="hs-step">03 Bridge</div>
@@ -410,7 +327,6 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 
 <div class="layout">
 
-<div class="layout">
 <!-- ── INPUTS ── -->
 <div class="inputs">
 
@@ -419,7 +335,7 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
     <div class="sec-header">
       <div class="sec-num">01</div>
       <div class="sec-title">EBITDA & Normalisation</div>
-      <div class="sec-status" id="s1status">Last 12 months (LTM)</div>
+      <div class="sec-status">Last 12 months (LTM)</div>
     </div>
     <div class="sec-body">
       <div class="field">
@@ -432,18 +348,16 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
         <input type="number" class="field-input" id="revenue" placeholder="optional" min="0" oninput="calc()">
         <span class="field-unit">k</span>
       </div>
-
-      <div style="padding-top:0.75rem">
-        <div style="font-size:0.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gl);margin-bottom:0.4rem">Add-backs to normalised EBITDA</div>
+      <div style="padding-top:10px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#999;margin-bottom:6px">Add-backs to normalised EBITDA</div>
         <div class="ab-table" id="abContainer"></div>
         <button class="ab-add" onclick="addAB()">+ Add add-back</button>
-        <div style="font-size:0.68rem;color:var(--gl);margin-top:0.5rem;line-height:1.5">Common: excess owner salary · one-off legal fees · non-recurring costs · personal expenses through business</div>
+        <div class="hint">Common: excess owner salary · one-off legal fees · non-recurring costs · personal expenses through business</div>
       </div>
-
       <div class="norm-row">
         <div class="norm-label">Normalised EBITDA</div>
-        <div class="norm-val" id="normVal" style="text-align:right">—</div>
-        <div style="font-family:var(--mono);font-size:0.7rem;color:rgba(255,255,255,0.5)">k</div>
+        <div class="norm-val" id="normVal">—</div>
+        <div style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.4)">k</div>
       </div>
     </div>
   </div>
@@ -458,7 +372,7 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
     <div class="sec-body">
       <div class="field">
         <div class="field-label">Sector<small>Damodaran US public market</small></div>
-        <select class="field-select" id="sectorSel" oninput="onSector()" style="grid-column:span 2">
+        <select class="field-select field-span2" id="sectorSel" oninput="onSector()">
           <option value="">— Select sector —</option>
           <option value="12.0|0.85|1.15">Advertising · 12.0×</option>
           <option value="21.6|0.80|1.25">Aerospace / Defense · 21.6×</option>
@@ -511,10 +425,10 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
         <input type="number" class="field-input" id="privDiscount" value="30" step="1" min="0" max="60" oninput="recalcApplied();calc()">
         <span class="field-unit">%</span>
       </div>
-      <div class="field" style="background:var(--bg);padding:0.3rem 0.4rem;margin:0 -0.4rem">
-        <div class="field-label" style="color:var(--navy)">Applied multiple (private)<small>override manually if needed</small></div>
-        <input type="number" class="field-input" id="appliedMultiple" placeholder="—" step="0.1" oninput="calc()" style="color:var(--navy);font-size:1rem">
-        <span class="field-unit" style="color:var(--navy)">×</span>
+      <div class="applied-row">
+        <span class="applied-label">Applied multiple (private)<small style="display:block;font-size:11px;font-weight:400;color:#666;margin-top:2px">override manually if needed</small></span>
+        <input type="number" class="applied-input" id="appliedMultiple" placeholder="—" step="0.1" oninput="calc()">
+        <span style="font-size:14px;font-weight:700;color:var(--navy)">×</span>
       </div>
     </div>
   </div>
@@ -529,17 +443,17 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
     <div class="sec-body">
       <div class="field">
         <div class="field-label">Net financial debt<small>bank loans − restricted cash</small></div>
-        <input type="number" class="field-input" id="netDebt" value="0" step="50" oninput="calc()" style="color:#f09090">
+        <input type="number" class="field-input red" id="netDebt" value="0" step="50" oninput="calc()">
         <span class="field-unit">k</span>
       </div>
       <div class="field">
         <div class="field-label">Cash & equivalents<small>unrestricted, normalised</small></div>
-        <input type="number" class="field-input" id="cash" value="0" step="50" oninput="calc()" style="color:#7dd87d">
+        <input type="number" class="field-input grn" id="cash" value="0" step="50" oninput="calc()">
         <span class="field-unit">k</span>
       </div>
       <div class="field">
         <div class="field-label">Other debt-like items<small>pensions, provisions, earnouts</small></div>
-        <input type="number" class="field-input" id="otherDebt" value="0" step="50" oninput="calc()" style="color:#f09090">
+        <input type="number" class="field-input red" id="otherDebt" value="0" step="50" oninput="calc()">
         <span class="field-unit">k</span>
       </div>
       <div class="field">
@@ -551,7 +465,7 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
   </div>
 
   <!-- S4: COSTS -->
-  <div class="sec" style="border-bottom:none">
+  <div class="sec" style="margin-bottom:0">
     <div class="sec-header">
       <div class="sec-num">04</div>
       <div class="sec-title">Transaction Costs</div>
@@ -560,17 +474,17 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
     <div class="sec-body">
       <div class="field">
         <div class="field-label">Advisory success fee<small>% of equity proceeds at close</small></div>
-        <input type="number" class="field-input" id="advisory" value="3.5" step="0.1" min="0" max="15" oninput="calc()" style="color:#f09090">
+        <input type="number" class="field-input red" id="advisory" value="3.5" step="0.1" min="0" max="15" oninput="calc()">
         <span class="field-unit">%</span>
       </div>
       <div class="field">
         <div class="field-label">Legal & notarial<small>sell-side legal only</small></div>
-        <input type="number" class="field-input" id="legal" value="1.0" step="0.1" min="0" max="5" oninput="calc()" style="color:#f09090">
+        <input type="number" class="field-input red" id="legal" value="1.0" step="0.1" min="0" max="5" oninput="calc()">
         <span class="field-unit">%</span>
       </div>
       <div class="field">
         <div class="field-label">Capital gains tax<small>individual rate — varies by country</small></div>
-        <input type="number" class="field-input" id="cgt" value="26" step="0.5" min="0" max="60" oninput="calc()" style="color:#f09090">
+        <input type="number" class="field-input red" id="cgt" value="26" step="0.5" min="0" max="60" oninput="calc()">
         <span class="field-unit">%</span>
       </div>
       <div class="field">
@@ -585,11 +499,15 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 
 <!-- ── RESULT PANEL ── -->
 <div class="result-panel">
-  
+
   <div class="rp-header">
-    <div class="rp-label">Enterprise Value</div>
+    <div class="rp-eyebrow">Enterprise Value</div>
     <div class="rp-ev" id="rpEV">—</div>
     <div class="rp-range" id="rpRange">Select sector · enter EBITDA</div>
+    <div class="rp-badge" id="rpBadge">
+      <span class="rp-badge-mult" id="rpMult">—</span>
+      <span class="rp-badge-sector" id="rpSector">—</span>
+    </div>
   </div>
 
   <div class="waterfall">
@@ -598,14 +516,10 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
       <div class="wf-group-title">Valuation build-up</div>
       <div class="wf-row"><span class="wf-lbl">Reported EBITDA</span><span class="wf-val muted" id="wRep">—</span></div>
       <div class="wf-row"><span class="wf-lbl">+ Add-backs</span><span class="wf-val grn" id="wAB">—</span></div>
-      <div class="wf-row" style="border-top:1px solid rgba(255,255,255,0.08);padding-top:0.35rem;margin-top:0.15rem">
-        <span class="wf-lbl" style="font-weight:600;color:rgba(255,255,255,0.7)">Normalised EBITDA</span>
-        <span class="wf-val" id="wNorm">—</span>
-      </div>
+      <div class="wf-divider"></div>
+      <div class="wf-total"><span class="wf-total-lbl">Normalised EBITDA</span><span class="wf-total-val" id="wNorm">—</span></div>
       <div class="wf-row"><span class="wf-lbl">× EV/EBITDA applied</span><span class="wf-val muted" id="wMult">—</span></div>
     </div>
-
-    <div class="wf-divider"></div>
 
     <div class="wf-group">
       <div class="wf-group-title">Equity bridge</div>
@@ -619,8 +533,6 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
       <div class="wf-total"><span class="wf-total-lbl">Gross proceeds</span><span class="wf-total-val" id="wGross">—</span></div>
     </div>
 
-    <div class="wf-divider"></div>
-
     <div class="wf-group">
       <div class="wf-group-title">Transaction costs</div>
       <div class="wf-row"><span class="wf-lbl">Advisory fee</span><span class="wf-val red" id="wAdv">—</span></div>
@@ -630,53 +542,60 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 
   </div>
 
-  <!-- GATE: only net proceeds blurred -->
+  <!-- NET PROCEEDS (gated) -->
   <div style="position:relative">
-    <div id="exitGateOverlay" style="position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.25rem;background:linear-gradient(to bottom,rgba(10,22,40,0) 0%,rgba(10,22,40,0.88) 30%,rgba(10,22,40,0.98) 100%)">
-      <div style="font-size:0.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:0.4rem">Damodaran 2026 benchmarks</div>
-      <div style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:0.35rem;line-height:1.3">Unlock net proceeds<br>and sensitivity analysis.</div>
-      <form style="display:flex;gap:0;margin-top:0.65rem;max-width:260px" onsubmit="handleExitGate(event)">
-        <input type="email" style="flex:1;font-family:'DM Sans',sans-serif;font-size:0.78rem;color:#111;background:#fff;border:none;padding:0.45rem 0.7rem;outline:none;min-width:0" placeholder="your@email.com" required>
-        <button type="submit" style="font-family:'DM Sans',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#8B1A1A;color:#fff;border:none;padding:0.45rem 0.85rem;cursor:pointer;white-space:nowrap">Unlock →</button>
+    <div id="exitGateOverlay" class="rh-gate">
+      <div class="gate-icon">🔒</div>
+      <div class="gate-title">Unlock net proceeds<br>and sensitivity analysis.</div>
+      <div class="gate-sub">Damodaran 2026 benchmarks · Free access</div>
+      <form class="gate-form" onsubmit="handleExitGate(event)">
+        <input type="email" class="gate-email" placeholder="your@email.com" required>
+        <button type="submit" class="gate-submit">Unlock →</button>
       </form>
-      <div style="font-size:0.58rem;color:rgba(255,255,255,0.3);margin-top:0.35rem">Free · No spam</div>
+      <div class="gate-note">Free · No spam</div>
     </div>
-    <div id="exitBlurZone" style="filter:blur(5px);user-select:none;pointer-events:none;transition:filter .3s">
-  <div class="net-box">
-    <div class="net-label">Net proceeds to seller</div>
-    <div class="net-val" id="wNet">—</div>
-    <div class="net-sub" id="wNetSub">After all fees and tax</div>
+    <div id="exitBlurZone" class="gate-blur">
+
+      <div class="net-box">
+        <div class="net-label">Net proceeds to seller</div>
+        <div class="net-val" id="wNet">—</div>
+        <div class="net-sub" id="wNetSub">After all fees and tax</div>
+      </div>
+
+      <div class="cost-pills" id="cpills">
+        <div class="cp"><div class="cp-val" id="cpAdv">—</div><div class="cp-lbl">Advisory</div></div>
+        <div class="cp"><div class="cp-val" id="cpLgl">—</div><div class="cp-lbl">Legal</div></div>
+        <div class="cp"><div class="cp-val" id="cpTax">—</div><div class="cp-lbl">Tax</div></div>
+      </div>
+
+      <div class="sens">
+        <div class="sens-title">EV sensitivity — EBITDA × Multiple</div>
+        <table class="sens-table">
+          <thead>
+            <tr>
+              <th class="row-lbl">EBITDA \ Mult</th>
+              <th id="sh0">—</th><th id="sh1">—</th><th id="sh2">—</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="row-lbl" id="sr0">—</td><td id="s00">—</td><td id="s01">—</td><td id="s02">—</td></tr>
+            <tr><td class="row-lbl" id="sr1">—</td><td id="s10">—</td><td id="s11" class="base">—</td><td id="s12">—</td></tr>
+            <tr><td class="row-lbl" id="sr2">—</td><td id="s20">—</td><td id="s21">—</td><td id="s22">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   </div>
 
-  <div class="sens">
-    <div class="sens-title">EV sensitivity — EBITDA × Multiple</div>
-    <table class="sens-table">
-      <thead>
-        <tr>
-          <th class="row-lbl">EBITDA \ Mult</th>
-          <th id="sh0">—</th><th id="sh1">—</th><th id="sh2">—</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td class="row-lbl" id="sr0">—</td><td id="s00">—</td><td id="s01">—</td><td id="s02">—</td></tr>
-        <tr><td class="row-lbl" id="sr1">—</td><td id="s10">—</td><td id="s11" class="base">—</td><td id="s12">—</td></tr>
-        <tr><td class="row-lbl" id="sr2">—</td><td id="s20">—</td><td id="s21">—</td><td id="s22">—</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-    </div><!-- /net-box -->
-    </div><!-- /exitBlurZone -->
-  </div><!-- /gate-wrapper -->
   <div class="interp" id="interp">Enter EBITDA and select a sector to calculate exit value.</div>
 
-</div>
+</div><!-- /result-panel -->
 
 </div><!-- /layout -->
 
 <div class="src-note"><strong>Sources:</strong> EV/EBITDA multiples — Damodaran, NYU Stern, Jan 2026 (US, positive-EBITDA firms). Advisory fees — Firmex/Axial/DealCircle M&A Fee Guide 2024–2025. Private market discount — 25–40% illiquidity discount standard for SME transactions. Not financial advice.</div>
 
-</div><!-- /layout -->
 <footer>
   <div class="footer-inner">
     <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
@@ -690,128 +609,134 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 </footer>
 
 <script>
-// ── ADD-BACKS ─────────────────────────────────────────────────────────────────
-let abs = [{label:'Excess owner salary',val:0},{label:'One-off legal costs',val:0}];
+// ── ADD-BACKS ──────────────────────────────────────────────────────────────────
+var abs=[{label:'Excess owner salary',val:0},{label:'One-off legal costs',val:0}];
 function renderABs(){
-  document.getElementById('abContainer').innerHTML = abs.map((ab,i) => `
-    <div class="ab-row">
-      <input class="ab-desc" value="${ab.label}" placeholder="Description" onchange="abs[${i}].label=this.value">
-      <input class="ab-val" type="number" value="${ab.val||''}" placeholder="0" oninput="abs[${i}].val=+this.value||0;calc()">
-      <button class="ab-rm" onclick="abs.splice(${i},1);renderABs();calc()">×</button>
-    </div>`).join('');
+  document.getElementById('abContainer').innerHTML=abs.map(function(ab,i){return'<div class="ab-row"><input class="ab-desc" value="'+ab.label+'" placeholder="Description" onchange="abs['+i+'].label=this.value"><input class="ab-val" type="number" value="'+(ab.val||'')+'" placeholder="0" oninput="abs['+i+'].val=+this.value||0;calc()"><button class="ab-rm" onclick="abs.splice('+i+',1);renderABs();calc()">×</button></div>';}).join('');
 }
 function addAB(){abs.push({label:'',val:0});renderABs();}
 
 // ── SECTOR ────────────────────────────────────────────────────────────────────
 function onSector(){
-  const v = document.getElementById('sectorSel').value;
-  if(!v) return;
-  const pub = parseFloat(v.split('|')[0]);
-  const disc = parseFloat(document.getElementById('privDiscount').value)||30;
-  document.getElementById('pubMultiple').value = pub.toFixed(1);
-  document.getElementById('appliedMultiple').value = (pub*(1-disc/100)).toFixed(1);
+  var v=document.getElementById('sectorSel').value;
+  if(!v)return;
+  var pub=parseFloat(v.split('|')[0]);
+  var disc=parseFloat(document.getElementById('privDiscount').value)||30;
+  document.getElementById('pubMultiple').value=pub.toFixed(1);
+  document.getElementById('appliedMultiple').value=(pub*(1-disc/100)).toFixed(1);
   calc();
 }
 function recalcApplied(){
-  const pub = parseFloat(document.getElementById('pubMultiple').value);
-  const disc = parseFloat(document.getElementById('privDiscount').value)||30;
-  if(pub) document.getElementById('appliedMultiple').value = (pub*(1-disc/100)).toFixed(1);
+  var pub=parseFloat(document.getElementById('pubMultiple').value);
+  var disc=parseFloat(document.getElementById('privDiscount').value)||30;
+  if(pub) document.getElementById('appliedMultiple').value=(pub*(1-disc/100)).toFixed(1);
 }
 
 // ── FORMAT ────────────────────────────────────────────────────────────────────
 function fmtK(v){
-  if(!v&&v!==0) return '—';
-  const abs = Math.abs(v);
-  if(abs >= 1000) return '€'+(v/1000).toFixed(1)+'M';
-  return '€'+v.toFixed(0)+'k';
+  if(!v&&v!==0)return'—';
+  var a=Math.abs(v);
+  if(a>=1000)return'€'+(v/1000).toFixed(1)+'M';
+  return'€'+Math.round(v)+'k';
 }
 
 // ── CALC ──────────────────────────────────────────────────────────────────────
 function calc(){
-  const rep = parseFloat(document.getElementById('ebitdaRep').value)||0;
-  const totalAB = abs.reduce((s,a)=>s+(+a.val||0),0);
-  const norm = rep + totalAB;
-  document.getElementById('normVal').textContent = norm > 0 ? norm.toLocaleString() : '—';
+  var rep=parseFloat(document.getElementById('ebitdaRep').value)||0;
+  var totalAB=abs.reduce(function(s,a){return s+(+a.val||0);},0);
+  var norm=rep+totalAB;
+  document.getElementById('normVal').textContent=norm>0?norm.toLocaleString():'—';
 
-  const mult = parseFloat(document.getElementById('appliedMultiple').value)||0;
-  const pubM = parseFloat(document.getElementById('pubMultiple').value)||0;
-  const ev = norm * mult;
+  var mult=parseFloat(document.getElementById('appliedMultiple').value)||0;
+  var pubM=parseFloat(document.getElementById('pubMultiple').value)||0;
+  var ev=norm*mult;
 
-  const debt = parseFloat(document.getElementById('netDebt').value)||0;
-  const cash = parseFloat(document.getElementById('cash').value)||0;
-  const other = parseFloat(document.getElementById('otherDebt').value)||0;
-  const stake = (parseFloat(document.getElementById('stake').value)||100)/100;
-  const equity = ev - debt - other + cash;
-  const gross = equity * stake;
+  var debt=parseFloat(document.getElementById('netDebt').value)||0;
+  var cash=parseFloat(document.getElementById('cash').value)||0;
+  var other=parseFloat(document.getElementById('otherDebt').value)||0;
+  var stake=(parseFloat(document.getElementById('stake').value)||100)/100;
+  var equity=ev-debt-other+cash;
+  var gross=equity*stake;
 
-  const advPct = (parseFloat(document.getElementById('advisory').value)||0)/100;
-  const lglPct = (parseFloat(document.getElementById('legal').value)||0)/100;
-  const cgtPct = (parseFloat(document.getElementById('cgt').value)||0)/100;
-  const bv = parseFloat(document.getElementById('bookVal').value)||0;
-  const adv = gross * advPct;
-  const lgl = gross * lglPct;
-  const taxable = Math.max(0, gross - adv - lgl - bv);
-  const tax = taxable * cgtPct;
-  const net = gross - adv - lgl - tax;
+  var advPct=(parseFloat(document.getElementById('advisory').value)||0)/100;
+  var lglPct=(parseFloat(document.getElementById('legal').value)||0)/100;
+  var cgtPct=(parseFloat(document.getElementById('cgt').value)||0)/100;
+  var bv=parseFloat(document.getElementById('bookVal').value)||0;
+  var adv=gross*advPct;
+  var lgl=gross*lglPct;
+  var taxable=Math.max(0,gross-adv-lgl-bv);
+  var tax=taxable*cgtPct;
+  var net=gross-adv-lgl-tax;
 
-  // Update waterfall
-  const set = (id,v,prefix='')=>{ document.getElementById(id).textContent = v!==0?prefix+fmtK(v):'—'; };
-  document.getElementById('wRep').textContent = rep ? fmtK(rep) : '—';
-  document.getElementById('wAB').textContent = totalAB ? '+'+fmtK(totalAB) : '—';
-  document.getElementById('wNorm').textContent = norm ? fmtK(norm) : '—';
-  document.getElementById('wMult').textContent = mult ? mult.toFixed(1)+'×' : '—';
-  document.getElementById('rpEV').textContent = ev ? fmtK(ev) : '—';
-  if(ev && pubM) {
-    const lo = norm*(mult*0.85), hi = norm*(mult*1.15);
-    document.getElementById('rpRange').textContent = `Range: ${fmtK(lo)} – ${fmtK(hi)}  (±15%)`;
+  // EV header
+  document.getElementById('rpEV').textContent=ev?fmtK(ev):'—';
+  if(ev&&pubM){
+    var lo=norm*(mult*0.85),hi=norm*(mult*1.15);
+    document.getElementById('rpRange').textContent='Range: '+fmtK(lo)+' – '+fmtK(hi)+'  (±15%)';
+    document.getElementById('rpBadge').style.display='inline-flex';
+    document.getElementById('rpMult').textContent=mult.toFixed(1)+'×';
+    var sel=document.getElementById('sectorSel');
+    var txt=sel.options[sel.selectedIndex]?sel.options[sel.selectedIndex].text:'';
+    document.getElementById('rpSector').textContent=txt.split('·')[0].trim()||'Custom multiple';
   } else {
-    document.getElementById('rpRange').textContent = 'Select sector · enter EBITDA';
+    document.getElementById('rpRange').textContent='Select sector · enter EBITDA';
+    document.getElementById('rpBadge').style.display='none';
   }
-  document.getElementById('wEV').textContent = ev ? fmtK(ev) : '—';
-  document.getElementById('wDebt').textContent = debt ? '−'+fmtK(debt) : '—';
-  document.getElementById('wOther').textContent = other ? '−'+fmtK(other) : '—';
-  document.getElementById('wCash').textContent = cash ? '+'+fmtK(cash) : '—';
-  document.getElementById('wEquity').textContent = ev ? fmtK(equity) : '—';
-  document.getElementById('wStake').textContent = (stake*100).toFixed(0)+'%';
-  document.getElementById('wGross').textContent = ev ? fmtK(gross) : '—';
-  document.getElementById('wAdv').textContent = adv ? '−'+fmtK(adv) : '—';
-  document.getElementById('wLegal').textContent = lgl ? '−'+fmtK(lgl) : '—';
-  document.getElementById('wTax').textContent = tax ? '−'+fmtK(tax) : '—';
-  document.getElementById('wNet').textContent = net&&ev ? fmtK(net) : '—';
-  document.getElementById('wNetSub').textContent = net&&ev
-    ? `${((net/gross)*100).toFixed(0)}% of gross proceeds · ${((adv+lgl+tax)/gross*100).toFixed(0)}% total cost`
-    : 'After all fees and tax';
+
+  // Waterfall
+  document.getElementById('wRep').textContent=rep?fmtK(rep):'—';
+  document.getElementById('wAB').textContent=totalAB?'+'+fmtK(totalAB):'—';
+  document.getElementById('wNorm').textContent=norm?fmtK(norm):'—';
+  document.getElementById('wMult').textContent=mult?mult.toFixed(1)+'×':'—';
+  document.getElementById('wEV').textContent=ev?fmtK(ev):'—';
+  document.getElementById('wDebt').textContent=debt?'−'+fmtK(debt):'—';
+  document.getElementById('wOther').textContent=other?'−'+fmtK(other):'—';
+  document.getElementById('wCash').textContent=cash?'+'+fmtK(cash):'—';
+  document.getElementById('wEquity').textContent=ev?fmtK(equity):'—';
+  document.getElementById('wStake').textContent=(stake*100).toFixed(0)+'%';
+  document.getElementById('wGross').textContent=ev?fmtK(gross):'—';
+  document.getElementById('wAdv').textContent=adv?'−'+fmtK(adv):'—';
+  document.getElementById('wLegal').textContent=lgl?'−'+fmtK(lgl):'—';
+  document.getElementById('wTax').textContent=tax?'−'+fmtK(tax):'—';
+
+  // Net & cost pills
+  document.getElementById('wNet').textContent=net&&ev?fmtK(net):'—';
+  document.getElementById('wNetSub').textContent=net&&ev?((net/gross)*100).toFixed(0)+'% of gross · '+((adv+lgl+tax)/gross*100).toFixed(0)+'% total cost':'After all fees and tax';
+  document.getElementById('cpAdv').textContent=adv?'−'+fmtK(adv):'—';
+  document.getElementById('cpLgl').textContent=lgl?'−'+fmtK(lgl):'—';
+  document.getElementById('cpTax').textContent=tax?'−'+fmtK(tax):'—';
 
   // Sensitivity
   if(norm>0&&mult>0){
-    const mults = [mult*0.8, mult, mult*1.2];
-    const ebitdas = [norm*0.8, norm, norm*1.2];
-    [0,1,2].forEach(i=>{ document.getElementById('sh'+i).textContent=mults[i].toFixed(1)+'×'; document.getElementById('sr'+i).textContent=fmtK(ebitdas[i]); });
-    [0,1,2].forEach(r=>[0,1,2].forEach(c=>{
-      const cell=document.getElementById('s'+r+c);
-      cell.textContent=fmtK(ebitdas[r]*mults[c]);
-      cell.className=r===1&&c===1?'base':'';
-    }));
+    var mults=[mult*0.8,mult,mult*1.2];
+    var ebitdas=[norm*0.8,norm,norm*1.2];
+    [0,1,2].forEach(function(i){
+      document.getElementById('sh'+i).textContent=mults[i].toFixed(1)+'×';
+      document.getElementById('sr'+i).textContent=fmtK(ebitdas[i]);
+    });
+    [0,1,2].forEach(function(r){
+      [0,1,2].forEach(function(c){
+        var cell=document.getElementById('s'+r+c);
+        cell.textContent=fmtK(ebitdas[r]*mults[c]);
+        cell.className=r===1&&c===1?'base':'';
+      });
+    });
   }
 
   // Interpretation
   if(ev>0){
-    const cp=(adv+lgl+tax)/gross*100;
-    let m='';
+    var cp=(adv+lgl+tax)/gross*100;
+    var m='';
     if(mult<8) m='Applied multiple below SME median. Consider process improvement — competitive tension among 3+ buyers typically adds 1–2× to final price.';
     else if(mult<14) m='Multiple in standard European mid-market range. Preparation quality and buyer pool breadth will be the key price drivers.';
     else m='Strong multiple. At this level, deal structure (cash vs. earn-out split) and post-close protections matter as much as headline price.';
-    document.getElementById('interp').innerHTML=`<strong>${fmtK(ev)} EV · ${fmtK(net)} net</strong> — Transaction costs consume ${cp.toFixed(0)}% of gross. ${m}`;
+    document.getElementById('interp').innerHTML='<strong>'+fmtK(ev)+' EV · '+fmtK(net)+' net</strong> — Transaction costs consume '+cp.toFixed(0)+'% of gross. '+m;
   } else {
     document.getElementById('interp').textContent='Enter EBITDA and select a sector to calculate exit value.';
   }
 }
 
 // ── SIDEBAR ───────────────────────────────────────────────────────────────────
-
-
-
-// Sidebar live ticker
 var SB_TICKS=[
   ['Software EV/EBITDA','24.5×'],['Logistics EV/EBITDA','12.6×'],
   ['CH CGT','0%'],['IT CGT','26%'],['Advisory €5M','5.5%'],
@@ -822,109 +747,47 @@ function renderSbTicker(){
   if(!el)return;
   var start=Math.floor(Math.random()*SB_TICKS.length);
   var items=SB_TICKS.slice(start,start+3).concat(SB_TICKS.slice(0,Math.max(0,3-(SB_TICKS.length-start))));
-  el.innerHTML=items.map(function(t){return '<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4);">'+t[0]+'</span><span style="font-family:monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');
+  el.innerHTML=items.map(function(t){return'<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4)">'+t[0]+'</span><span style="font-weight:700;color:rgba(255,255,255,0.75);font-variant-numeric:tabular-nums">'+t[1]+'</span></div>';}).join('');
 }
 document.addEventListener('DOMContentLoaded',function(){renderSbTicker();setInterval(renderSbTicker,5000);});
 
-
-
-
-function unlockExit(e){handleUnlock(e);};
-
-
-// ── ACCESS COOKIE SYSTEM ─────────────────────────────────────────────────────
-function setCookie(name,val,days){
-  var d=new Date();d.setTime(d.getTime()+(days*24*60*60*1000));
-  document.cookie=name+'='+val+';expires='+d.toUTCString()+';path=/;SameSite=Lax';
-}
-function getCookie(name){
-  var n=name+'=',ca=document.cookie.split(';');
-  for(var i=0;i<ca.length;i++){var c=ca[i].trim();if(c.indexOf(n)===0)return c.substring(n.length);}
-  return '';
-}
+// ── ACCESS COOKIE SYSTEM ──────────────────────────────────────────────────────
+function setCookie(name,val,days){var d=new Date();d.setTime(d.getTime()+(days*24*60*60*1000));document.cookie=name+'='+val+';expires='+d.toUTCString()+';path=/;SameSite=Lax';}
+function getCookie(name){var n=name+'=',ca=document.cookie.split(';');for(var i=0;i<ca.length;i++){var c=ca[i].trim();if(c.indexOf(n)===0)return c.substring(n.length);}return'';}
 function hasAccess(){return getCookie('mnaintel_access')==='1';}
 function grantAccess(){setCookie('mnaintel_access','1',365);}
 
-// Called by any unlock form submission
-function handleUnlock(e){
-  if(e) e.preventDefault();
-  var form=e?e.target:null;
-  var inp=form?form.querySelector('input[type=email]'):null;
+function handleExitGate(e){
+  if(e)e.preventDefault();
+  var inp=e?e.target.querySelector('input[type=email]'):null;
   var email=inp?inp.value:'';
   grantAccess();
-  if(email){
-    window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(email),'_blank');
-  }
+  if(email){window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(email),'_blank');}
   unlockPage();
   return false;
 }
 
-// Remove all blurs and gates on this page
 function unlockPage(){
-  // Remove blur classes
-  document.querySelectorAll('.blurred-text,.gate-blur,.lc-data,.lc-sub,.sens-table').forEach(function(el){
-    el.style.filter='none';el.style.userSelect='auto';el.style.pointerEvents='auto';
-  });
-  // Hide all gate overlays
-  document.querySelectorAll('.gate-overlay,.rh-gate,.nb-gate,.exitNetGate,.waccGateOverlay,.rh-gate-visible,.rh-gate.visible,[id$="Gate"],[id$="GateBox"],[id$="GateOverlay"]').forEach(function(el){
-    el.style.display='none';
-  });
-  // Show hidden result sections
-  document.querySelectorAll('.result-cards,.val-section,.sens-section').forEach(function(el){
-    if(el.style.display==='none') el.style.display='grid';
-  });
-  // Remove paywall fades on editorial pages
-  document.querySelectorAll('.paywall-fade').forEach(function(el){
-    el.style.maxHeight='none';el.style.overflow='visible';
-    el.classList.remove('paywall-fade');
-  });
-  document.querySelectorAll('.paywall-gate,.pg-form').forEach(function(el){
-    el.style.display='none';
-  });
-  // Remove blur on locked card data in index
-  document.querySelectorAll('.lc').forEach(function(el){
-    el.style.cursor='default';
-    el.onclick=null;
-  });
+  document.querySelectorAll('.gate-blur').forEach(function(el){el.style.filter='none';el.style.userSelect='auto';el.style.pointerEvents='auto';});
+  document.querySelectorAll('.rh-gate,.gate-overlay,[id$="GateOverlay"],[id="exitGateOverlay"]').forEach(function(el){el.style.display='none';});
+  document.querySelectorAll('[data-gated]').forEach(function(el){el.classList.add('unlocked');});
 }
 
-// On page load: if already has access, unlock everything immediately
-document.addEventListener('DOMContentLoaded',function(){
-  if(hasAccess()) unlockPage();
-});
-
-
-// Sidebar locked links: check access before navigating
 function gatedNav(url){
   if(hasAccess()){window.location.href=url;}
-  else{
-    // Close sidebar and show unlock prompt
-    closeSidebar();
-    var bar=document.getElementById('subBar');
-    if(bar){bar.classList.add('show');bar.scrollIntoView({behavior:'smooth',block:'nearest'});
-      var em=document.getElementById('sbEmail');if(em)setTimeout(function(){em.focus();},350);}
-    else{
-      // Tool pages: show their gate
-      var gate=document.querySelector('.rh-gate,.nb-gate');
-      if(gate){gate.style.display='block';gate.scrollIntoView({behavior:'smooth',block:'nearest'});}
-    }
-  }
+  else{closeSidebar();}
 }
 
 function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
 function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
 function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');}
 
-document.addEventListener('DOMContentLoaded',()=>{
-  renderABs(); calc();
-  
-  // Mark gated links as unlocked in sidebar
-  if(hasAccess()){
-    document.querySelectorAll('[data-gated]').forEach(function(el){el.classList.add('unlocked');});
-  }
-
-  document.querySelectorAll('[data-email]').forEach(el=>{el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com';});
-  document.getElementById('privDiscount').addEventListener('input',()=>{recalcApplied();calc();});
+document.addEventListener('DOMContentLoaded',function(){
+  renderABs();
+  calc();
+  if(hasAccess()) unlockPage();
+  document.getElementById('privDiscount').addEventListener('input',function(){recalcApplied();calc();});
+  document.querySelectorAll('[data-email]').forEach(function(el){el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com';});
 });
 </script>
 </body>
