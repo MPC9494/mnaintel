@@ -7,6 +7,63 @@
 <meta name="description" content="Most SME transactions involve a buyer the seller already knew. Here is how to map your buyer universe before going to market.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:56px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-left{display:flex;align-items:center;gap:0.6rem}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:6px;flex-shrink:0}
+.hamburger span{display:block;width:20px;height:1.5px;background:currentColor;transition:all .2s}
+.hamburger:hover{color:#fff}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:17px;background:var(--red);flex-shrink:0}
+.nav-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:0}
+.nav-link{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.35rem 0.8rem;transition:color .15s;white-space:nowrap;position:relative}
+.nav-link:hover,.nav-link.active{color:#fff}
+/* Tools dropdown in top nav */
+.nav-dropdown{position:relative}
+.nav-dropdown-btn{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);background:transparent;border:none;padding:0.35rem 0.8rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .15s;height:56px}
+.nav-dropdown-btn:hover,.nav-dropdown-btn.active{color:#fff}
+.nav-dropdown-btn svg{width:8px;height:8px;fill:currentColor;transition:transform .2s}
+.nav-dropdown-btn.open svg{transform:rotate(180deg)}
+.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 1px);left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--red);min-width:200px;z-index:500;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.nav-dropdown-menu.open{display:block}
+.nav-dd-item{display:block;padding:9px 16px;font-size:0.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s,background .12s;white-space:nowrap}
+.nav-dd-item:last-child{border-bottom:none}
+.nav-dd-item:hover{color:#fff;background:rgba(255,255,255,0.05)}
+.nav-dd-item.active{color:#fff}
+.nav-sub{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.nav-sub:hover{background:#6e1414}
+@media(max-width:767px){.nav-links{display:none}}
+@media(min-width:900px){nav{padding:0 2.5rem}}
+/* ── SIDEBAR ── */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:285px;background:var(--navy);z-index:300;transform:translateX(-285px);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:299}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
+.sb-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.4rem;cursor:pointer;line-height:1}
+.sb-section{font-size:0.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.25rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.88rem;font-weight:500;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s}
+.sb-link:hover,.sb-link.active{color:#fff}
+.sb-link.active{font-weight:600}
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans,'DM Sans',sans-serif);font-size:0.88rem;font-weight:500;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .12s}
+.sb-dropdown-btn:hover,.sb-dropdown-btn.open{color:#fff}
+.sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform .2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.4rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color .12s}
+.sb-sub-link:hover,.sb-sub-link.active{color:rgba(255,255,255,0.85)}
+.sb-sub-link.active{color:#fff}
+.sb-cta{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
+.sb-cta:hover{background:#6e1414}
+.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
+.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
+
 
 :root{
   --navy:#0A1628;--navy2:#142035;
@@ -19,44 +76,44 @@
   --input-bg:#FFFDE7;--input-border:#C8B400;
   --shadow:0 1px 6px rgba(0,0,0,0.06);
   --shadow-md:0 2px 16px rgba(0,0,0,0.10);
-  --mono:'IBM Plex Mono',monospace;
+  
   --sans:'DM Sans',sans-serif;
   --serif:'Playfair Display',serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--b);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px}
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;background:var(--navy);z-index:300;transform:translateX(-280px);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
-.sidebar.open{transform:translateX(0)}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:299}
-.sb-overlay.open{display:block}
-.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.1)}
-.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
-.sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
-.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:1.4rem;cursor:pointer;line-height:1;padding:0 4px}
+
+
+
+
+
+
+
+
+
 .sb-close:hover{color:var(--white)}
-.sb-section{font-size:0.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin:1.25rem 0 0.5rem}
-.sb-link{display:block;padding:0.55rem 0;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.6);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
-.sb-link:hover,.sb-link.active{color:var(--white)}
-.sb-link.active{font-weight:600}
+
+
+
+
 .sb-issue{display:block;padding:0.5rem 0;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s}
 .sb-issue:hover{color:rgba(255,255,255,0.65)}
-.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:var(--white);border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
-.sb-cta:hover{background:#7a1515}
-nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:62px;gap:1rem;flex-wrap:nowrap}
-.nav-left{display:flex;align-items:center;gap:0.5rem;flex-shrink:0}
-.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.7);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px;flex-shrink:0}
-.hamburger span{display:block;width:22px;height:2px;background:currentColor;border-radius:1px;transition:all 0.2s}
-.hamburger:hover{color:var(--white)}
-.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-.nav-logo-bar{width:2px;height:18px;background:var(--red);flex-shrink:0}
-.nav-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--white);white-space:nowrap}
-.nav-links{display:flex;align-items:center;flex-shrink:0}
-.nav-link{font-size:0.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;padding:0.35rem 0.85rem;transition:color 0.2s;white-space:nowrap}
-.nav-link:hover,.nav-link.active{color:var(--white)}
-.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:var(--white);border:none;padding:0.5rem 1.25rem;cursor:pointer;transition:background 0.2s;white-space:nowrap;flex-shrink:0}
-.nav-sub:hover{background:#7a1515}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255,0.07)}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
 .f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
@@ -66,19 +123,19 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 .f-links a{font-size:0.82rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s}
 .f-links a:hover{color:rgba(255,255,255,0.65)}
 .f-copy{font-size:0.7rem;color:rgba(255,255,255,0.2);width:100%;margin-top:0.25rem}
-@media(min-width:900px){nav{padding:0 2.5rem;height:66px}footer{padding:2rem 3rem}}
-@media(max-width:767px){.nav-links{display:none}}
+@media(min-width:900px){footer{padding:2rem 3rem}}
+@media(max-width:767px){}
 
 
-.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.06)}
-.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.65);font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:400;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;text-align:left}
-.sb-dropdown-btn:hover{color:var(--white)}
-.sb-arrow{font-size:0.75rem;color:rgba(255,255,255,0.3);transition:transform 0.2s}
-.sb-arrow.open{transform:rotate(180deg)}
-.sb-dropdown-items{display:none;padding-bottom:0.5rem}
-.sb-dropdown-items.open{display:block}
-.sb-sub-link{display:block;padding:0.35rem 0 0.35rem 0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.5);text-decoration:none;line-height:1.4;transition:color 0.2s}
-.sb-sub-link:hover{color:rgba(255,255,255,0.8)}
+
+
+
+
+
+
+
+
+
 .sb-sub-link.muted{color:rgba(255,255,255,0.28)}
 
 .article{padding:3rem 2rem;max-width:720px;margin:0 auto}
@@ -173,8 +230,8 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
 
 
 /* ── GATED NAV LINKS ── */
-.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
-.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
+
+
 </style>
 </head>
 <body>
@@ -187,44 +244,47 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
     <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
 
-  <!-- Live benchmarks mini-strip -->
   <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
     <div style="font-size:0.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#0A5C1E;display:inline-block;animation:pulse 2s infinite"></span>Live Benchmarks</div>
     <div style="display:flex;flex-direction:column;gap:0.3rem" id="sbTicker"></div>
   </div>
 
+  <div class="sb-section">Info</div>
+  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
+
   <div class="sb-section">Editorial</div>
   <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
-    <div class="sb-dropdown-items" id="dropIssues">
+    <button class="sb-dropdown-btn  open" onclick="toggleDrop('dropEditorial')">
+      <span>Articles &amp; Cases</span><span class="sb-arrow  open" id="arrowEditorial">▾</span>
+    </button>
+    <div class="sb-dropdown-items  open" id="dropEditorial">
+      <a href="/issues" class="sb-sub-link  active" onclick="closeSidebar()">All Articles</a>
       <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
       <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
       <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
       <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
+      <a href="/case-studies" class="sb-sub-link" onclick="closeSidebar()">All Case Studies</a>
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker · 7.5×</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">CS03. Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans · 14.5×</a>
     </div>
   </div>
+
+  <div class="sb-section">Tools</div>
   <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')"><span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span></button>
-    <div class="sb-dropdown-items" id="dropCS">
-      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01. DSV / DB Schenker · 7.5×</a>
-      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">02. DACH manufacturer · 4× vs 7×</a>
-      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">03. Deal collapsed in due diligence</a>
-      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04. UPS / Frigo-Trans · 14.5×</a>
-    </div>
-  </div>
-  <div class="sb-section">Dashboard</div>
-  <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropDash')"><span>Dashboard</span><span class="sb-arrow" id="arrowDash">▾</span></button>
-    <div class="sb-dropdown-items" id="dropDash">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropTools')">
+      <span>Calculators &amp; Data</span><span class="sb-arrow" id="arrowTools">▾</span>
+    </button>
+    <div class="sb-dropdown-items" id="dropTools">
       <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
-      <a href="/wacc" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/wacc')">WACC Calculator</a>
-      <a href="/exit-calculator" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/exit-calculator')">Exit Value Calculator</a>
-      <a href="/country-index" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/country-index')">Transaction Cost Index</a>
-      <a href="/advisors" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/advisors')">Advisor Directory</a>
+      <a href="/exit-calculator" class="sb-sub-link" onclick="closeSidebar()">Exit Calculator</a>
+      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
+      <a href="/country-index" class="sb-sub-link" onclick="closeSidebar()">Transaction Cost Index</a>
+      <a href="/advisors" class="sb-sub-link" onclick="closeSidebar()">Advisor Directory</a>
     </div>
   </div>
-  <div class="sb-section">Info</div>
-  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
+
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
 </div>
 
@@ -233,13 +293,23 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
     <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
     <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
   </div>
-    <div class="nav-links">
+  <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
-    <a href="/issues" class="nav-link active">Issues</a>
-    <a href="/multiples" class="nav-link">Multiples</a>
-    <a href="/exit-calculator" class="nav-link">Exit</a>
-    <a href="/country-index" class="nav-link">Cost Index</a>
-    <a href="/advisors" class="nav-link">Advisors</a>
+    <a href="/issues" class="nav-link active">Articles</a>
+    <a href="/case-studies" class="nav-link">Case Studies</a>
+    <div class="nav-dropdown" id="navToolsDrop">
+      <button class="nav-dropdown-btn " onclick="toggleNavDrop()" id="navToolsBtn">
+        Tools
+        <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="nav-dropdown-menu" id="navToolsMenu">
+      <a href="/multiples" class="nav-dd-item">Multiples</a>
+      <a href="/exit-calculator" class="nav-dd-item">Exit Calculator</a>
+      <a href="/wacc" class="nav-dd-item">WACC Calculator</a>
+      <a href="/country-index" class="nav-dd-item">Cost Index</a>
+      <a href="/advisors" class="nav-dd-item">Advisors</a>
+      </div>
+    </div>
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>
@@ -401,8 +471,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 
 // Sidebar locked links: check access before navigating
-function gatedNav(url){
-  if(hasAccess()){window.location.href=url;}
+
   else{
     // Close sidebar and show unlock prompt
     closeSidebar();
@@ -417,16 +486,6 @@ function gatedNav(url){
   }
 }
 
-function openSidebar(){
-  document.getElementById('sidebar').classList.add('open');
-  document.getElementById('sbOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeSidebar(){
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sbOverlay').classList.remove('open');
-  document.body.style.overflow='';
-}
 function handleSub(e){handleUnlock(e);}
 window.addEventListener('DOMContentLoaded',function(){
   var u='deals',d='news.mnaintel.com';
@@ -443,14 +502,16 @@ window.addEventListener('DOMContentLoaded',function(){
 </script>
 
 <script>
-function toggleDrop(id) {
-  var el = document.getElementById(id);
-  var arrow = document.getElementById('arrow' + id.replace('drop',''));
-  var isOpen = el.classList.contains('open');
-  document.querySelectorAll('.sb-dropdown-items').forEach(function(d){d.classList.remove('open')});
+);
   document.querySelectorAll('.sb-arrow').forEach(function(a){a.classList.remove('open')});
   if(!isOpen){ el.classList.add('open'); if(arrow) arrow.classList.add('open'); }
 }
+
+function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
+function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');if(btn)btn.classList.toggle('open');}
+function toggleNavDrop(){var menu=document.getElementById('navToolsMenu');var btn=document.getElementById('navToolsBtn');menu.classList.toggle('open');btn.classList.toggle('open');}
+document.addEventListener('click',function(e){var drop=document.getElementById('navToolsDrop');if(drop&&!drop.contains(e.target)){document.getElementById('navToolsMenu').classList.remove('open');document.getElementById('navToolsBtn').classList.remove('open');}});
 </script>
 </body>
 </html>

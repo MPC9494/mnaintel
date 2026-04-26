@@ -9,6 +9,65 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:56px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-left{display:flex;align-items:center;gap:0.6rem}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:6px;flex-shrink:0}
+.hamburger span{display:block;width:20px;height:1.5px;background:currentColor;transition:all .2s}
+.hamburger:hover{color:#fff}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:17px;background:var(--red);flex-shrink:0}
+.nav-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:0}
+.nav-link{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.35rem 0.8rem;transition:color .15s;white-space:nowrap;position:relative}
+.nav-link:hover,.nav-link.active{color:#fff}
+/* Tools dropdown in top nav */
+.nav-dropdown{position:relative}
+.nav-dropdown-btn{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);background:transparent;border:none;padding:0.35rem 0.8rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .15s;height:56px}
+.nav-dropdown-btn:hover,.nav-dropdown-btn.active{color:#fff}
+.nav-dropdown-btn svg{width:8px;height:8px;fill:currentColor;transition:transform .2s}
+.nav-dropdown-btn.open svg{transform:rotate(180deg)}
+.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 1px);left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--red);min-width:200px;z-index:500;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.nav-dropdown-menu.open{display:block}
+.nav-dd-item{display:block;padding:9px 16px;font-size:0.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s,background .12s;white-space:nowrap}
+.nav-dd-item:last-child{border-bottom:none}
+.nav-dd-item:hover{color:#fff;background:rgba(255,255,255,0.05)}
+.nav-dd-item.active{color:#fff}
+.nav-sub{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.nav-sub:hover{background:#6e1414}
+@media(max-width:767px){.nav-links{display:none}}
+@media(min-width:900px){nav{padding:0 2.5rem}}
+/* ── SIDEBAR ── */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:285px;background:var(--navy);z-index:300;transform:translateX(-285px);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:299}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
+.sb-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.4rem;cursor:pointer;line-height:1}
+.sb-section{font-size:0.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.25rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.88rem;font-weight:500;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s}
+.sb-link:hover,.sb-link.active{color:#fff}
+.sb-link.active{font-weight:600}
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans,'DM Sans',sans-serif);font-size:0.88rem;font-weight:500;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .12s}
+.sb-dropdown-btn:hover,.sb-dropdown-btn.open{color:#fff}
+.sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform .2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.4rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color .12s}
+.sb-sub-link:hover,.sb-sub-link.active{color:rgba(255,255,255,0.85)}
+.sb-sub-link.active{color:#fff}
+.sb-cta{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
+.sb-cta:hover{background:#6e1414}
+.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
+.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
+
 :root{
   --navy:#0A1628;--navy2:#142035;
   --white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;
@@ -20,7 +79,7 @@
   --input-bg:#FFFDE7;--input-border:#C8B400;
   --shadow:0 1px 6px rgba(0,0,0,0.06);
   --shadow-md:0 2px 16px rgba(0,0,0,0.10);
-  --mono:'IBM Plex Mono',monospace;
+  --sans:'DM Sans',sans-serif;
   --sans:'DM Sans',sans-serif;
   --serif:'Playfair Display',serif;
 }
@@ -29,45 +88,45 @@ html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--b);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;gap:1rem}
-.nav-left{display:flex;align-items:center;gap:0.75rem}
-.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.6);cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:8px 6px}
-.hamburger span{display:block;width:22px;height:1.5px;background:currentColor}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo-bar{width:2px;height:20px;background:var(--red);flex-shrink:0}
-.nav-logo-text{font-size:0.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--white);white-space:nowrap}
-.nav-links{display:flex;align-items:center}
-.nav-link{font-size:0.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;padding:0.4rem 0.9rem;transition:color 0.2s;white-space:nowrap}
-.nav-link:hover,.nav-link.active{color:var(--white)}
-.nav-sub{font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:var(--white);border:none;padding:0.55rem 1.35rem;cursor:pointer;transition:background 0.2s;white-space:nowrap}
-.nav-sub:hover{background:var(--red2)}
-@media(max-width:767px){.nav-links{display:none}}
-@media(min-width:900px){nav{padding:0 2.75rem}}
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width:767px){}
+@media(min-width:900px){}
 
 /* SIDEBAR */
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:300px;background:var(--navy);z-index:300;transform:translateX(-300px);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:2rem 1.75rem;overflow-y:auto}
-.sidebar.open{transform:translateX(0)}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:299}
-.sb-overlay.open{display:block}
-.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.sb-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.sb-logo-bar{width:2px;height:18px;background:var(--red);flex-shrink:0}
-.sb-logo-text{font-size:0.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--white)}
-.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.5rem;cursor:pointer;line-height:1;padding:4px}
-.sb-section{font-size:0.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin:1.5rem 0 0.6rem}
-.sb-link{display:block;padding:0.6rem 0;font-size:0.95rem;font-weight:400;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color 0.15s}
-.sb-link:hover,.sb-link.active{color:var(--white)}
-.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
-.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:'DM Sans',sans-serif;font-size:0.95rem;padding:0.6rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-.sb-dropdown-btn:hover{color:var(--white)}
-.sb-arrow{font-size:0.7rem;color:rgba(255,255,255,0.28);transition:transform 0.2s}
-.sb-arrow.open{transform:rotate(180deg)}
-.sb-dropdown-items{display:none;padding-bottom:0.5rem}
-.sb-dropdown-items.open{display:block}
-.sb-sub-link{display:block;padding:0.35rem 0 0.35rem 0.85rem;font-size:0.82rem;color:rgba(255,255,255,0.4);text-decoration:none;line-height:1.45;transition:color 0.15s}
-.sb-sub-link:hover{color:rgba(255,255,255,0.85)}
-.sb-cta{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:var(--white);border:none;padding:0.85rem;width:100%;cursor:pointer;margin-top:2rem;transition:background 0.2s}
-.sb-cta:hover{background:var(--red2)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* HERO */
 .hero{border-bottom:2px solid var(--navy);padding:3.5rem 2.5rem 2.5rem}
@@ -216,18 +275,18 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
 .mp-brand{display:flex;align-items:center;gap:6px;padding:.3rem 1.25rem .3rem .75rem;border-right:1px solid rgba(255,255,255,0.07);flex-shrink:0}
 .mp-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:mp-pulse 2.5s infinite}
 @keyframes mp-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
-.mp-label{font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.mp-label{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
 .mp-item{display:flex;align-items:center;gap:.5rem;padding:.28rem .9rem;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0}
 .mp-item:last-child{border-right:none}
 .mp-name{font-size:.58rem;color:rgba(255,255,255,.32);white-space:nowrap}
-.mp-val{font-family:var(--mono);font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
-.mp-chg{font-family:var(--mono);font-size:.55rem;white-space:nowrap}
+.mp-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
+.mp-chg{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.55rem;white-space:nowrap}
 .mp-chg.up{color:#4ade80}.mp-chg.dn{color:#f87171}.mp-chg.neu{color:rgba(255,255,255,.3)}
 
 
 /* ── QUICK FILTERS ── */
 .qf-bar{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap}
-.qf-btn{font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:0.5px solid var(--rule);color:var(--gm);padding:.22rem .65rem;cursor:pointer;transition:all .12s;white-space:nowrap}
+.qf-btn{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:0.5px solid var(--rule);color:var(--gm);padding:.22rem .65rem;cursor:pointer;transition:all .12s;white-space:nowrap}
 .qf-btn:hover{border-color:var(--navy);color:var(--navy)}
 .qf-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
 .qf-sep{width:1px;height:14px;background:var(--rule);flex-shrink:0}
@@ -237,17 +296,17 @@ footer{background:var(--navy);padding:2.5rem;border-top:1px solid rgba(255,255,2
 .spark-bar{width:3px;border-radius:1px;background:var(--rule);flex-shrink:0;transition:background .2s}
 
 /* ── TABLE REFINEMENTS ── */
-thead th{position:sticky;top:0;z-index:10;background:var(--navy);font-family:var(--mono)!important;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:.6rem .85rem;text-align:left;white-space:nowrap;cursor:pointer;user-select:none;border-right:0.5px solid rgba(255,255,255,.06)}
-thead th.num,tbody td.num{text-align:right;font-family:var(--mono)}
+thead th{position:sticky;top:0;z-index:10;background:var(--navy);font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums!important;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:.6rem .85rem;text-align:left;white-space:nowrap;cursor:pointer;user-select:none;border-right:0.5px solid rgba(255,255,255,.06)}
+thead th.num,tbody td.num{text-align:right;font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums}
 tbody tr{border-bottom:0.5px solid var(--rule)}
 tbody td{font-family:var(--sans);padding:.42rem .85rem;font-size:.75rem;color:var(--g)}
 tbody td.sector-name{font-weight:500;color:var(--navy)}
-tbody td.mono-num{font-family:var(--mono)!important;font-weight:600;text-align:right}
+tbody td.mono-num{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums!important;font-weight:600;text-align:right}
 .val-hi{color:var(--grn)}.val-lo{color:var(--red)}.val-mid{color:var(--navy)}.val-warn{color:var(--amber)}
 .cycle-wrap{display:flex;align-items:center;gap:.4rem}
 .cycle-track{width:44px;height:3px;background:var(--rule);border-radius:2px;overflow:hidden;flex-shrink:0}
 .cycle-fill{height:100%;border-radius:2px;transition:width .3s}
-.cycle-pct{font-family:var(--mono);font-size:.6rem;color:var(--gm)}
+.cycle-pct{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.6rem;color:var(--gm)}
 .cyc-badge{font-size:.52rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:1px 5px;border:0.5px solid;white-space:nowrap}
 .cyc-badge.hot{color:var(--amber);border-color:rgba(180,83,9,.3);background:rgba(180,83,9,.06)}
 .cyc-badge.cold{color:var(--grn);border-color:rgba(10,92,30,.3);background:rgba(10,92,30,.06)}
@@ -255,8 +314,8 @@ tbody td.mono-num{font-family:var(--mono)!important;font-weight:600;text-align:r
 
 
 /* ── GATED NAV LINKS ── */
-.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
-.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
+
+
 </style>
 </head>
 <body>
@@ -268,44 +327,47 @@ tbody td.mono-num{font-family:var(--mono)!important;font-weight:600;text-align:r
     <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
 
-  <!-- Live benchmarks mini-strip -->
   <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
     <div style="font-size:0.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#0A5C1E;display:inline-block;animation:pulse 2s infinite"></span>Live Benchmarks</div>
     <div style="display:flex;flex-direction:column;gap:0.3rem" id="sbTicker"></div>
   </div>
 
+  <div class="sb-section">Info</div>
+  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
+
   <div class="sb-section">Editorial</div>
   <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
-    <div class="sb-dropdown-items" id="dropIssues">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropEditorial')">
+      <span>Articles &amp; Cases</span><span class="sb-arrow" id="arrowEditorial">▾</span>
+    </button>
+    <div class="sb-dropdown-items" id="dropEditorial">
+      <a href="/issues" class="sb-sub-link" onclick="closeSidebar()">All Articles</a>
       <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
       <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
       <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
       <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
+      <a href="/case-studies" class="sb-sub-link" onclick="closeSidebar()">All Case Studies</a>
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker · 7.5×</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">CS03. Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans · 14.5×</a>
     </div>
   </div>
+
+  <div class="sb-section">Tools</div>
   <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')"><span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span></button>
-    <div class="sb-dropdown-items" id="dropCS">
-      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01. DSV / DB Schenker · 7.5×</a>
-      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">02. DACH manufacturer · 4× vs 7×</a>
-      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">03. Deal collapsed in due diligence</a>
-      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04. UPS / Frigo-Trans · 14.5×</a>
-    </div>
-  </div>
-  <div class="sb-section">Dashboard</div>
-  <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropDash')"><span>Dashboard</span><span class="sb-arrow" id="arrowDash">▾</span></button>
-    <div class="sb-dropdown-items" id="dropDash">
+    <button class="sb-dropdown-btn  open" onclick="toggleDrop('dropTools')">
+      <span>Calculators &amp; Data</span><span class="sb-arrow  open" id="arrowTools">▾</span>
+    </button>
+    <div class="sb-dropdown-items  open" id="dropTools">
       <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
-      <a href="/wacc" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/wacc')">WACC Calculator</a>
-      <a href="/exit-calculator" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/exit-calculator')">Exit Value Calculator</a>
-      <a href="/country-index" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/country-index')">Transaction Cost Index</a>
-      <a href="/advisors" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/advisors')">Advisor Directory</a>
+      <a href="/exit-calculator" class="sb-sub-link" onclick="closeSidebar()">Exit Calculator</a>
+      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
+      <a href="/country-index" class="sb-sub-link" onclick="closeSidebar()">Transaction Cost Index</a>
+      <a href="/advisors" class="sb-sub-link" onclick="closeSidebar()">Advisor Directory</a>
     </div>
   </div>
-  <div class="sb-section">Info</div>
-  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
+
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
 </div>
 
@@ -314,13 +376,23 @@ tbody td.mono-num{font-family:var(--mono)!important;font-weight:600;text-align:r
     <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
     <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
   </div>
-    <div class="nav-links">
+  <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
-    <a href="/issues" class="nav-link">Issues</a>
-    <a href="/multiples" class="nav-link active">Multiples</a>
-    <a href="/exit-calculator" class="nav-link">Exit</a>
-    <a href="/country-index" class="nav-link">Cost Index</a>
-    <a href="/advisors" class="nav-link">Advisors</a>
+    <a href="/issues" class="nav-link">Articles</a>
+    <a href="/case-studies" class="nav-link">Case Studies</a>
+    <div class="nav-dropdown" id="navToolsDrop">
+      <button class="nav-dropdown-btn active" onclick="toggleNavDrop()" id="navToolsBtn">
+        Tools
+        <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="nav-dropdown-menu" id="navToolsMenu">
+      <a href="/multiples" class="nav-dd-item active">Multiples</a>
+      <a href="/exit-calculator" class="nav-dd-item">Exit Calculator</a>
+      <a href="/wacc" class="nav-dd-item">WACC Calculator</a>
+      <a href="/country-index" class="nav-dd-item">Cost Index</a>
+      <a href="/advisors" class="nav-dd-item">Advisors</a>
+      </div>
+    </div>
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>
@@ -912,8 +984,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 
 // Sidebar locked links: check access before navigating
-function gatedNav(url){
-  if(hasAccess()){window.location.href=url;}
+
   else{
     // Close sidebar and show unlock prompt
     closeSidebar();
@@ -927,11 +998,6 @@ function gatedNav(url){
     }
   }
 }
-
-function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden'}
-function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow=''}
-function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn.querySelector('.sb-arrow');el.classList.toggle('open');arrow.classList.toggle('open')}
-
 
 // ─── QUICK FILTER ────────────────────────────────────────────────────────────
 let activeQF = '';
@@ -977,6 +1043,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
   document.querySelectorAll('[data-email]').forEach(el=>{el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com'});
 });
+
+function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
+function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');if(btn)btn.classList.toggle('open');}
+function toggleNavDrop(){var menu=document.getElementById('navToolsMenu');var btn=document.getElementById('navToolsBtn');menu.classList.toggle('open');btn.classList.toggle('open');}
+document.addEventListener('click',function(e){var drop=document.getElementById('navToolsDrop');if(drop&&!drop.contains(e.target)){document.getElementById('navToolsMenu').classList.remove('open');document.getElementById('navToolsBtn').classList.remove('open');}});
 </script>
 </body>
 </html>

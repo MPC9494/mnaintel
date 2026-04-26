@@ -8,6 +8,65 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:56px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-left{display:flex;align-items:center;gap:0.6rem}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:6px;flex-shrink:0}
+.hamburger span{display:block;width:20px;height:1.5px;background:currentColor;transition:all .2s}
+.hamburger:hover{color:#fff}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:17px;background:var(--red);flex-shrink:0}
+.nav-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:0}
+.nav-link{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.35rem 0.8rem;transition:color .15s;white-space:nowrap;position:relative}
+.nav-link:hover,.nav-link.active{color:#fff}
+/* Tools dropdown in top nav */
+.nav-dropdown{position:relative}
+.nav-dropdown-btn{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);background:transparent;border:none;padding:0.35rem 0.8rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .15s;height:56px}
+.nav-dropdown-btn:hover,.nav-dropdown-btn.active{color:#fff}
+.nav-dropdown-btn svg{width:8px;height:8px;fill:currentColor;transition:transform .2s}
+.nav-dropdown-btn.open svg{transform:rotate(180deg)}
+.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 1px);left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--red);min-width:200px;z-index:500;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.nav-dropdown-menu.open{display:block}
+.nav-dd-item{display:block;padding:9px 16px;font-size:0.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s,background .12s;white-space:nowrap}
+.nav-dd-item:last-child{border-bottom:none}
+.nav-dd-item:hover{color:#fff;background:rgba(255,255,255,0.05)}
+.nav-dd-item.active{color:#fff}
+.nav-sub{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.nav-sub:hover{background:#6e1414}
+@media(max-width:767px){.nav-links{display:none}}
+@media(min-width:900px){nav{padding:0 2.5rem}}
+/* ── SIDEBAR ── */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:285px;background:var(--navy);z-index:300;transform:translateX(-285px);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:299}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
+.sb-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.4rem;cursor:pointer;line-height:1}
+.sb-section{font-size:0.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.25rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.88rem;font-weight:500;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s}
+.sb-link:hover,.sb-link.active{color:#fff}
+.sb-link.active{font-weight:600}
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans,'DM Sans',sans-serif);font-size:0.88rem;font-weight:500;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .12s}
+.sb-dropdown-btn:hover,.sb-dropdown-btn.open{color:#fff}
+.sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform .2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.4rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color .12s}
+.sb-sub-link:hover,.sb-sub-link.active{color:rgba(255,255,255,0.85)}
+.sb-sub-link.active{color:#fff}
+.sb-cta{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
+.sb-cta:hover{background:#6e1414}
+.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
+.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
+
 :root{
   --navy:#0A1628;--navy2:#142035;
   --white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;
@@ -19,48 +78,48 @@
   --input-bg:#FFFDE7;--input-border:#C8B400;
   --shadow:0 1px 6px rgba(0,0,0,0.06);
   --shadow-md:0 2px 16px rgba(0,0,0,0.10);
-  --mono:'IBM Plex Mono',monospace;
+  --sans:'DM Sans',sans-serif;
   --sans:'DM Sans',sans-serif;
   --serif:'Playfair Display',serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--w);color:var(--b);-webkit-font-smoothing:antialiased;font-size:14px;overflow-x:hidden}
-nav{position:sticky;top:0;z-index:100;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:52px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.nav-left{display:flex;align-items:center;gap:0.6rem}
-.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:6px}
-.hamburger span{display:block;width:18px;height:1.5px;background:currentColor}
-.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.nav-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
-.nav-logo-text{font-size:0.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.9);white-space:nowrap}
-.nav-links{display:flex;align-items:center}
-.nav-link{font-size:0.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.35rem 0.75rem;transition:color 0.15s;white-space:nowrap}
-.nav-link:hover,.nav-link.active{color:#fff}
-.nav-sub{font-family:var(--sans);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.1rem;cursor:pointer;white-space:nowrap}
-@media(max-width:767px){.nav-links{display:none}}
-@media(min-width:900px){nav{padding:0 2.5rem}}
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;background:var(--navy);z-index:300;transform:translateX(-280px);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
-.sidebar.open{transform:translateX(0)}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:299}
-.sb-overlay.open{display:block}
-.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
-.sb-logo-text{font-size:0.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff}
-.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.4rem;cursor:pointer;line-height:1}
-.sb-section{font-size:0.56rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.25rem 0 0.5rem}
-.sb-link{display:block;padding:0.55rem 0;font-size:0.88rem;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color 0.12s}
-.sb-link:hover,.sb-link.active{color:#fff}
-.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
-.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans);font-size:0.88rem;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-.sb-dropdown-btn:hover{color:#fff}
-.sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform 0.2s}
-.sb-arrow.open{transform:rotate(180deg)}
-.sb-dropdown-items{display:none;padding-bottom:0.4rem}
-.sb-dropdown-items.open{display:block}
-.sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color 0.12s}
-.sb-sub-link:hover{color:rgba(255,255,255,0.85)}
-.sb-cta{font-family:var(--sans);font-size:0.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem}
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width:767px){}
+@media(min-width:900px){}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .back-bar{background:var(--bg);border-bottom:0.5px solid var(--rule);padding:0.5rem 2.5rem}
 .back-bar-inner{max-width:1300px;margin:0 auto}
 .back-btn{display:inline-flex;align-items:center;gap:5px;font-size:0.72rem;font-weight:500;color:var(--gm);text-decoration:none}
@@ -88,15 +147,15 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 .cl{font-size:0.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gl);white-space:nowrap}
 .csel{font-family:var(--sans);font-size:0.8rem;color:var(--b);background:var(--w);border:0.5px solid var(--rule);padding:0.35rem 0.7rem;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%23888' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.6rem center;padding-right:1.75rem}
 .csel:focus{border-color:var(--navy)}
-.cinp{font-family:var(--mono);font-size:0.8rem;color:var(--b);background:var(--w);border:0.5px solid var(--rule);padding:0.35rem 0.7rem;outline:none;flex:1;min-width:140px;max-width:220px}
+.cinp{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.8rem;color:var(--b);background:var(--w);border:0.5px solid var(--rule);padding:0.35rem 0.7rem;outline:none;flex:1;min-width:140px;max-width:220px}
 .cinp::placeholder{color:#bbb;font-family:var(--sans)}
-.ccount{font-family:var(--mono);font-size:0.7rem;color:var(--gl);margin-left:auto;white-space:nowrap}
+.ccount{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.7rem;color:var(--gl);margin-left:auto;white-space:nowrap}
 
 /* QUICK CALC */
 .qcalc{max-width:1300px;margin:0 auto;padding:1.25rem 2.5rem;background:var(--bg);border-bottom:0.5px solid var(--rule);display:grid;grid-template-columns:auto auto auto auto 1fr;gap:0.6rem;align-items:end}
 @media(max-width:900px){.qcalc{grid-template-columns:1fr 1fr;padding:1rem 1.25rem}}
 .qf label{font-size:0.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);display:block;margin-bottom:0.3rem}
-.qf input,.qf select{font-family:var(--mono);font-size:0.85rem;color:var(--b);background:var(--w);border:0.5px solid var(--rule);padding:0.38rem 0.65rem;outline:none;width:100%}
+.qf input,.qf select{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.85rem;color:var(--b);background:var(--w);border:0.5px solid var(--rule);padding:0.38rem 0.65rem;outline:none;width:100%}
 .qf select{font-family:var(--sans);font-size:0.8rem;appearance:none}
 .qbtn{font-family:var(--sans);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--navy);color:#fff;border:none;padding:0.5rem 1.25rem;cursor:pointer;align-self:end}
 .qbtn:hover{background:var(--red)}
@@ -104,7 +163,7 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 .qresult.visible{display:grid}
 .qr-cell{background:var(--navy);padding:0.85rem 1rem}
 .qr-lbl{font-size:0.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.25rem}
-.qr-val{font-family:var(--mono);font-size:1.05rem;font-weight:600;color:#fff}
+.qr-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:1.05rem;font-weight:600;color:#fff}
 .qr-val.red{color:#f09090}
 
 /* MAIN TABLE */
@@ -123,9 +182,9 @@ tbody tr.selected{background:#EEF2F8;border-left:2px solid var(--navy)}
 td{padding:0.55rem 0.85rem;color:var(--g)}
 td.country-name{font-weight:600;color:var(--b);white-space:nowrap}
 td.flag{font-size:1.1rem;padding-right:0;width:32px}
-td.mono{font-family:var(--mono);font-size:0.8rem;text-align:right;color:var(--b)}
-td.red{font-family:var(--mono);font-size:0.8rem;text-align:right;color:var(--red);font-weight:600}
-td.grn{font-family:var(--mono);font-size:0.8rem;text-align:right;color:var(--grn);font-weight:600}
+td.mono{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.8rem;text-align:right;color:var(--b)}
+td.red{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.8rem;text-align:right;color:var(--red);font-weight:600}
+td.grn{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.8rem;text-align:right;color:var(--grn);font-weight:600}
 td.bar-cell{min-width:100px}
 .bar-track{height:3px;background:var(--rule2);margin-top:2px}
 .bar-fill{height:100%;background:var(--red);transition:width 0.3s}
@@ -138,7 +197,7 @@ td.bar-cell{min-width:100px}
 .det-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.2rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
 .det-row:last-child{border-bottom:none}
 .det-lbl{font-size:0.72rem;color:rgba(255,255,255,0.42)}
-.det-val{font-family:var(--mono);font-size:0.78rem;font-weight:600;color:#fff}
+.det-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.78rem;font-weight:600;color:#fff}
 .det-val.red{color:#f09090}
 .det-val.grn{color:#7dd87d}
 .det-note{font-size:0.68rem;color:rgba(255,255,255,0.32);margin-top:0.5rem;line-height:1.5}
@@ -149,11 +208,11 @@ td.bar-cell{min-width:100px}
 .src-title{font-size:0.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gl);margin-bottom:0.6rem}
 .src-list{display:flex;flex-direction:column;gap:0.35rem}
 .src-item{display:flex;gap:0.5rem;font-size:0.7rem;color:var(--gl);line-height:1.5}
-.src-num{font-family:var(--mono);font-weight:600;color:var(--gm);flex-shrink:0}
+.src-num{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-weight:600;color:var(--gm);flex-shrink:0}
 .src-item strong{color:var(--gm)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-.risk-score{display:inline-flex;align-items:center;gap:3px;font-family:'IBM Plex Mono',monospace;font-size:0.6rem;font-weight:600;padding:2px 6px;border-radius:2px}
+.risk-score{display:inline-flex;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;font-variant-numeric:tabular-nums;font-size:0.6rem;font-weight:600;padding:2px 6px;border-radius:2px}
 .risk-low{background:rgba(10,92,30,0.08);color:#0A5C1E;border:1px solid rgba(10,92,30,0.2)}
 .risk-mid{background:rgba(100,70,0,0.07);color:#6B4500;border:1px solid rgba(100,70,0,0.2)}
 .risk-high{background:rgba(139,26,26,0.07);color:#8B1A1A;border:1px solid rgba(139,26,26,0.2)}
@@ -168,18 +227,18 @@ td.bar-cell{min-width:100px}
 .cc-top{display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1rem 0.65rem;border-bottom:0.5px solid var(--rule2)}
 .cc-flag{font-size:1.3rem;flex-shrink:0}
 .cc-name{font-weight:700;color:var(--navy);font-size:0.88rem;flex:1;margin-left:0.65rem}
-.cc-region{font-family:var(--mono);font-size:0.58rem;color:var(--gl);letter-spacing:.06em;text-transform:uppercase}
+.cc-region{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.58rem;color:var(--gl);letter-spacing:.06em;text-transform:uppercase}
 .cc-datapoints{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule2);border-top:1px solid var(--rule2)}
 .cc-dp{background:var(--white);padding:0.5rem 0.75rem}
 .cc-dp-label{font-size:0.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:0.2rem}
-.cc-dp-val{font-family:var(--mono);font-size:0.82rem;font-weight:600}
+.cc-dp-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.82rem;font-weight:600}
 .cc-dp-val.g{color:var(--grn)}.cc-dp-val.r{color:var(--red)}.cc-dp-val.n{color:var(--navy)}
 .cc-bar{height:3px;background:var(--rule2);margin-top:0;position:relative}
 .cc-bar-fill{height:100%;background:var(--red);transition:width .4s}
 .cc-total-row{display:flex;justify-content:space-between;align-items:center;padding:0.45rem 0.75rem;font-size:0.72rem}
 .cc-total-lbl{color:var(--gm)}
-.cc-total-val{font-family:var(--mono);font-weight:700}
-.cc-cost-badge{display:inline-flex;align-items:center;gap:3px;font-family:var(--mono);font-size:0.58rem;font-weight:600;padding:1px 5px}
+.cc-total-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-weight:700}
+.cc-cost-badge{display:inline-flex;align-items:center;gap:3px;font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.58rem;font-weight:600;padding:1px 5px}
 .cc-cost-badge.low{background:var(--grn2);color:var(--grn)}
 .cc-cost-badge.mid{background:rgba(100,70,0,0.07);color:#6B4500}
 .cc-cost-badge.high{background:rgba(139,26,26,0.07);color:var(--red)}
@@ -192,7 +251,7 @@ td.bar-cell{min-width:100px}
 .ccd-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.22rem 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.75rem}
 .ccd-row:last-child{border-bottom:none}
 .ccd-lbl{color:rgba(255,255,255,0.45)}
-.ccd-val{font-family:var(--mono);font-weight:600;color:#fff}
+.ccd-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-weight:600;color:#fff}
 .ccd-val.r{color:#f09090}.ccd-val.g{color:#7dd87d}
 .ccd-note{font-size:0.65rem;color:rgba(255,255,255,0.3);margin-top:0.4rem;line-height:1.5}
 
@@ -202,18 +261,18 @@ td.bar-cell{min-width:100px}
 .mp-brand{display:flex;align-items:center;gap:6px;padding:.3rem 1.25rem .3rem .75rem;border-right:1px solid rgba(255,255,255,0.07);flex-shrink:0}
 .mp-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:mp-pulse 2.5s infinite}
 @keyframes mp-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
-.mp-label{font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.mp-label{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
 .mp-item{display:flex;align-items:center;gap:.5rem;padding:.28rem .9rem;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0}
 .mp-item:last-child{border-right:none}
 .mp-name{font-size:.58rem;color:rgba(255,255,255,.32);white-space:nowrap}
-.mp-val{font-family:var(--mono);font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
-.mp-chg{font-family:var(--mono);font-size:.55rem;white-space:nowrap}
+.mp-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
+.mp-chg{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.55rem;white-space:nowrap}
 .mp-chg.up{color:#4ade80}.mp-chg.dn{color:#f87171}.mp-chg.neu{color:rgba(255,255,255,.3)}
 
 
 /* ── GATED NAV LINKS ── */
-.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
-.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
+
+
 </style>
 </head>
 <body>
@@ -225,59 +284,72 @@ td.bar-cell{min-width:100px}
     <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
 
-  <!-- Live benchmarks mini-strip -->
   <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
     <div style="font-size:0.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#0A5C1E;display:inline-block;animation:pulse 2s infinite"></span>Live Benchmarks</div>
     <div style="display:flex;flex-direction:column;gap:0.3rem" id="sbTicker"></div>
   </div>
 
+  <div class="sb-section">Info</div>
+  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
+
   <div class="sb-section">Editorial</div>
   <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropIssues')"><span>Issues</span><span class="sb-arrow" id="arrowIssues">▾</span></button>
-    <div class="sb-dropdown-items" id="dropIssues">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropEditorial')">
+      <span>Articles &amp; Cases</span><span class="sb-arrow" id="arrowEditorial">▾</span>
+    </button>
+    <div class="sb-dropdown-items" id="dropEditorial">
+      <a href="/issues" class="sb-sub-link" onclick="closeSidebar()">All Articles</a>
       <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
       <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
       <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
       <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
+      <a href="/case-studies" class="sb-sub-link" onclick="closeSidebar()">All Case Studies</a>
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker · 7.5×</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">CS03. Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans · 14.5×</a>
     </div>
   </div>
+
+  <div class="sb-section">Tools</div>
   <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropCS')"><span>Case Studies</span><span class="sb-arrow" id="arrowCS">▾</span></button>
-    <div class="sb-dropdown-items" id="dropCS">
-      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">01. DSV / DB Schenker · 7.5×</a>
-      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">02. DACH manufacturer · 4× vs 7×</a>
-      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">03. Deal collapsed in due diligence</a>
-      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">04. UPS / Frigo-Trans · 14.5×</a>
-    </div>
-  </div>
-  <div class="sb-section">Dashboard</div>
-  <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropDash')"><span>Dashboard</span><span class="sb-arrow" id="arrowDash">▾</span></button>
-    <div class="sb-dropdown-items" id="dropDash">
+    <button class="sb-dropdown-btn  open" onclick="toggleDrop('dropTools')">
+      <span>Calculators &amp; Data</span><span class="sb-arrow  open" id="arrowTools">▾</span>
+    </button>
+    <div class="sb-dropdown-items  open" id="dropTools">
       <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
-      <a href="/wacc" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/wacc')">WACC Calculator</a>
-      <a href="/exit-calculator" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/exit-calculator')">Exit Value Calculator</a>
-      <a href="/country-index" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/country-index')">Transaction Cost Index</a>
-      <a href="/advisors" data-gated class="sb-sub-link" onclick="event.preventDefault();gatedNav('/advisors')">Advisor Directory</a>
+      <a href="/exit-calculator" class="sb-sub-link" onclick="closeSidebar()">Exit Calculator</a>
+      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
+      <a href="/country-index" class="sb-sub-link" onclick="closeSidebar()">Transaction Cost Index</a>
+      <a href="/advisors" class="sb-sub-link" onclick="closeSidebar()">Advisor Directory</a>
     </div>
   </div>
-  <div class="sb-section">Info</div>
-  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
+
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
 </div>
 
 <nav>
   <div class="nav-left">
-    <button class="hamburger" onclick="openSidebar()"><span></span><span></span><span></span></button>
+    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
     <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
   </div>
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
-    <a href="/issues" class="nav-link">Issues</a>
-    <a href="/multiples" class="nav-link">Multiples</a>
-    <a href="/exit-calculator" class="nav-link">Exit</a>
-    <a href="/country-index" class="nav-link active">Cost Index</a>
-    <a href="/advisors" class="nav-link">Advisors</a>
+    <a href="/issues" class="nav-link">Articles</a>
+    <a href="/case-studies" class="nav-link">Case Studies</a>
+    <div class="nav-dropdown" id="navToolsDrop">
+      <button class="nav-dropdown-btn active" onclick="toggleNavDrop()" id="navToolsBtn">
+        Tools
+        <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="nav-dropdown-menu" id="navToolsMenu">
+      <a href="/multiples" class="nav-dd-item">Multiples</a>
+      <a href="/exit-calculator" class="nav-dd-item">Exit Calculator</a>
+      <a href="/wacc" class="nav-dd-item">WACC Calculator</a>
+      <a href="/country-index" class="nav-dd-item active">Cost Index</a>
+      <a href="/advisors" class="nav-dd-item">Advisors</a>
+      </div>
+    </div>
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>
@@ -298,7 +370,7 @@ td.bar-cell{min-width:100px}
       <div class="hs-title">Transaction Cost Index</div>
       <div class="hs-meta">20 Countries · Advisory · Legal · CGT · Stamp Duty · Total Sell-side Cost · 2025–2026</div>
     </div>
-    <div style="font-family:var(--mono);font-size:0.7rem;color:rgba(255,255,255,0.35);text-align:right">Click row for full breakdown<br>Quick calculator below</div>
+    <div style="font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.7rem;color:rgba(255,255,255,0.35);text-align:right">Click row for full breakdown<br>Quick calculator below</div>
   </div>
 </div>
 
@@ -737,8 +809,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 
 // Sidebar locked links: check access before navigating
-function gatedNav(url){
-  if(hasAccess()){window.location.href=url;}
+
   else{
     // Close sidebar and show unlock prompt
     closeSidebar();
@@ -753,9 +824,6 @@ function gatedNav(url){
   }
 }
 
-function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
-function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
-function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');}
 document.addEventListener('DOMContentLoaded',()=>{
   render(); populateQC();
   document.getElementById('fSort').addEventListener('change',render);
@@ -767,6 +835,12 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   document.querySelectorAll('[data-email]').forEach(el=>{el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com';});
 });
+
+function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
+function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');if(btn)btn.classList.toggle('open');}
+function toggleNavDrop(){var menu=document.getElementById('navToolsMenu');var btn=document.getElementById('navToolsBtn');menu.classList.toggle('open');btn.classList.toggle('open');}
+document.addEventListener('click',function(e){var drop=document.getElementById('navToolsDrop');if(drop&&!drop.contains(e.target)){document.getElementById('navToolsMenu').classList.remove('open');document.getElementById('navToolsBtn').classList.remove('open');}});
 </script>
 </body>
 </html>
