@@ -249,6 +249,71 @@ body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-sm
 .sb-btn{font-family:var(--sans);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.55rem 1rem;cursor:pointer;white-space:nowrap;transition:background .15s}
 .sb-btn:hover{background:var(--red2)}
 
+/* ── INTELLIGENCE PULSE ── */
+.pulse-section{background:var(--white);border-top:0.5px solid var(--rule)}
+.pulse-inner{max-width:1140px;margin:0 auto;padding:2rem 2.5rem}
+@media(max-width:767px){.pulse-inner{padding:1.5rem 1.25rem}}
+
+.pulse-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.5rem}
+.pulse-header-left{display:flex;align-items:center;gap:0.75rem}
+.pulse-label{font-size:0.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy)}
+.pulse-live{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:0.58rem;color:var(--grn);letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid rgba(10,92,30,0.2);background:var(--grn2)}
+.pulse-note{font-size:0.62rem;color:var(--gl)}
+
+.pulse-search-row{display:flex;gap:0;margin-bottom:0.85rem}
+.pulse-input{flex:1;font-family:var(--sans);font-size:0.88rem;color:var(--b);background:var(--bg);border:0.5px solid var(--rule);border-right:none;padding:0.65rem 1rem;outline:none;transition:border-color .15s}
+.pulse-input:focus{border-color:var(--navy);background:var(--white)}
+.pulse-btn{font-family:var(--sans);font-size:0.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--navy);color:#fff;border:none;padding:0.65rem 1.5rem;cursor:pointer;white-space:nowrap;transition:background .15s;flex-shrink:0}
+.pulse-btn:hover{background:var(--red)}
+
+.pulse-chips{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.25rem}
+.pulse-chip{font-size:0.62rem;font-weight:600;letter-spacing:.05em;color:var(--gm);border:0.5px solid var(--rule);padding:3px 10px;cursor:pointer;background:var(--bg);transition:all .12s;white-space:nowrap}
+.pulse-chip:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+.pulse-idle{display:flex;align-items:center;gap:0.75rem;padding:1.5rem;border:0.5px dashed var(--rule);background:var(--bg)}
+.pi-icon{font-family:var(--mono);font-size:1.1rem;color:var(--gl);opacity:.5}
+.pi-text{font-size:0.8rem;color:var(--gl)}
+
+.pulse-loading{display:flex;flex-direction:column;gap:0.75rem;padding:1.25rem;border:0.5px solid var(--rule);background:var(--bg)}
+.pl-bar{height:2px;background:var(--rule);overflow:hidden}
+.pl-bar-fill{height:100%;width:40%;background:var(--red);animation:plScan 1.8s ease-in-out infinite}
+@keyframes plScan{0%{transform:translateX(-100%)}100%{transform:translateX(350%)}}
+.pl-step{font-family:var(--mono);font-size:0.65rem;color:var(--gl);opacity:0;transition:opacity .3s;display:flex;align-items:center;gap:6px}
+.pl-step.vis{opacity:1}
+.pl-step-dot{width:4px;height:4px;border-radius:50%;background:var(--rule);flex-shrink:0}
+.pl-step-dot.done{background:var(--grn)}
+
+.pulse-result{display:flex;flex-direction:column;gap:0.85rem}
+.pr-head{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:0.75rem;border-bottom:0.5px solid var(--rule)}
+.pr-topic{font-size:0.95rem;font-weight:700;color:var(--navy)}
+.pr-date{font-family:var(--mono);font-size:0.58rem;color:var(--gl);letter-spacing:.06em}
+
+.pr-signals{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:0.5px solid var(--rule)}
+@media(max-width:600px){.pr-signals{grid-template-columns:1fr 1fr}}
+.pr-sig{background:var(--bg);padding:0.9rem 1rem}
+.pr-sig-lbl{font-size:0.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:0.35rem}
+.pr-sig-val{font-family:var(--mono);font-size:1.35rem;font-weight:600;color:var(--navy);line-height:1}
+.pr-sig-sub{font-size:0.65rem;color:var(--gm);margin-top:0.2rem}
+
+.pr-section-lbl{font-size:0.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);padding-bottom:0.5rem;border-bottom:0.5px solid var(--rule2)}
+.pr-findings{display:flex;flex-direction:column;gap:0.5rem}
+.pr-finding{display:flex;gap:0.75rem;align-items:flex-start;padding:0.75rem 1rem;border:0.5px solid var(--rule);background:var(--bg)}
+.pr-find-n{font-family:var(--mono);font-size:0.6rem;color:var(--gl);min-width:18px;margin-top:1px}
+.pr-find-t{font-size:0.82rem;color:var(--g);line-height:1.55}
+
+.pr-driver{padding:0.85rem 1rem;border:0.5px solid var(--rule);border-left:3px solid var(--grn);background:var(--bg)}
+.pr-watch{padding:0.85rem 1rem;border:0.5px solid var(--rule);border-left:3px solid var(--red);background:var(--bg)}
+.pr-pill-lbl{font-size:0.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:0.3rem}
+.pr-pill-txt{font-size:0.82rem;color:var(--g);line-height:1.55}
+
+.pr-actions{display:flex;gap:0.5rem;flex-wrap:wrap}
+.pr-act{font-family:var(--sans);font-size:0.68rem;font-weight:600;letter-spacing:.06em;color:var(--navy);border:0.5px solid var(--rule);background:var(--bg);padding:0.45rem 0.85rem;cursor:pointer;transition:all .12s;white-space:nowrap}
+.pr-act:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.pr-act.reset{color:var(--gl)}
+.pr-act.reset:hover{background:var(--bg2);color:var(--b);border-color:var(--rule)}
+
+.pulse-error{padding:0.85rem 1rem;border:0.5px solid var(--rule);font-size:0.8rem;color:var(--red);background:var(--bg)}
+
 /* ── BOTTOM GRID ── */
 .bottom-wrap{max-width:1140px;margin:0 auto;padding:2rem 2.5rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem}
 @media(max-width:900px){.bottom-wrap{grid-template-columns:1fr 1fr;padding:1.5rem 1.25rem}}
@@ -582,6 +647,48 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
   </form>
 </div>
 
+<!-- INTELLIGENCE PULSE -->
+<div class="pulse-section">
+  <div class="pulse-inner">
+    <div class="pulse-header">
+      <div class="pulse-header-left">
+        <span class="pulse-label">Intelligence Pulse</span>
+        <span class="pulse-live"><span class="live-dot" style="width:5px;height:5px"></span>Live · powered by AI</span>
+      </div>
+      <span class="pulse-note">Enter any M&A topic to get a 30-day signal briefing</span>
+    </div>
+
+    <div class="pulse-search-row">
+      <input type="text" id="pulseInput" class="pulse-input" placeholder="e.g. PE buyouts DACH, carve-out multiples, Southern Europe deals…" />
+      <button class="pulse-btn" onclick="runPulse()">Scan →</button>
+    </div>
+
+    <div class="pulse-chips">
+      <span class="pulse-chip" onclick="pFill('PE buyouts DACH 2025')">PE · DACH</span>
+      <span class="pulse-chip" onclick="pFill('Southern Europe M&A 2025')">Southern Europe</span>
+      <span class="pulse-chip" onclick="pFill('Latin America M&A 2025')">LatAm</span>
+      <span class="pulse-chip" onclick="pFill('carve-out transactions Europe 2025')">Carve-outs</span>
+      <span class="pulse-chip" onclick="pFill('EBITDA multiples industrials M&A 2025')">Industrials multiples</span>
+      <span class="pulse-chip" onclick="pFill('distressed M&A Europe 2025')">Distressed</span>
+    </div>
+
+    <!-- States -->
+    <div class="pulse-idle" id="pulseIdle">
+      <span class="pi-icon">◎</span>
+      <span class="pi-text">Scan any topic for a live 30-day deal intelligence brief</span>
+    </div>
+
+    <div class="pulse-loading" id="pulseLoading" style="display:none">
+      <div class="pl-bar"><div class="pl-bar-fill"></div></div>
+      <div class="pl-steps" id="pulseSteps"></div>
+    </div>
+
+    <div class="pulse-result" id="pulseResult" style="display:none"></div>
+
+    <div class="pulse-error" id="pulseError" style="display:none"></div>
+  </div>
+</div>
+
 <!-- BOTTOM GRID -->
 <div class="bottom-wrap">
 
@@ -833,8 +940,10 @@ document.addEventListener('DOMContentLoaded',function(){
 
 
 // Sidebar locked links: check access before navigating
-
-  else{
+function navigateGated(url){
+  if(hasAccess()){
+    window.location.href=url;
+  } else{
     // Close sidebar and show unlock prompt
     closeSidebar();
     var bar=document.getElementById('subBar');
@@ -863,6 +972,105 @@ function closeSidebar(){document.getElementById('sidebar').classList.remove('ope
 function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');if(btn)btn.classList.toggle('open');}
 function toggleNavDrop(){var menu=document.getElementById('navToolsMenu');var btn=document.getElementById('navToolsBtn');menu.classList.toggle('open');btn.classList.toggle('open');}
 document.addEventListener('click',function(e){var drop=document.getElementById('navToolsDrop');if(drop&&!drop.contains(e.target)){document.getElementById('navToolsMenu').classList.remove('open');document.getElementById('navToolsBtn').classList.remove('open');}});
+
+// ── INTELLIGENCE PULSE ───────────────────────────────────────────────────────
+document.getElementById('pulseInput').addEventListener('keydown',function(e){if(e.key==='Enter')runPulse();});
+
+function pFill(t){document.getElementById('pulseInput').value=t;}
+
+var PULSE_STEPS=['Scanning deal announcements…','Pulling valuation signals…','Reading market sentiment…','Synthesising intelligence…'];
+
+function pulseShow(id){
+  ['pulseIdle','pulseLoading','pulseResult','pulseError'].forEach(function(s){
+    var el=document.getElementById(s);
+    if(el) el.style.display=(s===id?'':'none');
+  });
+  if(id==='pulseResult') document.getElementById('pulseResult').style.display='flex';
+  if(id==='pulseIdle') document.getElementById('pulseIdle').style.display='flex';
+  if(id==='pulseLoading') document.getElementById('pulseLoading').style.display='flex';
+}
+
+async function runPulse(){
+  var topic=document.getElementById('pulseInput').value.trim();
+  if(!topic) return;
+
+  pulseShow('pulseLoading');
+  var stepsEl=document.getElementById('pulseSteps');
+  stepsEl.innerHTML='';
+  var stepEls=PULSE_STEPS.map(function(s,i){
+    var d=document.createElement('div');
+    d.className='pl-step';
+    d.innerHTML='<div class="pl-step-dot" id="psd'+i+'"></div><span>'+s+'</span>';
+    stepsEl.appendChild(d);
+    return d;
+  });
+  var si=0;
+  var st=setInterval(function(){
+    if(si<stepEls.length){
+      stepEls[si].classList.add('vis');
+      if(si>0)document.getElementById('psd'+(si-1)).classList.add('done');
+      si++;
+    }
+  },900);
+
+  try{
+    var today=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+    var resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        tools:[{type:'web_search_20250305',name:'web_search'}],
+        system:'You are an M&A intelligence analyst. Today is '+today+'. Use web search to find 30-day signals on the given topic. Respond ONLY with a valid JSON object — no markdown, no preamble, no backticks. Shape: {"topic":"short 4-6 word clean title","signal_count":integer,"deal_count":integer,"sentiment_label":"Bullish|Mixed|Cautious|Bearish","findings":["4 strings, each a crisp 1-sentence finding with a concrete data point, written like a sell-side analyst"],"key_driver":"1 sentence on the biggest driver right now","watch":"1 sentence on the key risk to monitor"}',
+        messages:[{role:'user',content:'Run a 30-day M&A intelligence pulse on: '+topic}]
+      })
+    });
+    clearInterval(st);
+    stepEls.forEach(function(el,i){el.classList.add('vis');var d=document.getElementById('psd'+i);if(d)d.classList.add('done');});
+    if(!resp.ok) throw new Error('API '+resp.status);
+    var data=await resp.json();
+    var txt=data.content.filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('');
+    var clean=txt.replace(/```json|```/g,'').trim();
+    var d=JSON.parse(clean);
+    await new Promise(function(r){setTimeout(r,300);});
+    renderPulse(d,topic);
+  } catch(err){
+    clearInterval(st);
+    var errEl=document.getElementById('pulseError');
+    errEl.textContent='Intelligence scan unavailable — '+err.message+'. Please try again.';
+    pulseShow('pulseError');
+  }
+}
+
+var sentColors={Bullish:'var(--grn)',Mixed:'var(--amber)',Cautious:'var(--red)',Bearish:'var(--red)'};
+
+function renderPulse(d,raw){
+  var now=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+  var sc=sentColors[d.sentiment_label]||'var(--navy)';
+  var html='<div class="pr-head"><span class="pr-topic">'+escH(d.topic)+'</span><span class="pr-date">Scanned '+now+'</span></div>';
+  html+='<div class="pr-signals">';
+  html+='<div class="pr-sig"><div class="pr-sig-lbl">Signals found</div><div class="pr-sig-val">'+d.signal_count+'</div><div class="pr-sig-sub">last 30 days</div></div>';
+  html+='<div class="pr-sig"><div class="pr-sig-lbl">Deals noted</div><div class="pr-sig-val">'+d.deal_count+'</div><div class="pr-sig-sub">transactions</div></div>';
+  html+='<div class="pr-sig"><div class="pr-sig-lbl">Sentiment</div><div class="pr-sig-val" style="font-size:1rem;color:'+sc+'">'+escH(d.sentiment_label)+'</div><div class="pr-sig-sub">market bias</div></div>';
+  html+='</div>';
+  html+='<div><div class="pr-section-lbl" style="margin-bottom:0.6rem">Key findings</div><div class="pr-findings">';
+  (d.findings||[]).forEach(function(f,i){html+='<div class="pr-finding"><span class="pr-find-n">0'+(i+1)+'</span><span class="pr-find-t">'+escH(f)+'</span></div>';});
+  html+='</div></div>';
+  if(d.key_driver)html+='<div class="pr-driver"><div class="pr-pill-lbl">Key driver</div><div class="pr-pill-txt">'+escH(d.key_driver)+'</div></div>';
+  if(d.watch)html+='<div class="pr-watch"><div class="pr-pill-lbl">Watch</div><div class="pr-pill-txt">'+escH(d.watch)+'</div></div>';
+  html+='<div class="pr-actions"><button class="pr-act" onclick="pDrillDown(\''+raw.replace(/'/g,"\\'")+'\')" >Go deeper →</button><button class="pr-act reset" onclick="pReset()">New scan</button></div>';
+  var el=document.getElementById('pulseResult');
+  el.innerHTML=html;
+  pulseShow('pulseResult');
+}
+
+function escH(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+function pReset(){document.getElementById('pulseInput').value='';pulseShow('pulseIdle');}
+function pDrillDown(topic){
+  document.getElementById('pulseInput').value='Specific deals and names driving: '+topic;
+  runPulse();
+}
 </script>
 </body>
 </html>
