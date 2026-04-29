@@ -1015,24 +1015,15 @@ async function runPulse(){
 
   try{
     var today=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
-    var resp=await fetch('https://api.anthropic.com/v1/messages',{
+    var resp=await fetch('/api/pulse',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        tools:[{type:'web_search_20250305',name:'web_search'}],
-        system:'You are an M&A intelligence analyst. Today is '+today+'. Use web search to find 30-day signals on the given topic. Respond ONLY with a valid JSON object — no markdown, no preamble, no backticks. Shape: {"topic":"short 4-6 word clean title","signal_count":integer,"deal_count":integer,"sentiment_label":"Bullish|Mixed|Cautious|Bearish","findings":["4 strings, each a crisp 1-sentence finding with a concrete data point, written like a sell-side analyst"],"key_driver":"1 sentence on the biggest driver right now","watch":"1 sentence on the key risk to monitor"}',
-        messages:[{role:'user',content:'Run a 30-day M&A intelligence pulse on: '+topic}]
-      })
+      body:JSON.stringify({topic:topic,today:today})
     });
     clearInterval(st);
     stepEls.forEach(function(el,i){el.classList.add('vis');var d=document.getElementById('psd'+i);if(d)d.classList.add('done');});
     if(!resp.ok) throw new Error('API '+resp.status);
-    var data=await resp.json();
-    var txt=data.content.filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('');
-    var clean=txt.replace(/```json|```/g,'').trim();
-    var d=JSON.parse(clean);
+    var d=await resp.json();
     await new Promise(function(r){setTimeout(r,300);});
     renderPulse(d,topic);
   } catch(err){
