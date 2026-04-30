@@ -3,7 +3,21 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { topic, today } = req.body || {};
+  // Parse body manually if needed
+  let body = req.body;
+  if (!body) {
+    try {
+      const chunks = [];
+      for await (const chunk of req) chunks.push(chunk);
+      body = JSON.parse(Buffer.concat(chunks).toString());
+    } catch (e) {
+      return res.status(400).json({ error: 'Invalid body' });
+    }
+  }
+
+  const topic = body && body.topic;
+  const today = body && body.today;
+
   if (!topic) {
     return res.status(400).json({ error: 'Missing topic' });
   }
