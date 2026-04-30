@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -13,7 +13,8 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'API key not configured' });
   }
 
-  const systemPrompt = `You are an M&A intelligence analyst. Today is ${today || new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}. Use web search to find 30-day signals on the given topic. Respond ONLY with a valid JSON object — no markdown, no preamble, no backticks. Shape: {"topic":"short 4-6 word clean title","signal_count":integer,"deal_count":integer,"sentiment_label":"Bullish|Mixed|Cautious|Bearish","findings":["4 strings, each a crisp 1-sentence finding with a concrete data point, written like a sell-side analyst"],"key_driver":"1 sentence on the biggest driver right now","watch":"1 sentence on the key risk to monitor"}`;
+  const date = today || new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  const systemPrompt = 'You are an M&A intelligence analyst. Today is ' + date + '. Use web search to find 30-day signals on the given topic. Respond ONLY with a valid JSON object — no markdown, no preamble, no backticks. Shape: {"topic":"short 4-6 word clean title","signal_count":integer,"deal_count":integer,"sentiment_label":"Bullish|Mixed|Cautious|Bearish","findings":["4 strings, each a crisp 1-sentence finding with a concrete data point, written like a sell-side analyst"],"key_driver":"1 sentence on the biggest driver right now","watch":"1 sentence on the key risk to monitor"}';
 
   try {
     const anthropicResp = await fetch('https://api.anthropic.com/v1/messages', {
@@ -34,13 +35,13 @@ export default async function handler(req, res) {
 
     if (!anthropicResp.ok) {
       const errText = await anthropicResp.text();
-      return res.status(502).json({ error: 'Anthropic error: ' + anthropicResp.status, detail: errText });
+      return res.status(502).json({ error: 'Anthropic error ' + anthropicResp.status, detail: errText });
     }
 
     const data = await anthropicResp.json();
     const txt = (data.content || [])
-      .filter(b => b.type === 'text')
-      .map(b => b.text)
+      .filter(function(b) { return b.type === 'text'; })
+      .map(function(b) { return b.text; })
       .join('');
 
     const clean = txt.replace(/```json|```/g, '').trim();
@@ -48,6 +49,6 @@ export default async function handler(req, res) {
 
     return res.status(200).json(parsed);
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message || 'Unknown error' });
   }
-}
+};
