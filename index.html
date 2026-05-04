@@ -1022,7 +1022,11 @@ async function runPulse(){
     });
     clearInterval(st);
     stepEls.forEach(function(el,i){el.classList.add('vis');var d=document.getElementById('psd'+i);if(d)d.classList.add('done');});
-    if(!resp.ok) throw new Error('API '+resp.status);
+    if(!resp.ok){
+      var errBody='';
+      try{var eb=await resp.json();errBody=eb.detail||eb.error||JSON.stringify(eb);}catch(e){errBody=await resp.text().catch(function(){return '';});}
+      throw new Error('API '+resp.status+' — '+errBody);
+    }
     var d=await resp.json();
     await new Promise(function(r){setTimeout(r,300);});
     renderPulse(d,topic);
