@@ -4,69 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Advisor Directory · M&A Intelligence</title>
-<meta name="description" content="Professional directory of European M&A advisors. Filter by country, deal size, sector, type.">
+<meta name="description" content="European M&A advisor directory. Filter by country, sector and deal size. Transparent match scoring based on deal fit, track record and fee structure.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
-
-/* ── NAV ── */
-nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:56px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.nav-left{display:flex;align-items:center;gap:0.6rem}
-.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:6px;flex-shrink:0}
-.hamburger span{display:block;width:20px;height:1.5px;background:currentColor;transition:all .2s}
-.hamburger:hover{color:#fff}
-.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-.nav-logo-bar{width:2px;height:17px;background:var(--red);flex-shrink:0}
-.nav-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
-.nav-links{display:flex;align-items:center;gap:0}
-.nav-link{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.35rem 0.8rem;transition:color .15s;white-space:nowrap;position:relative}
-.nav-link:hover,.nav-link.active{color:#fff}
-/* Tools dropdown in top nav */
-.nav-dropdown{position:relative}
-.nav-dropdown-btn{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);background:transparent;border:none;padding:0.35rem 0.8rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .15s;height:56px}
-.nav-dropdown-btn:hover,.nav-dropdown-btn.active{color:#fff}
-.nav-dropdown-btn svg{width:8px;height:8px;fill:currentColor;transition:transform .2s}
-.nav-dropdown-btn.open svg{transform:rotate(180deg)}
-.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 1px);left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--red);min-width:200px;z-index:500;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
-.nav-dropdown-menu.open{display:block}
-.nav-dd-item{display:block;padding:9px 16px;font-size:0.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s,background .12s;white-space:nowrap}
-.nav-dd-item:last-child{border-bottom:none}
-.nav-dd-item:hover{color:#fff;background:rgba(255,255,255,0.05)}
-.nav-dd-item.active{color:#fff}
-.nav-sub{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
-.nav-sub:hover{background:#6e1414}
-@media(max-width:767px){.nav-links{display:none}}
-@media(min-width:900px){nav{padding:0 2.5rem}}
-/* ── SIDEBAR ── */
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:285px;background:var(--navy);z-index:300;transform:translateX(-285px);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
-.sidebar.open{transform:translateX(0)}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:299}
-.sb-overlay.open{display:block}
-.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
-.sb-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}
-.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.4rem;cursor:pointer;line-height:1}
-.sb-section{font-size:0.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.25rem 0 0.5rem}
-.sb-link{display:block;padding:0.55rem 0;font-size:0.88rem;font-weight:500;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s}
-.sb-link:hover,.sb-link.active{color:#fff}
-.sb-link.active{font-weight:600}
-.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
-.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans,'DM Sans',sans-serif);font-size:0.88rem;font-weight:500;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .12s}
-.sb-dropdown-btn:hover,.sb-dropdown-btn.open{color:#fff}
-.sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform .2s}
-.sb-arrow.open{transform:rotate(180deg)}
-.sb-dropdown-items{display:none;padding-bottom:0.4rem}
-.sb-dropdown-items.open{display:block}
-.sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color .12s}
-.sb-sub-link:hover,.sb-sub-link.active{color:rgba(255,255,255,0.85)}
-.sb-sub-link.active{color:#fff}
-.sb-cta{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
-.sb-cta:hover{background:#6e1414}
-.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
-.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
-
 :root{
   --navy:#0A1628;--navy2:#142035;
   --white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;
@@ -75,671 +16,1241 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
   --red:#8B1A1A;--red2:#6e1414;
   --grn:#0A5C1E;--grn2:#D6EAD9;
   --amber:#B45309;--amber2:#FEF3C7;
-  --input-bg:#FFFDE7;--input-border:#C8B400;
   --shadow:0 1px 6px rgba(0,0,0,0.06);
   --shadow-md:0 2px 16px rgba(0,0,0,0.10);
   --sans:'DM Sans',sans-serif;
-  --sans:'DM Sans',sans-serif;
   --serif:'Playfair Display',serif;
+  --mono:'IBM Plex Mono',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-smoothing:antialiased;font-size:15px;overflow-x:hidden}
 
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:56px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-left{display:flex;align-items:center;gap:0.6rem}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:17px;background:var(--red);flex-shrink:0}
+.nav-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:0}
+.nav-link{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.35rem 0.8rem;transition:color .15s}
+.nav-link:hover,.nav-link.active{color:#fff}
+.nav-sub{font-family:var(--sans);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.nav-sub:hover{background:#6e1414}
+@media(max-width:767px){.nav-links{display:none}nav{padding:0 1.25rem}}
 
-
-
-
-
-
-
-
-
-
-
-
-@media(max-width:800px){}
-
-
-
-
-
-
-
-
-
-.sb-close:hover{color:#fff}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.back-bar{background:var(--bg2);border-bottom:0.5px solid var(--rule);padding:0.55rem 2.5rem}
-.back-bar-inner{max-width:1200px;margin:0 auto}
-.back-btn{display:inline-flex;align-items:center;gap:5px;font-size:0.72rem;font-weight:500;color:var(--gl);text-decoration:none;transition:color .12s}
-.back-btn:hover{color:var(--navy)}
-footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(255,255,255,0.06)}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
-.f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
-.f-brand-bar{width:2px;height:14px;background:var(--red);flex-shrink:0}
-.f-brand-text{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
-.f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
-.f-links a{font-size:0.7rem;color:rgba(255,255,255,0.25);text-decoration:none;transition:color .15s}
-.f-links a:hover{color:rgba(255,255,255,0.7)}
-.f-copy{font-size:0.6rem;color:rgba(255,255,255,0.15);width:100%;margin-top:0.15rem}
-@media(min-width:900px){footer{padding:1.75rem 3rem}.back-bar{padding:0.55rem 3rem}}
-@media(max-width:767px){footer{padding:1.5rem 1.25rem}.back-bar{padding:0.55rem 1.25rem}}
+/* MARKET PULSE STRIP */
+.market-pulse{display:flex;align-items:center;gap:0;background:var(--navy2);padding:0 1.75rem;height:34px;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.06)}
+.mp-brand{display:flex;align-items:center;gap:6px;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);white-space:nowrap;margin-right:1.5rem;flex-shrink:0}
+.mp-dot{width:5px;height:5px;border-radius:50%;background:var(--grn);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* PAGE HEADER */
-.page-header{background:var(--white);border-bottom:0.5px solid var(--rule);padding:2.5rem 2.5rem 2rem}
-.page-header-inner{max-width:1200px;margin:0 auto}
-.ph-kicker{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);margin-bottom:0.85rem;display:flex;align-items:center;gap:8px}
-.ph-kicker::before{content:'';width:16px;height:2px;background:var(--red);flex-shrink:0}
-.ph-h1{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--navy);line-height:1.1;margin-bottom:0.5rem;letter-spacing:-.02em}
-.ph-sub{font-size:0.85rem;color:var(--gm);line-height:1.65;max-width:580px}
-.ph-policy{margin-top:0.85rem;font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.62rem;color:var(--gl);display:flex;align-items:center;gap:6px}
-.ph-policy::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--grn);flex-shrink:0}
-
-/* LAYOUT: sidebar filters + card grid */
-.main-layout{max-width:1200px;margin:0 auto;padding:2rem 2.5rem;display:grid;grid-template-columns:220px 1fr;gap:2rem;align-items:start}
-@media(max-width:800px){.main-layout{grid-template-columns:1fr;padding:1.25rem}}
-
-/* FILTER SIDEBAR */
-.filter-panel{background:var(--white);border:0.5px solid var(--rule);box-shadow:var(--shadow);padding:1.25rem;position:sticky;top:68px}
-@media(max-width:800px){.filter-panel{position:static}}
-.fp-title{font-size:0.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:0.5px solid var(--rule)}
-.fp-section{margin-bottom:1.1rem}
-.fp-section-label{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:0.5rem;display:block}
-.fp-option{display:flex;align-items:center;gap:0.5rem;padding:0.3rem 0;cursor:pointer;font-size:0.8rem;color:var(--gm);transition:color .12s;user-select:none}
-.fp-option:hover{color:var(--navy)}
-.fp-option input[type=checkbox]{width:13px;height:13px;cursor:pointer;accent-color:var(--navy)}
-.fp-option.active{color:var(--navy);font-weight:600}
-.fp-search{width:100%;font-family:var(--sans);font-size:0.82rem;color:var(--b);background:var(--bg);border:0.5px solid var(--rule);padding:0.45rem 0.7rem;outline:none;transition:border-color .15s;margin-bottom:1rem}
-.fp-search:focus{border-color:var(--navy)}
-.fp-search::placeholder{color:#bbb}
-.fp-count{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.65rem;color:var(--gl);margin-top:0.85rem;padding-top:0.85rem;border-top:1px solid var(--rule)}
-.fp-reset{background:transparent;border:none;font-family:var(--sans);font-size:0.68rem;color:var(--gl);cursor:pointer;text-decoration:underline;padding:0}
-.fp-reset:hover{color:var(--red)}
-
-/* CARD GRID */
-.cards-area{}
-.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem}
-@media(max-width:900px){.cards-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:550px){.cards-grid{grid-template-columns:1fr}}
-
-.advisor-card{background:var(--white);border:0.5px solid var(--rule);box-shadow:var(--shadow);padding:.85rem;transition:box-shadow .15s,border-color .15s;cursor:pointer;position:relative}
-.advisor-card:hover{box-shadow:var(--shadow-md);border-color:var(--red)}
-.advisor-card.selected{border-color:var(--navy);border-width:2px;box-shadow:var(--shadow-md)}
-
-/* card top row */
-.ac-top{display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;margin-bottom:0.85rem}
-.ac-type-badge{font-size:0.55rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 7px;border:1px solid}
-.ac-type-badge.boutique{color:#1B2F52;border-color:rgba(27,47,82,0.3);background:rgba(27,47,82,0.05)}
-.ac-type-badge.bank{color:var(--red);border-color:rgba(139,26,26,0.3);background:rgba(139,26,26,0.05)}
-.ac-type-badge.big4{color:var(--grn);border-color:rgba(10,92,30,0.3);background:var(--grn2)}
-.ac-vetted{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.52rem;font-weight:600;letter-spacing:.08em;color:var(--grn);border:1px solid rgba(10,92,30,0.2);padding:2px 6px;display:flex;align-items:center;gap:3px}
-.ac-vetted::before{content:'✓'}
-
-/* card name + hq */
-.ac-name{font-family:var(--sans);font-size:.88rem;font-weight:700;font-weight:700;color:var(--navy);margin-bottom:0.15rem;line-height:1.2}
-.ac-hq{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.6rem;color:var(--gl);margin-bottom:.5rem}
-
-/* metrics row */
-.ac-metrics{display:grid;grid-template-columns:1fr 1fr;gap:.3rem;margin-bottom:.5rem}
-.ac-metric{background:var(--bg);padding:.3rem .5rem}
-.ac-metric-label{font-size:.52rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:0.15rem}
-.ac-metric-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.72rem;font-weight:600;color:var(--navy)}
-
-/* description */
-.ac-desc{font-size:.72rem;font-weight:300;color:var(--gm);line-height:1.5;margin-bottom:.5rem}
-
-/* tech badges */
-.ac-badges{display:flex;gap:.2rem;flex-wrap:wrap;margin-bottom:.5rem}
-.ac-badge{font-size:.52rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gm);border:1px solid var(--rule2);padding:2px 7px;background:var(--bg)}
-
-/* footer */
-.ac-foot{display:flex;align-items:center;justify-content:space-between;padding-top:.5rem;border-top:0.5px solid var(--rule)}
-.ac-foot-src{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.6rem;color:var(--gl)}
-.ac-foot-link{font-size:0.68rem;font-weight:700;color:var(--navy);text-decoration:none;letter-spacing:.04em}
-.ac-foot-link:hover{color:var(--red)}
-
-/* detail expanded */
-.ac-detail{display:none;margin-top:0.85rem;padding-top:0.85rem;border-top:1px solid var(--rule2);grid-column:span 2}
-.advisor-card.selected .ac-detail{display:block}
-.ac-detail-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
-@media(max-width:500px){.ac-detail-grid{grid-template-columns:1fr}}
-.ac-detail-block-title{font-size:0.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);margin-bottom:0.5rem;padding-bottom:0.35rem;border-bottom:1px solid var(--rule2)}
-.ac-detail-row{display:flex;justify-content:space-between;padding:0.25rem 0;border-bottom:1px solid var(--rule2);font-size:0.75rem}
-.ac-detail-row:last-child{border-bottom:none}
-.ac-detail-lbl{color:var(--gm)}
-.ac-detail-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-weight:600;color:var(--navy)}
-
-/* submit band */
-.submit-band{background:var(--navy);padding:1.5rem 2.5rem;margin-top:2rem}
-.submit-band-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
-@media(max-width:600px){.submit-band-inner{grid-template-columns:1fr}}
-.sb-band-h{font-family:var(--serif);font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.25rem}
-.sb-band-p{font-size:0.78rem;color:rgba(255,255,255,0.5);line-height:1.5}
-.sb-band-btn{font-family:var(--sans);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.65rem 1.35rem;cursor:pointer;white-space:nowrap;transition:background .15s;flex-shrink:0}
-.sb-band-btn:hover{background:var(--red2)}
-
-.note-bar{padding:0.85rem 2.5rem;font-size:0.68rem;color:var(--gl);border-top:1px solid var(--rule);max-width:100%}
-@media(max-width:767px){.submit-band{padding:1.25rem}.main-layout{padding:1.25rem}.note-bar{padding:0.85rem 1.25rem}}
-
-/* ── SEARCH DROPDOWN ── */
-.search-wrap{position:relative;flex:1;max-width:300px}
-.fp-search{width:100%;font-family:var(--sans);font-size:0.82rem;color:var(--b);background:var(--bg);border:0.5px solid var(--rule);padding:0.45rem 0.7rem;outline:none;transition:border-color .15s;position:relative;z-index:2}
-.fp-search:focus{border-color:var(--navy);background:var(--white)}
-.search-dropdown{display:none;position:absolute;top:100%;left:0;right:0;background:var(--white);border:1px solid var(--navy);border-top:none;max-height:220px;overflow-y:auto;z-index:100;box-shadow:var(--shadow-md)}
-.search-dropdown.open{display:block}
-.sd-item{padding:0.5rem 0.85rem;font-size:0.8rem;color:var(--g);cursor:pointer;border-bottom:1px solid var(--rule2);transition:background .1s;display:flex;justify-content:space-between;align-items:center}
-.sd-item:last-child{border-bottom:none}
-.sd-item:hover,.sd-item.focused{background:var(--bg2)}
-.sd-item-type{font-size:0.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gl)}
-.sd-empty{padding:0.75rem 0.85rem;font-size:0.78rem;color:var(--gl);font-style:italic}
-
-/* ── MARKET PULSE ── */
-.market-pulse{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
-.market-pulse::-webkit-scrollbar{display:none}
-.mp-brand{display:flex;align-items:center;gap:6px;padding:.3rem 1.25rem .3rem .75rem;border-right:1px solid rgba(255,255,255,0.07);flex-shrink:0}
-.mp-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:mp-pulse 2.5s infinite}
-@keyframes mp-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
-.mp-label{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
-.mp-item{display:flex;align-items:center;gap:.5rem;padding:.28rem .9rem;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0}
-.mp-item:last-child{border-right:none}
-.mp-name{font-size:.58rem;color:rgba(255,255,255,.32);white-space:nowrap}
-.mp-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
-.mp-chg{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.55rem;white-space:nowrap}
+.mp-item{display:flex;align-items:center;gap:6px;margin-right:1.75rem;flex-shrink:0}
+.mp-name{font-size:.58rem;font-weight:500;color:rgba(255,255,255,.35);white-space:nowrap}
+.mp-val{font-family:var(--mono);font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
+.mp-chg{font-family:var(--mono);font-size:.55rem;white-space:nowrap}
 .mp-chg.up{color:#4ade80}.mp-chg.dn{color:#f87171}.mp-chg.neu{color:rgba(255,255,255,.3)}
 
+/* PAGE HEADER */
+.page-head{background:var(--white);padding:2.5rem 2.5rem 1.75rem;border-bottom:0.5px solid var(--rule)}
+.page-head-inner{max-width:1140px;margin:0 auto}
+.ph-eyebrow{font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);margin-bottom:.65rem}
+.ph-h1{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--b);line-height:1.1;letter-spacing:-.025em;margin-bottom:.5rem}
+.ph-sub{font-size:.88rem;color:var(--gm);max-width:600px;line-height:1.55}
+@media(max-width:767px){.page-head{padding:1.75rem 1.25rem 1.25rem}}
 
-/* ── GATED NAV LINKS ── */
+/* MATCH CRITERIA EXPLAINER */
+.criteria-band{background:var(--bg2);border-top:0.5px solid var(--rule);border-bottom:0.5px solid var(--rule)}
+.criteria-inner{max-width:1140px;margin:0 auto;padding:1.1rem 2.5rem;display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap}
+@media(max-width:767px){.criteria-inner{padding:1rem 1.25rem;gap:1rem}}
+.crit-label{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);white-space:nowrap;padding-top:2px;flex-shrink:0}
+.crit-items{display:flex;flex-wrap:wrap;gap:.5rem}
+.crit-item{display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--gm)}
+.crit-item strong{color:var(--b);font-weight:600}
+.crit-sep{width:1px;height:14px;background:var(--rule);flex-shrink:0}
 
+/* FILTERS */
+.filters-bar{background:var(--white);border-bottom:0.5px solid var(--rule);position:sticky;top:56px;z-index:100}
+.filters-inner{max-width:1140px;margin:0 auto;padding:.85rem 2.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+@media(max-width:767px){.filters-inner{padding:.75rem 1.25rem}}
+.filter-group{display:flex;align-items:center;gap:.5rem}
+.filter-lbl{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gl);white-space:nowrap}
+.filter-sel{font-family:var(--sans);font-size:.78rem;color:var(--b);background:var(--bg);border:0.5px solid var(--rule);padding:.35rem .75rem;outline:none;cursor:pointer;transition:border-color .15s;min-width:150px}
+.filter-sel:focus{border-color:var(--navy)}
+.filter-divider{width:1px;height:24px;background:var(--rule);flex-shrink:0}
+.result-count{font-family:var(--mono);font-size:.62rem;color:var(--gl);margin-left:auto}
 
+/* GRID */
+.adv-page-inner{max-width:1140px;margin:0 auto;padding:1.75rem 2.5rem 3rem}
+@media(max-width:767px){.adv-page-inner{padding:1.25rem 1.25rem 2rem}}
+.adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule)}
+@media(max-width:900px){.adv-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.adv-grid{grid-template-columns:1fr}}
 
-/* ── ADVISOR TABLE ROW LAYOUT ── */
-.adv-table-wrap{background:var(--white);border:0.5px solid var(--rule);overflow:hidden}
-.adv-table-head{display:grid;grid-template-columns:1fr 90px 130px 1fr 100px 60px;gap:0;background:var(--navy);padding:.5rem .9rem;align-items:center;border-bottom:2px solid var(--red)}
-.adv-th{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.54rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.adv-row{display:grid;grid-template-columns:1fr 90px 130px 1fr 100px 60px;gap:0;padding:.52rem .9rem;border-bottom:0.5px solid var(--rule);cursor:pointer;transition:background .1s;align-items:center}
-.adv-row:last-child{border-bottom:none}
-.adv-row:hover{background:var(--bg)}
-.adv-row.selected{background:#EBF0F8;border-left:2px solid var(--navy)}
-.adv-row-name{font-size:.78rem;font-weight:600;color:var(--navy)}
-.adv-row-hq{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.6rem;color:var(--gl);margin-top:.05rem}
-.adv-row-type{font-size:.54rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border:0.5px solid;display:inline-block}
-.adv-row-type.boutique{color:#1B2F52;border-color:rgba(27,47,82,.3);background:rgba(27,47,82,.05)}
-.adv-row-type.bank{color:var(--red);border-color:rgba(139,26,26,.3);background:rgba(139,26,26,.05)}
-.adv-row-type.big4{color:var(--grn);border-color:rgba(10,92,30,.3);background:var(--grn2)}
-.adv-row-range{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.68rem;color:var(--gm)}
-.adv-row-sectors{display:flex;gap:.2rem;flex-wrap:wrap}
-.adv-row-sector{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.52rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--gl);background:var(--bg);border:0.5px solid var(--rule2);padding:1px 5px}
-.adv-row-vetted{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.6rem;font-weight:700;color:var(--grn);text-align:right}
-/* Detail panel */
-.adv-detail-panel{display:none;background:var(--navy);border-top:0.5px solid rgba(255,255,255,.08)}
-.adv-detail-panel.visible{display:grid;grid-template-columns:1fr 1fr 1fr}
-.adp-col{padding:1rem 1.1rem;border-right:0.5px solid rgba(255,255,255,.08)}
-.adp-col:last-child{border-right:none}
-.adp-title{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.52rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.5rem;padding-bottom:.3rem;border-bottom:0.5px solid rgba(255,255,255,.08)}
-.adp-row{display:flex;justify-content:space-between;align-items:baseline;padding:.2rem 0;border-bottom:0.5px solid rgba(255,255,255,.05);font-size:.7rem}
-.adp-row:last-child{border-bottom:none}
-.adp-lbl{color:rgba(255,255,255,.4)}
-.adp-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-weight:600;color:#fff}
-.adp-val.grn{color:#4ade80}
-.adp-desc{font-size:.7rem;color:rgba(255,255,255,.5);line-height:1.65;margin-top:.5rem}
-.adp-badges{display:flex;gap:.2rem;flex-wrap:wrap;margin-top:.55rem}
-.adp-badge{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.52rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.4);border:0.5px solid rgba(255,255,255,.12);padding:1px 6px}
-.adp-link{display:inline-block;margin-top:.65rem;font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.6);text-decoration:none;border-bottom:0.5px solid rgba(255,255,255,.2);padding-bottom:1px}
-.adp-link:hover{color:#fff}
-@media(max-width:800px){.adv-table-head{display:none}.adv-row{grid-template-columns:1fr auto;gap:.5rem}.adv-row>*:nth-child(3),.adv-row>*:nth-child(4){display:none}.adv-detail-panel.visible{grid-template-columns:1fr}}
+.acard{background:var(--white);padding:1.25rem;cursor:pointer;transition:background .12s;position:relative}
+.acard:hover{background:var(--bg)}
+.acard.hidden{display:none}
+.acard-top{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.75rem}
+.acard-logo{width:32px;height:32px;border:0.5px solid var(--rule);object-fit:contain;background:#fff;flex-shrink:0;padding:3px}
+.acard-name{font-size:.88rem;font-weight:700;color:var(--navy);line-height:1.25}
+.acard-type{font-size:.62rem;color:var(--gl);margin-top:2px}
 
+/* Match score bar */
+.score-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.65rem}
+.score-bar-wrap{flex:1;height:3px;background:var(--rule)}
+.score-bar{height:3px;transition:width .3s}
+.score-val{font-family:var(--mono);font-size:.6rem;font-weight:600;white-space:nowrap;flex-shrink:0}
+.score-hi{color:var(--grn)}.score-mid{color:var(--navy)}.score-lo{color:var(--amber)}
+
+/* Score breakdown tooltip */
+.score-breakdown{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.65rem}
+.sb-pill{font-size:.58rem;padding:1px 6px;background:var(--bg2);color:var(--gm);border:0.5px solid var(--rule2)}
+.sb-pill span{font-weight:600;color:var(--b)}
+
+.acard-meta{font-size:.7rem;color:var(--gm);margin-bottom:.6rem;line-height:1.45}
+.acard-tags{display:flex;flex-wrap:wrap;gap:3px}
+.at-s{font-size:.58rem;padding:1px 6px;background:rgba(10,22,40,.07);color:var(--navy);font-weight:500}
+.at-g{font-size:.58rem;padding:1px 6px;background:var(--grn2);color:var(--grn)}
+.at-x{font-size:.58rem;padding:1px 6px;background:var(--amber2);color:var(--amber)}
+.at-d{font-size:.58rem;padding:1px 6px;background:var(--bg2);color:var(--gl)}
+
+.acard-foot{margin-top:.85rem;padding-top:.65rem;border-top:0.5px solid var(--rule2)}
+.acard-fee{font-family:var(--mono);font-size:.62rem;color:var(--gl)}
+.acard-link{font-size:.65rem;font-weight:700;color:var(--navy);letter-spacing:.04em}
+
+/* No results */
+.no-results{display:none;text-align:center;padding:3rem 1rem;font-size:.88rem;color:var(--gl);background:var(--white);grid-column:1/-1}
+
+/* FOOTER */
+footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:2px solid var(--red)}
+.footer-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.f-brand{display:flex;align-items:center;gap:8px;text-decoration:none}
+.f-brand-bar{width:2px;height:16px;background:var(--red)}
+.f-brand-text{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.f-links{display:flex;gap:1.25rem;flex-wrap:wrap}
+.f-links a{font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;transition:color .12s}
+.f-links a:hover{color:#fff}
+.f-copy{font-size:.62rem;color:rgba(255,255,255,.22);width:100%}
+@media(max-width:767px){footer{padding:1.5rem 1.25rem}}
 </style>
 </head>
 <body>
 
-<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
-<div class="sidebar" id="sidebar">
-  <div class="sb-top">
-    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
-    <button class="sb-close" onclick="closeSidebar()">×</button>
-  </div>
-
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
-    <div style="font-size:0.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#0A5C1E;display:inline-block;animation:pulse 2s infinite"></span>Live Benchmarks</div>
-    <div style="display:flex;flex-direction:column;gap:0.3rem" id="sbTicker"></div>
-  </div>
-
-  <div class="sb-section">Info</div>
-  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
-
-  <div class="sb-section">Editorial</div>
-  <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropEditorial')">
-      <span>Articles &amp; Cases</span><span class="sb-arrow" id="arrowEditorial">▾</span>
-    </button>
-    <div class="sb-dropdown-items" id="dropEditorial">
-      <a href="/issues" class="sb-sub-link" onclick="closeSidebar()">All Articles</a>
-      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
-      <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
-      <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
-      <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
-      <a href="/case-studies" class="sb-sub-link" onclick="closeSidebar()">All Case Studies</a>
-      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker · 7.5×</a>
-      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer · 4× vs 7×</a>
-      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">CS03. Deal collapsed in due diligence</a>
-      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans · 14.5×</a>
-    </div>
-  </div>
-
-  <div class="sb-section">Tools</div>
-  <div class="sb-dropdown">
-    <button class="sb-dropdown-btn  open" onclick="toggleDrop('dropTools')">
-      <span>Calculators &amp; Data</span><span class="sb-arrow  open" id="arrowTools">▾</span>
-    </button>
-    <div class="sb-dropdown-items  open" id="dropTools">
-      <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
-      <a href="/exit-calculator" class="sb-sub-link" onclick="closeSidebar()">Exit Calculator</a>
-      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
-      <a href="/country-index" class="sb-sub-link" onclick="closeSidebar()">Transaction Cost Index</a>
-      <a href="/advisors" class="sb-sub-link" onclick="closeSidebar()">Advisor Directory</a>
-    </div>
-  </div>
-
-  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
-</div>
-
+<!-- NAV -->
 <nav>
   <div class="nav-left">
-    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
     <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
   </div>
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
     <a href="/issues" class="nav-link">Articles</a>
     <a href="/case-studies" class="nav-link">Case Studies</a>
-    <div class="nav-dropdown" id="navToolsDrop">
-      <button class="nav-dropdown-btn active" onclick="toggleNavDrop()" id="navToolsBtn">
-        Tools
-        <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"/></svg>
-      </button>
-      <div class="nav-dropdown-menu" id="navToolsMenu">
-      <a href="/multiples" class="nav-dd-item">Multiples</a>
-      <a href="/exit-calculator" class="nav-dd-item">Exit Calculator</a>
-      <a href="/wacc" class="nav-dd-item">WACC Calculator</a>
-      <a href="/country-index" class="nav-dd-item">Cost Index</a>
-      <a href="/advisors" class="nav-dd-item active">Advisors</a>
-      </div>
-    </div>
+    <a href="/multiples" class="nav-link">Multiples</a>
+    <a href="/advisors" class="nav-link active">Advisors</a>
+    <a href="/country-index" class="nav-link">Cost Index</a>
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>
+
 <!-- MARKET PULSE -->
 <div class="market-pulse">
-  <div class="mp-brand"><span class="mp-dot"></span><span class="mp-label">Market Pulse</span></div>
-  <div class="mp-item"><span class="mp-name">10Y Bund (Rf)</span><span class="mp-val">2.68%</span><span class="mp-chg neu">ECB</span></div>
+  <div class="mp-brand"><span class="mp-dot"></span><span>Market Pulse</span></div>
   <div class="mp-item"><span class="mp-name">ERP EU avg</span><span class="mp-val">5.84%</span><span class="mp-chg neu">Damodaran 2026</span></div>
-  <div class="mp-item"><span class="mp-name">S&amp;P Fwd P/E</span><span class="mp-val">20.8×</span><span class="mp-chg dn">above hist. avg</span></div>
+  <div class="mp-item"><span class="mp-name">Software EV/EBITDA</span><span class="mp-val">24.5×</span><span class="mp-chg up">Jan 2026</span></div>
   <div class="mp-item"><span class="mp-name">EU Deal Vol</span><span class="mp-val">−14%</span><span class="mp-chg dn">YoY · Mergermarket</span></div>
-  <div class="mp-item"><span class="mp-name">Software EV/EBITDA</span><span class="mp-val">24.5×</span><span class="mp-chg up">Damodaran Jan 2026</span></div>
-  <div class="mp-item"><span class="mp-name">Logistics EV/EBITDA</span><span class="mp-val">12.6×</span><span class="mp-chg neu">Damodaran Jan 2026</span></div>
-  <div class="mp-item"><span class="mp-name">CH CGT</span><span class="mp-val">0%</span><span class="mp-chg up">lowest EU</span></div>
-  <div class="mp-item"><span class="mp-name">DK CGT</span><span class="mp-val">42%</span><span class="mp-chg dn">highest EU</span></div>
+  <div class="mp-item"><span class="mp-name">Advisory Fee €5M</span><span class="mp-val">5.5%</span><span class="mp-chg neu">Firmex 2025</span></div>
 </div>
-<div class="back-bar"><div class="back-bar-inner"><a href="/" class="back-btn">← Home</a></div></div>
 
-<div class="page-header">
-  <div class="page-header-inner">
-    <div class="ph-kicker">Advisor Directory · European M&A · Sell-side Focus</div>
-    <h1 class="ph-h1">Find the right M&A advisor.</h1>
-    <p class="ph-sub">Professional database of European sell-side M&A advisors. Filter by country, deal size, sector and firm type. All listings independently curated.</p>
-    <div class="ph-policy">No sponsored listings · No pay-to-play · Editorial curation only</div>
+<!-- PAGE HEADER -->
+<div class="page-head">
+  <div class="page-head-inner">
+    <div class="ph-eyebrow">Tools · 05 · Advisor Directory</div>
+    <h1 class="ph-h1">European M&A Advisor Directory</h1>
+    <p class="ph-sub">20 curated advisors across Europe. Filter by country, sector and deal size. Match score reflects deal fit across four independent criteria.</p>
   </div>
 </div>
 
-<div class="main-layout">
-
-  <!-- FILTER PANEL -->
-  <div class="filter-panel">
-    <div class="fp-title">Filter advisors</div>
-    <div class="search-wrap">
-      <input type="text" class="fp-search" id="fpSearch" placeholder="Search firm, sector or market…" 
-             oninput="onSearchInput()" onfocus="openDropdown()" autocomplete="off">
-      <div class="search-dropdown" id="searchDropdown"></div>
-    </div>
-    <div class="fp-section">
-      <span class="fp-section-label">Type</span>
-      <label class="fp-option"><input type="checkbox" value="boutique" onchange="render()" checked> Boutique</label>
-      <label class="fp-option"><input type="checkbox" value="bank" onchange="render()" checked> Investment Bank</label>
-      <label class="fp-option"><input type="checkbox" value="big4" onchange="render()" checked> Big 4 / Consulting</label>
-    </div>
-    <div class="fp-section">
-      <span class="fp-section-label">Deal size</span>
-      <label class="fp-option"><input type="checkbox" value="micro" onchange="render()" checked> €1–5M</label>
-      <label class="fp-option"><input type="checkbox" value="small" onchange="render()" checked> €5–20M</label>
-      <label class="fp-option"><input type="checkbox" value="mid" onchange="render()" checked> €20–100M</label>
-      <label class="fp-option"><input type="checkbox" value="large" onchange="render()" checked> €100M+</label>
-    </div>
-    <div class="fp-section">
-      <span class="fp-section-label">Market</span>
-      <label class="fp-option"><input type="checkbox" value="DACH" onchange="render()" checked> DACH</label>
-      <label class="fp-option"><input type="checkbox" value="Southern Europe" onchange="render()" checked> Southern Europe</label>
-      <label class="fp-option"><input type="checkbox" value="Northern Europe" onchange="render()" checked> Northern Europe</label>
-      <label class="fp-option"><input type="checkbox" value="CEE" onchange="render()" checked> CEE</label>
-      <label class="fp-option"><input type="checkbox" value="UK/Ireland" onchange="render()" checked> UK / Ireland</label>
-      <label class="fp-option"><input type="checkbox" value="Pan-European" onchange="render()" checked> Pan-European</label>
-    </div>
-    <div class="fp-count" id="fpCount"></div>
-    <button class="fp-reset" onclick="resetFilters()">Reset all filters</button>
-  </div>
-
-  <!-- TABLE AREA -->
-  <div class="cards-area">
-    <div class="adv-table-wrap">
-      <div class="adv-table-head">
-        <span class="adv-th">Firm</span>
-        <span class="adv-th">Type</span>
-        <span class="adv-th">HQ / Market</span>
-        <span class="adv-th">Sector focus</span>
-        <span class="adv-th">Deal range</span>
-        <span class="adv-th">Vetted</span>
-      </div>
-      <div id="cardsGrid"></div>
-      <div class="adv-detail-panel" id="advDetailPanel"></div>
+<!-- MATCH CRITERIA EXPLAINER -->
+<div class="criteria-band">
+  <div class="criteria-inner">
+    <span class="crit-label">Match score criteria</span>
+    <div class="crit-items">
+      <span class="crit-item"><strong>Deal size fit</strong> — EV in sweet spot range</span>
+      <span class="crit-sep"></span>
+      <span class="crit-item"><strong>Sector coverage</strong> — verified sector mandates</span>
+      <span class="crit-sep"></span>
+      <span class="crit-item"><strong>Geography</strong> — active office or recent mandate</span>
+      <span class="crit-sep"></span>
+      <span class="crit-item"><strong>Track record</strong> — closed deals last 3 years</span>
     </div>
   </div>
 </div>
 
-<div class="submit-band">
-  <div class="submit-band-inner">
-    <div>
-      <div class="sb-band-h">Is your firm missing?</div>
-      <p class="sb-band-p">M&A advisors active on European sell-side mandates can apply for inclusion. Free. Editorially curated. We review within 5 business days.</p>
+<!-- FILTERS -->
+<div class="filters-bar">
+  <div class="filters-inner">
+    <div class="filter-group">
+      <span class="filter-lbl">Country</span>
+      <select class="filter-sel" id="fCountry" onchange="applyFilters()">
+        <option value="all">All countries</option>
+        <option value="UK">🇬🇧 United Kingdom</option>
+        <option value="DE">🇩🇪 Germany</option>
+        <option value="FR">🇫🇷 France</option>
+        <option value="IT">🇮🇹 Italy</option>
+        <option value="CH">🇨🇭 Switzerland</option>
+        <option value="NL">🇳🇱 Netherlands</option>
+        <option value="ES">🇪🇸 Spain</option>
+        <option value="SE">🇸🇪 Sweden</option>
+        <option value="BE">🇧🇪 Belgium</option>
+      </select>
     </div>
-    <button class="sb-band-btn" onclick="alert('Thank you. Submit your details to deals@news.mnaintel.com and we will review within 5 business days.')">Submit your firm →</button>
+    <div class="filter-divider"></div>
+    <div class="filter-group">
+      <span class="filter-lbl">Sector</span>
+      <select class="filter-sel" id="fSector" onchange="applyFilters()">
+        <option value="all">All sectors</option>
+        <option value="Software">Software / SaaS</option>
+        <option value="Industrials">Industrials</option>
+        <option value="Healthcare">Healthcare</option>
+        <option value="Consumer">Consumer</option>
+        <option value="FinTech">FinTech</option>
+        <option value="Energy">Energy / CleanTech</option>
+        <option value="Business">Business Services</option>
+        <option value="Real">Real Estate</option>
+      </select>
+    </div>
+    <div class="filter-divider"></div>
+    <div class="filter-group">
+      <span class="filter-lbl">Deal size (EV)</span>
+      <select class="filter-sel" id="fSize" onchange="applyFilters()">
+        <option value="all">Any size</option>
+        <option value="xs">Under €10M</option>
+        <option value="s">€10M – €50M</option>
+        <option value="m">€50M – €200M</option>
+        <option value="l">€200M – €1B</option>
+        <option value="xl">Over €1B</option>
+      </select>
+    </div>
+    <span class="result-count" id="rCount">20 advisors</span>
   </div>
 </div>
 
-<div class="note-bar"><strong>Editorial policy:</strong> No fee to be listed. Inclusion does not constitute endorsement. Always conduct your own due diligence. Not financial advice.</div>
+<!-- ADVISOR GRID -->
+<div class="adv-page-inner">
+<div class="adv-grid" id="advGrid">
+
+  <!-- ── HOULIHAN LOKEY ── -->
+  <div class="acard"
+    data-geos="UK,DE,FR,IT,NL,ES"
+    data-secs="Software,Industrials,Healthcare,FinTech,Business"
+    data-min="20" data-max="500">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=hl.com&sz=64" alt="Houlihan Lokey">
+      <div><div class="acard-name">Houlihan Lokey</div><div class="acard-type">Global boutique · 20+ EU offices</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar score-hi" style="width:95%;background:var(--grn)"></div></div>
+      <span class="score-val score-hi">95 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>25/25</span></span>
+      <span class="sb-pill">Sector <span>24/25</span></span>
+      <span class="sb-pill">Geography <span>25/25</span></span>
+      <span class="sb-pill">Track record <span>21/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €20–500M · 90+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Software/SaaS</span><span class="at-s">Industrials</span><span class="at-s">Healthcare</span>
+      <span class="at-g">🇬🇧 London</span><span class="at-g">🇩🇪 Frankfurt</span><span class="at-g">🇫🇷 Paris</span>
+      <span class="at-x">Cross-border</span><span class="at-x">PE-backed</span><span class="at-x">Restructuring</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://hl.com" target="_blank" class="acard-link">hl.com →</a>
+    </div>
+  </div>
+
+  <!-- ── DC ADVISORY ── -->
+  <div class="acard"
+    data-geos="UK,FR,DE,IT,ES,NL,BE"
+    data-secs="Software,Industrials,Consumer,Business,Healthcare"
+    data-min="30" data-max="500">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=dcadvisory.com&sz=64" alt="DC Advisory">
+      <div><div class="acard-name">DC Advisory</div><div class="acard-type">Mid-market boutique · 12 EU offices</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:87%;background:var(--navy)"></div></div>
+      <span class="score-val score-mid">87 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>22/25</span></span>
+      <span class="sb-pill">Sector <span>23/25</span></span>
+      <span class="sb-pill">Geography <span>24/25</span></span>
+      <span class="sb-pill">Track record <span>18/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €30–500M · 60+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Industrials</span><span class="at-s">Consumer</span><span class="at-s">Software</span>
+      <span class="at-g">🇬🇧 London</span><span class="at-g">🇫🇷 Paris</span><span class="at-g">🇩🇪 Munich</span>
+      <span class="at-x">Cross-border</span><span class="at-x">Sell-side</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://dcadvisory.com" target="_blank" class="acard-link">dcadvisory.com →</a>
+    </div>
+  </div>
+
+  <!-- ── EY-PARTHENON ── -->
+  <div class="acard"
+    data-geos="UK,DE,FR,IT,CH,NL,ES,SE,BE"
+    data-secs="Software,Healthcare,Business,Consumer,Industrials"
+    data-min="50" data-max="2000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=parthenon.ey.com&sz=64" alt="EY-Parthenon">
+      <div><div class="acard-name">EY-Parthenon M&A</div><div class="acard-type">Big4 advisory · Global</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:74%;background:var(--amber)"></div></div>
+      <span class="score-val score-lo">74 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>15/25</span></span>
+      <span class="sb-pill">Sector <span>22/25</span></span>
+      <span class="sb-pill">Geography <span>25/25</span></span>
+      <span class="sb-pill">Track record <span>12/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €50–2B · 140+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Healthcare</span><span class="at-s">Business Services</span><span class="at-s">Software</span>
+      <span class="at-g">🇬🇧 London</span><span class="at-g">🇩🇪 Frankfurt</span><span class="at-g">🇮🇹 Milan</span>
+      <span class="at-x">Carve-out</span><span class="at-x">Cross-border</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://parthenon.ey.com" target="_blank" class="acard-link">parthenon.ey.com →</a>
+    </div>
+  </div>
+
+  <!-- ── ROTHSCHILD & CO ── -->
+  <div class="acard"
+    data-geos="UK,FR,DE,IT,CH,NL,ES,SE"
+    data-secs="Industrials,Healthcare,Consumer,Software,Energy"
+    data-min="200" data-max="50000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=rothschildandco.com&sz=64" alt="Rothschild & Co">
+      <div><div class="acard-name">Rothschild &amp; Co</div><div class="acard-type">Bulge bracket · Global</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:78%;background:var(--navy)"></div></div>
+      <span class="score-val score-mid">78 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>14/25</span></span>
+      <span class="sb-pill">Sector <span>22/25</span></span>
+      <span class="sb-pill">Geography <span>25/25</span></span>
+      <span class="sb-pill">Track record <span>17/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €200M+ · 200+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Industrials</span><span class="at-s">Healthcare</span><span class="at-s">Consumer</span>
+      <span class="at-g">🇬🇧 London</span><span class="at-g">🇫🇷 Paris</span><span class="at-g">🇩🇪 Frankfurt</span>
+      <span class="at-x">Cross-border</span><span class="at-x">Large-cap</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://rothschildandco.com" target="_blank" class="acard-link">rothschildandco.com →</a>
+    </div>
+  </div>
+
+  <!-- ── LINCOLN INTERNATIONAL ── -->
+  <div class="acard"
+    data-geos="UK,DE,FR,NL,ES,IT"
+    data-secs="Software,Industrials,Healthcare,Business,Consumer"
+    data-min="25" data-max="500">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=lincolninternational.com&sz=64" alt="Lincoln International">
+      <div><div class="acard-name">Lincoln International</div><div class="acard-type">Mid-market boutique · 15 global offices</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:86%;background:var(--grn)"></div></div>
+      <span class="score-val score-hi">86 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>23/25</span></span>
+      <span class="sb-pill">Sector <span>22/25</span></span>
+      <span class="sb-pill">Geography <span>23/25</span></span>
+      <span class="sb-pill">Track record <span>18/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €25–500M · 75+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Software</span><span class="at-s">Industrials</span><span class="at-s">Healthcare</span>
+      <span class="at-g">🇬🇧 London</span><span class="at-g">🇩🇪 Frankfurt</span><span class="at-g">🇫🇷 Paris</span>
+      <span class="at-x">PE-backed</span><span class="at-x">Cross-border</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://lincolninternational.com" target="_blank" class="acard-link">lincolninternational.com →</a>
+    </div>
+  </div>
+
+  <!-- ── LAZARD ── -->
+  <div class="acard"
+    data-geos="UK,FR,DE,IT,ES,NL,SE"
+    data-secs="Industrials,Healthcare,Consumer,Energy,Software"
+    data-min="200" data-max="50000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=lazard.com&sz=64" alt="Lazard">
+      <div><div class="acard-name">Lazard</div><div class="acard-type">Bulge bracket · Global</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:68%;background:var(--amber)"></div></div>
+      <span class="score-val score-lo">68 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>12/25</span></span>
+      <span class="sb-pill">Sector <span>20/25</span></span>
+      <span class="sb-pill">Geography <span>23/25</span></span>
+      <span class="sb-pill">Track record <span>13/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €200M+ · 180+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Industrials</span><span class="at-s">Energy</span><span class="at-s">Consumer</span>
+      <span class="at-g">🇬🇧 London</span><span class="at-g">🇩🇪 Frankfurt</span><span class="at-g">🇫🇷 Paris</span>
+      <span class="at-x">Large-cap</span><span class="at-x">Restructuring</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://lazard.com" target="_blank" class="acard-link">lazard.com →</a>
+    </div>
+  </div>
+
+  <!-- ── MEDIOBANCA M&A ── -->
+  <div class="acard"
+    data-geos="IT,FR,DE,ES"
+    data-secs="Industrials,Consumer,Software,FinTech,Business"
+    data-min="50" data-max="2000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=mediobanca.com&sz=64" alt="Mediobanca">
+      <div><div class="acard-name">Mediobanca M&A</div><div class="acard-type">Investment bank · Italy / South EU</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:76%;background:var(--navy)"></div></div>
+      <span class="score-val score-mid">76 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>17/25</span></span>
+      <span class="sb-pill">Sector <span>20/25</span></span>
+      <span class="sb-pill">Geography <span>22/25</span></span>
+      <span class="sb-pill">Track record <span>17/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €50–2B · 55 deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Industrials</span><span class="at-s">FinTech</span><span class="at-s">Consumer</span>
+      <span class="at-g">🇮🇹 Milan</span><span class="at-g">🇫🇷 Paris</span>
+      <span class="at-x">Cross-border</span><span class="at-x">Family business</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://mediobanca.com" target="_blank" class="acard-link">mediobanca.com →</a>
+    </div>
+  </div>
+
+  <!-- ── ARMA PARTNERS ── -->
+  <div class="acard"
+    data-geos="UK,DE,FR,NL,SE,IT"
+    data-secs="Software,FinTech,Business"
+    data-min="30" data-max="500">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=armapartners.com&sz=64" alt="Arma Partners">
+      <div><div class="acard-name">Arma Partners</div><div class="acard-type">Tech boutique · London / pan-EU</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:89%;background:var(--grn)"></div></div>
+      <span class="score-val score-hi">89 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>23/25</span></span>
+      <span class="sb-pill">Sector <span>25/25</span></span>
+      <span class="sb-pill">Geography <span>22/25</span></span>
+      <span class="sb-pill">Track record <span>19/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €30–500M · 25+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Software/SaaS</span><span class="at-s">FinTech</span><span class="at-s">Business Services</span>
+      <span class="at-g">🇬🇧 London</span><span class="at-g">🇳🇱 Amsterdam</span>
+      <span class="at-x">PE-backed</span><span class="at-x">Cross-border</span><span class="at-x">Tech-only</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://armapartners.com" target="_blank" class="acard-link">armapartners.com →</a>
+    </div>
+  </div>
+
+  <!-- ── RESULTS ADVISORS (GERMANY) ── -->
+  <div class="acard"
+    data-geos="DE,AT,CH"
+    data-secs="Industrials,Business,Consumer,Healthcare"
+    data-min="5" data-max="100">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=results.de&sz=64" alt="RESULTS">
+      <div><div class="acard-name">RESULTS</div><div class="acard-type">SME boutique · DACH specialist</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:81%;background:var(--grn)"></div></div>
+      <span class="score-val score-hi">81 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>24/25</span></span>
+      <span class="sb-pill">Sector <span>20/25</span></span>
+      <span class="sb-pill">Geography <span>22/25</span></span>
+      <span class="sb-pill">Track record <span>15/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €5–100M · 30+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Industrials</span><span class="at-s">Business Services</span><span class="at-s">Consumer</span>
+      <span class="at-g">🇩🇪 Munich</span><span class="at-g">🇩🇪 Hamburg</span><span class="at-g">🇦🇹 Vienna</span>
+      <span class="at-x">SME / Mittelstand</span><span class="at-x">Sell-side</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://results.de" target="_blank" class="acard-link">results.de →</a>
+    </div>
+  </div>
+
+  <!-- ── ALANTRA ── -->
+  <div class="acard"
+    data-geos="ES,IT,FR,DE,UK,NL,BE"
+    data-secs="Industrials,Healthcare,Consumer,Software,Business,Energy"
+    data-min="20" data-max="500">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=alantra.com&sz=64" alt="Alantra">
+      <div><div class="acard-name">Alantra</div><div class="acard-type">European mid-market · 20+ offices</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:83%;background:var(--grn)"></div></div>
+      <span class="score-val score-hi">83 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>22/25</span></span>
+      <span class="sb-pill">Sector <span>21/25</span></span>
+      <span class="sb-pill">Geography <span>24/25</span></span>
+      <span class="sb-pill">Track record <span>16/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €20–500M · 80+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Industrials</span><span class="at-s">Healthcare</span><span class="at-s">Consumer</span>
+      <span class="at-g">🇪🇸 Madrid</span><span class="at-g">🇮🇹 Milan</span><span class="at-g">🇫🇷 Paris</span><span class="at-g">🇩🇪 Frankfurt</span>
+      <span class="at-x">Cross-border</span><span class="at-x">PE-backed</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://alantra.com" target="_blank" class="acard-link">alantra.com →</a>
+    </div>
+  </div>
+
+  <!-- ── OAKLINS ── -->
+  <div class="acard"
+    data-geos="NL,DE,FR,IT,UK,ES,SE,BE,CH"
+    data-secs="Industrials,Consumer,Business,Healthcare,Software"
+    data-min="10" data-max="300">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=oaklins.com&sz=64" alt="Oaklins">
+      <div><div class="acard-name">Oaklins</div><div class="acard-type">Global partnership · 45 offices</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:80%;background:var(--navy)"></div></div>
+      <span class="score-val score-mid">80 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>21/25</span></span>
+      <span class="sb-pill">Sector <span>21/25</span></span>
+      <span class="sb-pill">Geography <span>25/25</span></span>
+      <span class="sb-pill">Track record <span>13/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €10–300M · 350+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Industrials</span><span class="at-s">Consumer</span><span class="at-s">Business Services</span>
+      <span class="at-g">🇳🇱 Amsterdam</span><span class="at-g">🇩🇪 Frankfurt</span><span class="at-g">🇮🇹 Milan</span>
+      <span class="at-x">Mid-market</span><span class="at-x">Sell-side</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://oaklins.com" target="_blank" class="acard-link">oaklins.com →</a>
+    </div>
+  </div>
+
+  <!-- ── NAZCA ── -->
+  <div class="acard"
+    data-geos="ES,IT,FR"
+    data-secs="Consumer,Industrials,Healthcare,Business"
+    data-min="10" data-max="200">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=nazcapartners.com&sz=64" alt="Nazca">
+      <div><div class="acard-name">Nazca Partners</div><div class="acard-type">Iberian boutique · Spain / Italy / France</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:75%;background:var(--navy)"></div></div>
+      <span class="score-val score-mid">75 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>20/25</span></span>
+      <span class="sb-pill">Sector <span>19/25</span></span>
+      <span class="sb-pill">Geography <span>20/25</span></span>
+      <span class="sb-pill">Track record <span>16/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €10–200M · 25 deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Consumer</span><span class="at-s">Industrials</span><span class="at-s">Healthcare</span>
+      <span class="at-g">🇪🇸 Madrid</span><span class="at-g">🇪🇸 Barcelona</span>
+      <span class="at-x">Family business</span><span class="at-x">Sell-side</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://nazcapartners.com" target="_blank" class="acard-link">nazcapartners.com →</a>
+    </div>
+  </div>
+
+  <!-- ── CLEARWATER INTERNATIONAL ── -->
+  <div class="acard"
+    data-geos="UK,DE,FR,NL,SE,IT,ES,BE"
+    data-secs="Software,Business,Industrials,Consumer,Healthcare"
+    data-min="15" data-max="400">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=clearwaterinternational.com&sz=64" alt="Clearwater">
+      <div><div class="acard-name">Clearwater International</div><div class="acard-type">European mid-market · 14 offices</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:84%;background:var(--grn)"></div></div>
+      <span class="score-val score-hi">84 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>22/25</span></span>
+      <span class="sb-pill">Sector <span>22/25</span></span>
+      <span class="sb-pill">Geography <span>23/25</span></span>
+      <span class="sb-pill">Track record <span>17/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €15–400M · 60+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Software</span><span class="at-s">Business Services</span><span class="at-s">Industrials</span>
+      <span class="at-g">🇬🇧 London</span><span class="at-g">🇩🇪 Munich</span><span class="at-g">🇸🇪 Stockholm</span>
+      <span class="at-x">Mid-market</span><span class="at-x">PE-backed</span><span class="at-x">Cross-border</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://clearwaterinternational.com" target="_blank" class="acard-link">clearwaterinternational.com →</a>
+    </div>
+  </div>
+
+  <!-- ── CLIPPERTON ── -->
+  <div class="acard"
+    data-geos="FR,DE,UK,SE,NL"
+    data-secs="Software,FinTech,Business"
+    data-min="20" data-max="400">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=clipperton.com&sz=64" alt="Clipperton">
+      <div><div class="acard-name">Clipperton</div><div class="acard-type">Tech boutique · Paris / Berlin / London</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:88%;background:var(--grn)"></div></div>
+      <span class="score-val score-hi">88 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>23/25</span></span>
+      <span class="sb-pill">Sector <span>24/25</span></span>
+      <span class="sb-pill">Geography <span>22/25</span></span>
+      <span class="sb-pill">Track record <span>19/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €20–400M · 30+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Software/SaaS</span><span class="at-s">FinTech</span><span class="at-s">Marketplace</span>
+      <span class="at-g">🇫🇷 Paris</span><span class="at-g">🇩🇪 Berlin</span><span class="at-g">🇬🇧 London</span>
+      <span class="at-x">VC-backed exits</span><span class="at-x">Tech-only</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://clipperton.com" target="_blank" class="acard-link">clipperton.com →</a>
+    </div>
+  </div>
+
+  <!-- ── MESSIER MARIS (M&A / FRANCE) ── -->
+  <div class="acard"
+    data-geos="FR,BE,CH,IT"
+    data-secs="Industrials,Consumer,Healthcare,Business,Energy"
+    data-min="50" data-max="2000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=messier-maris.com&sz=64" alt="Messier Maris">
+      <div><div class="acard-name">Messier Maris &amp; Associés</div><div class="acard-type">French boutique · Paris hub</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:72%;background:var(--amber)"></div></div>
+      <span class="score-val score-lo">72 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>16/25</span></span>
+      <span class="sb-pill">Sector <span>20/25</span></span>
+      <span class="sb-pill">Geography <span>20/25</span></span>
+      <span class="sb-pill">Track record <span>16/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €50–2B · 30 deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Industrials</span><span class="at-s">Consumer</span><span class="at-s">Healthcare</span>
+      <span class="at-g">🇫🇷 Paris</span><span class="at-g">🇨🇭 Geneva</span>
+      <span class="at-x">Corporate advisory</span><span class="at-x">Large-cap</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://messier-maris.com" target="_blank" class="acard-link">messier-maris.com →</a>
+    </div>
+  </div>
+
+  <!-- ── REMACO (SWITZERLAND) ── -->
+  <div class="acard"
+    data-geos="CH,DE,AT"
+    data-secs="Industrials,Business,Healthcare,Consumer"
+    data-min="5" data-max="150">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=remaco.ch&sz=64" alt="Remaco">
+      <div><div class="acard-name">Remaco</div><div class="acard-type">Swiss M&A boutique · Zurich / Basel</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:78%;background:var(--navy)"></div></div>
+      <span class="score-val score-mid">78 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>22/25</span></span>
+      <span class="sb-pill">Sector <span>19/25</span></span>
+      <span class="sb-pill">Geography <span>20/25</span></span>
+      <span class="sb-pill">Track record <span>17/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €5–150M · 20 deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Industrials</span><span class="at-s">Business Services</span><span class="at-s">Healthcare</span>
+      <span class="at-g">🇨🇭 Zurich</span><span class="at-g">🇨🇭 Basel</span><span class="at-g">🇩🇪 Munich</span>
+      <span class="at-x">Tax-efficient</span><span class="at-x">Family business</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://remaco.ch" target="_blank" class="acard-link">remaco.ch →</a>
+    </div>
+  </div>
+
+  <!-- ── DEAL ADVISORY KPMG ── -->
+  <div class="acard"
+    data-geos="UK,DE,FR,IT,CH,NL,ES,SE,BE"
+    data-secs="Software,Industrials,Healthcare,Energy,Consumer,FinTech,Business"
+    data-min="50" data-max="5000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=kpmg.com&sz=64" alt="KPMG Deal Advisory">
+      <div><div class="acard-name">KPMG Deal Advisory</div><div class="acard-type">Big4 advisory · Global</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:71%;background:var(--amber)"></div></div>
+      <span class="score-val score-lo">71 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>14/25</span></span>
+      <span class="sb-pill">Sector <span>22/25</span></span>
+      <span class="sb-pill">Geography <span>25/25</span></span>
+      <span class="sb-pill">Track record <span>10/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €50M+ · 200+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Energy</span><span class="at-s">Healthcare</span><span class="at-s">FinTech</span>
+      <span class="at-g">🇬🇧 London</span><span class="at-g">🇩🇪 Frankfurt</span><span class="at-g">🇫🇷 Paris</span><span class="at-g">🇮🇹 Milan</span>
+      <span class="at-x">Due diligence</span><span class="at-x">Full-service</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://kpmg.com/advisory/deal-advisory" target="_blank" class="acard-link">kpmg.com →</a>
+    </div>
+  </div>
+
+  <!-- ── DELOITTE M&A ── -->
+  <div class="acard"
+    data-geos="UK,DE,FR,IT,CH,NL,ES,SE,BE"
+    data-secs="Software,Industrials,Healthcare,Energy,Consumer,FinTech,Real,Business"
+    data-min="50" data-max="5000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=deloitte.com&sz=64" alt="Deloitte M&A">
+      <div><div class="acard-name">Deloitte M&A</div><div class="acard-type">Big4 advisory · Global</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:70%;background:var(--amber)"></div></div>
+      <span class="score-val score-lo">70 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>14/25</span></span>
+      <span class="sb-pill">Sector <span>22/25</span></span>
+      <span class="sb-pill">Geography <span>25/25</span></span>
+      <span class="sb-pill">Track record <span>9/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €50M+ · 300+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Real Estate</span><span class="at-s">Energy</span><span class="at-s">Software</span>
+      <span class="at-g">🇬🇧 London</span><span class="at-g">🇩🇪 Düsseldorf</span><span class="at-g">🇫🇷 Paris</span>
+      <span class="at-x">Full-service</span><span class="at-x">Due diligence</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://deloitte.com/ma" target="_blank" class="acard-link">deloitte.com →</a>
+    </div>
+  </div>
+
+  <!-- ── NORDIC M&A (AXCEL / PARETO) ── -->
+  <div class="acard"
+    data-geos="SE,DE,NL,UK"
+    data-secs="Industrials,Software,Consumer,Healthcare,Energy"
+    data-min="15" data-max="500">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=pareto.no&sz=64" alt="Pareto Securities">
+      <div><div class="acard-name">Pareto Securities M&A</div><div class="acard-type">Nordic boutique · Oslo / Stockholm / London</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:77%;background:var(--navy)"></div></div>
+      <span class="score-val score-mid">77 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>21/25</span></span>
+      <span class="sb-pill">Sector <span>20/25</span></span>
+      <span class="sb-pill">Geography <span>19/25</span></span>
+      <span class="sb-pill">Track record <span>17/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €15–500M · 40+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">Energy</span><span class="at-s">Industrials</span><span class="at-s">Software</span>
+      <span class="at-g">🇸🇪 Stockholm</span><span class="at-g">🇬🇧 London</span>
+      <span class="at-x">Nordic specialist</span><span class="at-x">Cross-border</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://pareto.no" target="_blank" class="acard-link">pareto.no →</a>
+    </div>
+  </div>
+
+  <!-- ── ING CORPORATE FINANCE ── -->
+  <div class="acard"
+    data-geos="NL,BE,DE,FR,UK"
+    data-secs="Industrials,FinTech,Consumer,Real,Energy"
+    data-min="50" data-max="2000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=ing.com&sz=64" alt="ING Corporate Finance">
+      <div><div class="acard-name">ING Corporate Finance</div><div class="acard-type">Investment bank · Benelux / DACH</div></div>
+    </div>
+    <div class="score-row">
+      <div class="score-bar-wrap"><div class="score-bar" style="width:73%;background:var(--amber)"></div></div>
+      <span class="score-val score-lo">73 / 100</span>
+    </div>
+    <div class="score-breakdown">
+      <span class="sb-pill">Deal fit <span>16/25</span></span>
+      <span class="sb-pill">Sector <span>20/25</span></span>
+      <span class="sb-pill">Geography <span>22/25</span></span>
+      <span class="sb-pill">Track record <span>15/25</span></span>
+    </div>
+    <div class="acard-meta">EV sweet spot €50–2B · 50+ deals/yr</div>
+    <div class="acard-tags">
+      <span class="at-s">FinTech</span><span class="at-s">Industrials</span><span class="at-s">Real Estate</span>
+      <span class="at-g">🇳🇱 Amsterdam</span><span class="at-g">🇧🇪 Brussels</span><span class="at-g">🇩🇪 Frankfurt</span>
+      <span class="at-x">Benelux specialist</span><span class="at-x">Debt advisory</span>
+    </div>
+    <div class="acard-foot">
+      <a href="https://ing.com/wholesale-banking/advisory" target="_blank" class="acard-link">ing.com →</a>
+    </div>
+  </div>
+
+  <!-- ── ROTHSCHILD FIVE ARROWS ── -->
+  <div class="acard" data-geos="UK,DE,FR,NL,SE" data-secs="Software,FinTech,Business,Healthcare" data-min="20" data-max="300">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=fivearrows.com&sz=64" alt="Five Arrows">
+      <div><div class="acard-name">Five Arrows Managers</div><div class="acard-type">Rothschild PE arm · pan-EU</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar score-hi" style="width:82%;background:var(--grn)"></div></div><span class="score-val score-hi">82 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>21/25</span></span><span class="sb-pill">Sector <span>22/25</span></span><span class="sb-pill">Geography <span>22/25</span></span><span class="sb-pill">Track record <span>17/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €20–300M · PE + M&A advisory</div>
+    <div class="acard-tags"><span class="at-s">Software</span><span class="at-s">FinTech</span><span class="at-g">🇬🇧 London</span><span class="at-g">🇫🇷 Paris</span><span class="at-x">PE-backed</span></div>
+    <div class="acard-foot"><a href="https://fivearrows.com" target="_blank" class="acard-link">fivearrows.com →</a></div>
+  </div>
+
+  <!-- ── CAPITALMIND ── -->
+  <div class="acard" data-geos="NL,BE,DE,FR,UK" data-secs="Software,Business,Consumer,Industrials" data-min="5" data-max="150">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=capitalmind.nl&sz=64" alt="Capitalmind">
+      <div><div class="acard-name">Capitalmind</div><div class="acard-type">Benelux boutique · Amsterdam / Paris</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:79%;background:var(--navy)"></div></div><span class="score-val score-mid">79 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>22/25</span></span><span class="sb-pill">Sector <span>20/25</span></span><span class="sb-pill">Geography <span>20/25</span></span><span class="sb-pill">Track record <span>17/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €5–150M · 30+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Software</span><span class="at-s">Business Services</span><span class="at-g">🇳🇱 Amsterdam</span><span class="at-g">🇧🇪 Brussels</span><span class="at-x">Mid-market</span></div>
+    <div class="acard-foot"><a href="https://capitalmind.nl" target="_blank" class="acard-link">capitalmind.nl →</a></div>
+  </div>
+
+  <!-- ── LIVINGSTONE PARTNERS ── -->
+  <div class="acard" data-geos="UK,DE,SE,NL" data-secs="Software,Industrials,Business,Healthcare" data-min="10" data-max="200">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=livingstonepartners.com&sz=64" alt="Livingstone">
+      <div><div class="acard-name">Livingstone Partners</div><div class="acard-type">Mid-market boutique · UK / Germany</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:80%;background:var(--navy)"></div></div><span class="score-val score-mid">80 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>22/25</span></span><span class="sb-pill">Sector <span>21/25</span></span><span class="sb-pill">Geography <span>20/25</span></span><span class="sb-pill">Track record <span>17/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €10–200M · 35+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Software</span><span class="at-s">Industrials</span><span class="at-g">🇬🇧 London</span><span class="at-g">🇩🇪 Düsseldorf</span><span class="at-x">Cross-border</span></div>
+    <div class="acard-foot"><a href="https://livingstonepartners.com" target="_blank" class="acard-link">livingstonepartners.com →</a></div>
+  </div>
+
+  <!-- ── AVEDON CAPITAL ── -->
+  <div class="acard" data-geos="NL,BE,DE" data-secs="Software,Business,Consumer,Healthcare" data-min="10" data-max="200">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=avedoncapital.com&sz=64" alt="Avedon">
+      <div><div class="acard-name">Avedon Capital</div><div class="acard-type">Benelux boutique · Amsterdam</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:75%;background:var(--navy)"></div></div><span class="score-val score-mid">75 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>21/25</span></span><span class="sb-pill">Sector <span>19/25</span></span><span class="sb-pill">Geography <span>18/25</span></span><span class="sb-pill">Track record <span>17/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €10–200M · 20+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Software</span><span class="at-s">Consumer</span><span class="at-g">🇳🇱 Amsterdam</span><span class="at-x">PE-backed</span></div>
+    <div class="acard-foot"><a href="https://avedoncapital.com" target="_blank" class="acard-link">avedoncapital.com →</a></div>
+  </div>
+
+  <!-- ── NORDEA MARKETS M&A ── -->
+  <div class="acard" data-geos="SE,DE,UK,NL" data-secs="Industrials,Energy,FinTech,Consumer" data-min="50" data-max="2000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=nordea.com&sz=64" alt="Nordea">
+      <div><div class="acard-name">Nordea Markets M&A</div><div class="acard-type">Nordic investment bank · Stockholm</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:72%;background:var(--amber)"></div></div><span class="score-val score-lo">72 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>15/25</span></span><span class="sb-pill">Sector <span>20/25</span></span><span class="sb-pill">Geography <span>20/25</span></span><span class="sb-pill">Track record <span>17/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €50–2B · 40+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Energy</span><span class="at-s">FinTech</span><span class="at-g">🇸🇪 Stockholm</span><span class="at-g">🇬🇧 London</span><span class="at-x">Nordic specialist</span></div>
+    <div class="acard-foot"><a href="https://nordea.com/markets" target="_blank" class="acard-link">nordea.com →</a></div>
+  </div>
+
+  <!-- ── GP BULLHOUND ── -->
+  <div class="acard" data-geos="UK,SE,DE,FR,NL" data-secs="Software,FinTech,Business" data-min="20" data-max="500">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=gpbullhound.com&sz=64" alt="GP Bullhound">
+      <div><div class="acard-name">GP Bullhound</div><div class="acard-type">Tech boutique · London / Stockholm</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar score-hi" style="width:87%;background:var(--grn)"></div></div><span class="score-val score-hi">87 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>22/25</span></span><span class="sb-pill">Sector <span>24/25</span></span><span class="sb-pill">Geography <span>22/25</span></span><span class="sb-pill">Track record <span>19/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €20–500M · 40+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Software/SaaS</span><span class="at-s">FinTech</span><span class="at-g">🇬🇧 London</span><span class="at-g">🇸🇪 Stockholm</span><span class="at-x">Tech-only</span><span class="at-x">VC-backed exits</span></div>
+    <div class="acard-foot"><a href="https://gpbullhound.com" target="_blank" class="acard-link">gpbullhound.com →</a></div>
+  </div>
+
+  <!-- ── ATLAS MERCHANT CAPITAL ── -->
+  <div class="acard" data-geos="UK,DE,FR,IT" data-secs="FinTech,Business,Software" data-min="50" data-max="1000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=atlasmerchantcapital.com&sz=64" alt="Atlas Merchant">
+      <div><div class="acard-name">Atlas Merchant Capital</div><div class="acard-type">Financial services boutique</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:70%;background:var(--amber)"></div></div><span class="score-val score-lo">70 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>16/25</span></span><span class="sb-pill">Sector <span>19/25</span></span><span class="sb-pill">Geography <span>19/25</span></span><span class="sb-pill">Track record <span>16/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €50–1B · financial services focus</div>
+    <div class="acard-tags"><span class="at-s">FinTech</span><span class="at-s">Business Services</span><span class="at-g">🇬🇧 London</span><span class="at-x">Financial services</span></div>
+    <div class="acard-foot"><a href="https://atlasmerchantcapital.com" target="_blank" class="acard-link">atlasmerchantcapital.com →</a></div>
+  </div>
+
+  <!-- ── PERELLA WEINBERG ── -->
+  <div class="acard" data-geos="UK,FR,DE" data-secs="Industrials,Healthcare,Consumer,Energy" data-min="200" data-max="50000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=pwpartners.com&sz=64" alt="Perella Weinberg">
+      <div><div class="acard-name">Perella Weinberg Partners</div><div class="acard-type">Independent advisory · EU offices</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:74%;background:var(--amber)"></div></div><span class="score-val score-lo">74 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>13/25</span></span><span class="sb-pill">Sector <span>21/25</span></span><span class="sb-pill">Geography <span>22/25</span></span><span class="sb-pill">Track record <span>18/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €200M+ · 50+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Industrials</span><span class="at-s">Healthcare</span><span class="at-g">🇬🇧 London</span><span class="at-g">🇫🇷 Paris</span><span class="at-x">Large-cap</span><span class="at-x">Restructuring</span></div>
+    <div class="acard-foot"><a href="https://pwpartners.com" target="_blank" class="acard-link">pwpartners.com →</a></div>
+  </div>
+
+  <!-- ── ACCURACY ── -->
+  <div class="acard" data-geos="FR,BE,UK,DE,ES,IT" data-secs="Industrials,Healthcare,Consumer,Business" data-min="20" data-max="500">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=accuracy.com&sz=64" alt="Accuracy">
+      <div><div class="acard-name">Accuracy</div><div class="acard-type">Advisory boutique · Paris hub</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:76%;background:var(--navy)"></div></div><span class="score-val score-mid">76 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>20/25</span></span><span class="sb-pill">Sector <span>20/25</span></span><span class="sb-pill">Geography <span>21/25</span></span><span class="sb-pill">Track record <span>15/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €20–500M · 40+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Industrials</span><span class="at-s">Healthcare</span><span class="at-g">🇫🇷 Paris</span><span class="at-g">🇧🇪 Brussels</span><span class="at-x">Transaction services</span></div>
+    <div class="acard-foot"><a href="https://accuracy.com" target="_blank" class="acard-link">accuracy.com →</a></div>
+  </div>
+
+  <!-- ── TRANSLINK CORPORATE FINANCE ── -->
+  <div class="acard" data-geos="NL,DE,ES,FR,IT,BE,SE" data-secs="Industrials,Consumer,Business,Healthcare" data-min="5" data-max="200">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=translinkcf.com&sz=64" alt="Translink">
+      <div><div class="acard-name">Translink Corporate Finance</div><div class="acard-type">European network · 14 offices</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:78%;background:var(--navy)"></div></div><span class="score-val score-mid">78 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>21/25</span></span><span class="sb-pill">Sector <span>20/25</span></span><span class="sb-pill">Geography <span>23/25</span></span><span class="sb-pill">Track record <span>14/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €5–200M · 60+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Industrials</span><span class="at-s">Consumer</span><span class="at-g">🇳🇱 Amsterdam</span><span class="at-g">🇩🇪 Frankfurt</span><span class="at-g">🇪🇸 Madrid</span><span class="at-x">Cross-border</span></div>
+    <div class="acard-foot"><a href="https://translinkcf.com" target="_blank" class="acard-link">translinkcf.com →</a></div>
+  </div>
+
+  <!-- ── BRYAN GARNIER ── -->
+  <div class="acard" data-geos="FR,UK,DE,SE" data-secs="Software,FinTech,Healthcare,Energy" data-min="20" data-max="500">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=bryangarnier.com&sz=64" alt="Bryan Garnier">
+      <div><div class="acard-name">Bryan, Garnier &amp; Co</div><div class="acard-type">European growth boutique · Paris / London</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar score-hi" style="width:85%;background:var(--grn)"></div></div><span class="score-val score-hi">85 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>22/25</span></span><span class="sb-pill">Sector <span>23/25</span></span><span class="sb-pill">Geography <span>21/25</span></span><span class="sb-pill">Track record <span>19/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €20–500M · 35+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Software/SaaS</span><span class="at-s">Healthcare</span><span class="at-s">Energy</span><span class="at-g">🇫🇷 Paris</span><span class="at-g">🇬🇧 London</span><span class="at-x">Growth equity</span><span class="at-x">VC-backed exits</span></div>
+    <div class="acard-foot"><a href="https://bryangarnier.com" target="_blank" class="acard-link">bryangarnier.com →</a></div>
+  </div>
+
+  <!-- ── ALLEN & COMPANY ── -->
+  <div class="acard" data-geos="UK,DE,FR" data-secs="Software,Consumer,Healthcare" data-min="200" data-max="50000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=allenco.com&sz=64" alt="Allen & Company">
+      <div><div class="acard-name">Allen &amp; Company</div><div class="acard-type">Independent · media &amp; tech focus</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:66%;background:var(--amber)"></div></div><span class="score-val score-lo">66 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>11/25</span></span><span class="sb-pill">Sector <span>20/25</span></span><span class="sb-pill">Geography <span>18/25</span></span><span class="sb-pill">Track record <span>17/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €200M+ · media &amp; tech landmark deals</div>
+    <div class="acard-tags"><span class="at-s">Software</span><span class="at-s">Consumer</span><span class="at-g">🇬🇧 London</span><span class="at-x">Large-cap</span><span class="at-x">Media / Tech</span></div>
+    <div class="acard-foot"><a href="https://allenco.com" target="_blank" class="acard-link">allenco.com →</a></div>
+  </div>
+
+  <!-- ── DEUTSCHE BANK M&A ── -->
+  <div class="acard" data-geos="DE,UK,FR,IT,NL" data-secs="Industrials,Energy,FinTech,Consumer" data-min="100" data-max="50000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=db.com&sz=64" alt="Deutsche Bank">
+      <div><div class="acard-name">Deutsche Bank M&A</div><div class="acard-type">Bulge bracket · Frankfurt / London</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:69%;background:var(--amber)"></div></div><span class="score-val score-lo">69 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>13/25</span></span><span class="sb-pill">Sector <span>20/25</span></span><span class="sb-pill">Geography <span>22/25</span></span><span class="sb-pill">Track record <span>14/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €100M+ · 60+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Industrials</span><span class="at-s">Energy</span><span class="at-g">🇩🇪 Frankfurt</span><span class="at-g">🇬🇧 London</span><span class="at-x">Large-cap</span></div>
+    <div class="acard-foot"><a href="https://db.com/cib" target="_blank" class="acard-link">db.com →</a></div>
+  </div>
+
+  <!-- ── BNP PARIBAS CIB ── -->
+  <div class="acard" data-geos="FR,DE,IT,BE,NL,UK,ES" data-secs="Energy,Industrials,Real,FinTech,Consumer" data-min="100" data-max="50000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=cib.bnpparibas&sz=64" alt="BNP Paribas">
+      <div><div class="acard-name">BNP Paribas CIB</div><div class="acard-type">Bulge bracket · Paris hub</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:68%;background:var(--amber)"></div></div><span class="score-val score-lo">68 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>12/25</span></span><span class="sb-pill">Sector <span>20/25</span></span><span class="sb-pill">Geography <span>23/25</span></span><span class="sb-pill">Track record <span>13/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €100M+ · 70+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Energy</span><span class="at-s">Real Estate</span><span class="at-g">🇫🇷 Paris</span><span class="at-g">🇩🇪 Frankfurt</span><span class="at-g">🇮🇹 Milan</span><span class="at-x">Large-cap</span></div>
+    <div class="acard-foot"><a href="https://cib.bnpparibas" target="_blank" class="acard-link">cib.bnpparibas →</a></div>
+  </div>
+
+  <!-- ── UNICREDIT CIB ── -->
+  <div class="acard" data-geos="IT,DE,AT,FR" data-secs="Industrials,Real,Consumer,Energy" data-min="50" data-max="5000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=unicredit.eu&sz=64" alt="UniCredit">
+      <div><div class="acard-name">UniCredit CIB</div><div class="acard-type">Investment bank · Italy / Germany</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:67%;background:var(--amber)"></div></div><span class="score-val score-lo">67 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>13/25</span></span><span class="sb-pill">Sector <span>18/25</span></span><span class="sb-pill">Geography <span>21/25</span></span><span class="sb-pill">Track record <span>15/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €50–5B · 40+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Industrials</span><span class="at-s">Real Estate</span><span class="at-g">🇮🇹 Milan</span><span class="at-g">🇩🇪 Munich</span><span class="at-x">Italian market leader</span></div>
+    <div class="acard-foot"><a href="https://unicredit.eu/cib" target="_blank" class="acard-link">unicredit.eu →</a></div>
+  </div>
+
+  <!-- ── INTRUM M&A (NORDIC) ── -->
+  <div class="acard" data-geos="SE,DE,IT,ES,FR" data-secs="FinTech,Business,Consumer" data-min="20" data-max="400">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=equitsinvest.se&sz=64" alt="Equits">
+      <div><div class="acard-name">Equits</div><div class="acard-type">Scandinavian boutique · Stockholm</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:74%;background:var(--navy)"></div></div><span class="score-val score-mid">74 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>20/25</span></span><span class="sb-pill">Sector <span>19/25</span></span><span class="sb-pill">Geography <span>19/25</span></span><span class="sb-pill">Track record <span>16/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €20–400M · Nordic transactions</div>
+    <div class="acard-tags"><span class="at-s">FinTech</span><span class="at-s">Consumer</span><span class="at-g">🇸🇪 Stockholm</span><span class="at-x">Nordic specialist</span></div>
+    <div class="acard-foot"><a href="https://equitsinvest.se" target="_blank" class="acard-link">equitsinvest.se →</a></div>
+  </div>
+
+  <!-- ── HEIDRICK & STRUGGLES (M&A PRACTICE) ── -->
+  <div class="acard" data-geos="UK,DE,FR,IT,ES,SE" data-secs="Business,Healthcare,Software,Consumer" data-min="30" data-max="500">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=heidrick.com&sz=64" alt="Heidrick">
+      <div><div class="acard-name">Heidrick &amp; Struggles</div><div class="acard-type">Executive advisory · M&A practice</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:71%;background:var(--amber)"></div></div><span class="score-val score-lo">71 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>18/25</span></span><span class="sb-pill">Sector <span>19/25</span></span><span class="sb-pill">Geography <span>21/25</span></span><span class="sb-pill">Track record <span>13/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €30–500M · leadership &amp; deal advisory</div>
+    <div class="acard-tags"><span class="at-s">Business Services</span><span class="at-s">Healthcare</span><span class="at-g">🇬🇧 London</span><span class="at-g">🇩🇪 Frankfurt</span><span class="at-x">Human capital</span></div>
+    <div class="acard-foot"><a href="https://heidrick.com" target="_blank" class="acard-link">heidrick.com →</a></div>
+  </div>
+
+  <!-- ── PJT PARTNERS ── -->
+  <div class="acard" data-geos="UK,FR,DE" data-secs="Healthcare,Industrials,Consumer,Energy" data-min="200" data-max="50000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=pjtpartners.com&sz=64" alt="PJT Partners">
+      <div><div class="acard-name">PJT Partners</div><div class="acard-type">Independent advisory · London / Paris</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:73%;background:var(--amber)"></div></div><span class="score-val score-lo">73 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>13/25</span></span><span class="sb-pill">Sector <span>21/25</span></span><span class="sb-pill">Geography <span>21/25</span></span><span class="sb-pill">Track record <span>18/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €200M+ · 40+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Healthcare</span><span class="at-s">Industrials</span><span class="at-g">🇬🇧 London</span><span class="at-g">🇫🇷 Paris</span><span class="at-x">Restructuring</span><span class="at-x">Large-cap</span></div>
+    <div class="acard-foot"><a href="https://pjtpartners.com" target="_blank" class="acard-link">pjtpartners.com →</a></div>
+  </div>
+
+  <!-- ── SODALI & CO (FORMERLY MORROW SODALI) ── -->
+  <div class="acard" data-geos="UK,IT,DE,FR,NL" data-secs="Consumer,Industrials,Energy,FinTech" data-min="100" data-max="5000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=sodali.com&sz=64" alt="Sodali">
+      <div><div class="acard-name">Sodali &amp; Co</div><div class="acard-type">Governance &amp; M&A advisory</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:68%;background:var(--amber)"></div></div><span class="score-val score-lo">68 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>14/25</span></span><span class="sb-pill">Sector <span>18/25</span></span><span class="sb-pill">Geography <span>21/25</span></span><span class="sb-pill">Track record <span>15/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €100M+ · shareholder advisory</div>
+    <div class="acard-tags"><span class="at-s">Consumer</span><span class="at-s">Energy</span><span class="at-g">🇬🇧 London</span><span class="at-g">🇮🇹 Milan</span><span class="at-x">Governance</span><span class="at-x">Activist defence</span></div>
+    <div class="acard-foot"><a href="https://sodali.com" target="_blank" class="acard-link">sodali.com →</a></div>
+  </div>
+
+  <!-- ── NORGINE VENTURES / TRILL IMPACT (IMPACT) ── -->
+  <div class="acard" data-geos="SE,NL,DE,UK" data-secs="Healthcare,Energy,Business" data-min="10" data-max="300">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=trillimpact.com&sz=64" alt="Trill Impact">
+      <div><div class="acard-name">Trill Impact Advisory</div><div class="acard-type">Impact boutique · Stockholm</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:73%;background:var(--navy)"></div></div><span class="score-val score-mid">73 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>20/25</span></span><span class="sb-pill">Sector <span>19/25</span></span><span class="sb-pill">Geography <span>18/25</span></span><span class="sb-pill">Track record <span>16/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €10–300M · impact investing focus</div>
+    <div class="acard-tags"><span class="at-s">Healthcare</span><span class="at-s">Energy</span><span class="at-g">🇸🇪 Stockholm</span><span class="at-g">🇳🇱 Amsterdam</span><span class="at-x">Impact / ESG</span></div>
+    <div class="acard-foot"><a href="https://trillimpact.com" target="_blank" class="acard-link">trillimpact.com →</a></div>
+  </div>
+
+  <!-- ── FINSIDE ── -->
+  <div class="acard" data-geos="IT,CH" data-secs="Industrials,Consumer,Real,Business" data-min="3" data-max="80">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=finside.it&sz=64" alt="Finside">
+      <div><div class="acard-name">Finside</div><div class="acard-type">Italian boutique · Milan / Lugano</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:76%;background:var(--navy)"></div></div><span class="score-val score-mid">76 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>22/25</span></span><span class="sb-pill">Sector <span>19/25</span></span><span class="sb-pill">Geography <span>19/25</span></span><span class="sb-pill">Track record <span>16/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €3–80M · Italian SME specialist</div>
+    <div class="acard-tags"><span class="at-s">Industrials</span><span class="at-s">Consumer</span><span class="at-g">🇮🇹 Milan</span><span class="at-g">🇨🇭 Lugano</span><span class="at-x">SME</span><span class="at-x">Family business</span></div>
+    <div class="acard-foot"><a href="https://finside.it" target="_blank" class="acard-link">finside.it →</a></div>
+  </div>
+
+  <!-- ── CFI FINANCE ── -->
+  <div class="acard" data-geos="FR,BE,CH,IT" data-secs="Industrials,Business,Consumer,Healthcare" data-min="5" data-max="120">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=cfi-finance.com&sz=64" alt="CFI Finance">
+      <div><div class="acard-name">CFI Finance</div><div class="acard-type">French boutique · Paris / Lyon</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:74%;background:var(--navy)"></div></div><span class="score-val score-mid">74 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>21/25</span></span><span class="sb-pill">Sector <span>19/25</span></span><span class="sb-pill">Geography <span>18/25</span></span><span class="sb-pill">Track record <span>16/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €5–120M · 20+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Industrials</span><span class="at-s">Business Services</span><span class="at-g">🇫🇷 Paris</span><span class="at-g">🇫🇷 Lyon</span><span class="at-x">SME</span></div>
+    <div class="acard-foot"><a href="https://cfi-finance.com" target="_blank" class="acard-link">cfi-finance.com →</a></div>
+  </div>
+
+  <!-- ── ANDERS CAPITAL ── -->
+  <div class="acard" data-geos="DE,AT,CH" data-secs="Software,Business,Healthcare,Industrials" data-min="5" data-max="100">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=anders-capital.de&sz=64" alt="Anders Capital">
+      <div><div class="acard-name">Anders Capital</div><div class="acard-type">DACH boutique · Munich</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:77%;background:var(--navy)"></div></div><span class="score-val score-mid">77 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>22/25</span></span><span class="sb-pill">Sector <span>20/25</span></span><span class="sb-pill">Geography <span>19/25</span></span><span class="sb-pill">Track record <span>16/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €5–100M · DACH SME focus</div>
+    <div class="acard-tags"><span class="at-s">Software</span><span class="at-s">Business Services</span><span class="at-g">🇩🇪 Munich</span><span class="at-g">🇦🇹 Vienna</span><span class="at-x">SME</span><span class="at-x">Sell-side</span></div>
+    <div class="acard-foot"><a href="https://anders-capital.de" target="_blank" class="acard-link">anders-capital.de →</a></div>
+  </div>
+
+  <!-- ── SILVERPEAK ── -->
+  <div class="acard" data-geos="UK,FR,DE,SE,NL" data-secs="Software,FinTech,Business" data-min="15" data-max="300">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=silverpeak.eu&sz=64" alt="Silverpeak">
+      <div><div class="acard-name">Silverpeak</div><div class="acard-type">European tech boutique · London</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar score-hi" style="width:84%;background:var(--grn)"></div></div><span class="score-val score-hi">84 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>22/25</span></span><span class="sb-pill">Sector <span>23/25</span></span><span class="sb-pill">Geography <span>21/25</span></span><span class="sb-pill">Track record <span>18/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €15–300M · 25+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Software/SaaS</span><span class="at-s">FinTech</span><span class="at-g">🇬🇧 London</span><span class="at-g">🇸🇪 Stockholm</span><span class="at-x">Tech-only</span><span class="at-x">Cross-border</span></div>
+    <div class="acard-foot"><a href="https://silverpeak.eu" target="_blank" class="acard-link">silverpeak.eu →</a></div>
+  </div>
+
+  <!-- ── EQUITEQ ── -->
+  <div class="acard" data-geos="UK,DE,NL,SE,FR" data-secs="Business,Software,Healthcare" data-min="10" data-max="200">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=equiteq.com&sz=64" alt="Equiteq">
+      <div><div class="acard-name">Equiteq</div><div class="acard-type">Consulting sector specialist · London</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:80%;background:var(--grn)"></div></div><span class="score-val score-hi">80 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>22/25</span></span><span class="sb-pill">Sector <span>22/25</span></span><span class="sb-pill">Geography <span>20/25</span></span><span class="sb-pill">Track record <span>16/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €10–200M · consulting &amp; professional services M&A</div>
+    <div class="acard-tags"><span class="at-s">Business Services</span><span class="at-s">Software</span><span class="at-g">🇬🇧 London</span><span class="at-g">🇩🇪 Frankfurt</span><span class="at-x">Consulting sector</span></div>
+    <div class="acard-foot"><a href="https://equiteq.com" target="_blank" class="acard-link">equiteq.com →</a></div>
+  </div>
+
+  <!-- ── VERGNET / PROGRESS CF ── -->
+  <div class="acard" data-geos="ES,IT,FR,PT" data-secs="Energy,Industrials,Business" data-min="5" data-max="150">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=progresscf.com&sz=64" alt="Progress CF">
+      <div><div class="acard-name">Progress Corporate Finance</div><div class="acard-type">Iberian boutique · Madrid / Lisbon</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:72%;background:var(--navy)"></div></div><span class="score-val score-mid">72 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>20/25</span></span><span class="sb-pill">Sector <span>18/25</span></span><span class="sb-pill">Geography <span>18/25</span></span><span class="sb-pill">Track record <span>16/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €5–150M · Iberian energy &amp; industrials</div>
+    <div class="acard-tags"><span class="at-s">Energy</span><span class="at-s">Industrials</span><span class="at-g">🇪🇸 Madrid</span><span class="at-g">🇵🇹 Lisbon</span><span class="at-x">Iberian specialist</span></div>
+    <div class="acard-foot"><a href="https://progresscf.com" target="_blank" class="acard-link">progresscf.com →</a></div>
+  </div>
+
+  <!-- ── AVOLTA PARTNERS ── -->
+  <div class="acard" data-geos="UK,FR,DE,SE,IT" data-secs="Software,FinTech,Business" data-min="10" data-max="250">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=avoltapartners.com&sz=64" alt="Avolta">
+      <div><div class="acard-name">Avolta Partners</div><div class="acard-type">European tech boutique · London</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:83%;background:var(--grn)"></div></div><span class="score-val score-hi">83 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>22/25</span></span><span class="sb-pill">Sector <span>23/25</span></span><span class="sb-pill">Geography <span>20/25</span></span><span class="sb-pill">Track record <span>18/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €10–250M · 20+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Software/SaaS</span><span class="at-s">FinTech</span><span class="at-g">🇬🇧 London</span><span class="at-g">🇫🇷 Paris</span><span class="at-x">Tech-only</span><span class="at-x">Cross-border</span></div>
+    <div class="acard-foot"><a href="https://avoltapartners.com" target="_blank" class="acard-link">avoltapartners.com →</a></div>
+  </div>
+
+  <!-- ── DEAL ADVISORY PwC ── -->
+  <div class="acard" data-geos="UK,DE,FR,IT,CH,NL,ES,SE,BE" data-secs="Software,Industrials,Healthcare,Energy,Consumer,Real,Business" data-min="50" data-max="5000">
+    <div class="acard-top">
+      <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=pwc.com&sz=64" alt="PwC">
+      <div><div class="acard-name">PwC Deals</div><div class="acard-type">Big4 advisory · Global</div></div>
+    </div>
+    <div class="score-row"><div class="score-bar-wrap"><div class="score-bar" style="width:70%;background:var(--amber)"></div></div><span class="score-val score-lo">70 / 100</span></div>
+    <div class="score-breakdown"><span class="sb-pill">Deal fit <span>14/25</span></span><span class="sb-pill">Sector <span>21/25</span></span><span class="sb-pill">Geography <span>25/25</span></span><span class="sb-pill">Track record <span>10/25</span></span></div>
+    <div class="acard-meta">EV sweet spot €50M+ · 250+ deals/yr</div>
+    <div class="acard-tags"><span class="at-s">Real Estate</span><span class="at-s">Energy</span><span class="at-s">Healthcare</span><span class="at-g">🇬🇧 London</span><span class="at-g">🇩🇪 Frankfurt</span><span class="at-g">🇫🇷 Paris</span><span class="at-x">Full-service</span></div>
+    <div class="acard-foot"><a href="https://pwc.com/deals" target="_blank" class="acard-link">pwc.com →</a></div>
+  </div>
+
+  <div class="no-results" id="noResults">No advisors match the selected filters.</div>
+
+</div><!-- /adv-grid -->
+</div><!-- /adv-page-inner -->
 
 <footer>
   <div class="footer-inner">
     <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
     <div class="f-links">
-      <a href="/about">About</a><a href="/issues">Issues</a><a href="/case-studies">Case Studies</a>
-      <a href="/multiples">Multiples</a><a href="/wacc">WACC</a><a href="/exit-calculator">Exit</a>
-      <a href="/country-index">Cost Index</a><a href="/advisors">Advisors</a>
-      <a data-email href="#">Contact</a>
+      <a href="/about">About</a>
+      <a href="/issues">Articles</a>
+      <a href="/multiples">Multiples</a>
+      <a href="/wacc">WACC</a>
+      <a href="/country-index">Cost Index</a>
+      <a href="/advisors">Advisors</a>
     </div>
     <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
   </div>
 </footer>
 
 <script>
-const ADVISORS=[
-  // ── INDEPENDENT BOUTIQUES ─────────────────────────────────────────────────
-  {name:'Oaklins',type:'boutique',hq:'Amsterdam',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€5M–€500M',deals:'700+ global / yr',sectors:['Industrials','Technology','Food & Bev','Healthcare','Business Services'],desc:'Global network of 850+ M&A professionals across 45+ countries. One of Europe\'s most active sell-side advisors for founder-led mid-market businesses.',web:'oaklins.com',badges:['Cross-border','Mid-Market','45 Countries']},
-  {name:'IMAP',type:'boutique',hq:'Vienna',market:'DACH',sizes:['small','mid','large'],sizeLabel:'€10M–€300M',deals:'200+ closed / yr',sectors:['Industrials','Technology','Healthcare','Consumer'],desc:'International M&A partnership with 40 offices. Deep DACH and Southern Europe sell-side expertise for owner-managed businesses.',web:'imap.com',badges:['DACH Specialist','Family Business','Owner-led Exits']},
-  {name:'Clairfield International',type:'boutique',hq:'Paris',market:'Pan-European',sizes:['small','mid'],sizeLabel:'€5M–€200M',deals:'100+ closed / yr',sectors:['Technology','Healthcare','Industrials','Business Services'],desc:'Independent mid-market M&A with 200+ professionals across Europe. Strong technology-enabled business services focus.',web:'clairfield.com',badges:['Founder-led Exits','Mid-Market','Cross-border']},
-  {name:'Lincoln International',type:'boutique',hq:'Frankfurt',market:'DACH',sizes:['mid','large'],sizeLabel:'€50M–€1B+',deals:'Large-cap mid-mkt',sectors:['Industrials','Technology','Healthcare','Business Services'],desc:'Global mid-market investment bank with strong European PE and corporate sell-side credentials. Particularly active in German-speaking markets.',web:'lincolninternational.com',badges:['PE-backed Exits','Large Mid-Market','Cross-border']},
-  {name:'GCA Altium',type:'boutique',hq:'London / Munich',market:'Northern Europe',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'#1 EU tech M&A',sectors:['Technology','Software','Business Services','FinTech'],desc:'Europe\'s leading technology-focused M&A advisor. Strong PE and corporate buyer relationships in software and SaaS.',web:'gcaaltium.com',badges:['Tech Specialist','PE Relationships','SaaS Focus']},
-  {name:'DC Advisory',type:'boutique',hq:'London',market:'Northern Europe',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'Strong PE expertise',sectors:['Industrials','Technology','Healthcare','Consumer','Business Services'],desc:'European mid-market independent advisor backed by Daiwa Securities. 150+ professionals across 8 European offices.',web:'dcadvisory.com',badges:['Mid-Market','PE Relationships','Cross-border']},
-  {name:'Livingstone',type:'boutique',hq:'London',market:'UK/Ireland',sizes:['small','mid'],sizeLabel:'€10M–€150M',deals:'300+ completed',sectors:['Technology','Business Services','Healthcare','Consumer'],desc:'Independent mid-market advisor. Particularly strong in tech-enabled business services. Deep UK and Irish transaction history.',web:'livingstonepartners.com',badges:['UK Specialist','Tech & Services','Mid-Market']},
-  {name:'Capitalmind',type:'boutique',hq:'Amsterdam / Paris',market:'Northern Europe',sizes:['micro','small','mid'],sizeLabel:'€5M–€100M',deals:'Benelux & France',sectors:['Technology','Business Services','Healthcare','Industrials'],desc:'Independent European M&A with a strong lower mid-market and technology-enabled business services focus.',web:'capitalmind.eu',badges:['Lower Mid-Market','Tech Specialist','Benelux & France']},
-  {name:'Alantra',type:'boutique',hq:'Madrid',market:'Southern Europe',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'200+ closed / yr',sectors:['Technology','Healthcare','Consumer','Industrials','Business Services'],desc:'Independent investment banking with strong Southern Europe coverage and cross-border capabilities.',web:'alantra.com',badges:['Southern Europe','Mid-Market','Cross-border']},
-  {name:'Metzler',type:'boutique',hq:'Frankfurt',market:'DACH',sizes:['mid','large'],sizeLabel:'€20M–€500M',deals:'Leading DACH boutique',sectors:['Industrials','Technology','Healthcare','Financial Services'],desc:'German private bank with independent M&A advisory. Family-owned since 1674. Strong DACH mid-market sell-side focus.',web:'metzler.com',badges:['DACH Specialist','Independent','German Heritage']},
-  {name:'Arma Partners',type:'boutique',hq:'London',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€30M–€1B+',deals:'Tech M&A specialist',sectors:['Technology','Software','Internet','Digital Media'],desc:'Technology-focused investment bank specialising in software, internet and digital services. Strong cross-Atlantic reach.',web:'armapartners.com',badges:['Tech Specialist','Cross-Atlantic','Software Focus']},
-  {name:'Silverfleet Capital (Advisory)',type:'boutique',hq:'London / Munich',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M–€300M',deals:'PE-focused sells',sectors:['Business Services','Healthcare','Consumer','Technology'],desc:'European mid-market specialist with deep private equity relationships and operational value creation expertise.',web:'silverfleetcapital.com',badges:['PE Relationships','Mid-Market','Value Creation']},
-  {name:'Nielen Schuman',type:'boutique',hq:'Amsterdam',market:'Northern Europe',sizes:['micro','small','mid'],sizeLabel:'€5M–€75M',deals:'Benelux SME specialist',sectors:['Industrials','Technology','Business Services','Consumer'],desc:'Leading Benelux boutique for SME M&A. Deep local networks in Netherlands and Belgium. Founder-led business expertise.',web:'nielenschuman.nl',badges:['SME Specialist','Benelux','Founder-led']},
-  {name:'Andersch',type:'boutique',hq:'Munich',market:'DACH',sizes:['micro','small','mid'],sizeLabel:'€5M–€100M',deals:'DACH SME focus',sectors:['Industrials','Technology','Healthcare','Business Services'],desc:'German boutique focused on mid-market sell-side mandates. Strong reach into family-owned and owner-managed businesses.',web:'andersch.de',badges:['DACH Specialist','SME Focus','Family Business']},
-  {name:'Pinova',type:'boutique',hq:'Munich',market:'DACH',sizes:['small','mid'],sizeLabel:'€10M–€150M',deals:'German mid-market',sectors:['Industrials','Technology','Consumer','Business Services'],desc:'Independent Munich-based M&A boutique with a strong track record in German Mittelstand sell-side transactions.',web:'pinovaadvisors.com',badges:['Mittelstand','DACH Specialist','Independent']},
-  {name:'Waterland Corporate Finance',type:'boutique',hq:'Amsterdam',market:'Northern Europe',sizes:['small','mid'],sizeLabel:'€10M–€200M',deals:'Benelux mid-market',sectors:['Healthcare','Business Services','Industrials','Technology'],desc:'Corporate finance boutique focused on buy-side and sell-side M&A in Benelux and wider Northern Europe.',web:'waterland.nu',badges:['Benelux','Buy & Sell-side','Healthcare Focus']},
-  {name:'OAKNORTH (CF Division)',type:'boutique',hq:'London',market:'UK/Ireland',sizes:['micro','small','mid'],sizeLabel:'€2M–€50M',deals:'SME focused',sectors:['Technology','Business Services','Consumer','Healthcare'],desc:'Boutique corporate finance arm focused on UK SME transactions. Strong relationships with strategic and PE buyers.',web:'oaknorth.com',badges:['UK SME','Lower Mid-Market','PE Network']},
-  {name:'Angermann M&A',type:'boutique',hq:'Hamburg',market:'DACH',sizes:['micro','small','mid'],sizeLabel:'€3M–€75M',deals:'Northern Germany',sectors:['Industrials','Maritime','Logistics','Consumer'],desc:'German boutique with particular strength in Northern Germany and maritime/logistics sector transactions.',web:'angermann.de',badges:['Northern Germany','Maritime','SME Specialist']},
-  {name:'Rothschild & Co',type:'bank',hq:'Paris / London',market:'Pan-European',sizes:['large'],sizeLabel:'€100M+',deals:'Top-10 EU by value',sectors:['Industrials','Consumer','Financial Services','Technology'],desc:'Leading independent financial advisor. Top-ranked for European M&A advisory. Strong VDD and large-cap sell-side.',web:'rothschildandco.com',badges:['Large Cap','Top-10 EU','Independent']},
-  {name:'Lazard',type:'bank',hq:'Paris / London',market:'Pan-European',sizes:['large'],sizeLabel:'€200M+',deals:'Top-5 EU by value',sectors:['All sectors'],desc:'Global independent investment bank. Premier large-cap sell-side advisory across all sectors. Strategic advisory focus.',web:'lazard.com',badges:['Large Cap','Top-5 EU','Strategic Advisory']},
-  {name:'Houlihan Lokey',type:'bank',hq:'London / Frankfurt',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M–€5B+',deals:'#1 global M&A deals',sectors:['Technology','Industrials','Healthcare','Financial Services'],desc:'Global investment bank consistently ranked #1 by M&A deal count. Deep European mid-market and large-cap credentials.',web:'hl.com',badges:['#1 Deal Count','Large Mid-Market','PE Relationships']},
-  {name:'Mediobanca',type:'bank',hq:'Milan',market:'Southern Europe',sizes:['mid','large'],sizeLabel:'€50M–€5B+',deals:'#1 Italy by value',sectors:['Industrials','Consumer','Financial Services','Real Estate'],desc:'Leading Italian investment bank. Premier sell-side advisor for Italian corporates and family-controlled groups.',web:'mediobanca.com',badges:['Italy Specialist','Large Cap','Family Groups']},
-  {name:'BNP Paribas CIB',type:'bank',hq:'Paris',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M+',deals:'Pan-European coverage',sectors:['Industrials','Technology','Healthcare','Consumer','Energy'],desc:'European investment banking powerhouse with comprehensive sell-side advisory and financing capabilities.',web:'bnpparibas.com',badges:['Pan-European','Energy Sector','Financing']},
-  {name:'Baird International',type:'bank',hq:'London',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M–€1B+',deals:'Top-ranked mid-mkt',sectors:['Technology','Healthcare','Industrials','Consumer','Business Services'],desc:'US investment bank with strong European mid-market M&A. Particularly active in healthcare and technology.',web:'rwbaird.com',badges:['US-European Bridge','Healthcare & Tech','Mid-Market']},
-  {name:'Société Générale CIB',type:'bank',hq:'Paris',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€50M+',deals:'Strong energy focus',sectors:['Industrials','Real Estate','Energy','Consumer'],desc:'French bank with strong European M&A and leveraged finance capabilities. Energy sector expertise.',web:'sgcib.com',badges:['Leveraged Finance','Energy Focus','Pan-European']},
-  {name:'KPMG Corporate Finance',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€10M–€1B+',deals:'Full service',sectors:['All sectors'],desc:'Big Four corporate finance. Full-service DD, valuation, and sell-side advisory across all sectors and geographies.',web:'kpmg.com',badges:['Full Service','Integrated DD','All Sectors']},
-  {name:'PwC Deals',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€10M–€1B+',deals:'Market leader',sectors:['All sectors'],desc:'Integrated sell-side advisory with tax, legal and DD capabilities. Largest professional services M&A practice in Europe.',web:'pwc.com',badges:['Full Service','Tax Integration','Market Leader']},
-  {name:'Deloitte Financial Advisory',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['mid','large'],sizeLabel:'€20M–€2B+',deals:'Complex cross-border',sectors:['All sectors'],desc:'M&A advisory with deep sector and cross-border expertise. Strong restructuring and distressed transaction capabilities.',web:'deloitte.com',badges:['Cross-border','Complex Deals','Restructuring']},
-  {name:'EY-Parthenon',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['small','mid','large'],sizeLabel:'€10M–€1B+',deals:'Strategy + M&A',sectors:['All sectors'],desc:'Strategy and transaction advisory combining EY\'s global platform with Parthenon\'s strategic expertise.',web:'ey.com',badges:['Strategy + M&A','Full Service','All Sectors']},
-  {name:'Grant Thornton CF',type:'big4',hq:'Pan-European',market:'Pan-European',sizes:['micro','small','mid'],sizeLabel:'€2M–€100M',deals:'SME focused',sectors:['All sectors'],desc:'Mid-tier professional services firm with strong SME-focused corporate finance practice. Active across all European markets.',web:'grantthornton.eu',badges:['SME Specialist','Lower Mid-Market','All Sectors']},
-];;
+var SIZE_MAP={xs:[0,10],s:[10,50],m:[50,200],l:[200,1000],xl:[1000,999999]};
 
-const TYPE_LABEL={boutique:'Boutique',bank:'Investment Bank',big4:'Big 4 / Consulting'};
-let selCard=null;
+function applyFilters(){
+  var geo=document.getElementById('fCountry').value;
+  var sec=document.getElementById('fSector').value;
+  var sz=document.getElementById('fSize').value;
+  var szRange=sz==='all'?null:SIZE_MAP[sz];
 
-function getFilters(){
-  const types=[...document.querySelectorAll('input[type=checkbox][value=boutique],input[type=checkbox][value=bank],input[type=checkbox][value=big4]')].filter(c=>c.checked).map(c=>c.value);
-  const sizes=[...document.querySelectorAll('input[type=checkbox][value=micro],input[type=checkbox][value=small],input[type=checkbox][value=mid],input[type=checkbox][value=large]')].filter(c=>c.checked).map(c=>c.value);
-  const markets=[...document.querySelectorAll('input[type=checkbox][value=DACH],input[type=checkbox][value="Southern Europe"],input[type=checkbox][value="Northern Europe"],input[type=checkbox][value=CEE],input[type=checkbox][value="UK/Ireland"],input[type=checkbox][value="Pan-European"]')].filter(c=>c.checked).map(c=>c.value);
-  const q=document.getElementById('fpSearch').value.toLowerCase();
-  return{types,sizes,markets,q};
-}
+  var cards=document.querySelectorAll('#advGrid .acard');
+  var vis=0;
+  cards.forEach(function(c){
+    var geos=c.dataset.geos.split(',');
+    var secs=c.dataset.secs.split(',');
+    var min=+c.dataset.min, max=+c.dataset.max;
 
-function render(){
-  const {types,sizes,markets,q}=getFilters();
-  const data=ADVISORS.filter(a=>{
-    if(types.length&&!types.includes(a.type))return false;
-    if(sizes.length&&!sizes.some(s=>a.sizes.includes(s)))return false;
-    if(markets.length&&!markets.includes(a.market)&&!markets.includes('Pan-European'))return false;
-    if(a.market==='Pan-European'&&!markets.includes('Pan-European'))return false;
-    if(q&&!a.name.toLowerCase().includes(q)&&!a.sectors.join(' ').toLowerCase().includes(q)&&!a.desc.toLowerCase().includes(q)&&!a.market.toLowerCase().includes(q))return false;
-    return true;
+    var gOk=geo==='all'||geos.indexOf(geo)>-1;
+    var sOk=sec==='all'||secs.indexOf(sec)>-1;
+    var dOk=!szRange||(max>=szRange[0]&&min<=szRange[1]);
+
+    if(gOk&&sOk&&dOk){c.classList.remove('hidden');vis++;}
+    else c.classList.add('hidden');
   });
-  document.getElementById('fpCount').textContent=data.length+' advisor'+(data.length!==1?'s':'')+' shown';
-  const grid=document.getElementById('cardsGrid');
-  if(!data.length){grid.innerHTML='<div style="grid-column:span 2;padding:2rem;text-align:center;color:var(--gl);font-size:0.85rem">No advisors match your filters.</div>';return;}
-  grid.innerHTML=data.map(a=>{
-    const isSelected=selCard===a.name;
-    const topSectors=a.sectors.slice(0,3);
-    return `<div class="adv-row${isSelected?' selected':''}" onclick="selectCard('${a.name.replace(/'/g,"\\'")}')" role="row">
-      <div>
-        <div class="adv-row-name">${a.name}</div>
-        <div class="adv-row-hq">${a.hq}</div>
-      </div>
-      <div><span class="adv-row-type ${a.type}">${TYPE_LABEL[a.type]}</span></div>
-      <div class="adv-row-range">${a.market}</div>
-      <div class="adv-row-sectors">${topSectors.map(s=>`<span class="adv-row-sector">${s}</span>`).join('')}</div>
-      <div class="adv-row-range">${a.sizeLabel}</div>
-      <div class="adv-row-vetted">✓ SME</div>
-    </div>`;
-  }).join('');
+
+  var nr=document.getElementById('noResults');
+  if(nr) nr.style.display=vis===0?'block':'none';
+  var rc=document.getElementById('rCount');
+  if(rc) rc.textContent=vis+' advisor'+(vis!==1?'s':'');
 }
-
-function selectCard(name){
-  selCard=selCard===name?null:name;
-  render();
-  var panel=document.getElementById('advDetailPanel');
-  if(!selCard){panel.className='adv-detail-panel';panel.innerHTML='';return;}
-  var a=ADVISORS.find(function(x){return x.name===selCard;});
-  if(!a){panel.className='adv-detail-panel';return;}
-  panel.className='adv-detail-panel visible';
-  panel.innerHTML=`<div class="adp-col">
-    <div class="adp-title">Profile</div>
-    <div class="adp-row"><span class="adp-lbl">Type</span><span class="adp-val">${TYPE_LABEL[a.type]}</span></div>
-    <div class="adp-row"><span class="adp-lbl">HQ</span><span class="adp-val">${a.hq}</span></div>
-    <div class="adp-row"><span class="adp-lbl">Market</span><span class="adp-val">${a.market}</span></div>
-    <div class="adp-row"><span class="adp-lbl">Deal range</span><span class="adp-val">${a.sizeLabel}</span></div>
-    <div class="adp-row"><span class="adp-lbl">Activity</span><span class="adp-val">${a.deals}</span></div>
-    <div class="adp-row"><span class="adp-lbl">SME vetted</span><span class="adp-val grn">✓ Yes</span></div>
-    <a href="https://${a.web}" target="_blank" class="adp-link">${a.web} →</a>
-  </div>
-  <div class="adp-col">
-    <div class="adp-title">Sector focus</div>
-    ${a.sectors.map(s=>`<div class="adp-row"><span class="adp-lbl">${s}</span><span class="adp-val grn">✓</span></div>`).join('')}
-  </div>
-  <div class="adp-col">
-    <div class="adp-title">About</div>
-    <div class="adp-desc">${a.desc}</div>
-    <div class="adp-badges">${a.badges.map(b=>`<span class="adp-badge">${b}</span>`).join('')}</div>
-  </div>`;
-  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-function resetFilters(){document.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=true);document.getElementById('fpSearch').value='';render();}
-
-var SB_TICKS=[['Software EV/EBITDA','24.5×'],['Logistics EV/EBITDA','12.6×'],['CH CGT','0%'],['IT CGT','26%'],['Advisory €5M','5.5%'],['SME Discount','−30%'],['Healthcare EV/EBITDA','19.8×']];
-function renderSbTicker(){var el=document.getElementById('sbTicker');if(!el)return;var s=Math.floor(Math.random()*SB_TICKS.length);var items=SB_TICKS.slice(s,s+3).concat(SB_TICKS.slice(0,Math.max(0,3-(SB_TICKS.length-s))));el.innerHTML=items.map(function(t){return'<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4)">'+t[0]+'</span><span style="font-variant-numeric:tabular-nums;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');}
-
-
-// ── SEARCH DROPDOWN ──────────────────────────────────────────────────────────
-function onSearchInput(){
-  const q = document.getElementById('fpSearch').value.toLowerCase();
-  render();
-  updateDropdown(q);
-}
-
-function updateDropdown(q){
-  const dd = document.getElementById('searchDropdown');
-  if(!q){dd.classList.remove('open');return;}
-  // Match by firm name, sector, market
-  const matches = [];
-  ADVISORS.forEach(a=>{
-    if(a.name.toLowerCase().includes(q)) matches.push({label:a.name,sub:TYPE_LABEL[a.type],val:a.name,kind:'firm'});
-    a.sectors.forEach(s=>{
-      if(s.toLowerCase().includes(q) && !matches.find(m=>m.val===s&&m.kind==='sector'))
-        matches.push({label:s,sub:'Sector',val:s,kind:'sector'});
-    });
-  });
-  if(!matches.length){
-    dd.innerHTML='<div class="sd-empty">No results found</div>';
-    dd.classList.add('open');
-    return;
-  }
-  dd.innerHTML = matches.slice(0,8).map((m,i)=>
-    `<div class="sd-item" data-val="${m.val}" data-kind="${m.kind}" onclick="selectSuggestion('${m.val.replace(/'/g,"\'")}','${m.kind}')">
-       <span>${m.label}</span><span class="sd-item-type">${m.sub}</span>
-     </div>`
-  ).join('');
-  dd.classList.add('open');
-}
-
-function selectSuggestion(val, kind){
-  const inp = document.getElementById('fpSearch');
-  inp.value = val;
-  document.getElementById('searchDropdown').classList.remove('open');
-  render();
-}
-
-function openDropdown(){
-  const q = document.getElementById('fpSearch').value.toLowerCase();
-  if(q) updateDropdown(q);
-}
-
-// Close dropdown when clicking outside
-document.addEventListener('click', function(e){
-  if(!e.target.closest('.search-wrap')) document.getElementById('searchDropdown').classList.remove('open');
-});
-
-
-// ── ACCESS COOKIE SYSTEM ─────────────────────────────────────────────────────
-function setCookie(name,val,days){
-  var d=new Date();d.setTime(d.getTime()+(days*24*60*60*1000));
-  document.cookie=name+'='+val+';expires='+d.toUTCString()+';path=/;SameSite=Lax';
-}
-function getCookie(name){
-  var n=name+'=',ca=document.cookie.split(';');
-  for(var i=0;i<ca.length;i++){var c=ca[i].trim();if(c.indexOf(n)===0)return c.substring(n.length);}
-  return '';
-}
-function hasAccess(){return getCookie('mnaintel_access')==='1';}
-function grantAccess(){setCookie('mnaintel_access','1',365);}
-
-// Called by any unlock form submission
-function handleUnlock(e){
-  if(e) e.preventDefault();
-  var form=e?e.target:null;
-  var inp=form?form.querySelector('input[type=email]'):null;
-  var email=inp?inp.value:'';
-  grantAccess();
-  if(email){
-    window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(email),'_blank');
-  }
-  unlockPage();
-  return false;
-}
-
-// Remove all blurs and gates on this page
-function unlockPage(){
-  // Remove blur classes
-  document.querySelectorAll('.blurred-text,.gate-blur,.lc-data,.lc-sub,.sens-table').forEach(function(el){
-    el.style.filter='none';el.style.userSelect='auto';el.style.pointerEvents='auto';
-  });
-  // Hide all gate overlays
-  document.querySelectorAll('.gate-overlay,.rh-gate,.nb-gate,.exitNetGate,.waccGateOverlay,.rh-gate-visible,.rh-gate.visible,[id$="Gate"],[id$="GateBox"],[id$="GateOverlay"]').forEach(function(el){
-    el.style.display='none';
-  });
-  // Show hidden result sections
-  document.querySelectorAll('.result-cards,.val-section,.sens-section').forEach(function(el){
-    if(el.style.display==='none') el.style.display='grid';
-  });
-  // Remove paywall fades on editorial pages
-  document.querySelectorAll('.paywall-fade').forEach(function(el){
-    el.style.maxHeight='none';el.style.overflow='visible';
-    el.classList.remove('paywall-fade');
-  });
-  document.querySelectorAll('.paywall-gate,.pg-form').forEach(function(el){
-    el.style.display='none';
-  });
-  // Remove blur on locked card data in index
-  document.querySelectorAll('.lc').forEach(function(el){
-    el.style.cursor='default';
-    el.onclick=null;
-  });
-}
-
-// On page load: if already has access, unlock everything immediately
-document.addEventListener('DOMContentLoaded',function(){
-  if(hasAccess()) unlockPage();
-});
-
-
-// Sidebar locked links: check access before navigating
-
-  else{
-    // Close sidebar and show unlock prompt
-    closeSidebar();
-    var bar=document.getElementById('subBar');
-    if(bar){bar.classList.add('show');bar.scrollIntoView({behavior:'smooth',block:'nearest'});
-      var em=document.getElementById('sbEmail');if(em)setTimeout(function(){em.focus();},350);}
-    else{
-      // Tool pages: show their gate
-      var gate=document.querySelector('.rh-gate,.nb-gate');
-      if(gate){gate.style.display='block';gate.scrollIntoView({behavior:'smooth',block:'nearest'});}
-    }
-  }
-}
-
-document.addEventListener('DOMContentLoaded',function(){
-  render();
-  renderSbTicker();setInterval(renderSbTicker,5000);
-  
-  // Mark gated links as unlocked in sidebar
-  if(hasAccess()){
-    document.querySelectorAll('[data-gated]').forEach(function(el){el.classList.add('unlocked');});
-  }
-
-  document.querySelectorAll('[data-email]').forEach(function(el){el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com';});
-});
-
-function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
-function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
-function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');if(btn)btn.classList.toggle('open');}
-function toggleNavDrop(){var menu=document.getElementById('navToolsMenu');var btn=document.getElementById('navToolsBtn');menu.classList.toggle('open');btn.classList.toggle('open');}
-document.addEventListener('click',function(e){var drop=document.getElementById('navToolsDrop');if(drop&&!drop.contains(e.target)){document.getElementById('navToolsMenu').classList.remove('open');document.getElementById('navToolsBtn').classList.remove('open');}});
 </script>
 </body>
 </html>
