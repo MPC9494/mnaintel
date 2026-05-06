@@ -372,19 +372,22 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
 .f-copy{font-size:0.6rem;color:rgba(255,255,255,0.15);width:100%;margin-top:0.15rem}
 @media(max-width:767px){footer{padding:1.5rem 1.25rem}}
 
-/* ── MARKET PULSE ── */
-.market-pulse{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
-.market-pulse::-webkit-scrollbar{display:none}
-.mp-brand{display:flex;align-items:center;gap:6px;padding:.3rem 1.25rem .3rem .75rem;border-right:1px solid rgba(255,255,255,0.07);flex-shrink:0}
-.mp-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:mp-pulse 2.5s infinite}
-@keyframes mp-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
-.mp-label{font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
-.mp-item{display:flex;align-items:center;gap:.5rem;padding:.28rem .9rem;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0}
-.mp-item:last-child{border-right:none}
-.mp-name{font-size:.58rem;color:rgba(255,255,255,.32);white-space:nowrap}
-.mp-val{font-family:var(--mono);font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
-.mp-chg{font-family:var(--mono);font-size:.55rem;white-space:nowrap}
-.mp-chg.up{color:#4ade80}.mp-chg.dn{color:#f87171}.mp-chg.neu{color:rgba(255,255,255,.3)}
+/* ── MARKET PULSE — auto-scroll ticker ── */
+.market-pulse{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:stretch;overflow:hidden;height:32px;position:relative}
+.mp-brand{display:flex;align-items:center;gap:6px;padding:.28rem 1.1rem .28rem .75rem;border-right:1px solid rgba(255,255,255,0.1);flex-shrink:0;position:relative;z-index:2;background:var(--navy2)}
+.mp-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;box-shadow:0 0 5px #4ade80;animation:mp-pulse 2.5s infinite}
+@keyframes mp-pulse{0%,100%{opacity:1;box-shadow:0 0 5px #4ade80}50%{opacity:.3;box-shadow:none}}
+.mp-label{font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.mp-track-wrap{flex:1;overflow:hidden;display:flex;align-items:center;cursor:default}
+.mp-track{display:flex;align-items:center;animation:mpScroll 60s linear infinite;will-change:transform}
+.mp-track-wrap:hover .mp-track{animation-play-state:paused}
+@keyframes mpScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.mp-item{display:inline-flex;align-items:center;gap:.35rem;padding:0 1.25rem;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0;white-space:nowrap;height:32px}
+.mp-name{font-family:var(--mono);font-size:.55rem;letter-spacing:.06em;color:rgba(255,255,255,.3);white-space:nowrap}
+.mp-val{font-family:var(--mono);font-size:.65rem;font-weight:600;color:rgba(255,255,255,.9);white-space:nowrap;letter-spacing:.02em}
+.mp-chg{font-family:var(--mono);font-size:.53rem;white-space:nowrap}
+.mp-chg.up{color:#4ade80}.mp-chg.dn{color:#f87171}.mp-chg.neu{color:rgba(255,255,255,.28)}
+.mp-val.loading{color:rgba(255,255,255,.15)}
 
 
 .tc-data{font-family:var(--mono)!important;}
@@ -392,72 +395,6 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
 
 /* ── GATED NAV LINKS ── */
 
-
-/* ── EQUITY BRIDGE MODULE ── */
-.eb-section{background:var(--white);border-top:0.5px solid var(--rule)}
-.eb-inner{max-width:1140px;margin:0 auto;padding:2rem 2.5rem}
-@media(max-width:767px){.eb-inner{padding:1.5rem 1.25rem}}
-.eb-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem}
-.eb-h{font-size:0.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy)}
-.eb-note{font-size:0.62rem;color:var(--gl)}
-.eb-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
-@media(max-width:820px){.eb-grid{grid-template-columns:1fr}}
-.eb-controls{display:flex;flex-direction:column;gap:.85rem}
-.eb-slabel{font-size:0.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:.25rem;display:flex;justify-content:space-between}
-.eb-slabel span{font-family:var(--mono);font-weight:600;color:var(--b);letter-spacing:0}
-.eb-range{width:100%;accent-color:var(--navy)}
-.eb-select{font-family:var(--mono);font-size:0.8rem;color:var(--b);background:var(--bg);border:0.5px solid var(--rule);padding:.35rem .65rem;width:100%;outline:none;cursor:pointer}
-.eb-formula{font-size:0.62rem;color:var(--gl);background:var(--bg2);padding:.4rem .65rem;margin-top:.15rem;border-left:2px solid var(--rule)}
-.eb-results{background:var(--bg);border:0.5px solid var(--rule);padding:1.25rem}
-.eb-step{display:flex;justify-content:space-between;align-items:center;padding:.55rem 0;border-bottom:0.5px solid var(--rule2);font-size:.82rem}
-.eb-step:last-child{border-bottom:none}
-.eb-step-lbl{color:var(--gm)}
-.eb-step-neg{font-family:var(--mono);font-weight:600;color:var(--red)}
-.eb-step-pos{font-family:var(--mono);font-weight:600;color:var(--grn)}
-.eb-step-n{font-family:var(--mono);font-weight:600;color:var(--b)}
-.eb-total{display:flex;justify-content:space-between;align-items:center;padding:.85rem 0 0;margin-top:.5rem;border-top:1.5px solid var(--navy)}
-.eb-total-lbl{font-size:.88rem;font-weight:700;color:var(--navy)}
-.eb-total-val{font-family:var(--mono);font-size:1.6rem;font-weight:600;color:var(--grn)}
-.eb-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);margin-top:1px}
-.eb-metric{background:var(--bg);padding:.7rem .9rem}
-.eb-metric-lbl{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:.2rem}
-.eb-metric-val{font-family:var(--mono);font-size:1rem;font-weight:600;color:var(--b)}
-@media(max-width:600px){.eb-metrics{grid-template-columns:1fr 1fr}}
-.eb-src{font-family:var(--mono);font-size:.58rem;color:var(--gl);margin-top:.85rem}
-
-/* ── ADVISOR MATCHER MODULE ── */
-.adv-section{background:var(--bg);border-top:0.5px solid var(--rule)}
-.adv-inner{max-width:1140px;margin:0 auto;padding:2rem 2.5rem}
-@media(max-width:767px){.adv-inner{padding:1.5rem 1.25rem}}
-.adv-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.5rem}
-.adv-h{font-size:0.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy)}
-.adv-note{font-size:0.62rem;color:var(--gl)}
-.adv-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
-.adv-chip{font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border:0.5px solid var(--rule);background:var(--white);color:var(--gl);cursor:pointer;transition:all .12s}
-.adv-chip:hover{border-color:var(--navy);color:var(--navy)}
-.adv-chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.adv-filter-row{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin-bottom:.5rem}
-.adv-filter-lbl{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);white-space:nowrap}
-.adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule)}
-@media(max-width:880px){.adv-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.adv-grid{grid-template-columns:1fr}}
-.acard{background:var(--white);padding:1.1rem 1.25rem;cursor:pointer;transition:background .12s;position:relative}
-.acard:hover{background:var(--bg)}
-.acard.hidden{display:none}
-.acard-top{display:flex;align-items:center;gap:.65rem;margin-bottom:.65rem}
-.acard-logo{width:28px;height:28px;border:0.5px solid var(--rule);object-fit:contain;background:#fff;flex-shrink:0;padding:2px}
-.acard-name{font-size:.82rem;font-weight:700;color:var(--navy);line-height:1.3}
-.acard-type{font-size:.62rem;color:var(--gl);margin-top:1px}
-.acard-bar-wrap{height:3px;background:var(--rule);margin-bottom:.5rem}
-.acard-bar{height:3px}
-.acard-meta{font-size:.65rem;color:var(--gm);margin-bottom:.55rem}
-.acard-score{font-family:var(--mono);font-size:.6rem;font-weight:600;float:right}
-.acard-tags{display:flex;flex-wrap:wrap;gap:3px}
-.at-s{font-size:.58rem;padding:1px 5px;background:rgba(10,22,40,.07);color:var(--navy);font-weight:600}
-.at-g{font-size:.58rem;padding:1px 5px;background:var(--grn2);color:var(--grn)}
-.at-x{font-size:.58rem;padding:1px 5px;background:var(--amber2);color:var(--amber)}
-.adv-no-results{display:none;text-align:center;padding:2rem;font-size:.82rem;color:var(--gl);background:var(--white)}
-.adv-map-note{font-size:.62rem;color:var(--gl);margin-top:.85rem;text-align:right}
 
 </style>
 </head>
@@ -541,17 +478,33 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>
-<!-- MARKET PULSE -->
+<!-- MARKET PULSE — auto-scrolling ticker with live data -->
 <div class="market-pulse">
   <div class="mp-brand"><span class="mp-dot"></span><span class="mp-label">Market Pulse</span></div>
-  <div class="mp-item"><span class="mp-name">10Y Bund (Rf)</span><span class="mp-val">2.68%</span><span class="mp-chg neu">ECB</span></div>
-  <div class="mp-item"><span class="mp-name">ERP EU avg</span><span class="mp-val">5.84%</span><span class="mp-chg neu">Damodaran 2026</span></div>
-  <div class="mp-item"><span class="mp-name">S&amp;P Fwd P/E</span><span class="mp-val">20.8×</span><span class="mp-chg dn">above hist. avg</span></div>
-  <div class="mp-item"><span class="mp-name">EU Deal Vol</span><span class="mp-val">−14%</span><span class="mp-chg dn">YoY · Mergermarket</span></div>
-  <div class="mp-item"><span class="mp-name">Software EV/EBITDA</span><span class="mp-val">24.5×</span><span class="mp-chg up">Damodaran Jan 2026</span></div>
-  <div class="mp-item"><span class="mp-name">Logistics EV/EBITDA</span><span class="mp-val">12.6×</span><span class="mp-chg neu">Damodaran Jan 2026</span></div>
-  <div class="mp-item"><span class="mp-name">CH CGT</span><span class="mp-val">0%</span><span class="mp-chg up">lowest EU</span></div>
-  <div class="mp-item"><span class="mp-name">DK CGT</span><span class="mp-val">42%</span><span class="mp-chg dn">highest EU</span></div>
+  <div class="mp-track-wrap">
+    <div class="mp-track" id="mpTrack">
+      <!-- Set A -->
+      <div class="mp-item"><span class="mp-name">10Y Bund</span><span class="mp-val" id="mp-bund">2.68%</span><span class="mp-chg neu">Rf</span></div>
+  <div class="mp-item"><span class="mp-name">ECB Rate</span><span class="mp-val" id="mp-ecb">2.65%</span><span class="mp-chg dn">deposit</span></div>
+  <div class="mp-item"><span class="mp-name">USD/EUR</span><span class="mp-val" id="mp-eur">1.134</span><span class="mp-chg up">live</span></div>
+  <div class="mp-item"><span class="mp-name">ERP EU</span><span class="mp-val" id="mp-erp">5.84%</span><span class="mp-chg neu">Damodaran</span></div>
+  <div class="mp-item"><span class="mp-name">S&P 500</span><span class="mp-val" id="mp-sp">5,631</span><span class="mp-chg up">live</span></div>
+  <div class="mp-item"><span class="mp-name">S&P Fwd P/E</span><span class="mp-val" id="mp-pe">20.8×</span><span class="mp-chg dn">above avg</span></div>
+  <div class="mp-item"><span class="mp-name">VIX</span><span class="mp-val" id="mp-vix">22.4</span><span class="mp-chg dn">elevated</span></div>
+  <div class="mp-item"><span class="mp-name">Software</span><span class="mp-val" id="mp-swmul">24.5×</span><span class="mp-chg up">EV/EBITDA</span></div>
+  <div class="mp-item"><span class="mp-name">Healthcare</span><span class="mp-val" id="mp-hcmul">19.8×</span><span class="mp-chg neu">EV/EBITDA</span></div>
+  <div class="mp-item"><span class="mp-name">Industrials</span><span class="mp-val" id="mp-indmul">16.2×</span><span class="mp-chg neu">EV/EBITDA</span></div>
+  <div class="mp-item"><span class="mp-name">Logistics</span><span class="mp-val" id="mp-logmul">12.6×</span><span class="mp-chg neu">EV/EBITDA</span></div>
+  <div class="mp-item"><span class="mp-name">EU Deal Vol</span><span class="mp-val" id="mp-dealvol">−14%</span><span class="mp-chg dn">YoY</span></div>
+  <div class="mp-item"><span class="mp-name">CH CGT</span><span class="mp-val" id="mp-chcgt">0%</span><span class="mp-chg up">no CGT</span></div>
+  <div class="mp-item"><span class="mp-name">IT CGT</span><span class="mp-val" id="mp-itcgt">26%</span><span class="mp-chg neu">flat rate</span></div>
+  <div class="mp-item"><span class="mp-name">DK CGT</span><span class="mp-val" id="mp-dkcgt">42%</span><span class="mp-chg dn">highest EU</span></div>
+  <div class="mp-item"><span class="mp-name">Advisory €5M</span><span class="mp-val" id="mp-adv">5.5%</span><span class="mp-chg neu">avg fee</span></div>
+  <div class="mp-item"><span class="mp-name">SME Discount</span><span class="mp-val" id="mp-sme">−30%</span><span class="mp-chg dn">illiquidity</span></div>
+  <div class="mp-item"><span class="mp-name">ERP Germany</span><span class="mp-val" id="mp-erpde">5.65%</span><span class="mp-chg neu">Damodaran</span></div>
+  <!-- Set B (clone for seamless loop — filled by JS) -->
+    </div>
+  </div>
 </div>
 
 <!-- HERO -->
@@ -713,220 +666,6 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
   </form>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════
-     EQUITY BRIDGE & NET PROCEEDS SIMULATOR
-════════════════════════════════════════════════════════════ -->
-<div class="eb-section">
-  <div class="eb-inner">
-    <div class="eb-header">
-      <span class="eb-h">Equity Bridge &amp; Net Proceeds</span>
-      <span class="eb-note">Modified Lehman · Firmex/DealCircle 2024–2025 · Damodaran Jan 2026</span>
-    </div>
-    <div class="eb-grid">
-
-      <!-- CONTROLS -->
-      <div class="eb-controls">
-        <div>
-          <div class="eb-slabel">Enterprise Value (EV) <span id="ebEvOut">€20M</span></div>
-          <input type="range" class="eb-range" min="1" max="200" step="1" value="20" id="ebEv" oninput="ebCalc()">
-        </div>
-        <div>
-          <div class="eb-slabel">Debt netto (PFN) <span id="ebDebtOut">€3M</span></div>
-          <input type="range" class="eb-range" min="0" max="80" step="0.5" value="3" id="ebDebt" oninput="ebCalc()">
-        </div>
-        <div>
-          <div class="eb-slabel" style="margin-bottom:.4rem">Formula success fee</div>
-          <select class="eb-select" id="ebFeeMode" onchange="ebCalc()">
-            <option value="modified">Modified Lehman 3-3-2-1-1% · middle market</option>
-            <option value="double">Double Lehman 10-8-6-4-2% · deal &lt;€5M</option>
-            <option value="flat">Flat rate personalizzato</option>
-          </select>
-          <div class="eb-formula" id="ebFormula">3% su primi €5M + 3% su successivi €5M + 2% sui successivi €10M + 1% sul residuo</div>
-        </div>
-        <div>
-          <div class="eb-slabel">Retainer mensile (€k) <span id="ebRetOut">€15k/mese</span></div>
-          <input type="range" class="eb-range" min="0" max="100" step="5" value="15" id="ebRet" oninput="ebCalc()">
-        </div>
-        <div>
-          <div class="eb-slabel">Mesi di mandato <span id="ebMoOut">8</span></div>
-          <input type="range" class="eb-range" min="3" max="24" step="1" value="8" id="ebMo" oninput="ebCalc()">
-        </div>
-        <div>
-          <div class="eb-slabel">Illiquidity discount <span id="ebIlOut">25%</span></div>
-          <input type="range" class="eb-range" min="0" max="40" step="1" value="25" id="ebIl" oninput="ebCalc()">
-        </div>
-        <div>
-          <div class="eb-slabel">Capital gains tax <span id="ebTaxOut">26%</span></div>
-          <input type="range" class="eb-range" min="0" max="45" step="1" value="26" id="ebTax" oninput="ebCalc()">
-        </div>
-        <div class="eb-src">Benchmark illiquidità: 20–30% · Fonte: Wall Street Prep / Damodaran · CGT: EY country guide</div>
-      </div>
-
-      <!-- RESULTS WATERFALL -->
-      <div>
-        <div class="eb-results">
-          <div class="eb-step"><span class="eb-step-lbl">Enterprise Value (EV)</span><span class="eb-step-n" id="ebR1">€20.0M</span></div>
-          <div class="eb-step"><span class="eb-step-lbl">— Debt netto (PFN)</span><span class="eb-step-neg" id="ebR2">− €3.0M</span></div>
-          <div class="eb-step"><span class="eb-step-lbl">= Equity Value (pre-sconto)</span><span class="eb-step-n" id="ebR3">€17.0M</span></div>
-          <div class="eb-step"><span class="eb-step-lbl">— Illiquidity discount (<span id="ebR4pct">25%</span>)</span><span class="eb-step-neg" id="ebR4">− €4.3M</span></div>
-          <div class="eb-step"><span class="eb-step-lbl">= Equity Value aggiustato</span><span class="eb-step-n" id="ebR5">€12.8M</span></div>
-          <div class="eb-step"><span class="eb-step-lbl">— Success fee advisor (<span id="ebR6pct">2.4% blended</span>)</span><span class="eb-step-neg" id="ebR6">− €0.3M</span></div>
-          <div class="eb-step"><span class="eb-step-lbl">— Retainer netto (non creditato)</span><span class="eb-step-neg" id="ebR7">− €0.0M</span></div>
-          <div class="eb-step"><span class="eb-step-lbl">= Lordo pre-tax</span><span class="eb-step-n" id="ebR8">€12.4M</span></div>
-          <div class="eb-step"><span class="eb-step-lbl">— CGT (<span id="ebR9pct">26%</span>)</span><span class="eb-step-neg" id="ebR9">− €3.2M</span></div>
-          <div class="eb-total">
-            <span class="eb-total-lbl">Cash-in-hand finale</span>
-            <span class="eb-total-val" id="ebNet">€9.2M</span>
-          </div>
-        </div>
-        <div class="eb-metrics">
-          <div class="eb-metric"><div class="eb-metric-lbl">Fee blended</div><div class="eb-metric-val" id="ebMBlend">2.4%</div></div>
-          <div class="eb-metric"><div class="eb-metric-lbl">Fee totale</div><div class="eb-metric-val" id="ebMFee">€0.3M</div></div>
-          <div class="eb-metric"><div class="eb-metric-lbl">Haircut su EV</div><div class="eb-metric-val" style="color:var(--red)" id="ebMHair">54%</div></div>
-          <div class="eb-metric"><div class="eb-metric-lbl">Cash / EV</div><div class="eb-metric-val" style="color:var(--grn)" id="ebMPct">46%</div></div>
-        </div>
-        <div class="eb-src">ERP corrente: 5.84% (Damodaran Jan 2026) · Software EV/EBITDA: 24.5× · CGT default: Italia 26%</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════
-     SMART ADVISOR MATCHER
-════════════════════════════════════════════════════════════ -->
-<div class="adv-section">
-  <div class="adv-inner">
-    <div class="adv-header">
-      <span class="adv-h">Advisor Directory — Europa</span>
-      <span class="adv-note">Firmex / DealCircle 2024–2025 · coordinate uffici verificate</span>
-    </div>
-
-    <div class="adv-filter-row">
-      <span class="adv-filter-lbl">Paese</span>
-      <div class="adv-filters" id="advGeoF">
-        <span class="adv-chip on" data-geo="all">Tutti</span>
-        <span class="adv-chip" data-geo="UK">🇬🇧 UK</span>
-        <span class="adv-chip" data-geo="DE">🇩🇪 Germania</span>
-        <span class="adv-chip" data-geo="FR">🇫🇷 Francia</span>
-        <span class="adv-chip" data-geo="IT">🇮🇹 Italia</span>
-      </div>
-    </div>
-    <div class="adv-filter-row">
-      <span class="adv-filter-lbl">Settore</span>
-      <div class="adv-filters" id="advSecF">
-        <span class="adv-chip on" data-sec="all">Tutti</span>
-        <span class="adv-chip" data-sec="Software">Software/SaaS</span>
-        <span class="adv-chip" data-sec="Industrials">Industrials</span>
-        <span class="adv-chip" data-sec="Healthcare">Healthcare</span>
-        <span class="adv-chip" data-sec="CrossBorder">Cross-border</span>
-      </div>
-    </div>
-
-    <div class="adv-grid" id="advGrid">
-
-      <div class="acard" data-geos="UK,DE" data-secs="Software,Industrials,CrossBorder">
-        <div class="acard-top">
-          <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=hl.com&sz=64" alt="Houlihan Lokey">
-          <div><div class="acard-name">Houlihan Lokey</div><div class="acard-type">Global boutique · UK &amp; DACH</div></div>
-        </div>
-        <div class="acard-bar-wrap"><div class="acard-bar" style="width:97%;background:var(--grn)"></div></div>
-        <div class="acard-meta"><span class="acard-score" style="color:var(--grn)">97% match</span>EV sweet spot €20–200M · 89 deal/3yr</div>
-        <div class="acard-tags">
-          <span class="at-s">Software/SaaS</span><span class="at-s">Industrials</span>
-          <span class="at-g">🇬🇧 Londra</span><span class="at-g">🇩🇪 Francoforte</span>
-          <span class="at-x">Cross-border</span><span class="at-x">PE-backed</span>
-        </div>
-      </div>
-
-      <div class="acard" data-geos="UK,FR" data-secs="Software,Industrials,CrossBorder">
-        <div class="acard-top">
-          <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=dcadvisory.com&sz=64" alt="DC Advisory">
-          <div><div class="acard-name">DC Advisory</div><div class="acard-type">Mid-market boutique · UK &amp; Francia</div></div>
-        </div>
-        <div class="acard-bar-wrap"><div class="acard-bar" style="width:84%;background:var(--navy)"></div></div>
-        <div class="acard-meta"><span class="acard-score" style="color:var(--navy)">84% match</span>EV sweet spot €30–300M · 61 deal/3yr</div>
-        <div class="acard-tags">
-          <span class="at-s">Software/SaaS</span><span class="at-s">Industrials</span>
-          <span class="at-g">🇬🇧 Londra</span><span class="at-g">🇫🇷 Parigi</span>
-          <span class="at-x">Cross-border</span>
-        </div>
-      </div>
-
-      <div class="acard" data-geos="UK" data-secs="Software,Healthcare,CrossBorder">
-        <div class="acard-top">
-          <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=parthenon.ey.com&sz=64" alt="EY-Parthenon">
-          <div><div class="acard-name">EY-Parthenon M&amp;A</div><div class="acard-type">Big4 · Hub Londra</div></div>
-        </div>
-        <div class="acard-bar-wrap"><div class="acard-bar" style="width:71%;background:var(--amber)"></div></div>
-        <div class="acard-meta"><span class="acard-score" style="color:var(--amber)">71% match</span>EV sweet spot €50–500M · 145 deal/3yr</div>
-        <div class="acard-tags">
-          <span class="at-s">Software/SaaS</span><span class="at-s">Healthcare</span>
-          <span class="at-g">🇬🇧 Londra</span>
-          <span class="at-x">Cross-border</span><span class="at-x">Carve-out</span>
-        </div>
-      </div>
-
-      <div class="acard" data-geos="UK,FR" data-secs="Software,Industrials,Healthcare,CrossBorder">
-        <div class="acard-top">
-          <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=rothschildandco.com&sz=64" alt="Rothschild &amp; Co">
-          <div><div class="acard-name">Rothschild &amp; Co</div><div class="acard-type">Bulge bracket · UK &amp; Francia</div></div>
-        </div>
-        <div class="acard-bar-wrap"><div class="acard-bar" style="width:78%;background:var(--navy)"></div></div>
-        <div class="acard-meta"><span class="acard-score" style="color:var(--navy)">78% match</span>EV sweet spot €200M+ · 200+ deal/3yr</div>
-        <div class="acard-tags">
-          <span class="at-s">Software</span><span class="at-s">Industrials</span><span class="at-s">Healthcare</span>
-          <span class="at-g">🇬🇧 Londra</span><span class="at-g">🇫🇷 Parigi</span>
-          <span class="at-x">Cross-border</span>
-        </div>
-      </div>
-
-      <div class="acard" data-geos="UK,DE" data-secs="Software,Industrials,CrossBorder">
-        <div class="acard-top">
-          <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=lincolninternational.com&sz=64" alt="Lincoln International">
-          <div><div class="acard-name">Lincoln International</div><div class="acard-type">Mid-market boutique · UK &amp; DACH</div></div>
-        </div>
-        <div class="acard-bar-wrap"><div class="acard-bar" style="width:82%;background:var(--grn)"></div></div>
-        <div class="acard-meta"><span class="acard-score" style="color:var(--grn)">82% match</span>EV sweet spot €25–250M · 74 deal/3yr</div>
-        <div class="acard-tags">
-          <span class="at-s">Software</span><span class="at-s">Industrials</span>
-          <span class="at-g">🇬🇧 Londra</span><span class="at-g">🇩🇪 Francoforte</span>
-          <span class="at-x">PE-backed</span><span class="at-x">Cross-border</span>
-        </div>
-      </div>
-
-      <div class="acard" data-geos="UK,DE,FR" data-secs="Software,Industrials,Healthcare">
-        <div class="acard-top">
-          <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=lazard.com&sz=64" alt="Lazard">
-          <div><div class="acard-name">Lazard</div><div class="acard-type">Bulge bracket · UK, DACH &amp; Francia</div></div>
-        </div>
-        <div class="acard-bar-wrap"><div class="acard-bar" style="width:65%;background:var(--amber)"></div></div>
-        <div class="acard-meta"><span class="acard-score" style="color:var(--amber)">65% match</span>EV sweet spot €100M+ · 180+ deal/3yr</div>
-        <div class="acard-tags">
-          <span class="at-s">Industrials</span><span class="at-s">Healthcare</span>
-          <span class="at-g">🇬🇧 Londra</span><span class="at-g">🇩🇪 Francoforte</span><span class="at-g">🇫🇷 Parigi</span>
-        </div>
-      </div>
-
-      <div class="acard" data-geos="IT" data-secs="Software,Industrials,CrossBorder">
-        <div class="acard-top">
-          <img class="acard-logo" src="https://www.google.com/s2/favicons?domain=mediobanca.com&sz=64" alt="Mediobanca">
-          <div><div class="acard-name">Mediobanca M&amp;A</div><div class="acard-type">Investment bank · Italia</div></div>
-        </div>
-        <div class="acard-bar-wrap"><div class="acard-bar" style="width:74%;background:var(--navy)"></div></div>
-        <div class="acard-meta"><span class="acard-score" style="color:var(--navy)">74% match</span>EV sweet spot €50–500M · 55 deal/3yr</div>
-        <div class="acard-tags">
-          <span class="at-s">Software</span><span class="at-s">Industrials</span>
-          <span class="at-g">🇮🇹 Milano</span>
-          <span class="at-x">Cross-border</span>
-        </div>
-      </div>
-
-    </div>
-    <div class="adv-no-results" id="advNoResults">Nessun advisor corrisponde ai filtri selezionati.</div>
-    <div class="adv-map-note">Mappa uffici verificata via Google Places · 12 uffici EU georeferenziati · <a href="/advisors" style="color:var(--navy);font-weight:700">Directory completa →</a></div>
-  </div>
-</div>
-
 <!-- INTELLIGENCE PULSE -->
 <div class="pulse-section">
   <div class="pulse-inner">
@@ -1050,127 +789,134 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
 </footer>
 
 <script>
-// ── EQUITY BRIDGE CALCULATOR ─────────────────────────────────────────────────
+
+// ── MARKET PULSE: seamless scroll + live data ────────────────────────────────
 (function(){
-  function fmt(n){
-    if(Math.abs(n)>=1) return '€'+n.toFixed(1)+'M';
-    return '€'+(n*1000).toFixed(0)+'k';
+
+  // 1. Clone track for seamless infinite loop
+  var track = document.getElementById('mpTrack');
+  if(track){
+    var clone = track.innerHTML;
+    track.innerHTML = clone + clone; // two copies = seamless
   }
-  function calcModified(ev){
-    var fee=0,rem=ev,b=[5,5,10,10],r=[.03,.03,.02,.01];
-    for(var i=0;i<b.length;i++){if(rem<=0)break;var c=Math.min(rem,b[i]);fee+=c*r[i];rem-=c;}
-    if(rem>0)fee+=rem*.01;
-    return fee;
+
+  // 2. Live data fetch - all free, no API key
+  async function fetchLiveData(){
+    var results = {};
+
+    // ECB: Bund 10Y via ECB Data Portal (free, CORS-friendly)
+    try{
+      var r = await fetch('https://data-api.ecb.europa.eu/service/data/YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_10Y?format=jsondata&lastNObservations=1',
+        {headers:{'Accept':'application/json'}});
+      if(r.ok){
+        var d = await r.json();
+        var v = d.dataSets[0].series['0:0:0:0:0:0:0'].observations;
+        var last = Object.values(v).pop()[0];
+        results['mp-bund'] = {val: last.toFixed(2)+'%', chg: last < 2.5 ? 'up' : last > 3.2 ? 'dn' : 'neu', note:'Rf·live'};
+      }
+    } catch(e){}
+
+    // ECB deposit rate via ECB API
+    try{
+      var r2 = await fetch('https://data-api.ecb.europa.eu/service/data/FM/B.U2.EUR.RT0.BB.1264A.R.F.EUR.NRP.Z.I?format=jsondata&lastNObservations=1',
+        {headers:{'Accept':'application/json'}});
+      if(r2.ok){
+        var d2 = await r2.json();
+        var obs2 = d2.dataSets[0].series['0:0:0:0:0:0:0:0:0:0:0:0'].observations;
+        var ecbRate = Object.values(obs2).pop()[0];
+        results['mp-ecb'] = {val: ecbRate.toFixed(2)+'%', chg: ecbRate > 3 ? 'neu' : 'dn', note:'deposit·live'};
+      }
+    } catch(e){}
+
+    // EUR/USD via exchangerate-api (free, CORS open)
+    try{
+      var r3 = await fetch('https://open.er-api.com/v6/latest/USD');
+      if(r3.ok){
+        var d3 = await r3.json();
+        var eur = d3.rates && d3.rates.EUR;
+        if(eur){
+          results['mp-eur'] = {val: eur.toFixed(3), chg: eur > 0.95 ? 'up' : 'dn', note:'USD/EUR·live'};
+        }
+      }
+    } catch(e){}
+
+    // S&P 500 index via stooq.com (free CSV endpoint, CORS open)
+    try{
+      var r4 = await fetch('https://stooq.com/q/l/?s=^spx&f=sd2t2ohlcv&h&e=csv');
+      if(r4.ok){
+        var csv = await r4.text();
+        var lines = csv.trim().split('\n');
+        if(lines.length > 1){
+          var cols = lines[1].split(',');
+          var close = parseFloat(cols[6]); // Close column
+          var open  = parseFloat(cols[3]);
+          if(!isNaN(close)){
+            var chgPct = ((close-open)/open*100);
+            results['mp-sp'] = {
+              val: close.toLocaleString('en-US',{maximumFractionDigits:0}),
+              chg: chgPct > 0 ? 'up' : chgPct < -0.3 ? 'dn' : 'neu',
+              note: (chgPct >= 0 ? '+' : '') + chgPct.toFixed(1)+'%'
+            };
+          }
+        }
+      }
+    } catch(e){}
+
+    return results;
   }
-  function calcDouble(ev){
-    var fee=0,rem=ev,b=[1,1,1,1],r=[.10,.08,.06,.04];
-    for(var i=0;i<b.length;i++){if(rem<=0)break;var c=Math.min(rem,b[i]);fee+=c*r[i];rem-=c;}
-    if(rem>0)fee+=rem*.02;
-    return fee;
-  }
-  window.ebCalc=function(){
-    var ev=+document.getElementById('ebEv').value;
-    var debt=+document.getElementById('ebDebt').value;
-    var retK=+document.getElementById('ebRet').value;
-    var months=+document.getElementById('ebMo').value;
-    var ilPct=+document.getElementById('ebIl').value/100;
-    var taxPct=+document.getElementById('ebTax').value/100;
-    var mode=document.getElementById('ebFeeMode').value;
 
-    document.getElementById('ebEvOut').textContent='€'+ev+'M';
-    document.getElementById('ebDebtOut').textContent='€'+debt+'M';
-    document.getElementById('ebRetOut').textContent='€'+retK+'k/mese';
-    document.getElementById('ebMoOut').textContent=months;
-    document.getElementById('ebIlOut').textContent=(ilPct*100).toFixed(0)+'%';
-    document.getElementById('ebTaxOut').textContent=(taxPct*100).toFixed(0)+'%';
-
-    var formulas={
-      modified:'3% su primi €5M + 3% su successivi €5M + 2% sui successivi €10M + 1% sul residuo',
-      double:'10% primo €1M + 8% secondo + 6% terzo + 4% quarto + 2% sul residuo — tipico deal <€5M',
-      flat:'Flat rate — seleziona percentuale nel campo'
-    };
-    document.getElementById('ebFormula').textContent=formulas[mode];
-
-    var eqPre=Math.max(0,ev-debt);
-    var ilAmt=eqPre*ilPct;
-    var eqAdj=eqPre-ilAmt;
-    var ret=retK*months/1000;
-    var successFee=mode==='modified'?calcModified(eqAdj):mode==='double'?calcDouble(eqAdj):eqAdj*.035;
-    var retCredit=Math.min(ret,successFee);
-    var feeNet=Math.max(0,successFee-retCredit);
-    var retNc=ret-retCredit;
-    var gross=eqAdj-feeNet-retNc;
-    var taxAmt=Math.max(0,gross*taxPct);
-    var net=Math.max(0,gross-taxAmt);
-    var blend=eqAdj>0?(successFee/eqAdj*100):0;
-    var haircut=ev>0?((ev-net)/ev*100):0;
-
-    document.getElementById('ebR1').textContent=fmt(ev);
-    document.getElementById('ebR2').textContent='− '+fmt(debt);
-    document.getElementById('ebR3').textContent=fmt(eqPre);
-    document.getElementById('ebR4pct').textContent=(ilPct*100).toFixed(0)+'%';
-    document.getElementById('ebR4').textContent='− '+fmt(ilAmt);
-    document.getElementById('ebR5').textContent=fmt(eqAdj);
-    document.getElementById('ebR6pct').textContent=blend.toFixed(1)+'% blended';
-    document.getElementById('ebR6').textContent='− '+fmt(feeNet);
-    document.getElementById('ebR7').textContent='− '+fmt(retNc);
-    document.getElementById('ebR8').textContent=fmt(gross);
-    document.getElementById('ebR9pct').textContent=(taxPct*100).toFixed(0)+'%';
-    document.getElementById('ebR9').textContent='− '+fmt(taxAmt);
-    document.getElementById('ebNet').textContent=fmt(net);
-    document.getElementById('ebMBlend').textContent=blend.toFixed(1)+'%';
-    document.getElementById('ebMFee').textContent=fmt(successFee);
-    document.getElementById('ebMHair').textContent=haircut.toFixed(0)+'%';
-    document.getElementById('ebMPct').textContent=(ev>0?(net/ev*100):0).toFixed(0)+'%';
-  };
-  document.addEventListener('DOMContentLoaded',function(){ebCalc();});
-})();
-
-// ── SMART ADVISOR MATCHER ────────────────────────────────────────────────────
-(function(){
-  var geoActive='all', secActive='all';
-  function applyAdv(){
-    var cards=document.querySelectorAll('#advGrid .acard');
-    var vis=0;
-    cards.forEach(function(c){
-      var geos=c.dataset.geos.split(',');
-      var secs=c.dataset.secs.split(',');
-      var gOk=geoActive==='all'||geos.indexOf(geoActive)>-1;
-      var sOk=secActive==='all'||secs.indexOf(secActive)>-1;
-      if(gOk&&sOk){c.classList.remove('hidden');vis++;}
-      else c.classList.add('hidden');
+  // 4. Apply updates to ALL instances of each id (both copies of the track)
+  function applyUpdate(id, val, chg, note){
+    document.querySelectorAll('#mp-'+id+', [id="mp-'+id+'"]').forEach(function(el){
+      el.textContent = val;
+      // Update sibling chg span
+      var next = el.nextElementSibling;
+      if(next && next.classList.contains('mp-chg')){
+        next.className = 'mp-chg ' + chg;
+        next.textContent = note;
+      }
     });
-    var nr=document.getElementById('advNoResults');
-    if(nr)nr.style.display=vis===0?'block':'none';
+    // Target by id directly (both copies share same id — update all via querySelectorAll)
+    var all = document.querySelectorAll('[id="'+id+'"]');
+    all.forEach(function(el){
+      el.textContent = val;
+      var next = el.nextElementSibling;
+      if(next && next.classList.contains('mp-chg')){
+        next.className = 'mp-chg '+chg;
+        next.textContent = note;
+      }
+    });
   }
-  document.addEventListener('DOMContentLoaded',function(){
-    document.getElementById('advGeoF').addEventListener('click',function(e){
-      var btn=e.target.closest('[data-geo]');
-      if(!btn)return;
-      document.querySelectorAll('#advGeoF [data-geo]').forEach(function(b){b.classList.remove('on');});
-      btn.classList.add('on');
-      geoActive=btn.dataset.geo;
-      applyAdv();
-    });
-    document.getElementById('advSecF').addEventListener('click',function(e){
-      var btn=e.target.closest('[data-sec]');
-      if(!btn)return;
-      document.querySelectorAll('#advSecF [data-sec]').forEach(function(b){b.classList.remove('on');});
-      btn.classList.add('on');
-      secActive=btn.dataset.sec;
-      applyAdv();
-    });
-    document.querySelectorAll('#advGrid .acard').forEach(function(card){
-      card.addEventListener('click',function(){
-        var name=card.querySelector('.acard-name').textContent;
-        window.location.href='/advisors';
+
+  // 5. On load: fetch live, update, then refresh every 5 minutes
+  document.addEventListener('DOMContentLoaded', function(){
+    // Re-clone after DOM is ready (items are in HTML already, just double them)
+    var t = document.getElementById('mpTrack');
+    if(t && t.children.length < 10){ // only if not already doubled
+      t.innerHTML = t.innerHTML + t.innerHTML;
+    }
+
+    fetchLiveData().then(function(results){
+      Object.keys(results).forEach(function(id){
+        var r = results[id];
+        applyUpdate(id, r.val, r.chg, r.note);
       });
     });
-  });
-})();
-</script>
 
-<script>
+    // Refresh every 5 min
+    setInterval(function(){
+      fetchLiveData().then(function(results){
+        Object.keys(results).forEach(function(id){
+          var r = results[id];
+          applyUpdate(id, r.val, r.chg, r.note);
+        });
+      });
+    }, 300000);
+  });
+
+})();
+// ── END MARKET PULSE ─────────────────────────────────────────────────────────
+
 // ── DATA CARD: rotating auto + click from table ─────────────────────────────
 const AUTO = [
   // ── MACRO ─────────────────────────────────────────────────────────────────
