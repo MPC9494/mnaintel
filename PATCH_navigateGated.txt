@@ -1,0 +1,37 @@
+/* PATCH: Apply this fix to country-index and advisors HTML files
+   Find the broken block below and replace with the fixed version
+   
+   FIND:
+// Sidebar locked links: check access before navigating
+
+  else{
+    // Close sidebar and show unlock prompt
+    closeSidebar();
+    var bar=document.getElementById('subBar');
+    if(bar){bar.classList.add('show');bar.scrollIntoView({behavior:'smooth',block:'nearest'});
+      var em=document.getElementById('sbEmail');if(em)setTimeout(function(){em.focus();},350);}
+    else{
+      // Tool pages: show their gate
+      var gate=document.querySelector('.rh-gate,.nb-gate');
+      if(gate){gate.style.display='block';gate.scrollIntoView({behavior:'smooth',block:'nearest'});}
+    }
+  }
+}
+
+   REPLACE WITH:
+// Sidebar locked links: check access before navigating
+function navigateGated(url){
+  if(hasAccess()){
+    window.location.href=url;
+  } else{
+    closeSidebar();
+    var bar=document.getElementById('subBar');
+    if(bar){bar.classList.add('show');bar.scrollIntoView({behavior:'smooth',block:'nearest'});
+      var em=document.getElementById('sbEmail');if(em)setTimeout(function(){em.focus();},350);}
+    else{
+      var gate=document.querySelector('.rh-gate,.nb-gate');
+      if(gate){gate.style.display='block';gate.scrollIntoView({behavior:'smooth',block:'nearest'});}
+    }
+  }
+}
+*/

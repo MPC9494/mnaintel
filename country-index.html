@@ -4,69 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Transaction Cost Index · M&A Intelligence</title>
-<meta name="description" content="M&A transaction costs by country. Advisory, legal, DD, CGT. European SME reference data.">
+<meta name="description" content="Country-by-country M&A transaction cost breakdown: CGT, advisory fees, legal costs. Equity Bridge simulator with per-country blended rates.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
-
-/* ── NAV ── */
-nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:56px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.nav-left{display:flex;align-items:center;gap:0.6rem}
-.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:6px;flex-shrink:0}
-.hamburger span{display:block;width:20px;height:1.5px;background:currentColor;transition:all .2s}
-.hamburger:hover{color:#fff}
-.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-.nav-logo-bar{width:2px;height:17px;background:var(--red);flex-shrink:0}
-.nav-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
-.nav-links{display:flex;align-items:center;gap:0}
-.nav-link{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.35rem 0.8rem;transition:color .15s;white-space:nowrap;position:relative}
-.nav-link:hover,.nav-link.active{color:#fff}
-/* Tools dropdown in top nav */
-.nav-dropdown{position:relative}
-.nav-dropdown-btn{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);background:transparent;border:none;padding:0.35rem 0.8rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .15s;height:56px}
-.nav-dropdown-btn:hover,.nav-dropdown-btn.active{color:#fff}
-.nav-dropdown-btn svg{width:8px;height:8px;fill:currentColor;transition:transform .2s}
-.nav-dropdown-btn.open svg{transform:rotate(180deg)}
-.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 1px);left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--red);min-width:200px;z-index:500;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
-.nav-dropdown-menu.open{display:block}
-.nav-dd-item{display:block;padding:9px 16px;font-size:0.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s,background .12s;white-space:nowrap}
-.nav-dd-item:last-child{border-bottom:none}
-.nav-dd-item:hover{color:#fff;background:rgba(255,255,255,0.05)}
-.nav-dd-item.active{color:#fff}
-.nav-sub{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
-.nav-sub:hover{background:#6e1414}
-@media(max-width:767px){.nav-links{display:none}}
-@media(min-width:900px){nav{padding:0 2.5rem}}
-/* ── SIDEBAR ── */
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:285px;background:var(--navy);z-index:300;transform:translateX(-285px);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
-.sidebar.open{transform:translateX(0)}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:299}
-.sb-overlay.open{display:block}
-.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
-.sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
-.sb-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}
-.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.4rem;cursor:pointer;line-height:1}
-.sb-section{font-size:0.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.25rem 0 0.5rem}
-.sb-link{display:block;padding:0.55rem 0;font-size:0.88rem;font-weight:500;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s}
-.sb-link:hover,.sb-link.active{color:#fff}
-.sb-link.active{font-weight:600}
-.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
-.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans,'DM Sans',sans-serif);font-size:0.88rem;font-weight:500;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .12s}
-.sb-dropdown-btn:hover,.sb-dropdown-btn.open{color:#fff}
-.sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform .2s}
-.sb-arrow.open{transform:rotate(180deg)}
-.sb-dropdown-items{display:none;padding-bottom:0.4rem}
-.sb-dropdown-items.open{display:block}
-.sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color .12s}
-.sb-sub-link:hover,.sb-sub-link.active{color:rgba(255,255,255,0.85)}
-.sb-sub-link.active{color:#fff}
-.sb-cta{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
-.sb-cta:hover{background:#6e1414}
-.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
-.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
-
 :root{
   --navy:#0A1628;--navy2:#142035;
   --white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;
@@ -75,377 +16,302 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
   --red:#8B1A1A;--red2:#6e1414;
   --grn:#0A5C1E;--grn2:#D6EAD9;
   --amber:#B45309;--amber2:#FEF3C7;
-  --input-bg:#FFFDE7;--input-border:#C8B400;
-  --shadow:0 1px 6px rgba(0,0,0,0.06);
-  --shadow-md:0 2px 16px rgba(0,0,0,0.10);
-  --sans:'DM Sans',sans-serif;
-  --sans:'DM Sans',sans-serif;
-  --serif:'Playfair Display',serif;
+  --sans:'DM Sans',sans-serif;--mono:'IBM Plex Mono',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--w);color:var(--b);-webkit-font-smoothing:antialiased;font-size:14px;overflow-x:hidden}
-
-
-
-
-
-
-
-
-
-
-
-@media(max-width:767px){}
-@media(min-width:900px){}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.back-bar{background:var(--bg);border-bottom:0.5px solid var(--rule);padding:0.5rem 2.5rem}
-.back-bar-inner{max-width:1300px;margin:0 auto}
-.back-btn{display:inline-flex;align-items:center;gap:5px;font-size:0.72rem;font-weight:500;color:var(--gm);text-decoration:none}
-.back-btn:hover{color:var(--navy)}
-footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(255,255,255,0.06)}
-.footer-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
-.f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
-.f-brand-bar{width:2px;height:14px;background:var(--red);flex-shrink:0}
-.f-brand-text{font-size:0.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
-.f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
-.f-links a{font-size:0.72rem;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.15s}
-.f-links a:hover{color:rgba(255,255,255,0.65)}
-.f-copy{font-size:0.62rem;color:rgba(255,255,255,0.15);width:100%;margin-top:0.2rem}
-@media(min-width:900px){footer{padding:1.75rem 3rem}}
-
-/* HEADER */
-.header-strip{background:var(--navy);padding:1.5rem 2.5rem;border-bottom:3px solid var(--red)}
-.header-strip-inner{max-width:1300px;margin:0 auto;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:0.5rem}
-.hs-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff}
-.hs-meta{font-size:0.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.38)}
-
-/* CONTROLS BAR */
-.cbar{background:var(--bg);border-bottom:0.5px solid var(--rule);padding:0.65rem 2.5rem;position:sticky;top:52px;z-index:50}
-.cbar-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap}
-.cl{font-size:0.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gl);white-space:nowrap}
-.csel{font-family:var(--sans);font-size:0.8rem;color:var(--b);background:var(--w);border:0.5px solid var(--rule);padding:0.35rem 0.7rem;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath d='M1 1l3 3 3-3' stroke='%23888' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 0.6rem center;padding-right:1.75rem}
-.csel:focus{border-color:var(--navy)}
-.cinp{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.8rem;color:var(--b);background:var(--w);border:0.5px solid var(--rule);padding:0.35rem 0.7rem;outline:none;flex:1;min-width:140px;max-width:220px}
-.cinp::placeholder{color:#bbb;font-family:var(--sans)}
-.ccount{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.7rem;color:var(--gl);margin-left:auto;white-space:nowrap}
-
-/* QUICK CALC */
-.qcalc{max-width:1300px;margin:0 auto;padding:1.25rem 2.5rem;background:var(--bg);border-bottom:0.5px solid var(--rule);display:grid;grid-template-columns:auto auto auto auto 1fr;gap:0.6rem;align-items:end}
-@media(max-width:900px){.qcalc{grid-template-columns:1fr 1fr;padding:1rem 1.25rem}}
-.qf label{font-size:0.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);display:block;margin-bottom:0.3rem}
-.qf input,.qf select{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.85rem;color:var(--b);background:var(--w);border:0.5px solid var(--rule);padding:0.38rem 0.65rem;outline:none;width:100%}
-.qf select{font-family:var(--sans);font-size:0.8rem;appearance:none}
-.qbtn{font-family:var(--sans);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--navy);color:#fff;border:none;padding:0.5rem 1.25rem;cursor:pointer;align-self:end}
-.qbtn:hover{background:var(--red)}
-.qresult{display:none;max-width:1300px;margin:0 auto;padding:0 2.5rem 1rem;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule)}
-.qresult.visible{display:grid}
-.qr-cell{background:var(--navy);padding:0.85rem 1rem}
-.qr-lbl{font-size:0.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.25rem}
-.qr-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:1.05rem;font-weight:600;color:#fff}
-.qr-val.red{color:#f09090}
-
-/* MAIN TABLE */
-.main{max-width:1200px;margin:0 auto;padding:1.25rem 2.5rem 2rem}
-@media(max-width:767px){.main{padding:1rem 1.25rem 2rem}}
-.tbl-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:0.8rem;min-width:800px}
-thead th{background:var(--navy);color:rgba(255,255,255,0.55);font-size:0.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:0.6rem 0.85rem;text-align:left;white-space:nowrap;cursor:pointer;user-select:none;border-bottom:2px solid var(--red)}
-thead th:hover{color:#fff}
-thead th.sort-asc::after{content:' ▲'}
-thead th.sort-desc::after{content:' ▼'}
-thead th.num{text-align:right}
-tbody tr{border-bottom:0.5px solid var(--rule2);cursor:pointer;transition:background 0.08s}
-tbody tr:hover{background:var(--bg)}
-tbody tr.selected{background:#EEF2F8;border-left:2px solid var(--navy)}
-td{padding:0.55rem 0.85rem;color:var(--g)}
-td.country-name{font-weight:600;color:var(--b);white-space:nowrap}
-td.flag{font-size:1.1rem;padding-right:0;width:32px}
-td.mono{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.8rem;text-align:right;color:var(--b)}
-td.red{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.8rem;text-align:right;color:var(--red);font-weight:600}
-td.grn{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.8rem;text-align:right;color:var(--grn);font-weight:600}
-td.bar-cell{min-width:100px}
-.bar-track{height:3px;background:var(--rule2);margin-top:2px}
-.bar-fill{height:100%;background:var(--red);transition:width 0.3s}
-
-/* DETAIL PANEL */
-.detail{display:none;background:var(--navy);padding:1.5rem 2.5rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.detail.visible{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
-@media(max-width:900px){.detail.visible{grid-template-columns:1fr 1fr;padding:1.25rem}}
-.det-block-title{font-size:0.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.28);border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:0.4rem;margin-bottom:0.6rem}
-.det-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.2rem 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-.det-row:last-child{border-bottom:none}
-.det-lbl{font-size:0.72rem;color:rgba(255,255,255,0.42)}
-.det-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.78rem;font-weight:600;color:#fff}
-.det-val.red{color:#f09090}
-.det-val.grn{color:#7dd87d}
-.det-note{font-size:0.68rem;color:rgba(255,255,255,0.32);margin-top:0.5rem;line-height:1.5}
-
-/* SOURCES */
-.sources{padding:1.25rem 2.5rem;background:var(--bg);border-top:0.5px solid var(--rule)}
-.sources-inner{max-width:1300px;margin:0 auto}
-.src-title{font-size:0.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gl);margin-bottom:0.6rem}
-.src-list{display:flex;flex-direction:column;gap:0.35rem}
-.src-item{display:flex;gap:0.5rem;font-size:0.7rem;color:var(--gl);line-height:1.5}
-.src-num{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-weight:600;color:var(--gm);flex-shrink:0}
-.src-item strong{color:var(--gm)}
+body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-smoothing:antialiased;font-size:15px;overflow-x:hidden}
+nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:56px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:17px;background:var(--red);flex-shrink:0}
+.nav-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.nav-links{display:flex;align-items:center}
+.nav-link{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.35rem 0.8rem;transition:color .15s}
+.nav-link:hover,.nav-link.active{color:#fff}
+.nav-sub{font-family:var(--sans);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;flex-shrink:0;transition:background .15s}
+.nav-sub:hover{background:#6e1414}
+@media(max-width:767px){.nav-links{display:none}nav{padding:0 1.25rem}}
+.market-pulse{display:flex;align-items:center;background:var(--navy2);padding:0 1.75rem;height:34px;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.06)}
+.mp-brand{display:flex;align-items:center;gap:6px;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);white-space:nowrap;margin-right:1.5rem;flex-shrink:0}
+.mp-dot{width:5px;height:5px;border-radius:50%;background:var(--grn);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-.risk-score{display:inline-flex;align-items:center;gap:3px;font-family:'DM Sans',sans-serif;font-variant-numeric:tabular-nums;font-size:0.6rem;font-weight:600;padding:2px 6px;border-radius:2px}
-.risk-low{background:rgba(10,92,30,0.08);color:#0A5C1E;border:1px solid rgba(10,92,30,0.2)}
-.risk-mid{background:rgba(100,70,0,0.07);color:#6B4500;border:1px solid rgba(100,70,0,0.2)}
-.risk-high{background:rgba(139,26,26,0.07);color:#8B1A1A;border:1px solid rgba(139,26,26,0.2)}
-
-/* ── COUNTRY CARDS ── */
-.country-card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.85rem;margin:1rem 0 2rem}
-@media(max-width:900px){.country-card-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:550px){.country-card-grid{grid-template-columns:1fr}}
-.cc{background:var(--white);border:0.5px solid var(--rule);box-shadow:var(--shadow);cursor:pointer;transition:border-color .15s,box-shadow .15s;position:relative;overflow:hidden}
-.cc:hover{border-color:var(--red);box-shadow:var(--shadow-md)}
-.cc.selected{border-color:var(--navy);border-width:2px;box-shadow:var(--shadow-md)}
-.cc-top{display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1rem 0.65rem;border-bottom:0.5px solid var(--rule2)}
-.cc-flag{font-size:1.3rem;flex-shrink:0}
-.cc-name{font-weight:700;color:var(--navy);font-size:0.88rem;flex:1;margin-left:0.65rem}
-.cc-region{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.58rem;color:var(--gl);letter-spacing:.06em;text-transform:uppercase}
-.cc-datapoints{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule2);border-top:1px solid var(--rule2)}
-.cc-dp{background:var(--white);padding:0.5rem 0.75rem}
-.cc-dp-label{font-size:0.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:0.2rem}
-.cc-dp-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.82rem;font-weight:600}
-.cc-dp-val.g{color:var(--grn)}.cc-dp-val.r{color:var(--red)}.cc-dp-val.n{color:var(--navy)}
-.cc-bar{height:3px;background:var(--rule2);margin-top:0;position:relative}
-.cc-bar-fill{height:100%;background:var(--red);transition:width .4s}
-.cc-total-row{display:flex;justify-content:space-between;align-items:center;padding:0.45rem 0.75rem;font-size:0.72rem}
-.cc-total-lbl{color:var(--gm)}
-.cc-total-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-weight:700}
-.cc-cost-badge{display:inline-flex;align-items:center;gap:3px;font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.58rem;font-weight:600;padding:1px 5px}
-.cc-cost-badge.low{background:var(--grn2);color:var(--grn)}
-.cc-cost-badge.mid{background:rgba(100,70,0,0.07);color:#6B4500}
-.cc-cost-badge.high{background:rgba(139,26,26,0.07);color:var(--red)}
-
-/* detail panel */
-.cc-detail{display:none;background:var(--navy);padding:1.25rem 2.5rem;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:1rem}
-.cc-detail.visible{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
-@media(max-width:800px){.cc-detail.visible{grid-template-columns:1fr 1fr;padding:1rem}}
-.ccd-title{font-size:0.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.28);border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:0.35rem;margin-bottom:0.5rem}
-.ccd-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.22rem 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:0.75rem}
-.ccd-row:last-child{border-bottom:none}
-.ccd-lbl{color:rgba(255,255,255,0.45)}
-.ccd-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-weight:600;color:#fff}
-.ccd-val.r{color:#f09090}.ccd-val.g{color:#7dd87d}
-.ccd-note{font-size:0.65rem;color:rgba(255,255,255,0.3);margin-top:0.4rem;line-height:1.5}
-
-
-.market-pulse{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
-.market-pulse::-webkit-scrollbar{display:none}
-.mp-brand{display:flex;align-items:center;gap:6px;padding:.3rem 1.25rem .3rem .75rem;border-right:1px solid rgba(255,255,255,0.07);flex-shrink:0}
-.mp-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:mp-pulse 2.5s infinite}
-@keyframes mp-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
-.mp-label{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
-.mp-item{display:flex;align-items:center;gap:.5rem;padding:.28rem .9rem;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0}
-.mp-item:last-child{border-right:none}
-.mp-name{font-size:.58rem;color:rgba(255,255,255,.32);white-space:nowrap}
-.mp-val{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
-.mp-chg{font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:.55rem;white-space:nowrap}
+.mp-item{display:flex;align-items:center;gap:6px;margin-right:1.75rem;flex-shrink:0}
+.mp-name{font-size:.58rem;color:rgba(255,255,255,.35);white-space:nowrap}
+.mp-val{font-family:var(--mono);font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85)}
+.mp-chg{font-family:var(--mono);font-size:.55rem}
 .mp-chg.up{color:#4ade80}.mp-chg.dn{color:#f87171}.mp-chg.neu{color:rgba(255,255,255,.3)}
-
-
-/* ── GATED NAV LINKS ── */
-
-
+.page-head{background:var(--white);padding:2.5rem 2.5rem 1.75rem;border-bottom:0.5px solid var(--rule)}
+.page-head-inner{max-width:1140px;margin:0 auto}
+.ph-eyebrow{font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);margin-bottom:.65rem}
+.ph-h1{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.1;letter-spacing:-.025em;margin-bottom:.5rem}
+.ph-sub{font-size:.88rem;color:var(--gm);max-width:640px;line-height:1.55}
+@media(max-width:767px){.page-head{padding:1.75rem 1.25rem 1.25rem}}
+.ci-body{max-width:1140px;margin:0 auto;padding:2rem 2.5rem 3rem;display:grid;grid-template-columns:1fr 420px;gap:2.5rem;align-items:start}
+@media(max-width:960px){.ci-body{grid-template-columns:1fr;padding:1.5rem 1.25rem 2rem}}
+.ct-wrap{background:var(--white);border:0.5px solid var(--rule)}
+.ct-head{display:grid;grid-template-columns:1.4fr repeat(4,1fr);align-items:center;padding:.6rem 1.1rem;border-bottom:1.5px solid var(--navy);background:var(--navy)}
+.ct-hcell{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.ct-hcell.name{color:rgba(255,255,255,.85)}
+.ct-row{display:grid;grid-template-columns:1.4fr repeat(4,1fr);align-items:center;padding:.65rem 1.1rem;border-bottom:0.5px solid var(--rule2);cursor:pointer;transition:background .1s;border-left:2px solid transparent}
+.ct-row:last-child{border-bottom:none}
+.ct-row:hover{background:rgba(10,22,40,.025)}
+.ct-row.sel{background:rgba(10,22,40,.04);border-left-color:var(--navy)}
+.ct-name{display:flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:600}
+.ct-flag{font-size:1rem}
+.ct-cell{font-family:var(--mono);font-size:.75rem;font-weight:600}
+.ct-cell.g{color:var(--grn)}.ct-cell.n{color:var(--amber)}.ct-cell.r{color:var(--red)}
+.ct-cell small{font-family:var(--sans);font-size:.6rem;font-weight:400;color:var(--gl);display:block;margin-top:1px}
+.ct-foot{padding:.6rem 1.1rem;background:var(--bg);border-top:0.5px solid var(--rule);font-family:var(--mono);font-size:.56rem;color:var(--gl)}
+.eb-panel{position:sticky;top:70px}
+.eb-card{background:var(--white);border:0.5px solid var(--rule)}
+.eb-card-head{background:var(--navy);padding:.85rem 1.1rem;display:flex;align-items:center;justify-content:space-between}
+.eb-card-title{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.eb-card-country{font-family:var(--mono);font-size:.65rem;color:rgba(255,255,255,.5)}
+.eb-inputs{padding:1.1rem;border-bottom:0.5px solid var(--rule2)}
+.eb-row{margin-bottom:.75rem}
+.eb-row:last-child{margin-bottom:0}
+.eb-lbl{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);display:flex;justify-content:space-between;margin-bottom:.3rem}
+.eb-lbl span{font-family:var(--mono);font-weight:600;color:var(--b);letter-spacing:0;font-size:.7rem}
+.eb-range{width:100%;accent-color:var(--navy)}
+.eb-select{font-family:var(--sans);font-size:.78rem;color:var(--b);background:var(--bg);border:0.5px solid var(--rule);padding:.3rem .6rem;width:100%;outline:none;cursor:pointer}
+.eb-formula{font-size:.58rem;color:var(--gl);background:var(--bg2);padding:.3rem .6rem;margin-top:.2rem;border-left:2px solid var(--rule);line-height:1.45}
+.country-breakdown{padding:.85rem 1.1rem;background:var(--bg2);border-bottom:0.5px solid var(--rule2)}
+.cdb-title{font-size:.56rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gl);margin-bottom:.5rem}
+.cdb-row{display:flex;justify-content:space-between;font-size:.72rem;padding:.2rem 0;border-bottom:0.5px solid var(--rule2)}
+.cdb-row:last-child{border-bottom:none}
+.cdb-key{color:var(--gm)}
+.cdb-val{font-family:var(--mono);font-weight:600}
+.eb-waterfall{padding:1rem 1.1rem;border-bottom:0.5px solid var(--rule2)}
+.eb-wf-step{display:flex;justify-content:space-between;align-items:center;padding:.38rem 0;border-bottom:0.5px solid var(--rule2);font-size:.76rem}
+.eb-wf-step:last-child{border-bottom:none}
+.eb-wf-lbl{color:var(--gm)}
+.eb-wf-val{font-family:var(--mono);font-weight:600}
+.val-neg{color:var(--red)}.val-n{color:var(--b)}.val-pos{color:var(--grn)}
+.eb-total-row{display:flex;justify-content:space-between;align-items:center;padding:.85rem 1.1rem;background:var(--bg)}
+.eb-total-lbl{font-size:.78rem;font-weight:700;color:var(--navy)}
+.eb-total-val{font-family:var(--mono);font-size:1.5rem;font-weight:600;color:var(--grn)}
+.eb-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule)}
+.eb-metric{background:var(--bg2);padding:.55rem .75rem}
+.eb-m-lbl{font-size:.54rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:.15rem}
+.eb-m-val{font-family:var(--mono);font-size:.85rem;font-weight:600}
+.eb-src-bar{padding:.5rem 1.1rem;font-family:var(--mono);font-size:.54rem;color:var(--gl)}
+footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:2px solid var(--red)}
+.footer-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.f-brand{display:flex;align-items:center;gap:8px;text-decoration:none}
+.f-brand-bar{width:2px;height:16px;background:var(--red)}
+.f-brand-text{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.f-links{display:flex;gap:1.25rem;flex-wrap:wrap}
+.f-links a{font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;transition:color .12s}
+.f-links a:hover{color:#fff}
+.f-copy{font-size:.62rem;color:rgba(255,255,255,.22);width:100%}
+@media(max-width:767px){footer{padding:1.5rem 1.25rem}}
 </style>
 </head>
 <body>
-
-<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
-<div class="sidebar" id="sidebar">
-  <div class="sb-top">
-    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
-    <button class="sb-close" onclick="closeSidebar()">×</button>
-  </div>
-
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
-    <div style="font-size:0.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#0A5C1E;display:inline-block;animation:pulse 2s infinite"></span>Live Benchmarks</div>
-    <div style="display:flex;flex-direction:column;gap:0.3rem" id="sbTicker"></div>
-  </div>
-
-  <div class="sb-section">Info</div>
-  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
-
-  <div class="sb-section">Editorial</div>
-  <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropEditorial')">
-      <span>Articles &amp; Cases</span><span class="sb-arrow" id="arrowEditorial">▾</span>
-    </button>
-    <div class="sb-dropdown-items" id="dropEditorial">
-      <a href="/issues" class="sb-sub-link" onclick="closeSidebar()">All Articles</a>
-      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
-      <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
-      <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
-      <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
-      <a href="/case-studies" class="sb-sub-link" onclick="closeSidebar()">All Case Studies</a>
-      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker · 7.5×</a>
-      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer · 4× vs 7×</a>
-      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">CS03. Deal collapsed in due diligence</a>
-      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans · 14.5×</a>
-    </div>
-  </div>
-
-  <div class="sb-section">Tools</div>
-  <div class="sb-dropdown">
-    <button class="sb-dropdown-btn  open" onclick="toggleDrop('dropTools')">
-      <span>Calculators &amp; Data</span><span class="sb-arrow  open" id="arrowTools">▾</span>
-    </button>
-    <div class="sb-dropdown-items  open" id="dropTools">
-      <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
-      <a href="/exit-calculator" class="sb-sub-link" onclick="closeSidebar()">Exit Calculator</a>
-      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
-      <a href="/country-index" class="sb-sub-link" onclick="closeSidebar()">Transaction Cost Index</a>
-      <a href="/advisors" class="sb-sub-link" onclick="closeSidebar()">Advisor Directory</a>
-    </div>
-  </div>
-
-  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
-</div>
-
 <nav>
-  <div class="nav-left">
-    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
-    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
-  </div>
+  <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
     <a href="/issues" class="nav-link">Articles</a>
-    <a href="/case-studies" class="nav-link">Case Studies</a>
-    <div class="nav-dropdown" id="navToolsDrop">
-      <button class="nav-dropdown-btn active" onclick="toggleNavDrop()" id="navToolsBtn">
-        Tools
-        <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"/></svg>
-      </button>
-      <div class="nav-dropdown-menu" id="navToolsMenu">
-      <a href="/multiples" class="nav-dd-item">Multiples</a>
-      <a href="/exit-calculator" class="nav-dd-item">Exit Calculator</a>
-      <a href="/wacc" class="nav-dd-item">WACC Calculator</a>
-      <a href="/country-index" class="nav-dd-item active">Cost Index</a>
-      <a href="/advisors" class="nav-dd-item">Advisors</a>
-      </div>
-    </div>
+    <a href="/multiples" class="nav-link">Multiples</a>
+    <a href="/advisors" class="nav-link">Advisors</a>
+    <a href="/country-index" class="nav-link active">Cost Index</a>
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>
 <div class="market-pulse">
-  <div class="mp-brand"><span class="mp-dot"></span><span class="mp-label">Market Pulse</span></div>
-  <div class="mp-item"><span class="mp-name">10Y Bund (Rf)</span><span class="mp-val">2.68%</span><span class="mp-chg neu">ECB</span></div>
+  <div class="mp-brand"><span class="mp-dot"></span><span>Market Pulse</span></div>
   <div class="mp-item"><span class="mp-name">ERP EU avg</span><span class="mp-val">5.84%</span><span class="mp-chg neu">Damodaran 2026</span></div>
-  <div class="mp-item"><span class="mp-name">S&amp;P Fwd P/E</span><span class="mp-val">20.8×</span><span class="mp-chg dn">above hist. avg</span></div>
-  <div class="mp-item"><span class="mp-name">EU Deal Vol</span><span class="mp-val">−14%</span><span class="mp-chg dn">YoY</span></div>
-  <div class="mp-item"><span class="mp-name">Software EV/EBITDA</span><span class="mp-val">24.5×</span><span class="mp-chg up">Jan 2026</span></div>
+  <div class="mp-item"><span class="mp-name">Advisory Fee €5M</span><span class="mp-val">5.5%</span><span class="mp-chg neu">Firmex 2025</span></div>
   <div class="mp-item"><span class="mp-name">CH CGT</span><span class="mp-val">0%</span><span class="mp-chg up">lowest EU</span></div>
+  <div class="mp-item"><span class="mp-name">DK CGT</span><span class="mp-val">42%</span><span class="mp-chg dn">highest EU</span></div>
 </div>
-<div class="back-bar"><div class="back-bar-inner"><a href="/" class="back-btn">← Home</a></div></div>
+<div class="page-head">
+  <div class="page-head-inner">
+    <div class="ph-eyebrow">Tools · 04 · Transaction Cost Index</div>
+    <h1 class="ph-h1">Transaction Cost by Country</h1>
+    <p class="ph-sub">Total cost of a share deal by country: CGT + advisory fee + legal. Click any row to load that country's rates into the Equity Bridge simulator.</p>
+  </div>
+</div>
 
-<div class="header-strip">
-  <div class="header-strip-inner">
-    <div>
-      <div class="hs-title">Transaction Cost Index</div>
-      <div class="hs-meta">20 Countries · Advisory · Legal · CGT · Stamp Duty · Total Sell-side Cost · 2025–2026</div>
+<div class="ci-body">
+  <!-- LEFT: COUNTRY TABLE -->
+  <div>
+    <div class="ct-wrap">
+      <div class="ct-head">
+        <div class="ct-hcell name">Country</div>
+        <div class="ct-hcell">CGT</div>
+        <div class="ct-hcell">Advisory</div>
+        <div class="ct-hcell">Legal</div>
+        <div class="ct-hcell">Total</div>
+      </div>
+      <div class="ct-row sel" id="row-CH" data-country="Switzerland" data-flag="🇨🇭" data-cgt="0" data-legal="1.5" data-total="7" onclick="selectCountry(this)">
+        <div class="ct-name"><span class="ct-flag">🇨🇭</span>Switzerland</div>
+        <div class="ct-cell g">0%<small>No CGT · part. exemption</small></div>
+        <div class="ct-cell g">~5–6%<small>Firmex 2025</small></div>
+        <div class="ct-cell g">~1–2%<small>Notary + legal</small></div>
+        <div class="ct-cell g">~4–7%</div>
+      </div>
+      <div class="ct-row" id="row-BE" data-country="Belgium" data-flag="🇧🇪" data-cgt="0" data-legal="2" data-total="7.5" onclick="selectCountry(this)">
+        <div class="ct-name"><span class="ct-flag">🇧🇪</span>Belgium</div>
+        <div class="ct-cell g">0%<small>Exempt · private holding</small></div>
+        <div class="ct-cell g">~5–6%<small>Firmex 2025</small></div>
+        <div class="ct-cell g">~1.5–2%<small>Notary + legal</small></div>
+        <div class="ct-cell g">~4–8%</div>
+      </div>
+      <div class="ct-row" id="row-PL" data-country="Poland" data-flag="🇵🇱" data-cgt="19" data-legal="2" data-total="26" onclick="selectCountry(this)">
+        <div class="ct-name"><span class="ct-flag">🇵🇱</span>Poland</div>
+        <div class="ct-cell g">19%<small>Flat rate · PIT</small></div>
+        <div class="ct-cell g">~5–6%<small>Firmex 2025</small></div>
+        <div class="ct-cell g">~1.5–2%<small>Notariusz + legal</small></div>
+        <div class="ct-cell n">~23–27%</div>
+      </div>
+      <div class="ct-row" id="row-UK" data-country="United Kingdom" data-flag="🇬🇧" data-cgt="24" data-legal="2" data-total="31" onclick="selectCountry(this)">
+        <div class="ct-name"><span class="ct-flag">🇬🇧</span>United Kingdom</div>
+        <div class="ct-cell n">24%<small>Business Asset Disposal</small></div>
+        <div class="ct-cell g">~5–6%<small>Firmex 2025</small></div>
+        <div class="ct-cell g">~1.5–2%<small>Solicitors</small></div>
+        <div class="ct-cell n">~25–28%</div>
+      </div>
+      <div class="ct-row" id="row-NL" data-country="Netherlands" data-flag="🇳🇱" data-cgt="26.9" data-legal="1.5" data-total="33.5" onclick="selectCountry(this)">
+        <div class="ct-name"><span class="ct-flag">🇳🇱</span>Netherlands</div>
+        <div class="ct-cell n">26.9%<small>Box 2 · substantial interest</small></div>
+        <div class="ct-cell g">~5–6%<small>Firmex 2025</small></div>
+        <div class="ct-cell g">~1–2%<small>Notary + legal</small></div>
+        <div class="ct-cell n">~30–34%</div>
+      </div>
+      <div class="ct-row" id="row-IT" data-country="Italy" data-flag="🇮🇹" data-cgt="26" data-legal="2.5" data-total="33" onclick="selectCountry(this)">
+        <div class="ct-name"><span class="ct-flag">🇮🇹</span>Italy</div>
+        <div class="ct-cell n">26%<small>Imposta sostitutiva · flat</small></div>
+        <div class="ct-cell g">~5–6%<small>Firmex 2025</small></div>
+        <div class="ct-cell g">~2–3%<small>Notaio + legale</small></div>
+        <div class="ct-cell n">~31–35%</div>
+      </div>
+      <div class="ct-row" id="row-ES" data-country="Spain" data-flag="🇪🇸" data-cgt="28" data-legal="2" data-total="35" onclick="selectCountry(this)">
+        <div class="ct-name"><span class="ct-flag">🇪🇸</span>Spain</div>
+        <div class="ct-cell n">28%<small>IRPF · above €300k</small></div>
+        <div class="ct-cell g">~5–6%<small>Firmex 2025</small></div>
+        <div class="ct-cell g">~1.5–2%<small>Notario + legal</small></div>
+        <div class="ct-cell n">~31–35%</div>
+      </div>
+      <div class="ct-row" id="row-DE" data-country="Germany" data-flag="🇩🇪" data-cgt="26.375" data-legal="2" data-total="33" onclick="selectCountry(this)">
+        <div class="ct-name"><span class="ct-flag">🇩🇪</span>Germany</div>
+        <div class="ct-cell n">26.375%<small>KapErSt + Soli + Kirchenst.</small></div>
+        <div class="ct-cell g">~5–6%<small>Firmex 2025</small></div>
+        <div class="ct-cell g">~1.5–2%<small>Notar + Rechtsanwalt</small></div>
+        <div class="ct-cell n">~29–33%</div>
+      </div>
+      <div class="ct-row" id="row-AT" data-country="Austria" data-flag="🇦🇹" data-cgt="27.5" data-legal="2" data-total="34" onclick="selectCountry(this)">
+        <div class="ct-name"><span class="ct-flag">🇦🇹</span>Austria</div>
+        <div class="ct-cell n">27.5%<small>KESt · special rate</small></div>
+        <div class="ct-cell g">~5–6%<small>Firmex 2025</small></div>
+        <div class="ct-cell g">~1.5–2%<small>Notar + legal</small></div>
+        <div class="ct-cell n">~30–34%</div>
+      </div>
+      <div class="ct-row" id="row-PT" data-country="Portugal" data-flag="🇵🇹" data-cgt="28" data-legal="2" data-total="35" onclick="selectCountry(this)">
+        <div class="ct-name"><span class="ct-flag">🇵🇹</span>Portugal</div>
+        <div class="ct-cell n">28%<small>IRS Categoria G</small></div>
+        <div class="ct-cell g">~5–6%<small>Firmex 2025</small></div>
+        <div class="ct-cell g">~1.5–2%<small>Notário + legal</small></div>
+        <div class="ct-cell n">~31–35%</div>
+      </div>
+      <div class="ct-row" id="row-SE" data-country="Sweden" data-flag="🇸🇪" data-cgt="30" data-legal="1.5" data-total="36" onclick="selectCountry(this)">
+        <div class="ct-name"><span class="ct-flag">🇸🇪</span>Sweden</div>
+        <div class="ct-cell r">30%<small>Kapitalinkomstskatt</small></div>
+        <div class="ct-cell g">~5–6%<small>Firmex 2025</small></div>
+        <div class="ct-cell g">~1–2%<small>Legal fees</small></div>
+        <div class="ct-cell r">~32–36%</div>
+      </div>
+      <div class="ct-row" id="row-FR" data-country="France" data-flag="🇫🇷" data-cgt="30" data-legal="2.5" data-total="37" onclick="selectCountry(this)">
+        <div class="ct-name"><span class="ct-flag">🇫🇷</span>France</div>
+        <div class="ct-cell r">30%<small>Flat Tax (PFU) · incl. social</small></div>
+        <div class="ct-cell g">~5–6%<small>Firmex 2025</small></div>
+        <div class="ct-cell n">~2–3%<small>Notaire + avocat</small></div>
+        <div class="ct-cell r">~35–39%</div>
+      </div>
+      <div class="ct-row" id="row-DK" data-country="Denmark" data-flag="🇩🇰" data-cgt="42" data-legal="1.5" data-total="48" onclick="selectCountry(this)">
+        <div class="ct-name"><span class="ct-flag">🇩🇰</span>Denmark</div>
+        <div class="ct-cell r">42%<small>27% below DKK 63k</small></div>
+        <div class="ct-cell g">~5–6%<small>Firmex 2025</small></div>
+        <div class="ct-cell g">~1–2%<small>Legal fees</small></div>
+        <div class="ct-cell r">~46–49%</div>
+      </div>
+      <div class="ct-foot">Sources: EY Worldwide Capital Gains Guide 2025 · KPMG Tax Rates 2025 · Firmex Fee Benchmark 2025 · Share deal basis · CGT rates indicative — verify with local counsel</div>
     </div>
-    <div style="font-family:var(--sans,'DM Sans',sans-serif);font-variant-numeric:tabular-nums;font-size:0.7rem;color:rgba(255,255,255,0.35);text-align:right">Click row for full breakdown<br>Quick calculator below</div>
   </div>
-</div>
 
-<!-- QUICK CALC -->
-<div class="qcalc">
-  <div class="qf"><label>Deal value (EV)</label><input type="number" id="qEV" placeholder="5,000" oninput="runQCalc()"></div>
-  <div class="qf" style="min-width:160px"><label>Country</label><select id="qCountry" onchange="runQCalc()"><option value="">— Select —</option></select></div>
-  <div class="qf"><label>Structure</label><select id="qStruct" onchange="runQCalc()"><option value="share">Share deal</option><option value="asset">Asset deal</option></select></div>
-  <div class="qf"><label>Units</label><select id="qUnit" onchange="runQCalc()"><option value="k">€k</option><option value="m">€M</option></select></div>
-  <div></div>
-</div>
-<div class="qresult" id="qresult">
-  <div class="qr-cell"><div class="qr-lbl">Advisory fee (mid)</div><div class="qr-val red" id="qAdv">—</div></div>
-  <div class="qr-cell"><div class="qr-lbl">Legal & DD</div><div class="qr-val red" id="qLgl">—</div></div>
-  <div class="qr-cell"><div class="qr-lbl">CGT (individual)</div><div class="qr-val red" id="qTax">—</div></div>
-  <div class="qr-cell"><div class="qr-lbl">Total sell-side cost</div><div class="qr-val red" id="qTot">—</div></div>
-</div>
-
-<!-- CONTROLS -->
-<div class="cbar">
-  <div class="cbar-inner">
-    <span class="cl">Region</span>
-    <select class="csel" id="fRegion" onchange="render()">
-      <option value="">All</option>
-      <option>DACH</option>
-      <option>Southern Europe</option>
-      <option>Northern Europe</option>
-      <option>CEE</option>
-      <option>UK/Ireland</option>
-    </select>
-    <span class="cl">Sort</span>
-    <select class="csel" id="fSort" onchange="render()">
-      <option value="total">Total cost ↓</option>
-      <option value="cgt">CGT ↓</option>
-      <option value="advisory">Advisory ↓</option>
-      <option value="name">Country A–Z</option>
-    </select>
-    <input class="cinp" id="fSearch" placeholder="Search…" oninput="render()">
-    <span class="ccount" id="fCount"></span>
-  </div>
-</div>
-
-<div class="detail" id="detailPanel"></div>
-
-<div class="main">
-  <div id="countryGrid" class="country-card-grid"></div>
-<div class="tbl-wrap" style="display:none">
-    <table id="mainTbl">
-      <thead>
-        <tr>
-          <th style="width:32px"></th>
-          <th onclick="sortBy('name')">Country</th>
-          <th onclick="sortBy('region')">Region</th>
-          <th class="num" onclick="sortBy('advisory')">Advisory<br><span style="font-weight:400;opacity:.6">% of EV</span></th>
-          <th class="num" onclick="sortBy('legal')">Legal & DD<br><span style="font-weight:400;opacity:.6">% of EV</span></th>
-          <th class="num" onclick="sortBy('cgt')">CGT<br><span style="font-weight:400;opacity:.6">individual</span></th>
-          <th class="num" onclick="sortBy('stamp')">Stamp<br><span style="font-weight:400;opacity:.6">share deal</span></th>
-          <th class="num sort-desc" onclick="sortBy('total')">Total cost<br><span style="font-weight:400;opacity:.6">share deal</span></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="tblBody"></tbody>
-    </table>
-  </div>
-</div>
-
-<div class="sources">
-  <div class="sources-inner">
-    <div class="src-title">Data sources</div>
-    <div class="src-list">
-      <div class="src-item"><span class="src-num">1.</span><span><strong>Advisory fees</strong> — Firmex/DealCircle European M&A Fee Guide 2024–2025. 289 European advisors surveyed. Avg success fee: 5.5% on €5M, declining to ~2% on €100M+.</span></div>
-      <div class="src-item"><span class="src-num">2.</span><span><strong>Legal & Due Diligence</strong> — KPMG, Deloitte, PwC M&A cost benchmarks. Cross-border deals add 25–40% to legal costs.</span></div>
-      <div class="src-item"><span class="src-num">3.</span><span><strong>Capital gains tax</strong> — National tax authority data and EY/KPMG country tax guides 2025. Individual shareholders; corporate rates differ significantly.</span></div>
-      <div class="src-item"><span class="src-num">4.</span><span><strong>Stamp duty</strong> — EU Commission and national data. Share deals typically exempt in most jurisdictions; asset deals attract real estate transfer taxes.</span></div>
-      <div class="src-item"><span class="src-num">5.</span><span><strong>Not legal or tax advice.</strong> Rates change frequently. Verify with qualified advisors in each jurisdiction.</span></div>
+  <!-- RIGHT: EQUITY BRIDGE -->
+  <div class="eb-panel">
+    <div class="eb-card">
+      <div class="eb-card-head">
+        <span class="eb-card-title">Equity Bridge &amp; Net Proceeds</span>
+        <span class="eb-card-country" id="selCountryName">🇨🇭 Switzerland</span>
+      </div>
+      <div class="eb-inputs">
+        <div class="eb-row">
+          <div class="eb-lbl">Enterprise Value (EV) <span id="evOut">€20M</span></div>
+          <input type="range" class="eb-range" min="1" max="200" step="1" value="20" id="slEV" oninput="recalc()">
+        </div>
+        <div class="eb-row">
+          <div class="eb-lbl">Debt netto (PFN) <span id="debtOut">€3M</span></div>
+          <input type="range" class="eb-range" min="0" max="80" step="0.5" value="3" id="slDebt" oninput="recalc()">
+        </div>
+        <div class="eb-row">
+          <div class="eb-lbl" style="margin-bottom:.4rem">Success fee formula</div>
+          <select class="eb-select" id="selFee" onchange="recalc()">
+            <option value="modified">Modified Lehman 3-3-2-1-1%</option>
+            <option value="double">Double Lehman 10-8-6-4-2%</option>
+            <option value="flat">Flat 3.5%</option>
+          </select>
+          <div class="eb-formula" id="feeFormula">3% su primi €5M + 3% su successivi €5M + 2% sui €10M + 1% residuo</div>
+        </div>
+        <div class="eb-row">
+          <div class="eb-lbl">Retainer mensile (€k) <span id="retOut">€15k</span></div>
+          <input type="range" class="eb-range" min="0" max="100" step="5" value="15" id="slRet" oninput="recalc()">
+        </div>
+        <div class="eb-row">
+          <div class="eb-lbl">Mesi di mandato <span id="moOut">8</span></div>
+          <input type="range" class="eb-range" min="3" max="24" step="1" value="8" id="slMo" oninput="recalc()">
+        </div>
+        <div class="eb-row">
+          <div class="eb-lbl">Illiquidity discount <span id="ilOut">25%</span></div>
+          <input type="range" class="eb-range" min="0" max="40" step="1" value="25" id="slIl" oninput="recalc()">
+        </div>
+        <div class="eb-row">
+          <div class="eb-lbl">CGT override <span id="taxOut" style="color:var(--grn)">0% · CH</span></div>
+          <input type="range" class="eb-range" min="0" max="45" step="0.5" value="0" id="slTax" oninput="recalc()">
+        </div>
+      </div>
+      <div class="country-breakdown">
+        <div class="cdb-title">Cost breakdown · selected country</div>
+        <div class="cdb-row"><span class="cdb-key">Capital Gains Tax</span><span class="cdb-val" id="dbCGT">0%</span></div>
+        <div class="cdb-row"><span class="cdb-key">Advisory fee (blended)</span><span class="cdb-val" id="dbAdv">—</span></div>
+        <div class="cdb-row"><span class="cdb-key">Legal &amp; notary (est.)</span><span class="cdb-val" id="dbLegal">~1.5%</span></div>
+        <div class="cdb-row" style="border-bottom:none"><span class="cdb-key" style="font-weight:600">Total transaction cost</span><span class="cdb-val" id="dbTotal" style="color:var(--navy)">~7%</span></div>
+      </div>
+      <div class="eb-waterfall">
+        <div class="eb-wf-step"><span class="eb-wf-lbl">Enterprise Value (EV)</span><span class="eb-wf-val val-n" id="wEV">€20.0M</span></div>
+        <div class="eb-wf-step"><span class="eb-wf-lbl">— Debt netto (PFN)</span><span class="eb-wf-val val-neg" id="wDebt">−€3.0M</span></div>
+        <div class="eb-wf-step"><span class="eb-wf-lbl">= Equity Value (pre-sconto)</span><span class="eb-wf-val val-n" id="wEqPre">€17.0M</span></div>
+        <div class="eb-wf-step"><span class="eb-wf-lbl">— Illiquidity discount (<span id="wIlPct">25%</span>)</span><span class="eb-wf-val val-neg" id="wIl">−€4.3M</span></div>
+        <div class="eb-wf-step"><span class="eb-wf-lbl">= Equity Value aggiustato</span><span class="eb-wf-val val-n" id="wEqAdj">€12.8M</span></div>
+        <div class="eb-wf-step"><span class="eb-wf-lbl">— Success fee (<span id="wFeePct">2.4%</span> blended)</span><span class="eb-wf-val val-neg" id="wFee">−€0.3M</span></div>
+        <div class="eb-wf-step"><span class="eb-wf-lbl">— Retainer netto</span><span class="eb-wf-val val-neg" id="wRet">−€0.0M</span></div>
+        <div class="eb-wf-step"><span class="eb-wf-lbl">— Legal &amp; notary (est.)</span><span class="eb-wf-val val-neg" id="wLegal">−€0.3M</span></div>
+        <div class="eb-wf-step"><span class="eb-wf-lbl">= Lordo pre-tax</span><span class="eb-wf-val val-n" id="wGross">€12.3M</span></div>
+        <div class="eb-wf-step"><span class="eb-wf-lbl">— CGT (<span id="wTaxPct">0%</span> · <span id="wFlag">🇨🇭</span>)</span><span class="eb-wf-val val-neg" id="wTax">−€0.0M</span></div>
+      </div>
+      <div class="eb-total-row">
+        <span class="eb-total-lbl">Cash-in-hand finale</span>
+        <span class="eb-total-val" id="wNet">€12.3M</span>
+      </div>
+      <div class="eb-metrics">
+        <div class="eb-metric"><div class="eb-m-lbl">Fee blended</div><div class="eb-m-val" id="mBlend">2.4%</div></div>
+        <div class="eb-metric"><div class="eb-m-lbl">Haircut / EV</div><div class="eb-m-val" style="color:var(--red)" id="mHair">38%</div></div>
+        <div class="eb-metric"><div class="eb-m-lbl">Cash / EV</div><div class="eb-m-val" style="color:var(--grn)" id="mPct">62%</div></div>
+        <div class="eb-metric"><div class="eb-m-lbl">Cost totale</div><div class="eb-m-val" id="mTotal">7%</div></div>
+      </div>
+      <div class="eb-src-bar">CGT: EY 2025 · Advisory: Firmex 2025 · ERP 5.84% Damodaran Jan 2026</div>
     </div>
   </div>
 </div>
@@ -454,393 +320,113 @@ td.bar-cell{min-width:100px}
   <div class="footer-inner">
     <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
     <div class="f-links">
-      <a href="/about">About</a><a href="/issues">Issues</a><a href="/multiples">Multiples</a>
-      <a href="/wacc">WACC</a><a href="/exit-calculator">Exit</a><a href="/country-index">Cost Index</a>
-      <a href="/advisors">Advisors</a><a data-email href="#">Contact</a>
+      <a href="/about">About</a><a href="/issues">Articles</a>
+      <a href="/multiples">Multiples</a><a href="/wacc">WACC</a>
+      <a href="/country-index">Cost Index</a><a href="/advisors">Advisors</a>
     </div>
-    <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
+    <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice. CGT rates indicative — consult a tax advisor.</div>
   </div>
 </footer>
 
 <script>
-const COUNTRIES=[
-  {name:'Switzerland',flag:'🇨🇭',region:'DACH',advLo:3.0,advHi:5.5,lglLo:0.8,lglHi:1.8,cgt:0,stamp:0.15,assetX:1.5,totalLo:3.95,totalHi:7.45,
-   cgtNote:'No CGT on private share sales for individuals. Participation exemption broadly applies.',
-   stampNote:'Federal stamp tax 0.15% on share transfers. Asset deals attract cantonal real estate transfer taxes.',
-   advNote:'Boutique advisors dominate. Lehman-style tiers common. Minimum fees CHF 150k+.',
-   lglNote:'Cross-border deals higher. Notarial costs minimal vs other jurisdictions.',
-   highlights:['Zero CGT for individuals','Low stamp duty','Strong privacy','CHF deal currency']},
-  {name:'Germany',flag:'🇩🇪',region:'DACH',advLo:3.0,advHi:5.0,lglLo:1.0,lglHi:2.0,cgt:25,stamp:0,assetX:2.5,totalLo:29.0,totalHi:32.55,
-   cgtNote:'Abgeltungsteuer 25% + Soli 0.55%. Holding company structures can reduce effective rate.',
-   stampNote:'No stamp duty on share deals. Real estate transfer tax 3.5–6.5% on asset deals with real property.',
-   advNote:'Frankfurt/Munich hubs. International banks active on deals >€50M.',
-   lglNote:'Notarial requirement mandatory for share transfers.',
-   highlights:['25% CGT + solidarity surcharge','Mandatory notarisation','Holding co. optimisation common']},
-  {name:'Austria',flag:'🇦🇹',region:'DACH',advLo:3.0,advHi:5.5,lglLo:0.8,lglHi:1.8,cgt:27.5,stamp:0,assetX:2.0,totalLo:31.3,totalHi:34.8,
-   cgtNote:'KESt 27.5% on capital gains from share sales since 2016.',
-   stampNote:'No stamp duty on share transfers. Real estate transfer tax 3.5% on asset deals.',
-   advNote:'Vienna advisory market. Regional boutiques active.',
-   lglNote:'Austrian law straightforward for standard share deals.',
-   highlights:['27.5% flat CGT (KESt)','No stamp duty','Strong DACH deal flow']},
-  {name:'Italy',flag:'🇮🇹',region:'Southern Europe',advLo:3.5,advHi:6.0,lglLo:1.0,lglHi:2.5,cgt:26,stamp:0.5,assetX:3.0,totalLo:31.0,totalHi:35.0,
-   cgtNote:'Imposta sostitutiva 26%. PEX (95% exemption) for corporate sellers on qualifying holdings.',
-   stampNote:'Imposta di registro 0.5% on share transfers.',
-   advNote:'Milan advisory hub. PwC, KPMG, boutiques active.',
-   lglNote:'Notarial requirement. DD often extended for family-owned businesses.',
-   highlights:['26% CGT (individuals)','0.5% registration tax','PEX for corporate sellers']},
-  {name:'Spain',flag:'🇪🇸',region:'Southern Europe',advLo:3.0,advHi:5.5,lglLo:1.0,lglHi:2.2,cgt:26,stamp:0,assetX:3.5,totalLo:30.0,totalHi:33.7,
-   cgtNote:'IRPF up to 26% for gains >€200k. Participation exemption for corporate.',
-   stampNote:'No stamp duty on share deals. Asset deals: IVA or ITP up to 10%.',
-   advNote:'Madrid/Barcelona hubs. Iberian boutiques plus international banks.',
-   lglNote:'Notarial requirement for S.L. share transfers.',
-   highlights:['26% CGT (top bracket)','No stamp on shares','Regional variations (Catalonia, Basque)']},
-  {name:'France',flag:'🇫🇷',region:'Southern Europe',advLo:3.5,advHi:6.0,lglLo:1.2,lglHi:2.5,cgt:30,stamp:0.1,assetX:2.5,totalLo:34.8,totalHi:38.6,
-   cgtNote:'Flat tax (PFU) 30% — 12.8% income tax + 17.2% social contributions. Reduced rates for founders.',
-   stampNote:'Stamp duty 0.1% on share transfers.',
-   advNote:'Paris market. Large advisory ecosystem.',
-   lglNote:'SAS structure most used. DD scope typically broad.',
-   highlights:['30% flat tax (PFU)','0.1% stamp duty','Founder abatement possible']},
-  {name:'United Kingdom',flag:'🇬🇧',region:'UK/Ireland',advLo:3.0,advHi:5.5,lglLo:1.0,lglHi:2.0,cgt:20,stamp:0.5,assetX:1.5,totalLo:24.5,totalHi:28.0,
-   cgtNote:'20% CGT (increased Oct 2024). Business Asset Disposal Relief 10% on first £1M for qualifying trades.',
-   stampNote:'SDRT 0.5% on share transfers.',
-   advNote:'London boutiques and international banks. Highly developed mid-market.',
-   lglNote:'English law preferred for cross-border deals.',
-   highlights:['20% CGT (post-Oct 2024)','BADR at 10% up to £1M','0.5% SDRT on shares']},
-  {name:'Ireland',flag:'🇮🇪',region:'UK/Ireland',advLo:3.0,advHi:5.0,lglLo:0.9,lglHi:1.8,cgt:33,stamp:1.0,assetX:2.0,totalLo:37.9,totalHi:39.8,
-   cgtNote:'33% CGT. Entrepreneur Relief at 10% on first €1M lifetime gain.',
-   stampNote:'1% stamp duty on share transfers.',
-   advNote:'Dublin advisory market. Strong international deal flow.',
-   lglNote:'English common law. Favoured for international holding structures.',
-   highlights:['33% CGT (highest in Europe)','Entrepreneur Relief to €1M','Popular holding jurisdiction']},
-  {name:'Netherlands',flag:'🇳🇱',region:'Northern Europe',advLo:3.0,advHi:5.0,lglLo:0.9,lglHi:1.8,cgt:33,stamp:0,assetX:3.5,totalLo:36.9,totalHi:39.8,
-   cgtNote:'Box 2 income tax 33% on substantial interests (>5% stake) from 2024.',
-   stampNote:'No stamp duty. Real estate transfer tax 10.4% on real property in asset deals.',
-   advNote:'Amsterdam advisory market. Strong corporate advisory infrastructure.',
-   lglNote:'BV structure standard. Notarial requirement for share transfers.',
-   highlights:['33% Box 2 tax (2024)','Major PE deal hub','Strong holding infrastructure']},
-  {name:'Belgium',flag:'🇧🇪',region:'Northern Europe',advLo:3.0,advHi:5.5,lglLo:1.0,lglHi:2.0,cgt:0,stamp:0,assetX:2.0,totalLo:4.0,totalHi:7.5,
-   cgtNote:'No CGT on private share sales (normal management of private assets).',
-   stampNote:'No stamp duty on share transfers.',
-   advNote:'Brussels advisory market. Active EU institutional PE buyers.',
-   lglNote:'French/Dutch language considerations.',
-   highlights:['Zero CGT for individuals','No stamp duty','Attractive seller jurisdiction']},
-  {name:'Luxembourg',flag:'🇱🇺',region:'Northern Europe',advLo:3.5,advHi:6.0,lglLo:1.2,lglHi:2.5,cgt:0,stamp:0,assetX:1.5,totalLo:4.7,totalHi:8.5,
-   cgtNote:'No CGT on disposal of shares held >6 months. Key jurisdiction for holding company exits.',
-   stampNote:'No stamp duty on share transfers.',
-   advNote:'Fund and holding structures. Advisory includes structuring advice.',
-   lglNote:'Luxembourg SOPARFI structure widely used.',
-   highlights:['Zero CGT (shares held >6m)','SOPARFI holding structure','Major PE fund domicile']},
-  {name:'Sweden',flag:'🇸🇪',region:'Northern Europe',advLo:3.0,advHi:5.5,lglLo:0.9,lglHi:1.8,cgt:30,stamp:0,assetX:1.5,totalLo:33.9,totalHi:37.3,
-   cgtNote:'30% CGT. ISK account structure can reduce effective rate.',
-   stampNote:'No stamp duty.',
-   advNote:'Stockholm hub. Nordic investment banks active.',
-   lglNote:'No notarial requirement for standard share deals.',
-   highlights:['30% CGT','No stamp duty','Active Nordic PE ecosystem']},
-  {name:'Denmark',flag:'🇩🇰',region:'Northern Europe',advLo:3.0,advHi:5.5,lglLo:0.9,lglHi:1.8,cgt:42,stamp:0,assetX:1.5,totalLo:45.9,totalHi:49.3,
-   cgtNote:'42% max marginal rate (27% to DKK 63k, 42% above). Holding structures used.',
-   stampNote:'No stamp duty. Digital registration system.',
-   advNote:'Copenhagen advisory market. Nordic boutiques active.',
-   lglNote:'Flexible ApS structure for SMEs.',
-   highlights:['42% CGT (highest in Nordics)','No stamp duty','Strong PE deal flow']},
-  {name:'Norway',flag:'🇳🇴',region:'Northern Europe',advLo:3.0,advHi:5.5,lglLo:0.9,lglHi:1.8,cgt:37.84,stamp:0,assetX:2.0,totalLo:41.7,totalHi:45.1,
-   cgtNote:'~37.84% effective CGT via shareholder model.',
-   stampNote:'No stamp duty. Digital share register since 2019.',
-   advNote:'Oslo market. Oil & gas and seafood deal expertise.',
-   lglNote:'No notarial requirement.',
-   highlights:['~38% effective CGT','No stamp duty','NOK deal currency']},
-  {name:'Poland',flag:'🇵🇱',region:'CEE',advLo:3.5,advHi:6.0,lglLo:1.0,lglHi:2.2,cgt:19,stamp:1.0,assetX:2.5,totalLo:24.5,totalHi:29.2,
-   cgtNote:'19% flat tax on capital gains.',
-   stampNote:'1% PCC civil law transaction tax on share transfers.',
-   advNote:'Warsaw advisory market growing. Big Four active.',
-   lglNote:'Notarial requirement. DD scope expanded post-2020.',
-   highlights:['19% flat CGT','1% PCC stamp duty','Fast-growing PE ecosystem']},
-  {name:'Czech Republic',flag:'🇨🇿',region:'CEE',advLo:4.0,advHi:6.5,lglLo:1.2,lglHi:2.5,cgt:0,stamp:0,assetX:2.5,totalLo:5.2,totalHi:9.0,
-   cgtNote:'No CGT on share sales if held >3 years and <10% participation. Otherwise taxed as income (23%).',
-   stampNote:'No stamp duty on share transfers.',
-   advNote:'Prague advisory market. Boutiques dominant.',
-   lglNote:'Notarial requirement for s.r.o. share deals.',
-   highlights:['Zero CGT after 3-year hold','No stamp duty','German/Austrian buyer pool']},
-  {name:'Hungary',flag:'🇭🇺',region:'CEE',advLo:4.0,advHi:6.5,lglLo:1.2,lglHi:2.5,cgt:15,stamp:0,assetX:2.5,totalLo:20.2,totalHi:24.0,
-   cgtNote:'15% personal income tax on capital gains.',
-   stampNote:'No stamp duty on share transfers.',
-   advNote:'Budapest advisory market. International banks on larger deals.',
-   lglNote:'Hungarian law. DD can be extended.',
-   highlights:['15% flat CGT','No stamp duty','9% corporate tax rate']},
-  {name:'Romania',flag:'🇷🇴',region:'CEE',advLo:4.0,advHi:7.0,lglLo:1.2,lglHi:2.8,cgt:10,stamp:0,assetX:3.0,totalLo:15.2,totalHi:19.8,
-   cgtNote:'10% flat income tax on capital gains for individuals.',
-   stampNote:'No stamp duty on share transfers.',
-   advNote:'Bucharest advisory market. Growing PE interest.',
-   lglNote:'Romanian legal complexity. DD scope wider than Western Europe.',
-   highlights:['10% flat CGT (lowest)','No stamp duty','Fast-growing PE market']},
-  {name:'Greece',flag:'🇬🇷',region:'Southern Europe',advLo:4.0,advHi:7.0,lglLo:1.5,lglHi:3.0,cgt:15,stamp:0.2,assetX:4.0,totalLo:20.7,totalHi:25.2,
-   cgtNote:'15% special solidarity tax on capital gains from share disposals.',
-   stampNote:'0.2% stamp duty on share transfers.',
-   advNote:'Athens advisory market. Big Four and Greek boutiques active.',
-   lglNote:'Greek legal complexity. Notarial requirement mandatory.',
-   highlights:['15% CGT','0.2% stamp duty','Improving deal environment']},
-  {name:'Portugal',flag:'🇵🇹',region:'Southern Europe',advLo:3.5,advHi:6.0,lglLo:1.0,lglHi:2.2,cgt:28,stamp:0,assetX:2.5,totalLo:32.5,totalHi:36.2,
-   cgtNote:'28% autonomous rate (resident individuals). Non-residents: flat 25%.',
-   stampNote:'No stamp duty on share transfers.',
-   advNote:'Lisbon advisory market. International banks on larger deals.',
-   lglNote:'Standard due diligence scope.',
-   highlights:['28% CGT for residents','NHR regime for non-residents','Growing tech/PE market']},
-];
+var selRow=document.getElementById('row-CH');
+var state={cgt:0,legal:1.5,total:7,name:'Switzerland',flag:'🇨🇭'};
 
-let sel = null, sKey = 'total', sDir = 'desc';
-
-function getData(){
-  const r=document.getElementById('fRegion').value;
-  const q=document.getElementById('fSearch').value.toLowerCase();
-  let d=COUNTRIES.filter(c=>(!r||c.region===r)&&(!q||c.name.toLowerCase().includes(q)||c.region.toLowerCase().includes(q)));
-  d.sort((a,b)=>{
-    let va,vb;
-    if(sKey==='name'){va=a.name;vb=b.name;}
-    else if(sKey==='advisory'){va=(a.advLo+a.advHi)/2;vb=(b.advLo+b.advHi)/2;}
-    else if(sKey==='legal'){va=(a.lglLo+a.lglHi)/2;vb=(b.lglLo+b.lglHi)/2;}
-    else if(sKey==='cgt'){va=a.cgt;vb=b.cgt;}
-    else if(sKey==='stamp'){va=a.stamp;vb=b.stamp;}
-    else{va=a.totalLo;vb=b.totalLo;}
-    if(typeof va==='string')return sDir==='asc'?va.localeCompare(vb):vb.localeCompare(va);
-    return sDir==='asc'?va-vb:vb-va;
-  });
-  return d;
+function selectCountry(row){
+  if(selRow)selRow.classList.remove('sel');
+  selRow=row;row.classList.add('sel');
+  state.cgt=+row.dataset.cgt;
+  state.legal=+row.dataset.legal;
+  state.total=+row.dataset.total;
+  state.name=row.dataset.country;
+  state.flag=row.dataset.flag;
+  document.getElementById('slTax').value=state.cgt;
+  document.getElementById('selCountryName').textContent=state.flag+' '+state.name;
+  document.getElementById('dbCGT').textContent=state.cgt+'%';
+  document.getElementById('dbLegal').textContent='~'+state.legal+'%';
+  document.getElementById('dbTotal').textContent='~'+state.total+'%';
+  recalc();
 }
 
-function sortBy(k){
-  if(sKey===k)sDir=sDir==='asc'?'desc':'asc';else{sKey=k;sDir='desc';}
-  document.querySelectorAll('thead th').forEach(th=>{th.classList.remove('sort-asc','sort-desc');});
-  const idx={'name':1,'region':2,'advisory':3,'legal':4,'cgt':5,'stamp':6,'total':7};
-  const th=document.querySelectorAll('thead th')[idx[k]];
-  if(th)th.classList.add('sort-'+sDir);
-  render();
+function fmtM(n){
+  if(Math.abs(n)>=1)return '€'+n.toFixed(1)+'M';
+  return '€'+(n*1000).toFixed(0)+'k';
 }
 
-
-function render(){
-  const r=document.getElementById('fRegion').value;
-  const q=document.getElementById('fSearch').value.toLowerCase();
-  const srt=document.getElementById('fSort').value;
-  let d=COUNTRIES.filter(c=>(!r||c.region===r)&&(!q||c.name.toLowerCase().includes(q)||c.region.toLowerCase().includes(q)));
-  d.sort((a,b)=>{
-    let va,vb;
-    if(srt==='name'){va=a.name;vb=b.name;}
-    else if(srt==='advisory'){va=(a.advLo+a.advHi)/2;vb=(b.advLo+b.advHi)/2;}
-    else if(srt==='cgt'){va=a.cgt;vb=b.cgt;}
-    else if(srt==='stamp'){va=a.stamp;vb=b.stamp;}
-    else{va=a.totalLo;vb=b.totalLo;}
-    if(typeof va==='string')return sDir==='asc'?va.localeCompare(vb):vb.localeCompare(va);
-    return sDir==='asc'?va-vb:vb-va;
-  });
-  document.getElementById('fCount').textContent=d.length+' countries';
-  const maxTotal=Math.max(...d.map(c=>c.totalHi));
-  const costClass=t=>t<10?'low':t<30?'mid':'high';
-  const costLabel=t=>t<10?'Low cost':t<30?'Mid cost':'High cost';
-  var tb=document.getElementById('tblBody');if(tb)tb.innerHTML='';
-  document.getElementById('countryGrid').innerHTML=d.map(c=>`
-    <div class="cc${sel===c.name?' selected':''}" onclick="selectRow('${c.name}')">
-      <div class="cc-top">
-        <span class="cc-flag">${c.flag}</span>
-        <span class="cc-name">${c.name}</span>
-        <span class="cc-region">${c.region}</span>
-      </div>
-      <div class="cc-datapoints">
-        <div class="cc-dp">
-          <div class="cc-dp-label">Advisory</div>
-          <div class="cc-dp-val n">${c.advLo}–${c.advHi}%</div>
-        </div>
-        <div class="cc-dp">
-          <div class="cc-dp-label">CGT (individual)</div>
-          <div class="cc-dp-val ${c.cgt===0?'g':c.cgt>=30?'r':'n'}">${c.cgt===0?'0%  ✓':c.cgt+'%'}</div>
-        </div>
-        <div class="cc-dp">
-          <div class="cc-dp-label">Legal & DD</div>
-          <div class="cc-dp-val n">${c.lglLo}–${c.lglHi}%</div>
-        </div>
-        <div class="cc-dp">
-          <div class="cc-dp-label">Stamp duty</div>
-          <div class="cc-dp-val ${c.stamp===0?'g':'n'}">${c.stamp===0?'None':c.stamp+'%'}</div>
-        </div>
-      </div>
-      <div class="cc-bar"><div class="cc-bar-fill" style="width:${(c.totalLo/maxTotal*100).toFixed(0)}%"></div></div>
-      <div class="cc-total-row">
-        <span class="cc-total-lbl">Total sell-side cost</span>
-        <span style="display:flex;align-items:center;gap:6px">
-          <span class="cc-cost-badge ${costClass(c.totalLo)}">${costLabel(c.totalLo)}</span>
-          <span class="cc-total-val" style="color:${c.totalLo<10?'var(--grn)':c.totalLo>=30?'var(--red)':'var(--navy)'}">${c.totalLo.toFixed(1)}–${c.totalHi.toFixed(1)}%</span>
-        </span>
-      </div>
-    </div>`).join('');
-}
-
-
-function selectRow(name){
-  sel = sel===name ? null : name;
-  render();
-  const c=COUNTRIES.find(x=>x.name===name);
-  const panel=document.getElementById('detailPanel');
-  if(!c||!sel){panel.classList.remove('visible');panel.innerHTML='';return;}
-  panel.innerHTML=`
-    <div><div class="det-block-title">Advisory fees</div>
-      <div class="det-row"><span class="det-lbl">Success fee</span><span class="det-val">${c.advLo}–${c.advHi}%</span></div>
-      <div class="det-row"><span class="det-lbl">Typical minimum</span><span class="det-val">€150–500k</span></div>
-      <div class="det-row"><span class="det-lbl">Retainer</span><span class="det-val">€5–25k/mo</span></div>
-      <div class="det-note">${c.advNote}</div></div>
-    <div><div class="det-block-title">Legal & due diligence</div>
-      <div class="det-row"><span class="det-lbl">Legal (% of EV)</span><span class="det-val">${c.lglLo}–${c.lglHi}%</span></div>
-      <div class="det-row"><span class="det-lbl">Stamp duty (share)</span><span class="det-val ${c.stamp===0?'grn':''}">${c.stamp===0?'None':c.stamp+'%'}</span></div>
-      <div class="det-row"><span class="det-lbl">Asset deal premium</span><span class="det-val red">+${c.assetX}%</span></div>
-      <div class="det-note">${c.lglNote}</div></div>
-    <div><div class="det-block-title">Capital gains tax</div>
-      <div class="det-row"><span class="det-lbl">CGT rate (individual)</span><span class="det-val ${c.cgt===0?'grn':c.cgt>=30?'red':''}">${c.cgt===0?'0%':c.cgt+'%'}</span></div>
-      <div class="det-row"><span class="det-lbl">Total sell-side</span><span class="det-val red">${c.totalLo.toFixed(1)}–${c.totalHi.toFixed(1)}%</span></div>
-      <div class="det-note">${c.cgtNote}</div></div>
-    <div><div class="det-block-title">Key highlights</div>
-      ${c.highlights.map(h=>`<div class="det-row"><span class="det-lbl" style="color:rgba(255,255,255,0.6)">→</span><span class="det-val" style="font-family:var(--sans);font-size:0.75rem;font-weight:500">${h}</span></div>`).join('')}
-      <div class="det-note">${c.stampNote}</div></div>`;
-  panel.classList.add('visible');
-  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-
-// QUICK CALC
-function populateQC(){
-  const sel=document.getElementById('qCountry');
-  COUNTRIES.forEach(c=>{const o=document.createElement('option');o.value=c.name;o.textContent=c.flag+' '+c.name;sel.appendChild(o);});
-}
-function runQCalc(){
-  const evRaw=parseFloat(document.getElementById('qEV').value)||0;
-  const unit=document.getElementById('qUnit').value;
-  const ev=unit==='m'?evRaw*1000:evRaw;
-  const cname=document.getElementById('qCountry').value;
-  const struct=document.getElementById('qStruct').value;
-  const c=COUNTRIES.find(x=>x.name===cname);
-  if(!ev||!c){document.getElementById('qresult').classList.remove('visible');return;}
-  const adv=ev*((c.advLo+c.advHi)/2/100);
-  const lglBase=(c.lglLo+c.lglHi)/2/100;
-  const assetAdd=struct==='asset'?c.assetX/100:0;
-  const lgl=ev*(lglBase+c.stamp/100+assetAdd);
-  const taxable=Math.max(0,ev-adv-lgl);
-  const tax=taxable*(c.cgt/100);
-  const total=adv+lgl+tax;
-  const f=v=>'€'+(v>=1000?(v/1000).toFixed(1)+'M':v.toFixed(0)+'k');
-  document.getElementById('qAdv').textContent=f(adv);
-  document.getElementById('qLgl').textContent=f(lgl);
-  document.getElementById('qTax').textContent=c.cgt===0?'€0 (no CGT)':f(tax);
-  document.getElementById('qTot').textContent=f(total)+' ('+(total/ev*100).toFixed(1)+'%)';
-  document.getElementById('qresult').classList.add('visible');
-}
-
-
-// Sidebar live ticker
-var SB_TICKS=[
-  ['Software EV/EBITDA','24.5×'],['Logistics EV/EBITDA','12.6×'],
-  ['CH CGT','0%'],['IT CGT','26%'],['Advisory €5M','5.5%'],
-  ['SME Discount','−30%'],['Healthcare EV/EBITDA','19.8×'],
-];
-function renderSbTicker(){
-  var el=document.getElementById('sbTicker');
-  if(!el)return;
-  var start=Math.floor(Math.random()*SB_TICKS.length);
-  var items=SB_TICKS.slice(start,start+3).concat(SB_TICKS.slice(0,Math.max(0,3-(SB_TICKS.length-start))));
-  el.innerHTML=items.map(function(t){return '<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4);">'+t[0]+'</span><span style="font-family:monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');
-}
-document.addEventListener('DOMContentLoaded',function(){renderSbTicker();setInterval(renderSbTicker,5000);});
-
-
-// ── ACCESS COOKIE SYSTEM ─────────────────────────────────────────────────────
-function setCookie(name,val,days){
-  var d=new Date();d.setTime(d.getTime()+(days*24*60*60*1000));
-  document.cookie=name+'='+val+';expires='+d.toUTCString()+';path=/;SameSite=Lax';
-}
-function getCookie(name){
-  var n=name+'=',ca=document.cookie.split(';');
-  for(var i=0;i<ca.length;i++){var c=ca[i].trim();if(c.indexOf(n)===0)return c.substring(n.length);}
-  return '';
-}
-function hasAccess(){return getCookie('mnaintel_access')==='1';}
-function grantAccess(){setCookie('mnaintel_access','1',365);}
-
-// Called by any unlock form submission
-function handleUnlock(e){
-  if(e) e.preventDefault();
-  var form=e?e.target:null;
-  var inp=form?form.querySelector('input[type=email]'):null;
-  var email=inp?inp.value:'';
-  grantAccess();
-  if(email){
-    window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(email),'_blank');
+function calcFee(ev,mode){
+  if(mode==='flat')return ev*0.035;
+  if(mode==='double'){
+    var fee=0,rem=ev,b=[1,1,1,1],r=[.10,.08,.06,.04];
+    for(var i=0;i<b.length;i++){if(rem<=0)break;var c=Math.min(rem,b[i]);fee+=c*r[i];rem-=c;}
+    if(rem>0)fee+=rem*.02;return fee;
   }
-  unlockPage();
-  return false;
+  var fee=0,rem=ev,b=[5,5,10,10],r=[.03,.03,.02,.01];
+  for(var i=0;i<b.length;i++){if(rem<=0)break;var c=Math.min(rem,b[i]);fee+=c*r[i];rem-=c;}
+  if(rem>0)fee+=rem*.01;return fee;
 }
 
-// Remove all blurs and gates on this page
-function unlockPage(){
-  // Remove blur classes
-  document.querySelectorAll('.blurred-text,.gate-blur,.lc-data,.lc-sub,.sens-table').forEach(function(el){
-    el.style.filter='none';el.style.userSelect='auto';el.style.pointerEvents='auto';
-  });
-  // Hide all gate overlays
-  document.querySelectorAll('.gate-overlay,.rh-gate,.nb-gate,.exitNetGate,.waccGateOverlay,.rh-gate-visible,.rh-gate.visible,[id$="Gate"],[id$="GateBox"],[id$="GateOverlay"]').forEach(function(el){
-    el.style.display='none';
-  });
-  // Show hidden result sections
-  document.querySelectorAll('.result-cards,.val-section,.sens-section').forEach(function(el){
-    if(el.style.display==='none') el.style.display='grid';
-  });
-  // Remove paywall fades on editorial pages
-  document.querySelectorAll('.paywall-fade').forEach(function(el){
-    el.style.maxHeight='none';el.style.overflow='visible';
-    el.classList.remove('paywall-fade');
-  });
-  document.querySelectorAll('.paywall-gate,.pg-form').forEach(function(el){
-    el.style.display='none';
-  });
-  // Remove blur on locked card data in index
-  document.querySelectorAll('.lc').forEach(function(el){
-    el.style.cursor='default';
-    el.onclick=null;
-  });
+function recalc(){
+  var ev=+document.getElementById('slEV').value;
+  var debt=+document.getElementById('slDebt').value;
+  var retK=+document.getElementById('slRet').value;
+  var months=+document.getElementById('slMo').value;
+  var ilPct=+document.getElementById('slIl').value/100;
+  var taxPct=+document.getElementById('slTax').value/100;
+  var mode=document.getElementById('selFee').value;
+
+  document.getElementById('evOut').textContent='€'+ev+'M';
+  document.getElementById('debtOut').textContent='€'+debt+'M';
+  document.getElementById('retOut').textContent='€'+retK+'k';
+  document.getElementById('moOut').textContent=months;
+  document.getElementById('ilOut').textContent=(ilPct*100).toFixed(0)+'%';
+  var cCode=state.name.substring(0,2).toUpperCase();
+  document.getElementById('taxOut').textContent=(taxPct*100).toFixed(1)+'% · '+cCode;
+
+  var formulas={
+    modified:'3% su primi €5M + 3% su successivi €5M + 2% sui €10M + 1% residuo',
+    double:'10% primo €1M + 8% secondo + 6% terzo + 4% quarto + 2% residuo',
+    flat:'Flat rate 3.5% sull\'Equity Value aggiustato'
+  };
+  document.getElementById('feeFormula').textContent=formulas[mode];
+
+  var eqPre=Math.max(0,ev-debt);
+  var ilAmt=eqPre*ilPct;
+  var eqAdj=eqPre-ilAmt;
+  var ret=retK*months/1000;
+  var sucFee=calcFee(eqAdj,mode);
+  var retCredit=Math.min(ret,sucFee);
+  var feeNet=Math.max(0,sucFee-retCredit);
+  var retNc=ret-retCredit;
+  var legalAmt=eqAdj*(state.legal/100);
+  var gross=eqAdj-feeNet-retNc-legalAmt;
+  var taxAmt=Math.max(0,gross*taxPct);
+  var net=Math.max(0,gross-taxAmt);
+  var blend=eqAdj>0?(sucFee/eqAdj*100):0;
+  var haircut=ev>0?((ev-net)/ev*100):0;
+
+  document.getElementById('wEV').textContent=fmtM(ev);
+  document.getElementById('wDebt').textContent='−'+fmtM(debt);
+  document.getElementById('wEqPre').textContent=fmtM(eqPre);
+  document.getElementById('wIlPct').textContent=(ilPct*100).toFixed(0)+'%';
+  document.getElementById('wIl').textContent='−'+fmtM(ilAmt);
+  document.getElementById('wEqAdj').textContent=fmtM(eqAdj);
+  document.getElementById('wFeePct').textContent=blend.toFixed(1)+'%';
+  document.getElementById('wFee').textContent='−'+fmtM(feeNet);
+  document.getElementById('wRet').textContent='−'+fmtM(retNc);
+  document.getElementById('wLegal').textContent='−'+fmtM(legalAmt);
+  document.getElementById('wGross').textContent=fmtM(gross);
+  document.getElementById('wTaxPct').textContent=(taxPct*100).toFixed(1)+'%';
+  document.getElementById('wFlag').textContent=state.flag;
+  document.getElementById('wTax').textContent='−'+fmtM(taxAmt);
+  document.getElementById('wNet').textContent=fmtM(net);
+  document.getElementById('dbAdv').textContent=blend.toFixed(1)+'%';
+  document.getElementById('mBlend').textContent=blend.toFixed(1)+'%';
+  document.getElementById('mHair').textContent=haircut.toFixed(0)+'%';
+  document.getElementById('mPct').textContent=(ev>0?(net/ev*100):0).toFixed(0)+'%';
+  document.getElementById('mTotal').textContent=state.total+'%';
 }
 
-// On page load: if already has access, unlock everything immediately
-document.addEventListener('DOMContentLoaded',function(){
-  if(hasAccess()) unlockPage();
-});
-
-
-// Sidebar locked links: check access before navigating
-
-  else{
-    // Close sidebar and show unlock prompt
-    closeSidebar();
-    var bar=document.getElementById('subBar');
-    if(bar){bar.classList.add('show');bar.scrollIntoView({behavior:'smooth',block:'nearest'});
-      var em=document.getElementById('sbEmail');if(em)setTimeout(function(){em.focus();},350);}
-    else{
-      // Tool pages: show their gate
-      var gate=document.querySelector('.rh-gate,.nb-gate');
-      if(gate){gate.style.display='block';gate.scrollIntoView({behavior:'smooth',block:'nearest'});}
-    }
-  }
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
-  render(); populateQC();
-  document.getElementById('fSort').addEventListener('change',render);
-  
-  // Mark gated links as unlocked in sidebar
-  if(hasAccess()){
-    document.querySelectorAll('[data-gated]').forEach(function(el){el.classList.add('unlocked');});
-  }
-
-  document.querySelectorAll('[data-email]').forEach(el=>{el.href='mailto:deals@news.mnaintel.com';el.textContent='deals@news.mnaintel.com';});
-});
-
-function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
-function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
-function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');if(btn)btn.classList.toggle('open');}
-function toggleNavDrop(){var menu=document.getElementById('navToolsMenu');var btn=document.getElementById('navToolsBtn');menu.classList.toggle('open');btn.classList.toggle('open');}
-document.addEventListener('click',function(e){var drop=document.getElementById('navToolsDrop');if(drop&&!drop.contains(e.target)){document.getElementById('navToolsMenu').classList.remove('open');document.getElementById('navToolsBtn').classList.remove('open');}});
+recalc();
 </script>
 </body>
 </html>
