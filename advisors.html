@@ -6,32 +6,21 @@
 <title>Advisor Directory · M&A Intelligence</title>
 <meta name="description" content="European M&A advisor directory. Filter by country, sector and deal size. Transparent match scoring based on deal fit, track record and fee structure.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --navy:     #0A1628;
-  --navy2:    #142035;
-  --bg:       #F4F2EE;
-  --bg2:      #EDEBE6;
-  --bg3:      #E6E3DD;
-  --surface:  #FFFFFF;
-  --surface2: #F9F8F5;
-  --rule:     #E5E7EB;
-  --rule2:    #F0EEE9;
-  --rule-hi:  #C8C5BE;
-  --tx:       #111111;
-  --tx2:      #4A4A4A;
-  --tx3:      #888888;
-  --red:      #8B1A1A;
-  --red-dim:  rgba(139,26,26,0.08);
-  --grn:      #0A5C1E;
-  --grn-dim:  #D6EAD9;
-  --amber:    #B45309;
-  --amber-dim:#FEF3C7;
-  --blue:     #0A1628;
-  --blue-dim: rgba(10,22,40,0.07);
-  --sans:  'DM Sans', sans-serif;
-  --mono:  'IBM Plex Mono', monospace;
+:root{
+  --navy:#0A1628;--navy2:#142035;
+  --white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;
+  --rule:#E5E7EB;--rule2:#F0EEE9;
+  --b:#111;--g:#222;--gm:#4A4A4A;--gl:#888;
+  --red:#8B1A1A;--red2:#6e1414;
+  --grn:#0A5C1E;--grn2:#D6EAD9;
+  --amber:#B45309;--amber2:#FEF3C7;
+  --shadow:0 1px 6px rgba(0,0,0,0.06);
+  --shadow-md:0 2px 16px rgba(0,0,0,0.10);
+  --sans:'Barlow',sans-serif;
+  --serif:'Barlow',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
 }
 
 /* ── RESET ──────────────────────────────────────────────────────────────── */
@@ -40,7 +29,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--sans);
   background: var(--bg);
-  color: var(--tx);
+  color: var(--b);
   -webkit-font-smoothing: antialiased;
   font-size: 15px;
   overflow-x: hidden;
@@ -58,22 +47,19 @@ nav {
   padding: 0 2.5rem;
   gap: 1rem;
   /* Premium translucent blur effect */
-  background: rgba(10,22,40,0.92);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background:var(--navy);
   border-bottom: 1px solid var(--rule2);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.03), 0 4px 24px rgba(0,0,0,0.4);
+  border-bottom:1px solid rgba(255,255,255,0.08);
 }
 .nav-left { display: flex; align-items: center; gap: .6rem; }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .nav-logo-bar { width: 2px; height: 16px; background: var(--red); flex-shrink: 0; }
 .nav-logo-text {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: .22em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
   text-transform: uppercase;
-  color: var(--tx);
+  color: var(--b);
   white-space: nowrap;
 }
 .nav-links { display: flex; align-items: center; }
@@ -83,7 +69,7 @@ nav {
   font-weight: 400;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--tx3);
+  color: var(--gl);
   text-decoration: none;
   padding: .35rem .85rem;
   transition: color .15s;
@@ -100,9 +86,9 @@ nav {
   transform: scaleX(0);
   transition: transform .2s;
 }
-.nav-link:hover { color: var(--tx); }
+.nav-link:hover { color: var(--b); }
 .nav-link:hover::after { transform: scaleX(1); }
-.nav-link.active { color: var(--tx); }
+.nav-link.active { color: var(--b); }
 .nav-link.active::after { transform: scaleX(1); }
 .nav-sub {
   font-family: var(--mono);
@@ -141,7 +127,7 @@ nav {
   font-weight: 600;
   letter-spacing: .22em;
   text-transform: uppercase;
-  color: var(--tx3);
+  color: var(--gl);
   white-space: nowrap;
   margin-right: 2rem;
   flex-shrink: 0;
@@ -151,7 +137,7 @@ nav {
 .mp-dot {
   width: 5px; height: 5px;
   border-radius: 50%;
-  background: var(--grn);
+  background:var(--grn);
   box-shadow: 0 0 6px var(--grn);
   animation: blink 1.8s ease-in-out infinite;
 }
@@ -172,21 +158,21 @@ nav {
   font-weight: 400;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--tx3);
+  color: var(--gl);
   white-space: nowrap;
 }
 .mp-val {
   font-family: var(--mono);
   font-size: .66rem;
   font-weight: 600;
-  color: var(--tx);
+  color: var(--b);
   white-space: nowrap;
   letter-spacing: .04em;
 }
 .mp-chg { font-family: var(--mono); font-size: .55rem; white-space: nowrap; letter-spacing: .04em; }
 .mp-chg.up  { color: var(--grn); }
 .mp-chg.dn  { color: var(--red); }
-.mp-chg.neu { color: var(--tx3); }
+.mp-chg.neu { color: var(--gl); }
 
 /* ── PAGE HEADER ────────────────────────────────────────────────────────── */
 .page-head {
@@ -211,7 +197,7 @@ nav {
   font-weight: 400;
   letter-spacing: .28em;
   text-transform: uppercase;
-  color: var(--tx3);
+  color: var(--gl);
   margin-bottom: .75rem;
   display: flex;
   align-items: center;
@@ -228,14 +214,14 @@ nav {
   font-family: var(--sans);
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   font-weight: 700;
-  color: var(--tx);
+  color: var(--b);
   line-height: 1.05;
   letter-spacing: -.03em;
   margin-bottom: .6rem;
 }
 .ph-sub {
   font-size: .85rem;
-  color: var(--tx2);
+  color: var(--gm);
   max-width: 580px;
   line-height: 1.6;
   font-weight: 300;
@@ -263,20 +249,18 @@ nav {
   font-weight: 600;
   letter-spacing: .2em;
   text-transform: uppercase;
-  color: var(--tx3);
+  color: var(--gl);
   white-space: nowrap;
   flex-shrink: 0;
 }
 .crit-items { display: flex; flex-wrap: wrap; gap: .6rem; }
-.crit-item { display: flex; align-items: center; gap: .4rem; font-size: .72rem; color: var(--tx2); }
-.crit-item strong { color: var(--tx); font-weight: 600; }
+.crit-item { display: flex; align-items: center; gap: .4rem; font-size: .72rem; color: var(--gm); }
+.crit-item strong { color: var(--b); font-weight: 600; }
 .crit-sep { width: 1px; height: 12px; background: var(--rule2); flex-shrink: 0; }
 
 /* ── FILTERS BAR — sticky ───────────────────────────────────────────────── */
 .filters-bar {
-  background: rgba(244,242,238,0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background:var(--white);
   border-bottom: 1px solid var(--rule2);
   position: sticky;
   top: 54px;
@@ -299,14 +283,14 @@ nav {
   font-weight: 600;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: var(--tx3);
+  color: var(--gl);
   white-space: nowrap;
 }
 .filter-sel {
   font-family: var(--mono);
   font-size: .72rem;
-  color: var(--tx);
-  background: var(--surface);
+  color: var(--b);
+  background:var(--bg);
   border: 1px solid var(--rule2);
   padding: .32rem .7rem;
   outline: none;
@@ -320,14 +304,14 @@ nav {
   background-position: right .6rem center;
   padding-right: 2rem;
 }
-.filter-sel:focus { border-color: var(--rule-hi); box-shadow: 0 0 0 1px rgba(255,255,255,0.06); }
-.filter-sel option { background: var(--bg2); color: var(--tx); }
+.filter-sel:focus { border-color: var(--rule); box-shadow: 0 0 0 1px rgba(255,255,255,0.06); }
+.filter-sel option { background: var(--bg2); color: var(--b); }
 .filter-divider { width: 1px; height: 22px; background: var(--rule2); flex-shrink: 0; }
 .result-count {
   font-family: var(--mono);
   font-size: .6rem;
   letter-spacing: .08em;
-  color: var(--tx3);
+  color: var(--gl);
   margin-left: auto;
 }
 
@@ -350,7 +334,7 @@ nav {
 
 /* ── ADVISOR CARD — terminal card with glow-on-hover ────────────────────── */
 .acard {
-  background: var(--surface);
+  background:var(--bg);
   padding: 1.25rem;
   cursor: pointer;
   position: relative;
@@ -359,17 +343,7 @@ nav {
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 3px rgba(0,0,0,0.04);
 }
 /* Hover: background lift + left accent glow */
-.acard::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 2px;
-  height: 0;
-  background: var(--red);
-  transition: height .25s ease;
-}
-.acard:hover { background: var(--surface2); }
-.acard:hover::before { height: 100%; }
+.acard:hover { background: var(--bg); border-color:var(--red); }
 .acard.hidden { display: none; }
 
 .acard-top {
@@ -391,14 +365,14 @@ nav {
   font-family: var(--sans);
   font-size: .85rem;
   font-weight: 600;
-  color: var(--tx);
+  color: var(--b);
   line-height: 1.25;
   letter-spacing: -.01em;
 }
 .acard-type {
   font-family: var(--mono);
   font-size: .58rem;
-  color: var(--tx3);
+  color: var(--gl);
   margin-top: 3px;
   letter-spacing: .04em;
 }
@@ -443,7 +417,7 @@ nav {
   letter-spacing: .04em;
 }
 .score-hi  { color: var(--grn); }
-.score-mid { color: var(--blue); }
+.score-mid { color: var(--navy); }
 .score-lo  { color: var(--amber); }
 
 /* ── SCORE BREAKDOWN PILLS ──────────────────────────────────────────────── */
@@ -458,17 +432,17 @@ nav {
   font-size: .55rem;
   padding: 2px 6px;
   background: rgba(255,255,255,0.04);
-  color: var(--tx3);
+  color: var(--gl);
   border: 1px solid var(--rule);
   letter-spacing: .04em;
 }
-.sb-pill span { font-weight: 600; color: var(--tx2); }
+.sb-pill span { font-weight: 600; color: var(--gm); }
 
 /* ── CARD META & TAGS ───────────────────────────────────────────────────── */
 .acard-meta {
   font-family: var(--mono);
   font-size: .65rem;
-  color: var(--tx3);
+  color: var(--gl);
   margin-bottom: .7rem;
   letter-spacing: .02em;
 }
@@ -477,8 +451,8 @@ nav {
   font-family: var(--mono);
   font-size: .55rem;
   padding: 2px 6px;
-  background: var(--blue-dim);
-  color: var(--blue);
+  background: rgba(10,22,40,0.07);
+  color: var(--navy);
   border: 1px solid rgba(59,139,255,.18);
   letter-spacing: .04em;
 }
@@ -486,7 +460,7 @@ nav {
   font-family: var(--mono);
   font-size: .55rem;
   padding: 2px 6px;
-  background: var(--grn-dim);
+  background: var(--grn2);
   color: var(--grn);
   border: 1px solid rgba(0,200,150,.18);
   letter-spacing: .04em;
@@ -495,7 +469,7 @@ nav {
   font-family: var(--mono);
   font-size: .55rem;
   padding: 2px 6px;
-  background: var(--amber-dim);
+  background: var(--amber2);
   color: var(--amber);
   border: 1px solid rgba(245,158,11,.18);
   letter-spacing: .04em;
@@ -505,7 +479,7 @@ nav {
   font-size: .55rem;
   padding: 2px 6px;
   background: rgba(255,255,255,.04);
-  color: var(--tx3);
+  color: var(--gl);
   border: 1px solid var(--rule);
 }
 
@@ -515,17 +489,17 @@ nav {
   padding-top: .65rem;
   border-top: 1px solid var(--rule);
 }
-.acard-fee { font-family: var(--mono); font-size: .6rem; color: var(--tx3); }
+.acard-fee { font-family: var(--mono); font-size: .6rem; color: var(--gl); }
 .acard-link {
   font-family: var(--mono);
   font-size: .6rem;
   font-weight: 600;
-  color: var(--tx3);
+  color: var(--gl);
   letter-spacing: .06em;
   text-decoration: none;
   transition: color .15s;
 }
-.acard-link:hover { color: var(--tx); }
+.acard-link:hover { color: var(--b); }
 
 /* ── NO RESULTS ─────────────────────────────────────────────────────────── */
 .no-results {
@@ -534,25 +508,15 @@ nav {
   padding: 4rem 1rem;
   font-family: var(--mono);
   font-size: .75rem;
-  color: var(--tx3);
-  background: var(--surface);
+  color: var(--gl);
+  background:var(--bg);
   grid-column: 1/-1;
   letter-spacing: .08em;
 }
 
 /* ── FOOTER ─────────────────────────────────────────────────────────────── */
-footer {
-  background: var(--bg2);
-  padding: 1.75rem 2.5rem;
-  border-top: 1px solid var(--rule2);
-}
-footer::before {
-  content: '';
-  display: block;
-  height: 1px;
-  background: linear-gradient(90deg, var(--red) 0%, transparent 50%);
-  margin-bottom: 1.75rem;
-}
+footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(255,255,255,0.06)}
+
 .footer-inner {
   max-width: 1140px;
   margin: 0 auto;
@@ -570,7 +534,7 @@ footer::before {
   font-weight: 600;
   letter-spacing: .22em;
   text-transform: uppercase;
-  color: var(--tx2);
+  color: var(--gm);
 }
 .f-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
 .f-links a {
@@ -579,15 +543,15 @@ footer::before {
   font-weight: 400;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--tx3);
+  color: var(--gl);
   text-decoration: none;
   transition: color .12s;
 }
-.f-links a:hover { color: var(--tx2); }
+.f-links a:hover { color: var(--gm); }
 .f-copy {
   font-family: var(--mono);
   font-size: .58rem;
-  color: var(--tx3);
+  color: var(--gl);
   width: 100%;
   letter-spacing: .04em;
   margin-top: .5rem;
@@ -595,7 +559,7 @@ footer::before {
 @media(max-width:767px) { footer { padding: 1.5rem 1.25rem; } }
 
 /* ── BAR ANIMATION — triggered on load ──────────────────────────────────── */
-.bars-ready .score-bar { width: var(--bar-w) !important; }
+.bars-ready .score-bar { width: var(--bar-w) !important }
 </style>
 </head>
 <body>
@@ -603,15 +567,26 @@ footer::before {
 <!-- NAV -->
 <nav>
   <div class="nav-left">
-    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&amp;A Intelligence</div></a>
   </div>
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
     <a href="/issues" class="nav-link">Articles</a>
     <a href="/case-studies" class="nav-link">Case Studies</a>
-    <a href="/multiples" class="nav-link">Multiples</a>
-    <a href="/advisors" class="nav-link active">Advisors</a>
-    <a href="/country-index" class="nav-link">Cost Index</a>
+    <div class="nav-dropdown" id="navToolsDrop">
+      <button class="nav-dropdown-btn active" onclick="toggleNavDrop()" id="navToolsBtn">
+        Tools
+        <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="nav-dropdown-menu" id="navToolsMenu">
+      <a href="/multiples" class="nav-dd-item">Multiples</a>
+      <a href="/exit-calculator" class="nav-dd-item">Exit Calculator</a>
+      <a href="/wacc" class="nav-dd-item">WACC Calculator</a>
+      <a href="/country-index" class="nav-dd-item">Cost Index</a>
+      <a href="/advisors" class="nav-dd-item active">Advisors</a>
+      </div>
+    </div>
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>

@@ -6,7 +6,7 @@
 <title>Transaction Cost Index · M&A Intelligence</title>
 <meta name="description" content="Country-by-country M&A transaction cost breakdown: CGT, advisory fees, legal costs. Equity Bridge simulator with per-country blended rates.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#0A1628;--navy2:#142035;
@@ -16,7 +16,7 @@
   --red:#8B1A1A;--red2:#6e1414;
   --grn:#0A5C1E;--grn2:#D6EAD9;
   --amber:#B45309;--amber2:#FEF3C7;
-  --sans:'DM Sans',sans-serif;--mono:'IBM Plex Mono',monospace;
+  --sans:'Barlow',sans-serif;--mono:'IBM Plex Mono',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -109,13 +109,27 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:2px solid var(--
 </head>
 <body>
 <nav>
-  <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+  <div class="nav-left">
+    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&amp;A Intelligence</div></a>
+  </div>
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
     <a href="/issues" class="nav-link">Articles</a>
-    <a href="/multiples" class="nav-link">Multiples</a>
-    <a href="/advisors" class="nav-link">Advisors</a>
-    <a href="/country-index" class="nav-link active">Cost Index</a>
+    <a href="/case-studies" class="nav-link">Case Studies</a>
+    <div class="nav-dropdown" id="navToolsDrop">
+      <button class="nav-dropdown-btn active" onclick="toggleNavDrop()" id="navToolsBtn">
+        Tools
+        <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="nav-dropdown-menu" id="navToolsMenu">
+      <a href="/multiples" class="nav-dd-item">Multiples</a>
+      <a href="/exit-calculator" class="nav-dd-item">Exit Calculator</a>
+      <a href="/wacc" class="nav-dd-item">WACC Calculator</a>
+      <a href="/country-index" class="nav-dd-item active">Cost Index</a>
+      <a href="/advisors" class="nav-dd-item">Advisors</a>
+      </div>
+    </div>
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>

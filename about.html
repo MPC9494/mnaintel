@@ -6,7 +6,7 @@
 <title>Platform Methodology · M&A Intelligence</title>
 <meta name="description" content="How M&A Intelligence sources, verifies and publishes institutional-grade M&A data for European transactions.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 /* ── NAV ── */
 nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:56px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
@@ -22,7 +22,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 .nav-link:hover,.nav-link.active{color:#fff}
 /* Tools dropdown in top nav */
 .nav-dropdown{position:relative}
-.nav-dropdown-btn{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);background:transparent;border:none;padding:0.35rem 0.8rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .15s;height:56px}
+.nav-dropdown-btn{font-family:var(--sans,'Barlow',sans-serif);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);background:transparent;border:none;padding:0.35rem 0.8rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .15s;height:56px}
 .nav-dropdown-btn:hover,.nav-dropdown-btn.active{color:#fff}
 .nav-dropdown-btn svg{width:8px;height:8px;fill:currentColor;transition:transform .2s}
 .nav-dropdown-btn.open svg{transform:rotate(180deg)}
@@ -32,7 +32,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 .nav-dd-item:last-child{border-bottom:none}
 .nav-dd-item:hover{color:#fff;background:rgba(255,255,255,0.05)}
 .nav-dd-item.active{color:#fff}
-.nav-sub{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.nav-sub{font-family:var(--sans,'Barlow',sans-serif);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
 .nav-sub:hover{background:#6e1414}
 @media(max-width:767px){.nav-links{display:none}}
 @media(min-width:900px){nav{padding:0 2.5rem}}
@@ -51,7 +51,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 .sb-link:hover,.sb-link.active{color:#fff}
 .sb-link.active{font-weight:600}
 .sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
-.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans,'DM Sans',sans-serif);font-size:0.88rem;font-weight:500;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .12s}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans,'Barlow',sans-serif);font-size:0.88rem;font-weight:500;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .12s}
 .sb-dropdown-btn:hover,.sb-dropdown-btn.open{color:#fff}
 .sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform .2s}
 .sb-arrow.open{transform:rotate(180deg)}
@@ -60,12 +60,12 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 .sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color .12s}
 .sb-sub-link:hover,.sb-sub-link.active{color:rgba(255,255,255,0.85)}
 .sb-sub-link.active{color:#fff}
-.sb-cta{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
+.sb-cta{font-family:var(--sans,'Barlow',sans-serif);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
 .sb-cta:hover{background:#6e1414}
 .sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
 .sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
 
-:root{--navy:#0A1628;--navy2:#142035;--white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;--rule:#D4CFC7;--rule2:#E8E5DF;--b:#111;--g:#333;--gm:#5A5A5A;--gl:#999;--red:#8B1A1A;--red2:#6e1414;--grn:#0A5C1E;--grn2:#D6EAD9;--shadow:0 2px 12px rgba(0,0,0,0.08);--shadow-md:0 4px 24px rgba(0,0,0,0.12);--sans:'DM Sans',sans-serif;--serif:'Playfair Display',serif}
+:root{--navy:#0A1628;--navy2:#142035;--white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;--rule:#D4CFC7;--rule2:#E8E5DF;--b:#111;--g:#333;--gm:#5A5A5A;--gl:#999;--red:#8B1A1A;--red2:#6e1414;--grn:#0A5C1E;--grn2:#D6EAD9;--shadow:0 2px 12px rgba(0,0,0,0.08);--shadow-md:0 4px 24px rgba(0,0,0,0.12);--sans:'Barlow',sans-serif;--serif:'Barlow',sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-smoothing:antialiased;font-size:15px;overflow-x:hidden}
@@ -129,7 +129,7 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 .page-hero-inner{max-width:1100px;margin:0 auto}
 .ph-kicker{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
 .ph-kicker::before{content:'';width:16px;height:2px;background:var(--red);flex-shrink:0}
-.ph-h1{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--navy);line-height:1.08;letter-spacing:-.02em;margin-bottom:0.75rem}
+.ph-h1{font-family:var(--sans);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--navy);line-height:1.08;letter-spacing:-.02em;margin-bottom:0.75rem}
 .ph-sub{font-size:0.92rem;font-weight:300;color:var(--gm);line-height:1.8;max-width:620px}
 @media(max-width:767px){.page-hero{padding:2rem 1.25rem}}
 
@@ -140,7 +140,7 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 .mission-block{margin-bottom:2.5rem}
 .mb-label{font-family:var(--mono);font-size:0.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:0.85rem;display:flex;align-items:center;gap:8px}
 .mb-label::before{content:'';width:16px;height:2px;background:var(--red);flex-shrink:0}
-.mb-h{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:0.75rem;line-height:1.25}
+.mb-h{font-family:var(--sans);font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:0.75rem;line-height:1.25}
 .mb-p{font-size:0.88rem;font-weight:300;line-height:1.85;color:var(--g);margin-bottom:0.85rem}
 .mb-p:last-child{margin-bottom:0}
 .mb-p strong{font-weight:600;color:var(--navy)}
@@ -175,11 +175,13 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 </head>
 <body>
 
+
+<!-- SIDEBAR -->
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 <div class="sidebar" id="sidebar">
   <div class="sb-top">
-    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
-    <button class="sb-close" onclick="closeSidebar()">×</button>
+    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&amp;A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">&#215;</button>
   </div>
 
   <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
@@ -188,12 +190,12 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
   </div>
 
   <div class="sb-section">Info</div>
-  <a href="/about" class="sb-link  active" onclick="closeSidebar()">About</a>
+  <a href="/about" class="sb-link active" onclick="closeSidebar()">About</a>
 
   <div class="sb-section">Editorial</div>
   <div class="sb-dropdown">
     <button class="sb-dropdown-btn" onclick="toggleDrop('dropEditorial')">
-      <span>Articles &amp; Cases</span><span class="sb-arrow" id="arrowEditorial">▾</span>
+      <span>Articles &amp; Cases</span><span class="sb-arrow" id="arrowEditorial">&#9662;</span>
     </button>
     <div class="sb-dropdown-items" id="dropEditorial">
       <a href="/issues" class="sb-sub-link" onclick="closeSidebar()">All Articles</a>
@@ -202,17 +204,17 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
       <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
       <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
       <a href="/case-studies" class="sb-sub-link" onclick="closeSidebar()">All Case Studies</a>
-      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker · 7.5×</a>
-      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker &#183; 7.5&#215;</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer &#183; 4&#215; vs 7&#215;</a>
       <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">CS03. Deal collapsed in due diligence</a>
-      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans · 14.5×</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans &#183; 14.5&#215;</a>
     </div>
   </div>
 
   <div class="sb-section">Tools</div>
   <div class="sb-dropdown">
     <button class="sb-dropdown-btn" onclick="toggleDrop('dropTools')">
-      <span>Calculators &amp; Data</span><span class="sb-arrow" id="arrowTools">▾</span>
+      <span>Calculators &amp; Data</span><span class="sb-arrow" id="arrowTools">&#9662;</span>
     </button>
     <div class="sb-dropdown-items" id="dropTools">
       <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
@@ -223,20 +225,20 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
     </div>
   </div>
 
-  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access &#8594;</button>
 </div>
 
 <nav>
   <div class="nav-left">
     <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
-    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&amp;A Intelligence</div></a>
   </div>
   <div class="nav-links">
     <a href="/about" class="nav-link active">About</a>
     <a href="/issues" class="nav-link">Articles</a>
     <a href="/case-studies" class="nav-link">Case Studies</a>
     <div class="nav-dropdown" id="navToolsDrop">
-      <button class="nav-dropdown-btn " onclick="toggleNavDrop()" id="navToolsBtn">
+      <button class="nav-dropdown-btn" onclick="toggleNavDrop()" id="navToolsBtn">
         Tools
         <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"/></svg>
       </button>

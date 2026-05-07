@@ -6,7 +6,7 @@
 <title>Exit Value Calculator · M&A Intelligence</title>
 <meta name="description" content="EBITDA normalisation → sector multiple → equity bridge → net proceeds. Professional M&A exit valuation tool.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 /* ── NAV ── */
 nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:56px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
@@ -22,7 +22,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 .nav-link:hover,.nav-link.active{color:#fff}
 /* Tools dropdown in top nav */
 .nav-dropdown{position:relative}
-.nav-dropdown-btn{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);background:transparent;border:none;padding:0.35rem 0.8rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .15s;height:56px}
+.nav-dropdown-btn{font-family:var(--sans,'Barlow',sans-serif);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);background:transparent;border:none;padding:0.35rem 0.8rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .15s;height:56px}
 .nav-dropdown-btn:hover,.nav-dropdown-btn.active{color:#fff}
 .nav-dropdown-btn svg{width:8px;height:8px;fill:currentColor;transition:transform .2s}
 .nav-dropdown-btn.open svg{transform:rotate(180deg)}
@@ -32,7 +32,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 .nav-dd-item:last-child{border-bottom:none}
 .nav-dd-item:hover{color:#fff;background:rgba(255,255,255,0.05)}
 .nav-dd-item.active{color:#fff}
-.nav-sub{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.nav-sub{font-family:var(--sans,'Barlow',sans-serif);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
 .nav-sub:hover{background:#6e1414}
 @media(max-width:767px){.nav-links{display:none}}
 @media(min-width:900px){nav{padding:0 2.5rem}}
@@ -51,7 +51,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 .sb-link:hover,.sb-link.active{color:#fff}
 .sb-link.active{font-weight:600}
 .sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
-.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans,'DM Sans',sans-serif);font-size:0.88rem;font-weight:500;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .12s}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans,'Barlow',sans-serif);font-size:0.88rem;font-weight:500;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .12s}
 .sb-dropdown-btn:hover,.sb-dropdown-btn.open{color:#fff}
 .sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform .2s}
 .sb-arrow.open{transform:rotate(180deg)}
@@ -60,7 +60,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
 .sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color .12s}
 .sb-sub-link:hover,.sb-sub-link.active{color:rgba(255,255,255,0.85)}
 .sb-sub-link.active{color:#fff}
-.sb-cta{font-family:var(--sans,'DM Sans',sans-serif);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
+.sb-cta{font-family:var(--sans,'Barlow',sans-serif);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
 .sb-cta:hover{background:#6e1414}
 .sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
 .sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
@@ -74,7 +74,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-
   --grn:#0A5C1E;--grn2:#D6EAD9;
   --shadow:0 1px 6px rgba(0,0,0,0.06);
   --shadow-md:0 2px 16px rgba(0,0,0,0.10);
-  --f:'DM Sans',sans-serif;
+  --f:'Barlow',sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -293,11 +293,13 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
 </head>
 <body>
 
+
+<!-- SIDEBAR -->
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 <div class="sidebar" id="sidebar">
   <div class="sb-top">
-    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
-    <button class="sb-close" onclick="closeSidebar()">×</button>
+    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&amp;A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">&#215;</button>
   </div>
 
   <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
@@ -311,7 +313,7 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
   <div class="sb-section">Editorial</div>
   <div class="sb-dropdown">
     <button class="sb-dropdown-btn" onclick="toggleDrop('dropEditorial')">
-      <span>Articles &amp; Cases</span><span class="sb-arrow" id="arrowEditorial">▾</span>
+      <span>Articles &amp; Cases</span><span class="sb-arrow" id="arrowEditorial">&#9662;</span>
     </button>
     <div class="sb-dropdown-items" id="dropEditorial">
       <a href="/issues" class="sb-sub-link" onclick="closeSidebar()">All Articles</a>
@@ -320,34 +322,34 @@ footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(2
       <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
       <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
       <a href="/case-studies" class="sb-sub-link" onclick="closeSidebar()">All Case Studies</a>
-      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker · 7.5×</a>
-      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer · 4× vs 7×</a>
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker &#183; 7.5&#215;</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer &#183; 4&#215; vs 7&#215;</a>
       <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">CS03. Deal collapsed in due diligence</a>
-      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans · 14.5×</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans &#183; 14.5&#215;</a>
     </div>
   </div>
 
   <div class="sb-section">Tools</div>
   <div class="sb-dropdown">
-    <button class="sb-dropdown-btn  open" onclick="toggleDrop('dropTools')">
-      <span>Calculators &amp; Data</span><span class="sb-arrow  open" id="arrowTools">▾</span>
+    <button class="sb-dropdown-btn open" onclick="toggleDrop('dropTools')">
+      <span>Calculators &amp; Data</span><span class="sb-arrow open" id="arrowTools">&#9662;</span>
     </button>
-    <div class="sb-dropdown-items  open" id="dropTools">
+    <div class="sb-dropdown-items open" id="dropTools">
       <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
-      <a href="/exit-calculator" class="sb-sub-link" onclick="closeSidebar()">Exit Calculator</a>
+      <a href="/exit-calculator" class="sb-sub-link active" onclick="closeSidebar()">Exit Calculator</a>
       <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
       <a href="/country-index" class="sb-sub-link" onclick="closeSidebar()">Transaction Cost Index</a>
       <a href="/advisors" class="sb-sub-link" onclick="closeSidebar()">Advisor Directory</a>
     </div>
   </div>
 
-  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access &#8594;</button>
 </div>
 
 <nav>
   <div class="nav-left">
     <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
-    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&amp;A Intelligence</div></a>
   </div>
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
@@ -847,7 +849,18 @@ function unlockPage(){
 }
 
 
-  else{closeSidebar();}
+function navigateGated(url){
+  if(hasAccess()){
+    window.location.href=url;
+  } else{
+    closeSidebar();
+    var bar=document.getElementById('subBar');
+    if(bar){bar.classList.add('show');bar.scrollIntoView({behavior:'smooth',block:'nearest'});}
+    else{
+      var gate=document.querySelector('.rh-gate,.nb-gate');
+      if(gate){gate.style.display='block';gate.scrollIntoView({behavior:'smooth',block:'nearest'});}
+    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded',function(){
