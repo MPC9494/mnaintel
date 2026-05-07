@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS08 · M&A Intelligence</title>
+<meta name="description" content="Why DSV paid 7.5× EBITDA for DB Schenker while Frigo-Trans sold at 14.5×. Buy-side analysis of the largest logistics deal of 2024.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:56px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-left{display:flex;align-items:center;gap:0.6rem}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:6px;flex-shrink:0}
+.hamburger span{display:block;width:20px;height:1.5px;background:currentColor;transition:all .2s}
+.hamburger:hover{color:#fff}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:17px;background:var(--red);flex-shrink:0}
+.nav-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:0}
+.nav-link{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.35rem 0.8rem;transition:color .15s;white-space:nowrap;position:relative}
+.nav-link:hover,.nav-link.active{color:#fff}
+/* Tools dropdown in top nav */
+.nav-dropdown{position:relative}
+.nav-dropdown-btn{font-family:var(--sans,'Barlow',sans-serif);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);background:transparent;border:none;padding:0.35rem 0.8rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .15s;height:56px}
+.nav-dropdown-btn:hover,.nav-dropdown-btn.active{color:#fff}
+.nav-dropdown-btn svg{width:8px;height:8px;fill:currentColor;transition:transform .2s}
+.nav-dropdown-btn.open svg{transform:rotate(180deg)}
+.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 1px);left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--red);min-width:200px;z-index:500;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.nav-dropdown-menu.open{display:block}
+.nav-dd-item{display:block;padding:9px 16px;font-size:0.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s,background .12s;white-space:nowrap}
+.nav-dd-item:last-child{border-bottom:none}
+.nav-dd-item:hover{color:#fff;background:rgba(255,255,255,0.05)}
+.nav-dd-item.active{color:#fff}
+.nav-sub{font-family:var(--sans,'Barlow',sans-serif);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.nav-sub:hover{background:#6e1414}
+@media(max-width:767px){.nav-links{display:none}}
+@media(min-width:900px){nav{padding:0 2.5rem}}
+/* ── SIDEBAR ── */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:285px;background:var(--navy);z-index:300;transform:translateX(-285px);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:299}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
+.sb-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.4rem;cursor:pointer;line-height:1}
+.sb-section{font-size:0.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.25rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.88rem;font-weight:500;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s}
+.sb-link:hover,.sb-link.active{color:#fff}
+.sb-link.active{font-weight:600}
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans,'Barlow',sans-serif);font-size:0.88rem;font-weight:500;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .12s}
+.sb-dropdown-btn:hover,.sb-dropdown-btn.open{color:#fff}
+.sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform .2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.4rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color .12s}
+.sb-sub-link:hover,.sb-sub-link.active{color:rgba(255,255,255,0.85)}
+.sb-sub-link.active{color:#fff}
+.sb-cta{font-family:var(--sans,'Barlow',sans-serif);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
+.sb-cta:hover{background:#6e1414}
+.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
+.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
+
+
+:root{
+  --navy:#0A1628;--navy2:#142035;
+  --white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;
+  --rule:#E5E7EB;--rule2:#F0EEE9;
+  --b:#111;--g:#222;--gm:#4A4A4A;--gl:#888;
+  --red:#8B1A1A;--red2:#6e1414;
+  --grn:#0A5C1E;--grn2:#D6EAD9;
+  --amber:#B45309;--amber2:#FEF3C7;
+  --input-bg:#FFFDE7;--input-border:#C8B400;
+  --shadow:0 1px 6px rgba(0,0,0,0.06);
+  --shadow-md:0 2px 16px rgba(0,0,0,0.10);
+  
+  --sans:'Barlow',sans-serif;
+  --serif:'Barlow',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--b);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px}
+
+
+
+
+
+
+
+
+
+.sb-close:hover{color:var(--white)}
+
+
+
+
+.sb-issue{display:block;padding:0.5rem 0;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s}
+.sb-issue:hover{color:rgba(255,255,255,0.65)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+.f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
+.f-brand-bar{width:2px;height:14px;background:var(--red);flex-shrink:0}
+.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.f-links a{font-size:0.82rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s}
+.f-links a:hover{color:rgba(255,255,255,0.65)}
+.f-copy{font-size:0.7rem;color:rgba(255,255,255,0.2);width:100%;margin-top:0.25rem}
+@media(min-width:900px){footer{padding:2rem 3rem}}
+@media(max-width:767px){}
+
+.article{padding:3rem 2rem;max-width:720px;margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;color:var(--gm);text-decoration:none;margin-bottom:2rem}
+.back-link:hover{color:var(--navy)}
+.article-masthead{border-bottom:2px solid var(--navy);padding-bottom:1.5rem;margin-bottom:2rem}
+.article-pub{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:0.5rem}
+.article-tags{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.article-tag{font-size:0.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--red);background:rgba(139,26,26,0.08);padding:3px 9px}
+.article-tag.grey{color:var(--gm);background:var(--rule2)}
+.article-date{font-size:0.75rem;color:var(--gl)}
+.article-title{font-family:'Barlow',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.75rem}
+.article-deck{font-size:1.05rem;font-weight:300;font-style:italic;color:var(--gm);line-height:1.65}
+/* Deal snapshot bar */
+.deal-snap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:0.5px solid var(--rule);margin:1.75rem 0}
+.snap-cell{background:var(--bg);padding:1rem 1.1rem}
+.snap-label{font-size:0.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gl);margin-bottom:0.25rem}
+.snap-val{font-size:0.95rem;font-weight:600;color:var(--navy)}
+/* Body */
+.article-body p{font-size:1.0rem;font-weight:300;line-height:1.9;color:var(--b);margin-bottom:1.25rem}
+.article-body h2{font-family:'Barlow',sans-serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin:2rem 0 0.75rem;padding-top:1rem;border-top:1px solid var(--rule2)}
+.article-body strong{font-weight:600;color:var(--navy)}
+.data-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.92rem}
+.data-table th{background:var(--navy);color:var(--white);font-weight:600;font-size:0.72rem;letter-spacing:.08em;text-transform:uppercase;padding:0.75rem 1rem;text-align:left}
+.data-table td{padding:0.7rem 1rem;border-bottom:0.5px solid var(--rule2);color:var(--gm)}
+.data-table td:first-child{font-weight:500;color:var(--navy)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:nth-child(even) td{background:var(--bg)}
+.callout{background:var(--bg);border-left:3px solid var(--red);padding:1.25rem 1.5rem;margin:1.75rem 0}
+.callout p{font-size:0.98rem;font-weight:300;color:var(--b);line-height:1.75;margin-bottom:0}
+.callout strong{font-weight:600;color:var(--navy)}
+/* Author's POV */
+.authors-pov{background:var(--navy);padding:2rem;margin:2.5rem 0}
+.pov-label{font-size:0.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.pov-label::before{content:'';width:12px;height:2px;background:var(--red);flex-shrink:0}
+.authors-pov p{font-size:1rem;font-weight:300;line-height:1.85;color:rgba(255,255,255,0.75);margin-bottom:0.85rem}
+.authors-pov p:last-child{margin-bottom:0}
+.authors-pov strong{font-weight:600;color:var(--white)}
+.authors-pov em{font-style:italic;color:rgba(255,255,255,0.5)}
+/* Subscribe inline */
+.sub-inline{background:var(--bg);border-left:3px solid var(--red);padding:1.5rem 1.75rem;margin:2rem 0}
+.sub-inline p{font-size:0.95rem;font-weight:300;color:var(--gm);margin-bottom:1rem;line-height:1.65}
+.sub-inline-form{display:flex;max-width:420px}
+.sub-inline-email{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--b);font-family:'Barlow',sans-serif;font-size:0.95rem;padding:0.75rem 1rem;outline:none;min-width:0}
+.sub-inline-email::placeholder{color:#bbb}
+.sub-inline-btn{font-family:'Barlow',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:var(--white);border:1.5px solid var(--red);padding:0.75rem 1rem;cursor:pointer;white-space:nowrap}
+.article-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.5rem;margin-top:2rem;border-top:1px solid var(--rule2)}
+.article-footer-note{font-size:0.75rem;color:var(--gl)}
+@media(min-width:900px){.article{padding:4rem 3rem}}
+@media(max-width:767px){body{font-size:16px}.article{padding:2.5rem 1.5rem}.deal-snap{grid-template-columns:1fr 1fr}.sub-inline-form{flex-direction:column}.sub-inline-email{border-right:1.5px solid var(--navy);border-bottom:none}.sub-inline-btn{border-top:none}}
+
+
+
+
+
+
+
+
+
+
+.sb-sub-link.muted{color:rgba(255,255,255,0.28)}
+
+.back-bar{background:var(--off-white,#F8F6F2);border-bottom:1px solid var(--rule,#D8D0C0);padding:0.6rem 2.5rem}
+.back-bar-inner{max-width:1200px;margin:0 auto}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:var(--grey-mid,#666);text-decoration:none;transition:color 0.15s}
+.back-btn:hover{color:var(--navy,#0F1F3D)}
+
+/* ── SOFT PAYWALL ── */
+.paywall-fade{position:relative;overflow:hidden;max-height:320px}
+.paywall-fade::after{content:'';position:absolute;bottom:0;left:0;right:0;height:180px;background:linear-gradient(to bottom,transparent,#fff)}
+.paywall-gate{text-align:center;padding:2rem 1rem 1rem;border-top:1px solid #E8E4DC}
+.pg-label{font-size:0.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8B1A1A;margin-bottom:0.75rem;display:flex;align-items:center;justify-content:center;gap:8px}
+.pg-label::before,.pg-label::after{content:'';flex:1;height:1px;background:#E8E4DC}
+.pg-title{font-family:'Barlow',sans-serif;font-size:1.2rem;font-weight:700;color:#0A1628;margin-bottom:0.35rem}
+.pg-sub{font-size:0.82rem;color:#5A5A5A;line-height:1.65;max-width:420px;margin:0 auto 1.25rem}
+.pg-form{display:flex;max-width:400px;margin:0 auto}
+.pg-email{flex:1;font-family:'Barlow',sans-serif;font-size:0.88rem;color:#111;background:#fff;border:1.5px solid #0A1628;border-right:none;padding:0.65rem 1rem;outline:none;min-width:0}
+.pg-email::placeholder{color:#bbb}
+.pg-btn{font-family:'Barlow',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#0A1628;color:#fff;border:1.5px solid #0A1628;padding:0.65rem 1.1rem;cursor:pointer;white-space:nowrap}
+.pg-btn:hover{background:#8B1A1A;border-color:#8B1A1A}
+.pg-note{font-size:0.68rem;color:#999;margin-top:0.5rem}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ── INTELLIGENCE BOX ── */
+.intel-box{background:var(--bg2);border:0.5px solid var(--rule);border-left:3px solid var(--red);padding:1rem 1.25rem;margin:1.5rem 0;display:grid;grid-template-columns:auto 1fr;gap:0.85rem;align-items:start}
+.intel-box-icon{font-family:var(--mono);font-size:0.56rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);background:rgba(139,26,26,0.08);padding:3px 7px;white-space:nowrap;margin-top:2px}
+.intel-box-content{}
+.intel-box-title{font-size:0.72rem;font-weight:700;color:var(--navy);margin-bottom:0.25rem}
+.intel-box-body{font-size:0.8rem;color:var(--gm);line-height:1.6}
+.intel-box-data{font-family:var(--mono);font-size:0.88rem;font-weight:600;color:var(--navy);margin-top:0.3rem}
+
+.market-pulse{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
+.market-pulse::-webkit-scrollbar{display:none}
+.mp-brand{display:flex;align-items:center;gap:6px;padding:.3rem 1.25rem .3rem .75rem;border-right:1px solid rgba(255,255,255,0.07);flex-shrink:0}
+.mp-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:mp-pulse 2.5s infinite}
+@keyframes mp-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+.mp-label{font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.mp-item{display:flex;align-items:center;gap:.5rem;padding:.28rem .9rem;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0}
+.mp-item:last-child{border-right:none}
+.mp-name{font-size:.58rem;color:rgba(255,255,255,.32);white-space:nowrap}
+.mp-val{font-family:var(--mono);font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
+.mp-chg{font-family:var(--mono);font-size:.55rem;white-space:nowrap}
+.mp-chg.up{color:#4ade80}.mp-chg.dn{color:#f87171}.mp-chg.neu{color:rgba(255,255,255,.3)}
+
+
+/* ── GATED NAV LINKS ── */
+
+
+</style>
+</head>
+<body>
+
+
+<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sb-top">
+    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">×</button>
+  </div>
+
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
+    <div style="font-size:0.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#0A5C1E;display:inline-block;animation:pulse 2s infinite"></span>Live Benchmarks</div>
+    <div style="display:flex;flex-direction:column;gap:0.3rem" id="sbTicker"></div>
+  </div>
+
+  <div class="sb-section">Info</div>
+  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
+
+  <div class="sb-section">Editorial</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn  open" onclick="toggleDrop('dropEditorial')">
+      <span>Articles &amp; Cases</span><span class="sb-arrow  open" id="arrowEditorial">▾</span>
+    </button>
+    <div class="sb-dropdown-items  open" id="dropEditorial">
+      <a href="/issues" class="sb-sub-link" onclick="closeSidebar()">All Articles</a>
+      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
+      <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
+      <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
+      <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
+      <a href="/case-studies" class="sb-sub-link" onclick="closeSidebar()">All Case Studies</a>
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker &middot; 7.5&times;</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer &middot; 4&times; vs 7&times;</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">CS03. Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans &middot; 14.5&times;</a>
+      <a href="/case-study-05" class="sb-sub-link" onclick="closeSidebar()">CS05. Techem / Partners Group &middot; 24.5&times;</a>
+      <a href="/case-study-06" class="sb-sub-link" onclick="closeSidebar()">CS06. Aviva / Direct Line &middot; &pound;3.7B</a>
+      <a href="/case-study-07" class="sb-sub-link" onclick="closeSidebar()">CS07. Swisscom / Vodafone Italia &middot; &euro;8B</a>
+      <a href="/case-study-08" class="sb-sub-link active" onclick="closeSidebar()">CS08. L Catterton / KIKO Milano &middot; ~&euro;1.4B</a>
+    </div>
+  </div>
+
+  <div class="sb-section">Tools</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropTools')">
+      <span>Calculators &amp; Data</span><span class="sb-arrow" id="arrowTools">▾</span>
+    </button>
+    <div class="sb-dropdown-items" id="dropTools">
+      <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
+      <a href="/exit-calculator" class="sb-sub-link" onclick="closeSidebar()">Exit Calculator</a>
+      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
+      <a href="/country-index" class="sb-sub-link" onclick="closeSidebar()">Transaction Cost Index</a>
+      <a href="/advisors" class="sb-sub-link" onclick="closeSidebar()">Advisor Directory</a>
+    </div>
+  </div>
+
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
+</div>
+
+<nav>
+  <div class="nav-left">
+    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+  </div>
+  <div class="nav-links">
+    <a href="/about" class="nav-link">About</a>
+    <a href="/issues" class="nav-link">Articles</a>
+    <a href="/case-studies" class="nav-link active">Case Studies</a>
+    <div class="nav-dropdown" id="navToolsDrop">
+      <button class="nav-dropdown-btn " onclick="toggleNavDrop()" id="navToolsBtn">
+        Tools
+        <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="nav-dropdown-menu" id="navToolsMenu">
+      <a href="/multiples" class="nav-dd-item">Multiples</a>
+      <a href="/exit-calculator" class="nav-dd-item">Exit Calculator</a>
+      <a href="/wacc" class="nav-dd-item">WACC Calculator</a>
+      <a href="/country-index" class="nav-dd-item">Cost Index</a>
+      <a href="/advisors" class="nav-dd-item">Advisors</a>
+      </div>
+    </div>
+  </div>
+  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
+</nav>
+<div class="market-pulse">
+  <div class="mp-brand"><span class="mp-dot"></span><span class="mp-label">Market Pulse</span></div>
+  <div class="mp-item"><span class="mp-name">10Y Bund (Rf)</span><span class="mp-val">2.68%</span><span class="mp-chg neu">ECB</span></div>
+  <div class="mp-item"><span class="mp-name">ERP EU avg</span><span class="mp-val">5.84%</span><span class="mp-chg neu">Damodaran 2026</span></div>
+  <div class="mp-item"><span class="mp-name">S&amp;P Fwd P/E</span><span class="mp-val">20.8×</span><span class="mp-chg dn">above hist. avg</span></div>
+  <div class="mp-item"><span class="mp-name">EU Deal Vol</span><span class="mp-val">−14%</span><span class="mp-chg dn">YoY</span></div>
+  <div class="mp-item"><span class="mp-name">Software EV/EBITDA</span><span class="mp-val">24.5×</span><span class="mp-chg up">Jan 2026</span></div>
+  <div class="mp-item"><span class="mp-name">CH CGT</span><span class="mp-val">0%</span><span class="mp-chg up">lowest EU</span></div>
+</div>
+<div class="back-bar"><div class="back-bar-inner"><a href="/case-studies" class="back-btn">← Case Studies</a></div></div>
+<div class="article">
+  <a href="/case-studies" class="back-link">&#8592; Back to Case Studies</a>
+  <div class="article-masthead">
+    <div class="article-pub">M&amp;A Intelligence. Case Study No. 08</div>
+    <div class="article-tags">
+      <span class="article-tag">Consumer / Beauty</span>
+      <span class="article-tag grey">Italy</span>
+      <span class="article-tag grey">PE Buyout</span>
+      <span class="article-tag grey">~€1.4 Billion</span>
+      <span class="article-date">May 2026</span>
+    </div>
+    <div class="article-title">L Catterton buys KIKO Milano at ~€1.4B. The Italian family exit done right.</div>
+    <div class="article-deck">The Percassi family built a €800M revenue cosmetics company from Bergamo. Their exit to a LVMH-backed fund shows what a successful founder-retained minority looks like.</div>
+  </div>
+
+  <div class="deal-snap">
+    <div class="snap-cell"><div class="snap-label">Buyer</div><div class="snap-val">L Catterton (LVMH-backed PE)</div></div>
+    <div class="snap-cell"><div class="snap-label">Target</div><div class="snap-val">KIKO Milano (majority stake)</div></div>
+    <div class="snap-cell"><div class="snap-label">Sellers</div><div class="snap-val">Percassi Family (retains minority)</div></div>
+    <div class="snap-cell"><div class="snap-label">Implied EV</div><div class="snap-val">~€1.4 billion (Il Sole 24 Ore)</div></div>
+    <div class="snap-cell"><div class="snap-label">Revenue (2023)</div><div class="snap-val">~€800 million (+20% YoY)</div></div>
+    <div class="snap-cell"><div class="snap-label">Announced</div><div class="snap-val">April 2024</div></div>
+  </div>
+
+  <div class="article-body">
+    <p>In April 2024, L Catterton — the private equity firm backed by LVMH and the Arnault family office — announced the acquisition of a majority stake in <strong>KIKO Milano</strong> from the founding Percassi family. Financial terms were not officially disclosed, but Italian newspaper <em>Il Sole 24 Ore</em> reported the transaction valued the business at approximately <strong>€1.4 billion</strong>.</p>
+    <p>KIKO generated approximately €800 million in net revenue in 2023, up nearly 20% year-over-year. At €1.4 billion enterprise value, the implied EV/Revenue multiple is approximately <strong>1.75×</strong>. For a mass-market colour cosmetics brand with this revenue scale and growth rate, that multiple reflects realistic positioning: above commodity mass market (0.8–1.2×), but below the premium brand multiples that LVMH's own portfolio commands.</p>
+
+    <h2>The retained minority: structure matters</h2>
+    <p>The Percassi family retained a "significant" minority stake in KIKO and Antonio Percassi retained the position of company President. This structure — majority to financial buyer, meaningful minority retained by founder — is increasingly common in European family business exits, and for good reason.</p>
+    <p>From the family's perspective, the retained stake allows participation in the upside of what they believe will be a transformative growth phase. From the buyer's perspective, founder retention reduces key-man risk and signals confidence in the business. It also typically reduces the purchase price required to complete the transaction: a founder selling 60–70% for a price that implies 100% ownership is effectively accepting a lower current valuation in exchange for a second bite at the apple.</p>
+
+    <div class="intel-box">
+      <div class="intel-box-icon">STRUCTURE NOTE</div>
+      <div class="intel-box-content">
+        <div class="intel-box-title">Why partial exits are not a compromise — they are a strategy</div>
+        <div class="intel-box-body">A founder who sells 65% at €1.4B valuation and retains 35% in a business that L Catterton grows to €2.5B (a realistic 5-year target given the US expansion thesis) generates a better total outcome than a 100% sale at €1.6B. The retained equity carries the growth. The initial sale provides liquidity and institutional governance. Both parties win in the upside scenario.</div>
+        <div class="intel-box-data">Retained 35% at €1.4B = €490M value today · At €2.5B exit: retained stake = €875M · Delta: +€385M</div>
+      </div>
+    </div>
+
+    <h2>Why L Catterton, not a strategic buyer?</h2>
+    <p>KIKO had obvious strategic buyers: L'Oréal, Coty, Shiseido, Intercos. None appear to have been the preferred exit route. The family chose L Catterton — a financial buyer — for reasons that reflect the specific character of the opportunity.</p>
+    <p>First: <strong>L Catterton's consumer network</strong>. The firm manages approximately $35 billion of consumer-focused capital and has invested in Birkenstock, Elemis, Il Makiage, and over 275 consumer brands. Their operational team includes John Demsey, the former Group President of Estée Lauder, who was appointed as strategic advisor to KIKO. This is not generic PE — it is a firm with genuine sector expertise and distribution relationships.</p>
+    <p>Second: <strong>the US expansion thesis</strong>. KIKO's Americas revenues grew 43% in 2023 — the fastest-growing geography. A strategic buyer from Europe would have prioritised European consolidation and rationalised KIKO's retail network. L Catterton's most valuable contribution is the US market knowledge and distribution infrastructure to execute the US rollout.</p>
+
+    <h2>The Italian family business exit dynamic</h2>
+    <p>Italy has approximately 800,000 family-controlled SMEs with revenues above €10 million. According to Mergermarket, PE activity in Italian private equity reached a five-year high in 2024. The KIKO transaction illustrates the specific dynamics of a high-quality Italian consumer brand exit: the best buyers are not domestic Italian corporates but <strong>international PE firms with global distribution networks</strong>.</p>
+    <p>The premium L Catterton paid versus a theoretical domestic acquirer reflects the higher value creation potential of the international thesis. A domestic buyer would have extracted operational synergies. L Catterton will build a new market. Those are fundamentally different value creation paths, and they command different multiples.</p>
+  </div>
+
+  <div class="authors-pov">
+    <div class="pov-label">Author's POV</div>
+    <p>KIKO is instructive precisely because it does not fit the caricature of the family business exit. The Percassis were not selling because they had to. Revenue was growing 20% a year. The brand was at full strength. They sold because they had identified a strategic inflection point — the US market — that required capabilities they did not have and could not build efficiently on their own.</p>
+    <p>The best family business exits I have seen share this characteristic: the founders sell from a position of strength, when the business is growing, to a partner who brings something they cannot replicate internally. The worst exits are distressed ones, or ones where the founder has waited until the business is plateauing and every sophisticated buyer can see it.</p>
+    <p>The retained minority is the other piece worth noting. The Percassi family has not left the table. They have changed seats. That structure requires a specific kind of emotional clarity from a founder: the willingness to be a minority partner in a business they built, in a governance framework they did not design. Not everyone is suited to that. But for those who can do it, the financial outcome is often substantially superior to a clean exit.</p>
+    <p><em>The question is not "how do I sell my business?" It is "what is the right buyer, the right structure, and the right moment — and how do I make sure all three align?"</em></p>
+  </div>
+
+  <div class="sub-inline">
+    <p><strong>Get the next case study in your inbox.</strong> M&amp;A Intelligence publishes one brief per week. deal analysis, valuation frameworks, and buy-side intelligence for business owners. Free.</p>
+    <form class="sub-inline-form" onsubmit="handleSub(event)">
+      <input type="email" class="sub-inline-email" placeholder="your@email.com" required>
+      <button type="submit" class="sub-inline-btn">Get Full Access &rarr;</button>
+    </form>
+  </div>
+
+  <div class="article-footer">
+    <div class="article-footer-note">M&amp;A Intelligence &middot; Case Study No. 08 &middot; May 2026 &middot; Sources: Verified public disclosures, company announcements, A&O Shearman, Aviva plc, Vodafone Group, Mergermarket 2024-2025</div>
+    <a href="/case-studies" style="font-size:0.82rem;font-weight:600;color:var(--navy);text-decoration:none">&#8592; All case studies</a>
+  </div>
+</div>
+
+YPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CS08 · M&A Intelligence</title>
+<meta name="description" content="Why DSV paid 7.5× EBITDA for DB Schenker while Frigo-Trans sold at 14.5×. Buy-side analysis of the largest logistics deal of 2024.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:56px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-left{display:flex;align-items:center;gap:0.6rem}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:6px;flex-shrink:0}
+.hamburger span{display:block;width:20px;height:1.5px;background:currentColor;transition:all .2s}
+.hamburger:hover{color:#fff}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo-bar{width:2px;height:17px;background:var(--red);flex-shrink:0}
+.nav-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:0}
+.nav-link{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.35rem 0.8rem;transition:color .15s;white-space:nowrap;position:relative}
+.nav-link:hover,.nav-link.active{color:#fff}
+/* Tools dropdown in top nav */
+.nav-dropdown{position:relative}
+.nav-dropdown-btn{font-family:var(--sans,'Barlow',sans-serif);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);background:transparent;border:none;padding:0.35rem 0.8rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .15s;height:56px}
+.nav-dropdown-btn:hover,.nav-dropdown-btn.active{color:#fff}
+.nav-dropdown-btn svg{width:8px;height:8px;fill:currentColor;transition:transform .2s}
+.nav-dropdown-btn.open svg{transform:rotate(180deg)}
+.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 1px);left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--red);min-width:200px;z-index:500;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.nav-dropdown-menu.open{display:block}
+.nav-dd-item{display:block;padding:9px 16px;font-size:0.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s,background .12s;white-space:nowrap}
+.nav-dd-item:last-child{border-bottom:none}
+.nav-dd-item:hover{color:#fff;background:rgba(255,255,255,0.05)}
+.nav-dd-item.active{color:#fff}
+.nav-sub{font-family:var(--sans,'Barlow',sans-serif);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.nav-sub:hover{background:#6e1414}
+@media(max-width:767px){.nav-links{display:none}}
+@media(min-width:900px){nav{padding:0 2.5rem}}
+/* ── SIDEBAR ── */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:285px;background:var(--navy);z-index:300;transform:translateX(-285px);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:299}
+.sb-overlay.open{display:block}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
+.sb-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.4rem;cursor:pointer;line-height:1}
+.sb-section{font-size:0.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.25rem 0 0.5rem}
+.sb-link{display:block;padding:0.55rem 0;font-size:0.88rem;font-weight:500;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s}
+.sb-link:hover,.sb-link.active{color:#fff}
+.sb-link.active{font-weight:600}
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans,'Barlow',sans-serif);font-size:0.88rem;font-weight:500;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .12s}
+.sb-dropdown-btn:hover,.sb-dropdown-btn.open{color:#fff}
+.sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform .2s}
+.sb-arrow.open{transform:rotate(180deg)}
+.sb-dropdown-items{display:none;padding-bottom:0.4rem}
+.sb-dropdown-items.open{display:block}
+.sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color .12s}
+.sb-sub-link:hover,.sb-sub-link.active{color:rgba(255,255,255,0.85)}
+.sb-sub-link.active{color:#fff}
+.sb-cta{font-family:var(--sans,'Barlow',sans-serif);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
+.sb-cta:hover{background:#6e1414}
+.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
+.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
+
+
+:root{
+  --navy:#0A1628;--navy2:#142035;
+  --white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;
+  --rule:#E5E7EB;--rule2:#F0EEE9;
+  --b:#111;--g:#222;--gm:#4A4A4A;--gl:#888;
+  --red:#8B1A1A;--red2:#6e1414;
+  --grn:#0A5C1E;--grn2:#D6EAD9;
+  --amber:#B45309;--amber2:#FEF3C7;
+  --input-bg:#FFFDE7;--input-border:#C8B400;
+  --shadow:0 1px 6px rgba(0,0,0,0.06);
+  --shadow-md:0 2px 16px rgba(0,0,0,0.10);
+  
+  --sans:'Barlow',sans-serif;
+  --serif:'Barlow',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--b);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px}
+
+
+
+
+
+
+
+
+
+.sb-close:hover{color:var(--white)}
+
+
+
+
+.sb-issue{display:block;padding:0.5rem 0;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s}
+.sb-issue:hover{color:rgba(255,255,255,0.65)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+.f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
+.f-brand-bar{width:2px;height:14px;background:var(--red);flex-shrink:0}
+.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.f-links a{font-size:0.82rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s}
+.f-links a:hover{color:rgba(255,255,255,0.65)}
+.f-copy{font-size:0.7rem;color:rgba(255,255,255,0.2);width:100%;margin-top:0.25rem}
+@media(min-width:900px){footer{padding:2rem 3rem}}
+@media(max-width:767px){}
+
+.article{padding:3rem 2rem;max-width:720px;margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:500;color:var(--gm);text-decoration:none;margin-bottom:2rem}
+.back-link:hover{color:var(--navy)}
+.article-masthead{border-bottom:2px solid var(--navy);padding-bottom:1.5rem;margin-bottom:2rem}
+.article-pub{font-size:0.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:0.5rem}
+.article-tags{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap}
+.article-tag{font-size:0.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--red);background:rgba(139,26,26,0.08);padding:3px 9px}
+.article-tag.grey{color:var(--gm);background:var(--rule2)}
+.article-date{font-size:0.75rem;color:var(--gl)}
+.article-title{font-family:'Barlow',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.75rem}
+.article-deck{font-size:1.05rem;font-weight:300;font-style:italic;color:var(--gm);line-height:1.65}
+/* Deal snapshot bar */
+.deal-snap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:0.5px solid var(--rule);margin:1.75rem 0}
+.snap-cell{background:var(--bg);padding:1rem 1.1rem}
+.snap-label{font-size:0.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gl);margin-bottom:0.25rem}
+.snap-val{font-size:0.95rem;font-weight:600;color:var(--navy)}
+/* Body */
+.article-body p{font-size:1.0rem;font-weight:300;line-height:1.9;color:var(--b);margin-bottom:1.25rem}
+.article-body h2{font-family:'Barlow',sans-serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin:2rem 0 0.75rem;padding-top:1rem;border-top:1px solid var(--rule2)}
+.article-body strong{font-weight:600;color:var(--navy)}
+.data-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.92rem}
+.data-table th{background:var(--navy);color:var(--white);font-weight:600;font-size:0.72rem;letter-spacing:.08em;text-transform:uppercase;padding:0.75rem 1rem;text-align:left}
+.data-table td{padding:0.7rem 1rem;border-bottom:0.5px solid var(--rule2);color:var(--gm)}
+.data-table td:first-child{font-weight:500;color:var(--navy)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:nth-child(even) td{background:var(--bg)}
+.callout{background:var(--bg);border-left:3px solid var(--red);padding:1.25rem 1.5rem;margin:1.75rem 0}
+.callout p{font-size:0.98rem;font-weight:300;color:var(--b);line-height:1.75;margin-bottom:0}
+.callout strong{font-weight:600;color:var(--navy)}
+/* Author's POV */
+.authors-pov{background:var(--navy);padding:2rem;margin:2.5rem 0}
+.pov-label{font-size:0.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.pov-label::before{content:'';width:12px;height:2px;background:var(--red);flex-shrink:0}
+.authors-pov p{font-size:1rem;font-weight:300;line-height:1.85;color:rgba(255,255,255,0.75);margin-bottom:0.85rem}
+.authors-pov p:last-child{margin-bottom:0}
+.authors-pov strong{font-weight:600;color:var(--white)}
+.authors-pov em{font-style:italic;color:rgba(255,255,255,0.5)}
+/* Subscribe inline */
+.sub-inline{background:var(--bg);border-left:3px solid var(--red);padding:1.5rem 1.75rem;margin:2rem 0}
+.sub-inline p{font-size:0.95rem;font-weight:300;color:var(--gm);margin-bottom:1rem;line-height:1.65}
+.sub-inline-form{display:flex;max-width:420px}
+.sub-inline-email{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--b);font-family:'Barlow',sans-serif;font-size:0.95rem;padding:0.75rem 1rem;outline:none;min-width:0}
+.sub-inline-email::placeholder{color:#bbb}
+.sub-inline-btn{font-family:'Barlow',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:var(--white);border:1.5px solid var(--red);padding:0.75rem 1rem;cursor:pointer;white-space:nowrap}
+.article-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.5rem;margin-top:2rem;border-top:1px solid var(--rule2)}
+.article-footer-note{font-size:0.75rem;color:var(--gl)}
+@media(min-width:900px){.article{padding:4rem 3rem}}
+@media(max-width:767px){body{font-size:16px}.article{padding:2.5rem 1.5rem}.deal-snap{grid-template-columns:1fr 1fr}.sub-inline-form{flex-direction:column}.sub-inline-email{border-right:1.5px solid var(--navy);border-bottom:none}.sub-inline-btn{border-top:none}}
+
+
+
+
+
+
+
+
+
+
+.sb-sub-link.muted{color:rgba(255,255,255,0.28)}
+
+.back-bar{background:var(--off-white,#F8F6F2);border-bottom:1px solid var(--rule,#D8D0C0);padding:0.6rem 2.5rem}
+.back-bar-inner{max-width:1200px;margin:0 auto}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:var(--grey-mid,#666);text-decoration:none;transition:color 0.15s}
+.back-btn:hover{color:var(--navy,#0F1F3D)}
+
+/* ── SOFT PAYWALL ── */
+.paywall-fade{position:relative;overflow:hidden;max-height:320px}
+.paywall-fade::after{content:'';position:absolute;bottom:0;left:0;right:0;height:180px;background:linear-gradient(to bottom,transparent,#fff)}
+.paywall-gate{text-align:center;padding:2rem 1rem 1rem;border-top:1px solid #E8E4DC}
+.pg-label{font-size:0.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8B1A1A;margin-bottom:0.75rem;display:flex;align-items:center;justify-content:center;gap:8px}
+.pg-label::before,.pg-label::after{content:'';flex:1;height:1px;background:#E8E4DC}
+.pg-title{font-family:'Barlow',sans-serif;font-size:1.2rem;font-weight:700;color:#0A1628;margin-bottom:0.35rem}
+.pg-sub{font-size:0.82rem;color:#5A5A5A;line-height:1.65;max-width:420px;margin:0 auto 1.25rem}
+.pg-form{display:flex;max-width:400px;margin:0 auto}
+.pg-email{flex:1;font-family:'Barlow',sans-serif;font-size:0.88rem;color:#111;background:#fff;border:1.5px solid #0A1628;border-right:none;padding:0.65rem 1rem;outline:none;min-width:0}
+.pg-email::placeholder{color:#bbb}
+.pg-btn{font-family:'Barlow',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#0A1628;color:#fff;border:1.5px solid #0A1628;padding:0.65rem 1.1rem;cursor:pointer;white-space:nowrap}
+.pg-btn:hover{background:#8B1A1A;border-color:#8B1A1A}
+.pg-note{font-size:0.68rem;color:#999;margin-top:0.5rem}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ── INTELLIGENCE BOX ── */
+.intel-box{background:var(--bg2);border:0.5px solid var(--rule);border-left:3px solid var(--red);padding:1rem 1.25rem;margin:1.5rem 0;display:grid;grid-template-columns:auto 1fr;gap:0.85rem;align-items:start}
+.intel-box-icon{font-family:var(--mono);font-size:0.56rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);background:rgba(139,26,26,0.08);padding:3px 7px;white-space:nowrap;margin-top:2px}
+.intel-box-content{}
+.intel-box-title{font-size:0.72rem;font-weight:700;color:var(--navy);margin-bottom:0.25rem}
+.intel-box-body{font-size:0.8rem;color:var(--gm);line-height:1.6}
+.intel-box-data{font-family:var(--mono);font-size:0.88rem;font-weight:600;color:var(--navy);margin-top:0.3rem}
+
+.market-pulse{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}
+.market-pulse::-webkit-scrollbar{display:none}
+.mp-brand{display:flex;align-items:center;gap:6px;padding:.3rem 1.25rem .3rem .75rem;border-right:1px solid rgba(255,255,255,0.07);flex-shrink:0}
+.mp-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:mp-pulse 2.5s infinite}
+@keyframes mp-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+.mp-label{font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.mp-item{display:flex;align-items:center;gap:.5rem;padding:.28rem .9rem;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0}
+.mp-item:last-child{border-right:none}
+.mp-name{font-size:.58rem;color:rgba(255,255,255,.32);white-space:nowrap}
+.mp-val{font-family:var(--mono);font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
+.mp-chg{font-family:var(--mono);font-size:.55rem;white-space:nowrap}
+.mp-chg.up{color:#4ade80}.mp-chg.dn{color:#f87171}.mp-chg.neu{color:rgba(255,255,255,.3)}
+
+
+/* ── GATED NAV LINKS ── */
+
+
+</style>
+</head>
+<body>
+
+
+<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sb-top">
+    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">×</button>
+  </div>
+
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
+    <div style="font-size:0.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#0A5C1E;display:inline-block;animation:pulse 2s infinite"></span>Live Benchmarks</div>
+    <div style="display:flex;flex-direction:column;gap:0.3rem" id="sbTicker"></div>
+  </div>
+
+  <div class="sb-section">Info</div>
+  <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
+
+  <div class="sb-section">Editorial</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn  open" onclick="toggleDrop('dropEditorial')">
+      <span>Articles &amp; Cases</span><span class="sb-arrow  open" id="arrowEditorial">▾</span>
+    </button>
+    <div class="sb-dropdown-items  open" id="dropEditorial">
+      <a href="/issues" class="sb-sub-link" onclick="closeSidebar()">All Articles</a>
+      <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
+      <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
+      <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
+      <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
+      <a href="/case-studies" class="sb-sub-link" onclick="closeSidebar()">All Case Studies</a>
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker &middot; 7.5&times;</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer &middot; 4&times; vs 7&times;</a>
+      <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">CS03. Deal collapsed in due diligence</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans &middot; 14.5&times;</a>
+      <a href="/case-study-05" class="sb-sub-link" onclick="closeSidebar()">CS05. Techem / Partners Group &middot; 24.5&times;</a>
+      <a href="/case-study-06" class="sb-sub-link" onclick="closeSidebar()">CS06. Aviva / Direct Line &middot; &pound;3.7B</a>
+      <a href="/case-study-07" class="sb-sub-link" onclick="closeSidebar()">CS07. Swisscom / Vodafone Italia &middot; &euro;8B</a>
+      <a href="/case-study-08" class="sb-sub-link active" onclick="closeSidebar()">CS08. L Catterton / KIKO Milano &middot; ~&euro;1.4B</a>
+    </div>
+  </div>
+
+  <div class="sb-section">Tools</div>
+  <div class="sb-dropdown">
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropTools')">
+      <span>Calculators &amp; Data</span><span class="sb-arrow" id="arrowTools">▾</span>
+    </button>
+    <div class="sb-dropdown-items" id="dropTools">
+      <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
+      <a href="/exit-calculator" class="sb-sub-link" onclick="closeSidebar()">Exit Calculator</a>
+      <a href="/wacc" class="sb-sub-link" onclick="closeSidebar()">WACC Calculator</a>
+      <a href="/country-index" class="sb-sub-link" onclick="closeSidebar()">Transaction Cost Index</a>
+      <a href="/advisors" class="sb-sub-link" onclick="closeSidebar()">Advisor Directory</a>
+    </div>
+  </div>
+
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
+</div>
+
+<nav>
+  <div class="nav-left">
+    <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
+  </div>
+  <div class="nav-links">
+    <a href="/about" class="nav-link">About</a>
+    <a href="/issues" class="nav-link">Articles</a>
+    <a href="/case-studies" class="nav-link active">Case Studies</a>
+    <div class="nav-dropdown" id="navToolsDrop">
+      <button class="nav-dropdown-btn " onclick="toggleNavDrop()" id="navToolsBtn">
+        Tools
+        <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="nav-dropdown-menu" id="navToolsMenu">
+      <a href="/multiples" class="nav-dd-item">Multiples</a>
+      <a href="/exit-calculator" class="nav-dd-item">Exit Calculator</a>
+      <a href="/wacc" class="nav-dd-item">WACC Calculator</a>
+      <a href="/country-index" class="nav-dd-item">Cost Index</a>
+      <a href="/advisors" class="nav-dd-item">Advisors</a>
+      </div>
+    </div>
+  </div>
+  <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
+</nav>
+<div class="market-pulse">
+  <div class="mp-brand"><span class="mp-dot"></span><span class="mp-label">Market Pulse</span></div>
+  <div class="mp-item"><span class="mp-name">10Y Bund (Rf)</span><span class="mp-val">2.68%</span><span class="mp-chg neu">ECB</span></div>
+  <div class="mp-item"><span class="mp-name">ERP EU avg</span><span class="mp-val">5.84%</span><span class="mp-chg neu">Damodaran 2026</span></div>
+  <div class="mp-item"><span class="mp-name">S&amp;P Fwd P/E</span><span class="mp-val">20.8×</span><span class="mp-chg dn">above hist. avg</span></div>
+  <div class="mp-item"><span class="mp-name">EU Deal Vol</span><span class="mp-val">−14%</span><span class="mp-chg dn">YoY</span></div>
+  <div class="mp-item"><span class="mp-name">Software EV/EBITDA</span><span class="mp-val">24.5×</span><span class="mp-chg up">Jan 2026</span></div>
+  <div class="mp-item"><span class="mp-name">CH CGT</span><span class="mp-val">0%</span><span class="mp-chg up">lowest EU</span></div>
+</div>
+<div class="back-bar"><div class="back-bar-inner"><a href="/case-studies" class="back-btn">← Case Studies</a></div></div>
+<div class="article">
+  <a href="/case-studies" class="back-link">← Back to Case Studies</a>
+  <div class="article-masthead">
+    <div class="article-pub">M&A Intelligence. Case Study No. 01</div>
+    <div class="article-tags">
+      <span class="article-tag">Transport & Logistics</span>
+      <span class="article-tag grey">Europe</span>
+      <span class="article-tag grey">Cash</span>
+      <span class="article-tag grey">€14.3 Billion</span>
+      <span class="article-date">March 2026</span>
+    </div>
+    <div class="article-title">DSV acquires DB Schenker at 7.5× EBITDA. why not 12×?</div>
+    <div class="article-deck">The largest logistics deal of 2024 paid less than half the multiple of a smaller specialist sold the same year. Here is what the numbers actually tell you about how buyers price scale versus specialisation.</div>
+  </div>
+
+  <div class="deal-snap">
+    <div class="snap-cell"><div class="snap-label">Buyer</div><div class="snap-val">DSV A/S</div></div>
+    <div class="snap-cell"><div class="snap-label">Target</div><div class="snap-val">DB Schenker</div></div>
+    <div class="snap-cell"><div class="snap-label">EV / EBITDA</div><div class="snap-val">7.5×</div></div>
+    <div class="snap-cell"><div class="snap-label">Consideration</div><div class="snap-val">Cash · €14.3B</div></div>
+  </div>
+
+  <div class="article-body">
+    <p>In 2024, two logistics companies sold within months of each other. One was one of the largest freight networks in Europe. The other was a mid-sized cold-chain specialist. The larger company sold at <strong>7.5× EBITDA</strong>. The smaller one sold at <strong>14.5× EBITDA</strong>. nearly double.</p>
+    <p>The larger company was DB Schenker, acquired by DSV for €14.3 billion in a full cash transaction. The smaller one was Frigo-Trans, acquired by UPS. Same sector. Same year. Radically different multiples.</p>
+    <p>Understanding why is one of the most valuable things a business owner can do before deciding to sell.</p>
+
+    <h2>The two deals side by side</h2>
+    <table class="data-table">
+      <tr><th>Item</th><th>DB Schenker</th><th>Frigo-Trans</th></tr>
+      <tr><td>Buyer</td><td>DSV A/S (Denmark)</td><td>UPS (USA)</td></tr>
+      <tr><td>Geography</td><td>Pan-European</td><td>Germany / Europe</td></tr>
+      <tr><td>Enterprise Value</td><td>€14.3 billion</td><td>Not disclosed</td></tr>
+      <tr><td>EV / EBITDA</td><td>7.5×</td><td>14.5×</td></tr>
+      <tr><td>Consideration</td><td>Cash</td><td>Cash</td></tr>
+      <tr><td>Sector</td><td>General freight forwarding</td><td>Ultra-low-temperature logistics</td></tr>
+      <tr><td>Year closed</td><td>2024</td><td>2024</td></tr>
+    </table>
+
+    <h2>Why did DSV pay only 7.5×?</h2>
+    <p>Seven and a half times EBITDA is not a low multiple for a business of this size. The average EV/EBITDA for transport and logistics SMEs in DACH sits between <strong>3.5× and 5.5×</strong>. DSV paid well above the market average for mid-sized players.</p>
+    <p>But the question is not whether 7.5× is low in absolute terms. The question is what capped it. and what business owners can learn from it.</p>
+    <p>Three factors compressed the multiple. First: <strong>integration complexity</strong>. DB Schenker is enormous. Integrating it into DSV's network requires years of systems alignment, cultural change, and operational restructuring. Buyers price that execution risk into the multiple. Second: <strong>revenue overlap</strong>. DSV and DB Schenker serve many of the same large corporate clients. An acquirer does not get 100% of that revenue. some customers will consolidate. Third: <strong>regulatory exposure</strong>. A deal of this size required approval from multiple competition authorities across jurisdictions. Uncertainty has a cost, and buyers discount for it.</p>
+
+    <h2>Why did UPS pay 14.5× for Frigo-Trans?</h2>
+    <p>Frigo-Trans operates ultra-low-temperature transport. a highly specialised segment with significant <strong>barriers to entry</strong>. The equipment is expensive and specialised, the operational expertise takes years to build, and the regulatory requirements are demanding.</p>
+    <p>That specialisation creates three things a buyer values above everything else: it removes competitive acquisition alternatives, it generates <strong>pricing power</strong> that generic operators do not have, and it produces <strong>contract-based, recurring revenue</strong> that is highly predictable.</p>
+    <div class="callout"><p><strong>Scale alone does not drive premium multiples.</strong> Specialisation, barriers to entry, and revenue predictability do. A CHF 5M business with 80% recurring revenue and a defensible niche will often command a higher multiple than a CHF 50M business that any well-capitalised competitor could replicate.</p></div>
+
+    <h2>What the sector benchmarks tell us</h2>
+    <p>The DACH transport and logistics market in 2024 showed a wide dispersion of multiples. not because the market was inconsistent, but because the drivers of value vary dramatically by sub-sector. General road freight: <strong>3.5–5.5×</strong>. E-commerce and last-mile specialists: <strong>10–12×</strong>. Cold-chain and ultra-specialised segments: <strong>12–14.5×</strong>.</p>
+    <p>The pattern is consistent: the more defensible the niche, the higher the multiple. The more commoditised the service, the lower. This holds across geographies and deal sizes.</p>
+  </div>
+
+  <div class="authors-pov">
+    <div class="pov-label">Author's POV</div>
+    <p>I have sat in rooms where buyers price businesses like these. The conversation almost never starts with the P&L. It starts with two questions: <strong>"Who else could do this?"</strong> and <strong>"How confident are we in the forward cash flows?"</strong></p>
+    <p>DB Schenker is a great business. But DSV could have built similar capabilities over time, or acquired alternatives. Frigo-Trans operated in a segment where you either have the infrastructure and the certifications, or you do not. There is no organic path to what they built. That scarcity is what drives the multiple from 7× to 14×.</p>
+    <p>For a business owner reading this: the question is not whether your business is profitable. It is whether what you have built is <strong>genuinely difficult to replicate</strong>. If a well-funded competitor could approximate your position in three years, expect a mid-range multiple. If they cannot. because of your relationships, your certifications, your customer contracts, or your operational expertise. expect a premium.</p>
+    <p><em>The most expensive mistake I see sellers make is going to market before they have documented and articulated why their business is hard to replicate. Buyers will not do that work for you.</em></p>
+  </div>
+
+  <div class="sub-inline">
+    <p><strong>Get the next case study in your inbox.</strong> M&A Intelligence publishes one brief per week. deal analysis, valuation frameworks, and buy-side intelligence for business owners. Free.</p>
+    <form class="sub-inline-form" onsubmit="handleSub(event)">
+      <input type="email" class="sub-inline-email" placeholder="your@email.com" required>
+      <button type="submit" class="sub-inline-btn">Get Full Access →</button>
+    </form>
+  </div>
+
+  <div class="article-footer">
+    <div class="article-footer-note">M&A Intelligence · Case Study No. 01 · March 2026 · Sources: MCF Corporate Finance M&A Logistics Insights 2025; Dealsuite M&A Monitor 2024</div>
+    <a href="/case-studies" style="font-size:0.82rem;font-weight:600;color:var(--navy);text-decoration:none">← All case studies</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
+        <div class="f-links">
+      <a href="/about">About</a>
+      <a href="/issues">Issues</a>
+      <a href="/case-studies">Case Studies</a>
+      <a href="/multiples">Multiples</a>
+      <a href="/wacc">WACC</a>
+      <a data-email href="#">Contact</a>
+    </div>
+    <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+function handlePW(e){handleUnlock(e);}
+
+
+// Sidebar live ticker
+var SB_TICKS=[
+  ['Software EV/EBITDA','24.5×'],['Logistics EV/EBITDA','12.6×'],
+  ['CH CGT','0%'],['IT CGT','26%'],['Advisory €5M','5.5%'],
+  ['SME Discount','−30%'],['Healthcare EV/EBITDA','19.8×'],
+];
+function renderSbTicker(){
+  var el=document.getElementById('sbTicker');
+  if(!el)return;
+  var start=Math.floor(Math.random()*SB_TICKS.length);
+  var items=SB_TICKS.slice(start,start+3).concat(SB_TICKS.slice(0,Math.max(0,3-(SB_TICKS.length-start))));
+  el.innerHTML=items.map(function(t){return '<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4);">'+t[0]+'</span><span style="font-family:monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');
+}
+document.addEventListener('DOMContentLoaded',function(){renderSbTicker();setInterval(renderSbTicker,5000);});
+
+
+// ── ACCESS COOKIE SYSTEM ─────────────────────────────────────────────────────
+function setCookie(name,val,days){
+  var d=new Date();d.setTime(d.getTime()+(days*24*60*60*1000));
+  document.cookie=name+'='+val+';expires='+d.toUTCString()+';path=/;SameSite=Lax';
+}
+function getCookie(name){
+  var n=name+'=',ca=document.cookie.split(';');
+  for(var i=0;i<ca.length;i++){var c=ca[i].trim();if(c.indexOf(n)===0)return c.substring(n.length);}
+  return '';
+}
+function hasAccess(){return getCookie('mnaintel_access')==='1';}
+function grantAccess(){setCookie('mnaintel_access','1',365);}
+
+// Called by any unlock form submission
+function handleUnlock(e){
+  if(e) e.preventDefault();
+  var form=e?e.target:null;
+  var inp=form?form.querySelector('input[type=email]'):null;
+  var email=inp?inp.value:'';
+  grantAccess();
+  if(email){
+    window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(email),'_blank');
+  }
+  unlockPage();
+  return false;
+}
+
+// Remove all blurs and gates on this page
+function unlockPage(){
+  // Remove blur classes
+  document.querySelectorAll('.blurred-text,.gate-blur,.lc-data,.lc-sub,.sens-table').forEach(function(el){
+    el.style.filter='none';el.style.userSelect='auto';el.style.pointerEvents='auto';
+  });
+  // Hide all gate overlays
+  document.querySelectorAll('.gate-overlay,.rh-gate,.nb-gate,.exitNetGate,.waccGateOverlay,.rh-gate-visible,.rh-gate.visible,[id$="Gate"],[id$="GateBox"],[id$="GateOverlay"]').forEach(function(el){
+    el.style.display='none';
+  });
+  // Show hidden result sections
+  document.querySelectorAll('.result-cards,.val-section,.sens-section').forEach(function(el){
+    if(el.style.display==='none') el.style.display='grid';
+  });
+  // Remove paywall fades on editorial pages
+  document.querySelectorAll('.paywall-fade').forEach(function(el){
+    el.style.maxHeight='none';el.style.overflow='visible';
+    el.classList.remove('paywall-fade');
+  });
+  document.querySelectorAll('.paywall-gate,.pg-form').forEach(function(el){
+    el.style.display='none';
+  });
+  // Remove blur on locked card data in index
+  document.querySelectorAll('.lc').forEach(function(el){
+    el.style.cursor='default';
+    el.onclick=null;
+  });
+}
+
+// On page load: if already has access, unlock everything immediately
+document.addEventListener('DOMContentLoaded',function(){
+  if(hasAccess()) unlockPage();
+});
+
+
+// Sidebar locked links: check access before navigating
+function navigateGated(url){
+  if(hasAccess()){
+    window.location.href=url;
+  } else{
+    // Close sidebar and show unlock prompt
+    closeSidebar();
+    var bar=document.getElementById('subBar');
+    if(bar){bar.classList.add('show');bar.scrollIntoView({behavior:'smooth',block:'nearest'});
+      var em=document.getElementById('sbEmail');if(em)setTimeout(function(){em.focus();},350);}
+    else{
+      // Tool pages: show their gate
+      var gate=document.querySelector('.rh-gate,.nb-gate');
+      if(gate){gate.style.display='block';gate.scrollIntoView({behavior:'smooth',block:'nearest'});}
+    }
+  }
+}
+
+function handleSub(e){handleUnlock(e);}
+window.addEventListener('DOMContentLoaded',function(){
+  // Init sidebar ticker
+  renderSbTicker(); setInterval(renderSbTicker, 5000);
+  // Email links
+  
+  // Mark gated links as unlocked in sidebar
+  if(hasAccess()){
+    document.querySelectorAll('[data-gated]').forEach(function(el){el.classList.add('unlocked');});
+  }
+
+  document.querySelectorAll('[data-email]').forEach(function(el){
+    el.href='mailto:deals@news.mnaintel.com';
+    el.textContent='deals@news.mnaintel.com';
+  });
+});
+
+function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
+function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');if(btn)btn.classList.toggle('open');}
+function toggleNavDrop(){var menu=document.getElementById('navToolsMenu');var btn=document.getElementById('navToolsBtn');menu.classList.toggle('open');btn.classList.toggle('open');}
+document.addEventListener('click',function(e){var drop=document.getElementById('navToolsDrop');if(drop&&!drop.contains(e.target)){document.getElementById('navToolsMenu').classList.remove('open');document.getElementById('navToolsBtn').classList.remove('open');}});
+</script>
+</body>
+</html>
