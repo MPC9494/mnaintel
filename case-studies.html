@@ -4,216 +4,180 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Case Studies · M&A Intelligence</title>
-<meta name="description" content="Real M&A deal analysis. Sector, geography, consideration paid, and what sellers can learn from each transaction.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta name="description" content="Real M&A deal analysis. Sector, geography, multiples paid, and what sellers can learn from each transaction.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-/* ── NAV ── */
-nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:56px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
-.nav-left{display:flex;align-items:center;gap:0.6rem}
-.hamburger{background:transparent;border:none;color:rgba(255,255,255,0.55);cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:6px;flex-shrink:0}
+:root{
+  --navy:#0A1628;--navy2:#142035;
+  --white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;
+  --rule:#E5E7EB;--rule2:#F0EEE9;
+  --b:#111;--g:#222;--gm:#4A4A4A;--gl:#888;
+  --red:#8B1A1A;--red2:#6e1414;
+  --grn:#0A5C1E;--grn2:#D6EAD9;
+  --amber:#B45309;--amber2:#FEF3C7;
+  --shadow:0 1px 6px rgba(0,0,0,0.06);
+  --sans:'Barlow',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-smoothing:antialiased;font-size:15px;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:56px;gap:1rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-left{display:flex;align-items:center;gap:.6rem}
+.hamburger{background:transparent;border:none;color:rgba(255,255,255,.55);cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:6px;flex-shrink:0}
 .hamburger span{display:block;width:20px;height:1.5px;background:currentColor;transition:all .2s}
 .hamburger:hover{color:#fff}
 .nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .nav-logo-bar{width:2px;height:17px;background:var(--red);flex-shrink:0}
-.nav-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
-.nav-links{display:flex;align-items:center;gap:0}
-.nav-link{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-decoration:none;padding:0.35rem 0.8rem;transition:color .15s;white-space:nowrap;position:relative}
+.nav-logo-text{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.nav-links{display:flex;align-items:center}
+.nav-link{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;padding:.35rem .8rem;transition:color .15s;white-space:nowrap}
 .nav-link:hover,.nav-link.active{color:#fff}
-/* Tools dropdown in top nav */
 .nav-dropdown{position:relative}
-.nav-dropdown-btn{font-family:var(--sans,'Barlow',sans-serif);font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.45);background:transparent;border:none;padding:0.35rem 0.8rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .15s;height:56px}
+.nav-dropdown-btn{font-family:var(--sans);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);background:transparent;border:none;padding:.35rem .8rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:4px;transition:color .15s;height:56px}
 .nav-dropdown-btn:hover,.nav-dropdown-btn.active{color:#fff}
 .nav-dropdown-btn svg{width:8px;height:8px;fill:currentColor;transition:transform .2s}
 .nav-dropdown-btn.open svg{transform:rotate(180deg)}
-.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 1px);left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--red);min-width:200px;z-index:500;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 1px);left:0;background:var(--navy);border:1px solid rgba(255,255,255,.1);border-top:2px solid var(--red);min-width:200px;z-index:500;box-shadow:0 8px 24px rgba(0,0,0,.3)}
 .nav-dropdown-menu.open{display:block}
-.nav-dd-item{display:block;padding:9px 16px;font-size:0.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s,background .12s;white-space:nowrap}
+.nav-dd-item{display:block;padding:9px 16px;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.05);transition:color .12s,background .12s;white-space:nowrap}
 .nav-dd-item:last-child{border-bottom:none}
-.nav-dd-item:hover{color:#fff;background:rgba(255,255,255,0.05)}
-.nav-dd-item.active{color:#fff}
-.nav-sub{font-family:var(--sans,'Barlow',sans-serif);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
-.nav-sub:hover{background:#6e1414}
-@media(max-width:767px){.nav-links{display:none}}
-@media(min-width:900px){nav{padding:0 2.5rem}}
-/* ── SIDEBAR ── */
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:285px;background:var(--navy);z-index:300;transform:translateX(-285px);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
+.nav-dd-item:hover,.nav-dd-item.active{color:#fff;background:rgba(255,255,255,.05)}
+.nav-sub{font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:.45rem 1.15rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.nav-sub:hover{background:var(--red2)}
+@media(max-width:767px){.nav-links{display:none}nav{padding:0 1.25rem}}
+
+/* SIDEBAR */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:285px;background:var(--navy);z-index:300;transform:translateX(-285px);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:1.75rem;overflow-y:auto}
 .sidebar.open{transform:translateX(0)}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:299}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:299}
 .sb-overlay.open{display:block}
-.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.sb-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,.08)}
 .sb-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
 .sb-logo-bar{width:2px;height:16px;background:var(--red);flex-shrink:0}
-.sb-logo-text{font-size:0.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}
-.sb-close{background:transparent;border:none;color:rgba(255,255,255,0.4);font-size:1.4rem;cursor:pointer;line-height:1}
-.sb-section{font-size:0.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:1.25rem 0 0.5rem}
-.sb-link{display:block;padding:0.55rem 0;font-size:0.88rem;font-weight:500;color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.05);transition:color .12s}
+.sb-logo-text{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.sb-close{background:transparent;border:none;color:rgba(255,255,255,.4);font-size:1.4rem;cursor:pointer;line-height:1}
+.sb-close:hover{color:#fff}
+.sb-section{font-size:.56rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25);margin:1.25rem 0 .5rem}
+.sb-link{display:block;padding:.55rem 0;font-size:.88rem;font-weight:500;color:rgba(255,255,255,.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.05);transition:color .12s}
 .sb-link:hover,.sb-link.active{color:#fff}
-.sb-link.active{font-weight:600}
-.sb-dropdown{border-bottom:1px solid rgba(255,255,255,0.05)}
-.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--sans,'Barlow',sans-serif);font-size:0.88rem;font-weight:500;padding:0.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .12s}
+.sb-dropdown{border-bottom:1px solid rgba(255,255,255,.05)}
+.sb-dropdown-btn{width:100%;background:transparent;border:none;color:rgba(255,255,255,.55);font-family:var(--sans);font-size:.88rem;font-weight:500;padding:.55rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .12s}
 .sb-dropdown-btn:hover,.sb-dropdown-btn.open{color:#fff}
-.sb-arrow{font-size:0.65rem;color:rgba(255,255,255,0.25);transition:transform .2s}
+.sb-arrow{font-size:.65rem;color:rgba(255,255,255,.25);transition:transform .2s}
 .sb-arrow.open{transform:rotate(180deg)}
-.sb-dropdown-items{display:none;padding-bottom:0.4rem}
+.sb-dropdown-items{display:none;padding-bottom:.4rem}
 .sb-dropdown-items.open{display:block}
-.sb-sub-link{display:block;padding:0.3rem 0 0.3rem 0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.38);text-decoration:none;line-height:1.4;transition:color .12s}
-.sb-sub-link:hover,.sb-sub-link.active{color:rgba(255,255,255,0.85)}
+.sb-sub-link{display:block;padding:.3rem 0 .3rem .75rem;font-size:.78rem;color:rgba(255,255,255,.38);text-decoration:none;line-height:1.4;transition:color .12s}
+.sb-sub-link:hover,.sb-sub-link.active{color:rgba(255,255,255,.85)}
 .sb-sub-link.active{color:#fff}
-.sb-cta{font-family:var(--sans,'Barlow',sans-serif);font-size:0.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.75rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
-.sb-cta:hover{background:#6e1414}
-.sb-sub-link[data-gated]::after{content:' 🔒';font-size:.55rem;opacity:.4}
-.sb-sub-link[data-gated].unlocked::after{content:' ✓';color:#4ade80;opacity:.8}
+.sb-cta{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:.75rem;width:100%;cursor:pointer;margin-top:1.75rem;transition:background .15s}
+.sb-cta:hover{background:var(--red2)}
 
+/* MARKET PULSE */
+.market-pulse{background:var(--navy2);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;height:32px}
+.market-pulse::-webkit-scrollbar{display:none}
+.mp-brand{display:flex;align-items:center;gap:6px;padding:.3rem 1.25rem .3rem .75rem;border-right:1px solid rgba(255,255,255,.07);flex-shrink:0}
+.mp-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:mp-pulse 2.5s infinite}
+@keyframes mp-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.mp-label{font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.mp-item{display:flex;align-items:center;gap:.5rem;padding:.28rem .9rem;border-right:1px solid rgba(255,255,255,.05);flex-shrink:0}
+.mp-name{font-size:.58rem;color:rgba(255,255,255,.32);white-space:nowrap}
+.mp-val{font-family:var(--mono);font-size:.66rem;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap}
+.mp-chg{font-family:var(--mono);font-size:.55rem;white-space:nowrap}
+.mp-chg.up{color:#4ade80}.mp-chg.dn{color:#f87171}.mp-chg.neu{color:rgba(255,255,255,.3)}
 
-:root{
-  --navy:#0A1628;--navy2:#142035;
-  --white:#fff;--bg:#F4F2EE;--bg2:#EDEBE6;
-  --rule:#D4CFC7;--rule2:#E8E5DF;
-  --b:#111;--g:#333;--gm:#5A5A5A;--gl:#999;
-  --red:#8B1A1A;--red2:#6e1414;
-  --grn:#0A5C1E;--grn2:#D6EAD9;
-  --shadow:0 2px 12px rgba(0,0,0,0.08);
-  --shadow-md:0 4px 24px rgba(0,0,0,0.12);
-  
-  --sans:'Barlow',sans-serif;
-  --serif:'Barlow',sans-serif;
+/* PAGE HEAD */
+.page-head{background:var(--white);padding:2.75rem 2.5rem 2rem;border-bottom:1.5px solid var(--navy)}
+.page-head-inner{max-width:1100px;margin:0 auto}
+.ph-eyebrow{font-family:var(--mono);font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gl);margin-bottom:.75rem;display:flex;align-items:center;gap:.6rem}
+.ph-eyebrow::before{content:'';width:18px;height:1px;background:var(--red)}
+.ph-h1{font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--b);line-height:1.05;letter-spacing:-.025em;margin-bottom:.4rem}
+.ph-h1 em{color:var(--red);font-style:normal}
+.ph-sub{font-size:.9rem;color:var(--gm);max-width:520px;line-height:1.6;font-weight:300}
+@media(max-width:767px){.page-head{padding:2rem 1.25rem 1.5rem}}
+
+/* GRID */
+.cs-body{max-width:1100px;margin:0 auto;padding:2rem 2.5rem 3rem}
+@media(max-width:767px){.cs-body{padding:1.5rem 1.25rem 2.5rem}}
+
+/* Section labels */
+.cs-section-label{font-family:var(--mono);font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gl);margin-bottom:1rem;display:flex;align-items:center;gap:.75rem}
+.cs-section-label::after{content:'';flex:1;height:1px;background:var(--rule)}
+
+/* Case study card — terminal row style */
+.cs-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--rule);margin-bottom:2.5rem}
+
+.cs-card{background:var(--white);padding:1.5rem 1.75rem;display:grid;grid-template-columns:80px 1fr auto;gap:1.25rem;align-items:start;text-decoration:none;transition:background .12s;border-left:3px solid transparent}
+.cs-card:hover{background:var(--bg);border-left-color:var(--red)}
+.cs-card.soon{opacity:.55;cursor:default;pointer-events:none}
+
+/* Left: number + badge */
+.cs-num-col{display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;padding-top:2px}
+.cs-num{font-family:var(--mono);font-size:2rem;font-weight:600;color:var(--navy);line-height:1;letter-spacing:-.03em}
+.cs-badge{font-family:var(--mono);font-size:.7rem;font-weight:600;padding:3px 8px;border:.5px solid;border-radius:2px;white-space:nowrap}
+.cs-badge.g{color:var(--grn);border-color:rgba(10,92,30,.3);background:var(--grn2)}
+.cs-badge.r{color:var(--red);border-color:rgba(139,26,26,.3);background:rgba(139,26,26,.06)}
+.cs-badge.n{color:var(--navy);border-color:rgba(10,22,40,.25);background:rgba(10,22,40,.05)}
+.cs-badge.a{color:var(--amber);border-color:rgba(180,83,9,.3);background:var(--amber2)}
+
+/* Middle: content */
+.cs-content{}
+.cs-tags{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap;margin-bottom:.6rem}
+.cs-tag{font-family:var(--mono);font-size:.6rem;color:var(--gl);padding:2px 6px;border:.5px solid var(--rule);background:var(--bg2)}
+.cs-title{font-size:1.1rem;font-weight:600;color:var(--navy);line-height:1.25;letter-spacing:-.01em;margin-bottom:.65rem}
+.cs-card.soon .cs-title{color:var(--gl)}
+.cs-meta{display:flex;gap:1.5rem;flex-wrap:wrap}
+.cs-meta-item{}
+.cs-meta-lbl{font-family:var(--mono);font-size:.56rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:2px}
+.cs-meta-val{font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--b)}
+
+/* Right: CTA / soon label */
+.cs-right{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem;padding-top:2px}
+.cs-read{font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--navy);white-space:nowrap}
+.cs-date{font-family:var(--mono);font-size:.6rem;color:var(--gl)}
+.cs-soon-lbl{font-family:var(--mono);font-size:.6rem;color:var(--gl);border:.5px solid var(--rule);padding:2px 8px}
+
+@media(max-width:640px){
+  .cs-card{grid-template-columns:56px 1fr;gap:1rem}
+  .cs-right{display:none}
+  .cs-num{font-size:1.5rem}
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--b);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px}
 
-
-
-
-
-
-
-
-
-.sb-close:hover{color:var(--white)}
-
-
-
-
-.sb-issue{display:block;padding:0.5rem 0;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;line-height:1.4;border-bottom:1px solid rgba(255,255,255,0.04);transition:color 0.2s}
-.sb-issue:hover{color:rgba(255,255,255,0.65)}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255,0.07)}
-.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem}
+/* FOOTER */
+footer{background:var(--navy);padding:1.75rem 2.5rem;border-top:1px solid rgba(255,255,255,.06)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
 .f-brand{display:flex;align-items:center;gap:7px;text-decoration:none}
-.f-brand-bar{width:2px;height:14px;background:var(--red);flex-shrink:0}
-.f-brand-text{font-size:0.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.f-brand-bar{width:2px;height:14px;background:var(--red)}
+.f-brand-text{font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3)}
 .f-links{display:flex;gap:1.5rem;flex-wrap:wrap}
-.f-links a{font-size:0.82rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s}
-.f-links a:hover{color:rgba(255,255,255,0.65)}
-.f-copy{font-size:0.7rem;color:rgba(255,255,255,0.2);width:100%;margin-top:0.25rem}
-@media(min-width:900px){footer{padding:2rem 3rem}}
-@media(max-width:767px){}
-
-/* PAGE HERO. same as index */
-.hero{border-bottom:2px solid var(--navy);padding:4rem 2rem 3rem}
-.hero-inner{max-width:1100px;margin:0 auto}
-.kicker{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
-.kicker-bar{width:20px;height:2px;background:var(--red);flex-shrink:0}
-.kicker-text{font-size:0.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
-.hero h1{font-family:'Barlow',sans-serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:700;line-height:1.06;letter-spacing:-.025em;color:var(--navy);margin-bottom:1rem}
-.hero h1 em{font-style:italic;color:var(--red)}
-.hero-deck{font-size:1rem;font-weight:300;line-height:1.8;color:var(--gm);max-width:680px}
-/* CASE STUDIES SECTION. exact same as issues-sec */
-.cs-sec{padding:0 2rem;border-bottom:1px solid var(--rule)}
-.cs-inner{max-width:1100px;margin:0 auto}
-.cs-header{display:flex;align-items:baseline;justify-content:space-between;padding:1.75rem 0 0;border-bottom:3px solid var(--navy)}
-.cs-header-title{font-family:'Barlow',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy)}
-.cs-header-sub{font-size:0.75rem;color:var(--gl)}
-/* ROWS. exact same as issue-row */
-.cs-row{display:block;padding:2rem 0;border-bottom:1px solid var(--rule);text-decoration:none}
-.cs-row:last-child{border-bottom:none}
-.cs-row.published:hover .cs-row-title{text-decoration:underline;text-decoration-color:var(--navy)}
-.cs-row-top{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;flex-wrap:wrap}
-.cs-row-num{font-size:0.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
-.cs-row-tag{font-size:0.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);background:var(--rule2);padding:2px 7px}
-.cs-row-date{font-size:0.75rem;color:var(--gl);margin-left:auto}
-.cs-row-soon{font-size:0.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);background:var(--rule2);padding:2px 8px;margin-left:auto}
-.cs-row-title{font-family:'Barlow',sans-serif;font-size:clamp(1.3rem,3vw,1.85rem);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:0.65rem}
-.cs-row.soon .cs-row-title{color:var(--gm)}
-.cs-row-summary{font-size:1rem;font-weight:300;color:var(--gm);line-height:1.7;max-width:800px;margin-bottom:0.85rem}
-.cs-row.soon .cs-row-summary{color:var(--gl)}
-.cs-row-meta{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
-.meta-chip-label{font-size:0.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gl);margin-bottom:2px}
-.meta-chip-val{font-size:0.82rem;font-weight:500;color:var(--navy)}
-.cs-row-read{display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--navy);margin-left:auto}
-/* SUB SECTION */
-.sub-sec{padding:2.5rem 2rem;border-bottom:1px solid var(--rule)}
-.sub-inner{max-width:560px;margin:0 auto;text-align:center}
-.sub-h2{font-family:'Barlow',sans-serif;font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:0.5rem}
-.sub-h2 em{font-style:italic;color:var(--red)}
-.sub-p{font-size:0.9rem;font-weight:300;color:var(--gm);margin-bottom:1.25rem;line-height:1.6}
-.sub-form{display:flex;max-width:440px;margin:0 auto 0.6rem}
-.sub-email{flex:1;background:var(--white);border:1.5px solid var(--navy);border-right:none;color:var(--b);font-family:'Barlow',sans-serif;font-size:0.9rem;padding:0.65rem 1rem;outline:none;min-width:0}
-.sub-email::placeholder{color:#bbb}
-.sub-btn{font-family:'Barlow',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:var(--white);border:1.5px solid var(--red);padding:0.65rem 1.25rem;cursor:pointer;white-space:nowrap}
-.sub-btn:hover{background:#7a1515}
-.sub-note{font-size:0.75rem;color:var(--gl)}
-@media(min-width:900px){.hero{padding:5rem 3rem 4rem}.cs-sec,.sub-sec{padding-left:3rem;padding-right:3rem}}
-@media(max-width:767px){body{font-size:16px}.hero{padding:2.5rem 1.5rem 2rem}.cs-sec,.sub-sec{padding-left:1.5rem;padding-right:1.5rem}.sub-form{flex-direction:column}.sub-email{border-right:1.5px solid var(--navy);border-bottom:none}.sub-btn{border-top:none}}
-
-
-
-
-
-
-
-
-
-
-.sb-sub-link.muted{color:rgba(255,255,255,0.28)}
-
-.back-bar{background:var(--off-white,#F8F6F2);border-bottom:1px solid var(--rule,#D8D0C0);padding:0.6rem 2.5rem}
-.back-bar-inner{max-width:1200px;margin:0 auto}
-.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:var(--grey-mid,#666);text-decoration:none;transition:color 0.15s}
-.back-btn:hover{color:var(--navy,#0F1F3D)}
+.f-links a{font-size:.7rem;color:rgba(255,255,255,.25);text-decoration:none;transition:color .15s}
+.f-links a:hover{color:rgba(255,255,255,.7)}
+.f-copy{font-size:.6rem;color:rgba(255,255,255,.15);width:100%;margin-top:.15rem}
+@media(max-width:767px){footer{padding:1.5rem 1.25rem}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 </style>
 </head>
 <body>
 
-
-
-<!-- SIDEBAR -->
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 <div class="sidebar" id="sidebar">
   <div class="sb-top">
     <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&amp;A Intelligence</div></a>
     <button class="sb-close" onclick="closeSidebar()">&#215;</button>
   </div>
-
-  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
-    <div style="font-size:0.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:0.5rem;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#0A5C1E;display:inline-block;animation:pulse 2s infinite"></span>Live Benchmarks</div>
-    <div style="display:flex;flex-direction:column;gap:0.3rem" id="sbTicker"></div>
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:.75rem;margin-bottom:1.25rem">
+    <div style="font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:.5rem;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#0A5C1E;display:inline-block;animation:pulse 2s infinite"></span>Live Benchmarks</div>
+    <div style="display:flex;flex-direction:column;gap:.3rem" id="sbTicker"></div>
   </div>
-
   <div class="sb-section">Info</div>
   <a href="/about" class="sb-link" onclick="closeSidebar()">About</a>
-
   <div class="sb-section">Editorial</div>
   <div class="sb-dropdown">
-    <button class="sb-dropdown-btn open" onclick="toggleDrop('dropEditorial')">
-      <span>Articles &amp; Cases</span><span class="sb-arrow open" id="arrowEditorial">&#9662;</span>
-    </button>
+    <button class="sb-dropdown-btn open" onclick="toggleDrop('dropEditorial')"><span>Articles &amp; Cases</span><span class="sb-arrow open" id="arrowEditorial">&#9662;</span></button>
     <div class="sb-dropdown-items open" id="dropEditorial">
       <a href="/issues" class="sb-sub-link" onclick="closeSidebar()">All Articles</a>
       <a href="/issue-01" class="sb-sub-link" onclick="closeSidebar()">01. Your business is not worth what you think</a>
@@ -221,18 +185,19 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
       <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
       <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
       <a href="/case-studies" class="sb-sub-link active" onclick="closeSidebar()">All Case Studies</a>
-      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker &#183; 7.5&#215;</a>
-      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer &#183; 4&#215; vs 7&#215;</a>
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker &middot; 7.5&times;</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer &middot; 4&times; vs 7&times;</a>
       <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">CS03. Deal collapsed in due diligence</a>
-      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans &#183; 14.5&#215;</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans &middot; 14.5&times;</a>
+      <a href="/case-study-05" class="sb-sub-link" onclick="closeSidebar()">CS05. Techem / Partners Group &middot; 24.5&times;</a>
+      <a href="/case-study-06" class="sb-sub-link" onclick="closeSidebar()">CS06. Aviva / Direct Line &middot; &pound;3.7B</a>
+      <a href="/case-study-07" class="sb-sub-link" onclick="closeSidebar()">CS07. Swisscom / Vodafone Italia &middot; &euro;8B</a>
+      <a href="/case-study-08" class="sb-sub-link" onclick="closeSidebar()">CS08. L Catterton / KIKO Milano &middot; ~&euro;1.4B</a>
     </div>
   </div>
-
   <div class="sb-section">Tools</div>
   <div class="sb-dropdown">
-    <button class="sb-dropdown-btn" onclick="toggleDrop('dropTools')">
-      <span>Calculators &amp; Data</span><span class="sb-arrow" id="arrowTools">&#9662;</span>
-    </button>
+    <button class="sb-dropdown-btn" onclick="toggleDrop('dropTools')"><span>Calculators &amp; Data</span><span class="sb-arrow" id="arrowTools">&#9662;</span></button>
     <div class="sb-dropdown-items" id="dropTools">
       <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
       <a href="/exit-calculator" class="sb-sub-link" onclick="closeSidebar()">Exit Calculator</a>
@@ -241,7 +206,6 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
       <a href="/advisors" class="sb-sub-link" onclick="closeSidebar()">Advisor Directory</a>
     </div>
   </div>
-
   <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access &#8594;</button>
 </div>
 
@@ -252,183 +216,255 @@ footer{background:var(--navy);padding:2rem;border-top:1px solid rgba(255,255,255
   </div>
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
-    <a href="/issues" class="nav-link active">Articles</a>
+    <a href="/issues" class="nav-link">Articles</a>
     <a href="/case-studies" class="nav-link active">Case Studies</a>
     <div class="nav-dropdown" id="navToolsDrop">
       <button class="nav-dropdown-btn" onclick="toggleNavDrop()" id="navToolsBtn">
-        Tools
-        <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"/></svg>
+        Tools<svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"/></svg>
       </button>
       <div class="nav-dropdown-menu" id="navToolsMenu">
-      <a href="/multiples" class="nav-dd-item">Multiples</a>
-      <a href="/exit-calculator" class="nav-dd-item">Exit Calculator</a>
-      <a href="/wacc" class="nav-dd-item">WACC Calculator</a>
-      <a href="/country-index" class="nav-dd-item">Cost Index</a>
-      <a href="/advisors" class="nav-dd-item">Advisors</a>
+        <a href="/multiples" class="nav-dd-item">Multiples</a>
+        <a href="/exit-calculator" class="nav-dd-item">Exit Calculator</a>
+        <a href="/wacc" class="nav-dd-item">WACC Calculator</a>
+        <a href="/country-index" class="nav-dd-item">Cost Index</a>
+        <a href="/advisors" class="nav-dd-item">Advisors</a>
       </div>
     </div>
   </div>
   <button class="nav-sub" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access</button>
 </nav>
-<div class="back-bar"><div class="back-bar-inner"><a href="/" class="back-btn">← Home</a></div></div>
 
-<div class="hero">
-  <div class="hero-inner">
-    <div class="kicker"><div class="kicker-bar"></div><div class="kicker-text">Buy-side deal analysis</div></div>
-    <h1>Real deals.<br>Real numbers.<br><em>Buy-side view.</em></h1>
-    <p class="hero-deck">The side of the table you never see.</p>
+<div class="market-pulse">
+  <div class="mp-brand"><span class="mp-dot"></span><span class="mp-label">Market Pulse</span></div>
+  <div class="mp-item"><span class="mp-name">Software EV/EBITDA</span><span class="mp-val">24.5&#215;</span><span class="mp-chg up">Jan 2026</span></div>
+  <div class="mp-item"><span class="mp-name">Logistics EV/EBITDA</span><span class="mp-val">12.6&#215;</span><span class="mp-chg neu">Jan 2026</span></div>
+  <div class="mp-item"><span class="mp-name">EU Deal Vol</span><span class="mp-val">&#8722;14%</span><span class="mp-chg dn">YoY</span></div>
+  <div class="mp-item"><span class="mp-name">Advisory fee &#8364;5M</span><span class="mp-val">5.5%</span><span class="mp-chg neu">Firmex</span></div>
+</div>
+
+<div class="page-head">
+  <div class="page-head-inner">
+    <div class="ph-eyebrow">Buy-side deal analysis</div>
+    <h1 class="ph-h1">Real deals.<br><em>Real numbers.</em></h1>
+    <p class="ph-sub">Eight transactions deconstructed from the buy side. What was paid, why, and what every seller can learn before they go to market.</p>
   </div>
 </div>
 
-<div class="cs-sec">
-  <div class="cs-inner">
-        <div class="cs-header">
-      <div class="cs-header-title">Case Studies</div>
-      <div class="cs-header-sub">Real transactions · Buy-side analysis</div>
-    </div>
+<div class="cs-body">
 
-    <a href="/case-study-01" class="cs-row published" style="display:block">
-      <div class="cs-row-top">
-        <span class="cs-row-num">No. 01</span>
-        <span class="cs-row-tag">Transport & Logistics</span>
-        <span class="cs-row-tag">Europe</span>
-        <span class="cs-row-tag">Cash</span>
-        <span class="cs-row-date">March 2026</span>
+  <div class="cs-section-label">Published &mdash; 4 case studies</div>
+  <div class="cs-grid">
+
+    <a href="/case-study-01" class="cs-card">
+      <div class="cs-num-col">
+        <div class="cs-num">01</div>
+        <div class="cs-badge n">7.5&#215;</div>
       </div>
-      <div class="cs-row-title">DSV acquires DB Schenker at 7.5× EBITDA. why not 12×?</div>
-      <div class="cs-row-summary">The largest logistics deal of 2024. DSV paid 7.5× for one of Europe's biggest freight networks. while Frigo-Trans sold at 14.5× the same year. Same sector, same geography, radically different multiples. Here is why.</div>
-      <div class="cs-row-meta">
-        <div><div class="meta-chip-label">Buyer</div><div class="meta-chip-val">DSV A/S</div></div>
-        <div><div class="meta-chip-label">Geography</div><div class="meta-chip-val">Pan-European</div></div>
-        <div><div class="meta-chip-label">EV / EBITDA</div><div class="meta-chip-val">7.5×</div></div>
-        <div><div class="meta-chip-label">Consideration</div><div class="meta-chip-val">Cash · €14.3B</div></div>
-        <span class="cs-row-read">Read case study →</span>
+      <div class="cs-content">
+        <div class="cs-tags">
+          <span class="cs-tag">Transport &amp; Logistics</span>
+          <span class="cs-tag">Pan-European</span>
+          <span class="cs-tag">&#8364;14.3B</span>
+        </div>
+        <div class="cs-title">DSV acquires DB Schenker at 7.5&#215; EBITDA. Why not 12&#215;?</div>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Buyer</div><div class="cs-meta-val">DSV A/S</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Target</div><div class="cs-meta-val">DB Schenker</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">EV / EBITDA</div><div class="cs-meta-val">7.5&#215;</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Consideration</div><div class="cs-meta-val">Cash</div></div>
+        </div>
       </div>
+      <div class="cs-right"><span class="cs-read">Read &#8594;</span><span class="cs-date">Mar 2026</span></div>
     </a>
 
-    <a href="/case-study-02" class="cs-row published" style="display:block">
-      <div class="cs-row-top">
-        <span class="cs-row-num">No. 02</span>
-        <span class="cs-row-tag">Manufacturing</span>
-        <span class="cs-row-tag">DACH</span>
-        <span class="cs-row-tag">Cash + Earn-out</span>
-        <span class="cs-row-date">April 2026</span>
+    <a href="/case-study-02" class="cs-card">
+      <div class="cs-num-col">
+        <div class="cs-num">02</div>
+        <div class="cs-badge r">4&#215; vs 7&#215;</div>
       </div>
-      <div class="cs-row-title">Why this CHF 8M manufacturer sold at 4×. and how it could have been 7×.</div>
-      <div class="cs-row-summary">A real transaction from the DACH market. Profitable, growing, well-run. Three fixable issues cut the multiple in half. Anonymised case study with full analysis.</div>
-      <div class="cs-row-meta">
-        <div><div class="meta-chip-label">Geography</div><div class="meta-chip-val">DACH</div></div>
-        <div><div class="meta-chip-label">EV / EBITDA</div><div class="meta-chip-val">4.0× (vs 7.0×)</div></div>
-        <div><div class="meta-chip-label">Consideration</div><div class="meta-chip-val">Cash + Earn-out</div></div>
-        <span class="cs-row-read">Read case study →</span>
+      <div class="cs-content">
+        <div class="cs-tags">
+          <span class="cs-tag">Manufacturing</span>
+          <span class="cs-tag">DACH</span>
+          <span class="cs-tag">Anonymised</span>
+        </div>
+        <div class="cs-title">Why this CHF 8M manufacturer sold at 4&#215;. And how it could have been 7&#215;.</div>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Geography</div><div class="cs-meta-val">DACH</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">EV / EBITDA</div><div class="cs-meta-val">4.0&#215; (vs 7.0&#215;)</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Consideration</div><div class="cs-meta-val">Cash + Earn-out</div></div>
+        </div>
       </div>
+      <div class="cs-right"><span class="cs-read">Read &#8594;</span><span class="cs-date">Apr 2026</span></div>
     </a>
 
-    <a href="/case-study-03" class="cs-row published" style="display:block">
-      <div class="cs-row-top">
-        <span class="cs-row-num">No. 03</span>
-        <span class="cs-row-tag">Business Services</span>
-        <span class="cs-row-tag">Southern Europe</span>
-        <span class="cs-row-tag">Cash (proposed)</span>
-        <span class="cs-row-date">April 2026</span>
+    <a href="/case-study-03" class="cs-card">
+      <div class="cs-num-col">
+        <div class="cs-num">03</div>
+        <div class="cs-badge r">Collapsed</div>
       </div>
-      <div class="cs-row-title">The deal that collapsed in week two of due diligence. and why it was entirely predictable.</div>
-      <div class="cs-row-summary">Three buyers, six months of process, a signed LOI. Then due diligence started. What the buyer found in the first two weeks. and how the seller could have prevented every single issue.</div>
-      <div class="cs-row-meta">
-        <div><div class="meta-chip-label">Geography</div><div class="meta-chip-val">Southern Europe</div></div>
-        <div><div class="meta-chip-label">Outcome</div><div class="meta-chip-val">Collapsed in DD</div></div>
-        <div><div class="meta-chip-label">Consideration</div><div class="meta-chip-val">Cash (proposed)</div></div>
-        <span class="cs-row-read">Read case study →</span>
+      <div class="cs-content">
+        <div class="cs-tags">
+          <span class="cs-tag">Business Services</span>
+          <span class="cs-tag">Southern Europe</span>
+          <span class="cs-tag">Anonymised</span>
+        </div>
+        <div class="cs-title">The deal that collapsed in week two of due diligence. And why it was entirely predictable.</div>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Geography</div><div class="cs-meta-val">Southern Europe</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Outcome</div><div class="cs-meta-val">Collapsed in DD</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Consideration</div><div class="cs-meta-val">Cash (proposed)</div></div>
+        </div>
       </div>
+      <div class="cs-right"><span class="cs-read">Read &#8594;</span><span class="cs-date">Apr 2026</span></div>
     </a>
 
-    <a href="/case-study-04" class="cs-row published" style="display:block">
-      <div class="cs-row-top">
-        <span class="cs-row-num">No. 04</span>
-        <span class="cs-row-tag">Specialist Logistics</span>
-        <span class="cs-row-tag">Europe</span>
-        <span class="cs-row-tag">Cash</span>
-        <span class="cs-row-date">May 2026</span>
+    <a href="/case-study-04" class="cs-card">
+      <div class="cs-num-col">
+        <div class="cs-num">04</div>
+        <div class="cs-badge g">14.5&#215;</div>
       </div>
-      <div class="cs-row-title">UPS pays 14.5× for Frigo-Trans. what specialist logistics is actually worth.</div>
-      <div class="cs-row-summary">Nearly double the multiple DSV paid for DB Schenker the same year. The lesson: specialisation, regulatory barriers, and contract-based revenue can fundamentally change what your business is worth.</div>
-      <div class="cs-row-meta">
-        <div><div class="meta-chip-label">Buyer</div><div class="meta-chip-val">UPS</div></div>
-        <div><div class="meta-chip-label">EV / EBITDA</div><div class="meta-chip-val">14.5×</div></div>
-        <div><div class="meta-chip-label">Consideration</div><div class="meta-chip-val">Cash</div></div>
-        <span class="cs-row-read">Read case study →</span>
+      <div class="cs-content">
+        <div class="cs-tags">
+          <span class="cs-tag">Specialist Logistics</span>
+          <span class="cs-tag">Europe</span>
+          <span class="cs-tag">Cold-chain</span>
+        </div>
+        <div class="cs-title">UPS pays 14.5&#215; for Frigo-Trans. What specialist logistics is actually worth.</div>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Buyer</div><div class="cs-meta-val">UPS</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">EV / EBITDA</div><div class="cs-meta-val">14.5&#215;</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Consideration</div><div class="cs-meta-val">Cash</div></div>
+        </div>
       </div>
+      <div class="cs-right"><span class="cs-read">Read &#8594;</span><span class="cs-date">May 2026</span></div>
     </a>
 
   </div>
-</div>
-<div class="sub-sec">
-  <div class="sub-inner">
-    <h2 class="sub-h2">Get every case study<br><em>the moment it publishes.</em></h2>
-    <p class="sub-p">Free. Weekly. One issue per week from the buy side.</p>
-    <form class="sub-form" onsubmit="handleSub(event)">
-      <input type="email" class="sub-email" placeholder="your@email.com" required>
-      <button type="submit" class="sub-btn">Get Full Access</button>
-    </form>
-    <div class="sub-note">Unsubscribe anytime.</div>
+
+  <div class="cs-section-label">New &mdash; 4 case studies based on 2024&ndash;2025 transactions</div>
+  <div class="cs-grid">
+
+    <a href="/case-study-05" class="cs-card">
+      <div class="cs-num-col">
+        <div class="cs-num">05</div>
+        <div class="cs-badge n">24.5&#215;</div>
+      </div>
+      <div class="cs-content">
+        <div class="cs-tags">
+          <span class="cs-tag">Energy Infrastructure</span>
+          <span class="cs-tag">Germany</span>
+          <span class="cs-tag">PE Exit</span>
+          <span class="cs-tag">&#8364;6.7B</span>
+        </div>
+        <div class="cs-title">Techem sold at 24.5&#215; EBIT. What infrastructure premium looks like.</div>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Sellers</div><div class="cs-meta-val">Partners Group / CDPQ</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">EV</div><div class="cs-meta-val">&#8364;6.7 billion</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">EV / EBIT</div><div class="cs-meta-val">24.5&#215;</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Closed</div><div class="cs-meta-val">2024 &ndash; 2025</div></div>
+        </div>
+      </div>
+      <div class="cs-right"><span class="cs-read">Read &#8594;</span><span class="cs-date">Apr 2026</span></div>
+    </a>
+
+    <a href="/case-study-06" class="cs-card">
+      <div class="cs-num-col">
+        <div class="cs-num">06</div>
+        <div class="cs-badge a">&#163;3.7B</div>
+      </div>
+      <div class="cs-content">
+        <div class="cs-tags">
+          <span class="cs-tag">Insurance</span>
+          <span class="cs-tag">United Kingdom</span>
+          <span class="cs-tag">Strategic</span>
+          <span class="cs-tag">Turnaround</span>
+        </div>
+        <div class="cs-title">Aviva buys Direct Line for &#163;3.7B. A textbook turnaround acquisition.</div>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Buyer</div><div class="cs-meta-val">Aviva plc</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Consideration</div><div class="cs-meta-val">Cash + shares</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Synergies</div><div class="cs-meta-val">&#163;125M run-rate</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Closed</div><div class="cs-meta-val">Jul 2025</div></div>
+        </div>
+      </div>
+      <div class="cs-right"><span class="cs-read">Read &#8594;</span><span class="cs-date">Apr 2026</span></div>
+    </a>
+
+    <a href="/case-study-07" class="cs-card">
+      <div class="cs-num-col">
+        <div class="cs-num">07</div>
+        <div class="cs-badge n">7.6&#215;</div>
+      </div>
+      <div class="cs-content">
+        <div class="cs-tags">
+          <span class="cs-tag">Telecoms</span>
+          <span class="cs-tag">Italy</span>
+          <span class="cs-tag">&#8364;8B</span>
+          <span class="cs-tag">Market consolidation</span>
+        </div>
+        <div class="cs-title">Swisscom pays &#8364;8B for Vodafone Italia. A market-reshaping bet.</div>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Buyer</div><div class="cs-meta-val">Swisscom AG</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">EV</div><div class="cs-meta-val">&#8364;8 billion</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">EV / EBITDAaL</div><div class="cs-meta-val">7.6&#215;</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Closed</div><div class="cs-meta-val">31 Dec 2024</div></div>
+        </div>
+      </div>
+      <div class="cs-right"><span class="cs-read">Read &#8594;</span><span class="cs-date">Apr 2026</span></div>
+    </a>
+
+    <a href="/case-study-08" class="cs-card">
+      <div class="cs-num-col">
+        <div class="cs-num">08</div>
+        <div class="cs-badge g">~&#8364;1.4B</div>
+      </div>
+      <div class="cs-content">
+        <div class="cs-tags">
+          <span class="cs-tag">Consumer / Beauty</span>
+          <span class="cs-tag">Italy</span>
+          <span class="cs-tag">Family exit</span>
+          <span class="cs-tag">PE Buyout</span>
+        </div>
+        <div class="cs-title">L Catterton buys KIKO Milano at ~&#8364;1.4B. The Italian family exit done right.</div>
+        <div class="cs-meta">
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Buyer</div><div class="cs-meta-val">L Catterton</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Revenue (2023)</div><div class="cs-meta-val">~&#8364;800M (+20%)</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">EV / Revenue</div><div class="cs-meta-val">~1.75&#215;</div></div>
+          <div class="cs-meta-item"><div class="cs-meta-lbl">Structure</div><div class="cs-meta-val">Majority + retained %</div></div>
+        </div>
+      </div>
+      <div class="cs-right"><span class="cs-read">Read &#8594;</span><span class="cs-date">May 2026</span></div>
+    </a>
+
   </div>
+
 </div>
 
 <footer>
   <div class="footer-inner">
-    <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
-        <div class="f-links">
-      <a href="/about">About</a>
-      <a href="/issues">Issues</a>
-      <a href="/case-studies">Case Studies</a>
-      <a href="/multiples">Multiples</a>
-      <a href="/wacc">WACC</a>
-      <a data-email href="#">Contact</a>
+    <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&amp;A Intelligence</div></a>
+    <div class="f-links">
+      <a href="/about">About</a><a href="/issues">Articles</a><a href="/case-studies">Cases</a>
+      <a href="/multiples">Multiples</a><a href="/wacc">WACC</a><a href="/exit-calculator">Exit</a>
+      <a href="/country-index">Cost Index</a><a href="/advisors">Advisors</a>
     </div>
-    <div class="f-copy">© 2026 M&A Intelligence · mnaintel.com · Not financial or legal advice.</div>
+    <div class="f-copy">&#169; 2026 M&amp;A Intelligence &middot; mnaintel.com &middot; Not financial or legal advice.</div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+var SB_TICKS=[['Software EV/EBITDA','24.5x'],['Logistics EV/EBITDA','12.6x'],['CH CGT','0%'],['IT CGT','26%'],['Advisory EUR5M','5.5%'],['SME Discount','-30%'],['Healthcare EV/EBITDA','19.8x']];
+function renderSbTicker(){var el=document.getElementById('sbTicker');if(!el)return;var s=Math.floor(Math.random()*SB_TICKS.length);var items=SB_TICKS.slice(s,s+3).concat(SB_TICKS.slice(0,Math.max(0,3-(SB_TICKS.length-s))));el.innerHTML=items.map(function(t){return'<div style="display:flex;justify-content:space-between;font-size:.65rem"><span style="color:rgba(255,255,255,.4)">'+t[0]+'</span><span style="font-family:monospace;font-weight:600;color:rgba(255,255,255,.75)">'+t[1]+'</span></div>';}).join('');}
 
-// Sidebar live ticker
-var SB_TICKS=[
-  ['Software EV/EBITDA','24.5×'],['Logistics EV/EBITDA','12.6×'],
-  ['CH CGT','0%'],['IT CGT','26%'],['Advisory €5M','5.5%'],
-  ['SME Discount','−30%'],['Healthcare EV/EBITDA','19.8×'],
-];
-function renderSbTicker(){
-  var el=document.getElementById('sbTicker');
-  if(!el)return;
-  var start=Math.floor(Math.random()*SB_TICKS.length);
-  var items=SB_TICKS.slice(start,start+3).concat(SB_TICKS.slice(0,Math.max(0,3-(SB_TICKS.length-start))));
-  el.innerHTML=items.map(function(t){return '<div style="display:flex;justify-content:space-between;font-size:0.65rem"><span style="color:rgba(255,255,255,0.4);">'+t[0]+'</span><span style="font-family:monospace;font-weight:600;color:rgba(255,255,255,0.75)">'+t[1]+'</span></div>';}).join('');
-}
-document.addEventListener('DOMContentLoaded',function(){renderSbTicker();setInterval(renderSbTicker,5000);});
-
-function handleSub(e){
-  e.preventDefault();
-  var inp=e.target.querySelector('input[type=email]');
-  var btn=e.target.querySelector('button[type=submit]')||e.target.querySelector('button');
-  window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(inp.value),'_blank');
-  var orig=btn.textContent;btn.textContent='✓ Opening Beehiiv...';inp.value='';
-  setTimeout(function(){btn.textContent=orig},3000);
-}
-window.addEventListener('DOMContentLoaded',function(){
-  // Init sidebar ticker
-  renderSbTicker(); setInterval(renderSbTicker, 5000);
-  // Email links
-  document.querySelectorAll('[data-email]').forEach(function(el){
-    el.href='mailto:deals@news.mnaintel.com';
-    el.textContent='deals@news.mnaintel.com';
-  });
-});
+function handleSub(e){e.preventDefault();var inp=e.target.querySelector('input[type=email]');var btn=e.target.querySelector('button');window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3?email='+encodeURIComponent(inp.value),'_blank');var orig=btn.textContent;btn.textContent='Opening...';inp.value='';setTimeout(function(){btn.textContent=orig},3000);}
 
 function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbOverlay').classList.add('open');document.body.style.overflow='hidden';}
 function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOverlay').classList.remove('open');document.body.style.overflow='';}
 function toggleDrop(id){var el=document.getElementById(id);var btn=el.previousElementSibling;var arrow=btn&&btn.querySelector('.sb-arrow');el.classList.toggle('open');if(arrow)arrow.classList.toggle('open');if(btn)btn.classList.toggle('open');}
 function toggleNavDrop(){var menu=document.getElementById('navToolsMenu');var btn=document.getElementById('navToolsBtn');menu.classList.toggle('open');btn.classList.toggle('open');}
 document.addEventListener('click',function(e){var drop=document.getElementById('navToolsDrop');if(drop&&!drop.contains(e.target)){document.getElementById('navToolsMenu').classList.remove('open');document.getElementById('navToolsBtn').classList.remove('open');}});
+document.addEventListener('DOMContentLoaded',function(){renderSbTicker();setInterval(renderSbTicker,5000);});
 </script>
 </body>
 </html>
