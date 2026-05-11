@@ -565,11 +565,11 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
         </div>
 
         <div class="hero-cta-wrap">
-          <a href="/multiples" class="btn-primary">
-            <svg width="14" height="14" fill="none" viewBox="0 0 16 16"><rect x="1" y="9" width="3" height="6" fill="currentColor" opacity=".5"/><rect x="6" y="5" width="3" height="10" fill="currentColor" opacity=".7"/><rect x="11" y="1" width="3" height="14" fill="currentColor"/></svg>
-            Access Benchmark Data
+          <a href="/multiples" class="btn-primary" style="font-size:.72rem;padding:.65rem 1.25rem">
+            <svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="1" y="9" width="3" height="6" fill="currentColor" opacity=".5"/><rect x="6" y="5" width="3" height="10" fill="currentColor" opacity=".7"/><rect x="11" y="1" width="3" height="14" fill="currentColor"/></svg>
+            Valuation Benchmarks
           </a>
-          <span class="btn-free-note">Institutional-grade · 39 sector benchmarks · No account needed</span>
+          <span class="btn-free-note">39 sectors &middot; Jan 2026 &middot; Free</span>
         </div>
       </div>
 
@@ -595,76 +595,6 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
       </div>
     </div>
   </div>
-</div>
-
-<!-- TOOLS -->
-<div class="tools-wrap">
-  <div class="tools-inner">
-    <div class="tools-header">
-      <span class="tools-h">Analysis Tools</span>
-      <span class="tools-note">Damodaran Jan 2026 · Firmex / DealCircle 2024–2025</span>
-    </div>
-
-    <!-- Free tool -->
-    <a href="/multiples" class="free-card">
-      <div class="fc-top">
-        <span class="fc-num">01 · VALUATION MULTIPLES</span>
-        <span class="fc-badge">Free Access</span>
-      </div>
-      <div class="fc-name">EV/EBITDA Multiples Dashboard</div>
-      <div class="fc-data">
-        <span class="fc-num-big">24.5×</span>
-        <span class="fc-sub">Software · 39 sectors · US & EU · 2019–2026 historical</span>
-      </div>
-      <span class="fc-cta">
-        <svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="1" y="9" width="3" height="6" fill="currentColor" opacity=".5"/><rect x="6" y="5" width="3" height="10" fill="currentColor" opacity=".7"/><rect x="11" y="1" width="3" height="14" fill="currentColor"/></svg>
-        Open benchmark dashboard →
-      </span>
-    </a>
-
-    <!-- Tools terminal row -->
-    <div style="border:.5px solid var(--rule);background:var(--white)">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem;border-bottom:.5px solid var(--rule);background:var(--navy)">
-        <span style="font-family:var(--mono);font-size:.56rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4)">Analysis Tools &mdash; Full Access</span>
-        <button onclick="hasAccess()?null:showSub()" style="font-family:var(--sans);font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:.35rem .85rem;cursor:pointer">Get Full Access &rarr;</button>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule)">
-        <div onclick="hasAccess()?window.location.href='/wacc':showSub()" style="background:var(--bg);padding:.85rem 1rem;cursor:pointer;transition:background .12s" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background='var(--bg)'">
-          <div style="font-family:var(--mono);font-size:.56rem;color:var(--gl);letter-spacing:.08em;margin-bottom:.35rem">02 · WACC</div>
-          <div style="font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">WACC Calculator</div>
-          <div style="font-family:var(--mono);font-size:1.4rem;font-weight:600;color:var(--navy);filter:blur(4px);user-select:none">9.2%</div>
-          <div style="font-family:var(--mono);font-size:.6rem;color:var(--gl);margin-top:.2rem;filter:blur(3px);user-select:none">55 countries</div>
-        </div>
-        <div onclick="hasAccess()?window.location.href='/exit-calculator':showSub()" style="background:var(--bg);padding:.85rem 1rem;cursor:pointer;transition:background .12s" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background='var(--bg)'">
-          <div style="font-family:var(--mono);font-size:.56rem;color:var(--gl);letter-spacing:.08em;margin-bottom:.35rem">03 · EXIT VALUE</div>
-          <div style="font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Exit Calculator</div>
-          <div style="font-family:var(--mono);font-size:1.4rem;font-weight:600;color:var(--navy);filter:blur(4px);user-select:none">&euro;8.8M</div>
-          <div style="font-family:var(--mono);font-size:.6rem;color:var(--gl);margin-top:.2rem;filter:blur(3px);user-select:none">&euro;1M EBITDA &middot; 12.6&times;</div>
-        </div>
-        <div onclick="hasAccess()?window.location.href='/country-index':showSub()" style="background:var(--bg);padding:.85rem 1rem;cursor:pointer;transition:background .12s" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background='var(--bg)'">
-          <div style="font-family:var(--mono);font-size:.56rem;color:var(--gl);letter-spacing:.08em;margin-bottom:.35rem">04 · COST INDEX</div>
-          <div style="font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Transaction Costs</div>
-          <div style="font-family:var(--mono);font-size:1.4rem;font-weight:600;color:var(--navy);filter:blur(4px);user-select:none">0%&rarr;42%</div>
-          <div style="font-family:var(--mono);font-size:.6rem;color:var(--gl);margin-top:.2rem;filter:blur(3px);user-select:none">20 countries</div>
-        </div>
-        <div onclick="hasAccess()?window.location.href='/advisors':showSub()" style="background:var(--bg);padding:.85rem 1rem;cursor:pointer;transition:background .12s" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background='var(--bg)'">
-          <div style="font-family:var(--mono);font-size:.56rem;color:var(--gl);letter-spacing:.08em;margin-bottom:.35rem">05 · ADVISORS</div>
-          <div style="font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Advisor Directory</div>
-          <div style="font-family:var(--mono);font-size:1.4rem;font-weight:600;color:var(--navy);filter:blur(4px);user-select:none">100</div>
-          <div style="font-family:var(--mono);font-size:.6rem;color:var(--gl);margin-top:.2rem;filter:blur(3px);user-select:none">EU advisors</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SUBSCRIBE BAR -->
-<div class="sub-bar" id="subBar">
-  <div class="sb-msg"><strong>Get full access.</strong> Join the professional briefing to unlock all tools and receive weekly institutional-grade deal analysis.</div>
-  <form class="sb-form" onsubmit="handleUnlock(event)">
-    <input type="email" class="sb-email" id="sbEmail" placeholder="your@email.com" required>
-    <button type="submit" class="sb-btn">Get Full Access →</button>
-  </form>
 </div>
 
 <!-- INTELLIGENCE PULSE -->
@@ -707,6 +637,40 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
 
     <div class="pulse-error" id="pulseError" style="display:none"></div>
   </div>
+</div>
+
+<!-- TOOLS STRIP -->
+<div style="background:var(--bg);border-top:.5px solid var(--rule);border-bottom:.5px solid var(--rule)">
+  <div style="max-width:1140px;margin:0 auto;padding:.65rem 2.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
+    <span style="font-family:var(--mono);font-size:.54rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gl);margin-right:.5rem;white-space:nowrap">Tools</span>
+    <a href="/multiples" style="font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--navy);border:.5px solid var(--navy);padding:3px 10px;text-decoration:none;background:transparent;white-space:nowrap">
+      <span style="font-size:.54rem;color:var(--gl)">01</span> Multiples <span style="font-size:.58rem;color:var(--grn);font-weight:700;margin-left:4px">Free</span>
+    </a>
+    <div onclick="hasAccess()?window.location.href='/wacc':showSub()" style="font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--gm);border:.5px solid var(--rule);padding:3px 10px;cursor:pointer;background:var(--white);white-space:nowrap">
+      <span style="font-size:.54rem;color:var(--gl)">02</span> WACC
+    </div>
+    <div onclick="hasAccess()?window.location.href='/exit-calculator':showSub()" style="font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--gm);border:.5px solid var(--rule);padding:3px 10px;cursor:pointer;background:var(--white);white-space:nowrap">
+      <span style="font-size:.54rem;color:var(--gl)">03</span> Exit Calc
+    </div>
+    <div onclick="hasAccess()?window.location.href='/country-index':showSub()" style="font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--gm);border:.5px solid var(--rule);padding:3px 10px;cursor:pointer;background:var(--white);white-space:nowrap">
+      <span style="font-size:.54rem;color:var(--gl)">04</span> Cost Index
+    </div>
+    <div onclick="hasAccess()?window.location.href='/advisors':showSub()" style="font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--gm);border:.5px solid var(--rule);padding:3px 10px;cursor:pointer;background:var(--white);white-space:nowrap">
+      <span style="font-size:.54rem;color:var(--gl)">05</span> Advisors
+    </div>
+    <div style="margin-left:auto;flex-shrink:0">
+      <button onclick="hasAccess()?null:showSub()" style="font-family:var(--sans);font-size:.65rem;font-weight:700;letter-spacing:.06em;background:var(--red);color:#fff;border:none;padding:.35rem .9rem;cursor:pointer">Get Full Access &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUBSCRIBE BAR -->
+<div class="sub-bar" id="subBar">
+  <div class="sb-msg"><strong>Get full access.</strong> Join the professional briefing to unlock all tools and receive weekly institutional-grade deal analysis.</div>
+  <form class="sb-form" onsubmit="handleUnlock(event)">
+    <input type="email" class="sb-email" id="sbEmail" placeholder="your@email.com" required>
+    <button type="submit" class="sb-btn">Get Full Access →</button>
+  </form>
 </div>
 
 <!-- BOTTOM GRID -->
