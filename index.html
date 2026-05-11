@@ -93,20 +93,12 @@ body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-sm
 
 
 
-
-
-
-
 .nav-link:hover{color:#fff}
 
 
 @media(max-width:800px){}
 
 /* ── SIDEBAR ── */
-
-
-
-
 
 
 
@@ -120,25 +112,16 @@ body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-sm
 
 
 
-
-
-
-
-
-
-
-
 /* ── HERO ── */
-.hero{background:var(--white);padding:3rem 2.5rem 0;border-bottom:0.5px solid var(--rule)}
+.hero{background:var(--white);padding:2.5rem 2.5rem 0;border-bottom:2px solid var(--navy)}
 .hero-wrap{max-width:1140px;margin:0 auto}
 
 /* live badge */
-.live-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:0.6rem;font-weight:600;color:var(--grn);letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(10,92,30,0.2);background:var(--grn2);margin-bottom:1.5rem}
 .live-dot{width:5px;height:5px;border-radius:50%;background:var(--grn);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
 /* hero headline */
-.hero-h1{font-family:var(--sans);font-size:clamp(2.2rem,5vw,4rem);font-weight:700;color:var(--b);line-height:1.05;letter-spacing:-.03em;margin-bottom:0.6rem}
+.hero-h1{font-family:var(--sans);font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:700;color:var(--navy);line-height:1.02;letter-spacing:-.04em;margin-bottom:0.5rem}
 .hero-h1 span{color:var(--red)}
 .hero-tagline{font-family:var(--sans);font-size:clamp(1rem,2vw,1.35rem);font-weight:400;font-style:italic;color:var(--gm);margin-bottom:2rem}
 
@@ -147,12 +130,12 @@ body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-sm
 @media(max-width:880px){.hero-grid{grid-template-columns:1fr}}
 
 /* data card — the rotating number */
-.data-card{background:var(--white);border:0.5px solid var(--rule);box-shadow:var(--shadow-md);padding:1.75rem;margin-bottom:1.25rem;position:relative;overflow:hidden}
-.data-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--red)}
+.data-card{background:var(--white);border:1.5px solid var(--navy);box-shadow:0 4px 24px rgba(10,22,40,0.12);padding:1.75rem;margin-bottom:1.25rem;position:relative;overflow:hidden}
+.data-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--red)}
 .dc-label{font-size:0.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:0.5rem}
-.dc-num{font-family:var(--mono);font-size:clamp(3rem,7vw,5.5rem);font-weight:600;color:var(--b);line-height:1;letter-spacing:-.04em;transition:opacity .25s}
+.dc-num{font-family:var(--mono);font-size:clamp(3.5rem,8vw,6rem);font-weight:600;color:var(--navy);line-height:1;letter-spacing:-.04em;transition:opacity .25s}
 .dc-num.fade{opacity:0}
-.dc-unit{font-family:var(--mono);font-size:clamp(1.2rem,3vw,2rem);color:var(--red);margin-left:.1em}
+.dc-unit{font-family:var(--mono);font-size:clamp(1.4rem,3.5vw,2.2rem);color:var(--red);font-weight:600;margin-left:.1em}
 .dc-sublabel{font-size:0.75rem;color:var(--gm);margin-top:0.5rem;transition:opacity .25s;min-height:1.1em}
 .dc-sublabel.fade{opacity:0}
 .dc-source{font-family:var(--mono);font-size:0.6rem;color:var(--gl);margin-top:0.25rem}
@@ -176,9 +159,9 @@ body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-sm
 
 /* right: EV/EBITDA table card */
 .table-card{background:var(--white);border:0.5px solid var(--rule);box-shadow:var(--shadow);overflow:hidden}
-.tc-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem 0.75rem;border-bottom:0.5px solid var(--rule);background:var(--bg)}
-.tc-head-title{font-size:0.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy)}
-.tc-head-badge{font-family:var(--mono);font-size:0.58rem;color:var(--gl)}
+.tc-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem 0.75rem;border-bottom:1.5px solid var(--navy);background:var(--navy)}
+.tc-head-title{font-size:0.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+.tc-head-badge{font-family:var(--mono);font-size:0.58rem;color:rgba(255,255,255,0.4)}
 .tc-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:0.65rem 1.25rem;border-bottom:0.5px solid var(--rule2);transition:background .1s;cursor:pointer}
 .tc-row:last-child{border-bottom:none}
 .tc-row:hover{background:var(--bg)}
@@ -250,27 +233,27 @@ body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-sm
 .sb-btn:hover{background:var(--red2)}
 
 /* ── INTELLIGENCE PULSE ── */
-.pulse-section{background:var(--white);border-top:0.5px solid var(--rule)}
-.pulse-inner{max-width:1140px;margin:0 auto;padding:2rem 2.5rem}
+.pulse-section{background:var(--bg2);border-top:2.5px solid var(--navy);border-bottom:1px solid var(--rule)}
+.pulse-inner{max-width:1140px;margin:0 auto;padding:2.25rem 2.5rem 2rem}
 @media(max-width:767px){.pulse-inner{padding:1.5rem 1.25rem}}
 
 .pulse-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.5rem}
 .pulse-header-left{display:flex;align-items:center;gap:0.75rem}
-.pulse-label{font-size:0.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy)}
+.pulse-label{font-size:0.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy)}
 .pulse-live{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:0.58rem;color:var(--grn);letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid rgba(10,92,30,0.2);background:var(--grn2)}
 .pulse-note{font-size:0.62rem;color:var(--gl)}
 
 .pulse-search-row{display:flex;gap:0;margin-bottom:0.85rem}
-.pulse-input{flex:1;font-family:var(--sans);font-size:0.88rem;color:var(--b);background:var(--bg);border:0.5px solid var(--rule);border-right:none;padding:0.65rem 1rem;outline:none;transition:border-color .15s}
-.pulse-input:focus{border-color:var(--navy);background:var(--white)}
-.pulse-btn{font-family:var(--sans);font-size:0.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--navy);color:#fff;border:none;padding:0.65rem 1.5rem;cursor:pointer;white-space:nowrap;transition:background .15s;flex-shrink:0}
-.pulse-btn:hover{background:var(--red)}
+.pulse-input{flex:1;font-family:var(--sans);font-size:1rem;color:var(--b);background:var(--white);border:1.5px solid var(--navy);border-right:none;padding:0.85rem 1.25rem;outline:none;transition:border-color .15s;box-shadow:0 2px 8px rgba(10,22,40,0.06)}
+.pulse-input:focus{border-color:var(--red);background:var(--white);box-shadow:0 2px 12px rgba(10,22,40,0.1)}
+.pulse-btn{font-family:var(--sans);font-size:0.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--navy);color:#fff;border:1.5px solid var(--navy);padding:0.85rem 2rem;cursor:pointer;white-space:nowrap;transition:all .15s;flex-shrink:0;box-shadow:0 2px 8px rgba(10,22,40,0.2)}
+.pulse-btn:hover{background:var(--red);border-color:var(--red);box-shadow:0 4px 16px rgba(139,26,26,0.25)}
 
 .pulse-chips{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.25rem}
-.pulse-chip{font-size:0.62rem;font-weight:600;letter-spacing:.05em;color:var(--gm);border:0.5px solid var(--rule);padding:3px 10px;cursor:pointer;background:var(--bg);transition:all .12s;white-space:nowrap}
+.pulse-chip{font-size:0.65rem;font-weight:600;letter-spacing:.04em;color:var(--gm);border:1px solid var(--rule);padding:4px 12px;cursor:pointer;background:var(--white);transition:all .12s;white-space:nowrap}
 .pulse-chip:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
 
-.pulse-idle{display:flex;align-items:center;gap:0.75rem;padding:1.5rem;border:0.5px dashed var(--rule);background:var(--bg)}
+.pulse-idle{display:flex;align-items:center;gap:0.75rem;padding:1.5rem;border:1px dashed var(--rule);background:var(--white)}
 .pi-icon{font-family:var(--mono);font-size:1.1rem;color:var(--gl);opacity:.5}
 .pi-text{font-size:0.8rem;color:var(--gl)}
 
@@ -288,11 +271,11 @@ body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-sm
 .pr-topic{font-size:0.95rem;font-weight:700;color:var(--navy)}
 .pr-date{font-family:var(--mono);font-size:0.58rem;color:var(--gl);letter-spacing:.06em}
 
-.pr-signals{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:0.5px solid var(--rule)}
+.pr-signals{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1.5px solid var(--navy)}
 @media(max-width:600px){.pr-signals{grid-template-columns:1fr 1fr}}
 .pr-sig{background:var(--bg);padding:0.9rem 1rem}
 .pr-sig-lbl{font-size:0.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:0.35rem}
-.pr-sig-val{font-family:var(--mono);font-size:1.35rem;font-weight:600;color:var(--navy);line-height:1}
+.pr-sig-val{font-family:var(--mono);font-size:1.5rem;font-weight:600;color:var(--navy);line-height:1}
 .pr-sig-sub{font-size:0.65rem;color:var(--gm);margin-top:0.2rem}
 
 .pr-section-lbl{font-size:0.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);padding-bottom:0.5rem;border-bottom:0.5px solid var(--rule2)}
@@ -315,7 +298,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-sm
 .pulse-error{padding:0.85rem 1rem;border:0.5px solid var(--rule);font-size:0.8rem;color:var(--red);background:var(--bg)}
 
 /* ── BOTTOM GRID ── */
-.bottom-wrap{max-width:1140px;margin:0 auto;padding:2rem 2.5rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem}
+.bottom-wrap{max-width:1140px;margin:0 auto;padding:2rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
 @media(max-width:900px){.bottom-wrap{grid-template-columns:1fr 1fr;padding:1.5rem 1.25rem}}
 @media(max-width:550px){.bottom-wrap{grid-template-columns:1fr}}
 
@@ -352,13 +335,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-sm
 
 
 /* ── CREDENTIAL STRIP ── */
-.cred-strip{background:var(--navy);padding:1.1rem 2.5rem;border-top:1px solid rgba(255,255,255,0.06)}
-.cred-inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap}
-.cred-item{display:flex;align-items:center;gap:0.5rem}
-.cred-num{font-family:var(--mono);font-size:1rem;font-weight:600;color:#fff}
-.cred-lbl{font-size:0.65rem;color:rgba(255,255,255,0.4);line-height:1.3}
-.cred-sep{width:1px;height:24px;background:rgba(255,255,255,0.1);flex-shrink:0}
-@media(max-width:600px){.cred-strip{padding:1rem 1.25rem}.cred-sep{display:none}}
+
 
 /* ── FOOTER ── */
 footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(255,255,255,0.06)}
@@ -515,12 +492,69 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
   </div>
 </div>
 
+<!-- INTELLIGENCE PULSE -->
+<div class="pulse-section">
+  <div class="pulse-inner">
+    <div class="pulse-header">
+      <div class="pulse-header-left">
+        <span class="pulse-label">Intelligence Pulse</span>
+        <span class="pulse-live"><span class="live-dot" style="width:5px;height:5px"></span>Live · powered by AI</span>
+      </div>
+      <span class="pulse-note">Enter any M&A topic to get a 30-day signal briefing</span>
+    </div>
+
+    <div class="pulse-search-row">
+      <input type="text" id="pulseInput" class="pulse-input" placeholder="e.g. PE buyouts DACH, carve-out multiples, Southern Europe deals…" />
+      <button class="pulse-btn" onclick="runPulse()">Scan →</button>
+    </div>
+
+    <div class="pulse-chips">
+      <span class="pulse-chip" onclick="pFill('PE buyouts DACH 2025')">PE · DACH</span>
+      <span class="pulse-chip" onclick="pFill('Southern Europe M&A 2025')">Southern Europe</span>
+      <span class="pulse-chip" onclick="pFill('Latin America M&A 2025')">LatAm</span>
+      <span class="pulse-chip" onclick="pFill('carve-out transactions Europe 2025')">Carve-outs</span>
+      <span class="pulse-chip" onclick="pFill('EBITDA multiples industrials M&A 2025')">Industrials multiples</span>
+      <span class="pulse-chip" onclick="pFill('distressed M&A Europe 2025')">Distressed</span>
+    </div>
+
+    <!-- States -->
+    <div class="pulse-idle" id="pulseIdle" style="display:flex;flex-direction:column;gap:0;padding:0">
+      <div style="padding:1.1rem 1.5rem;display:flex;align-items:flex-start;gap:2.5rem;flex-wrap:wrap">
+        <div>
+          <div style="font-family:var(--mono);font-size:.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);margin-bottom:.6rem">Try scanning</div>
+          <div style="display:flex;flex-direction:column;gap:.35rem">
+            <button onclick="pFill('PE buyouts DACH 2025');runPulse()" style="font-family:var(--mono);font-size:.75rem;color:var(--navy);background:var(--white);border:1px solid var(--rule);padding:.38rem .85rem;cursor:pointer;text-align:left;font-weight:500;transition:border-color .12s" onmouseover="this.style.borderColor='var(--navy)'" onmouseout="this.style.borderColor='var(--rule)'">PE buyouts &middot; DACH &rarr;</button>
+            <button onclick="pFill('Software carve-outs Europe 2025');runPulse()" style="font-family:var(--mono);font-size:.75rem;color:var(--navy);background:var(--white);border:1px solid var(--rule);padding:.38rem .85rem;cursor:pointer;text-align:left;font-weight:500;transition:border-color .12s" onmouseover="this.style.borderColor='var(--navy)'" onmouseout="this.style.borderColor='var(--rule)'">Software carve-outs &middot; EU &rarr;</button>
+            <button onclick="pFill('distressed M&A Italy 2025');runPulse()" style="font-family:var(--mono);font-size:.75rem;color:var(--navy);background:var(--white);border:1px solid var(--rule);padding:.38rem .85rem;cursor:pointer;text-align:left;font-weight:500;transition:border-color .12s" onmouseover="this.style.borderColor='var(--navy)'" onmouseout="this.style.borderColor='var(--rule)'">Distressed &middot; Italy &rarr;</button>
+          </div>
+        </div>
+        <div style="border-left:.5px solid var(--rule);padding-left:2.5rem">
+          <div style="font-family:var(--mono);font-size:.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);margin-bottom:.6rem">You get</div>
+          <div style="display:flex;flex-direction:column;gap:.3rem">
+            <div style="font-family:var(--mono);font-size:.72rem;color:var(--gm);display:flex;align-items:center;gap:.4rem"><span style="color:var(--grn);font-size:.65rem">&#9658;</span>30-day deal flow signals</div>
+            <div style="font-family:var(--mono);font-size:.72rem;color:var(--gm);display:flex;align-items:center;gap:.4rem"><span style="color:var(--grn);font-size:.65rem">&#9658;</span>Valuation &amp; multiple data</div>
+            <div style="font-family:var(--mono);font-size:.72rem;color:var(--gm);display:flex;align-items:center;gap:.4rem"><span style="color:var(--grn);font-size:.65rem">&#9658;</span>Market sentiment</div>
+            <div style="font-family:var(--mono);font-size:.72rem;color:var(--gm);display:flex;align-items:center;gap:.4rem"><span style="color:var(--grn);font-size:.65rem">&#9658;</span>Key drivers &amp; watch signals</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pulse-loading" id="pulseLoading" style="display:none">
+      <div class="pl-bar"><div class="pl-bar-fill"></div></div>
+      <div class="pl-steps" id="pulseSteps"></div>
+    </div>
+
+    <div class="pulse-result" id="pulseResult" style="display:none"></div>
+
+    <div class="pulse-error" id="pulseError" style="display:none"></div>
+  </div>
+</div>
+
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-wrap">
-    <div class="live-badge"><span class="live-dot"></span>Institutional-grade data · Updated Jan 2026</div>
-    <h1 class="hero-h1">Stop guessing<br>your <span>valuation.</span></h1>
-    <p class="hero-tagline" style="font-family:var(--mono);font-size:.82rem;font-weight:400;font-style:normal;letter-spacing:.06em;color:var(--gl)">Independent M&A data &middot; Institutional precision &middot; Jan 2026</p>
+  <div class="hero-wrap">    <h1 class="hero-h1">EV/EBITDA Benchmarks.<br><span>Jan 2026.</span></h1>
+    <p class="hero-tagline">Independent M&A data. Institutional precision.</p>
 
     <div class="hero-grid">
       <!-- LEFT: rotating data card + CTA -->
@@ -565,11 +599,11 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
         </div>
 
         <div class="hero-cta-wrap">
-          <a href="/multiples" class="btn-primary" style="font-size:.72rem;padding:.65rem 1.25rem">
-            <svg width="12" height="12" fill="none" viewBox="0 0 16 16"><rect x="1" y="9" width="3" height="6" fill="currentColor" opacity=".5"/><rect x="6" y="5" width="3" height="10" fill="currentColor" opacity=".7"/><rect x="11" y="1" width="3" height="14" fill="currentColor"/></svg>
-            Valuation Benchmarks
+          <a href="/multiples" class="btn-primary">
+            <svg width="14" height="14" fill="none" viewBox="0 0 16 16"><rect x="1" y="9" width="3" height="6" fill="currentColor" opacity=".5"/><rect x="6" y="5" width="3" height="10" fill="currentColor" opacity=".7"/><rect x="11" y="1" width="3" height="14" fill="currentColor"/></svg>
+            Access Benchmark Data
           </a>
-          <span class="btn-free-note">39 sectors &middot; Jan 2026 &middot; Free</span>
+          <span class="btn-free-note">Institutional-grade · 39 sector benchmarks · No account needed</span>
         </div>
       </div>
 
@@ -597,70 +631,16 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
   </div>
 </div>
 
-<!-- INTELLIGENCE PULSE -->
-<div class="pulse-section">
-  <div class="pulse-inner">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.85rem;flex-wrap:wrap;gap:.5rem">
-      <div style="display:flex;align-items:center;gap:.65rem">
-        <span style="font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy)">Intelligence Pulse</span>
-        <span style="display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:.55rem;color:var(--grn);letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border:1px solid rgba(10,92,30,.2);background:var(--grn2)"><span class="live-dot" style="width:4px;height:4px"></span>Live</span>
-      </div>
-      <span style="font-family:var(--mono);font-size:.58rem;color:var(--gl)">30-day signal brief &middot; AI</span>
-    </div>
-
-    <div class="pulse-search-row">
-      <input type="text" id="pulseInput" class="pulse-input" placeholder="sector / geography / deal type&hellip;" />
-      <button class="pulse-btn" onclick="runPulse()">Scan &rarr;</button>
-    </div>
-
-    <div class="pulse-chips">
-      <span class="pulse-chip" onclick="pFill('PE buyouts DACH 2025')">PE · DACH</span>
-      <span class="pulse-chip" onclick="pFill('Southern Europe M&A 2025')">Southern Europe</span>
-      <span class="pulse-chip" onclick="pFill('Latin America M&A 2025')">LatAm</span>
-      <span class="pulse-chip" onclick="pFill('carve-out transactions Europe 2025')">Carve-outs</span>
-      <span class="pulse-chip" onclick="pFill('EBITDA multiples industrials M&A 2025')">Industrials multiples</span>
-      <span class="pulse-chip" onclick="pFill('distressed M&A Europe 2025')">Distressed</span>
-    </div>
-
-    <!-- States -->
-    <div class="pulse-idle" id="pulseIdle">
-      <span class="pi-icon">◎</span>
-      <span class="pi-text">Scan any topic for a live 30-day deal intelligence brief</span>
-    </div>
-
-    <div class="pulse-loading" id="pulseLoading" style="display:none">
-      <div class="pl-bar"><div class="pl-bar-fill"></div></div>
-      <div class="pl-steps" id="pulseSteps"></div>
-    </div>
-
-    <div class="pulse-result" id="pulseResult" style="display:none"></div>
-
-    <div class="pulse-error" id="pulseError" style="display:none"></div>
-  </div>
-</div>
-
 <!-- TOOLS STRIP -->
 <div style="background:var(--bg);border-top:.5px solid var(--rule);border-bottom:.5px solid var(--rule)">
-  <div style="max-width:1140px;margin:0 auto;padding:.65rem 2.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
-    <span style="font-family:var(--mono);font-size:.54rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gl);margin-right:.5rem;white-space:nowrap">Tools</span>
-    <a href="/multiples" style="font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--navy);border:.5px solid var(--navy);padding:3px 10px;text-decoration:none;background:transparent;white-space:nowrap">
-      <span style="font-size:.54rem;color:var(--gl)">01</span> Multiples <span style="font-size:.58rem;color:var(--grn);font-weight:700;margin-left:4px">Free</span>
-    </a>
-    <div onclick="hasAccess()?window.location.href='/wacc':showSub()" style="font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--gm);border:.5px solid var(--rule);padding:3px 10px;cursor:pointer;background:var(--white);white-space:nowrap">
-      <span style="font-size:.54rem;color:var(--gl)">02</span> WACC
-    </div>
-    <div onclick="hasAccess()?window.location.href='/exit-calculator':showSub()" style="font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--gm);border:.5px solid var(--rule);padding:3px 10px;cursor:pointer;background:var(--white);white-space:nowrap">
-      <span style="font-size:.54rem;color:var(--gl)">03</span> Exit Calc
-    </div>
-    <div onclick="hasAccess()?window.location.href='/country-index':showSub()" style="font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--gm);border:.5px solid var(--rule);padding:3px 10px;cursor:pointer;background:var(--white);white-space:nowrap">
-      <span style="font-size:.54rem;color:var(--gl)">04</span> Cost Index
-    </div>
-    <div onclick="hasAccess()?window.location.href='/advisors':showSub()" style="font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--gm);border:.5px solid var(--rule);padding:3px 10px;cursor:pointer;background:var(--white);white-space:nowrap">
-      <span style="font-size:.54rem;color:var(--gl)">05</span> Advisors
-    </div>
-    <div style="margin-left:auto;flex-shrink:0">
-      <button onclick="hasAccess()?null:showSub()" style="font-family:var(--sans);font-size:.65rem;font-weight:700;letter-spacing:.06em;background:var(--red);color:#fff;border:none;padding:.35rem .9rem;cursor:pointer">Get Full Access &rarr;</button>
-    </div>
+  <div style="max-width:1140px;margin:0 auto;padding:.55rem 2.5rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">
+    <span style="font-family:var(--mono);font-size:.54rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gl);margin-right:.5rem;flex-shrink:0">Tools</span>
+    <a href="/multiples" style="font-family:var(--mono);font-size:.65rem;font-weight:600;color:var(--navy);border:.5px solid var(--navy);padding:3px 9px;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:4px">Multiples <span style="font-size:.55rem;color:var(--grn);font-weight:700">Free</span></a>
+    <div onclick="hasAccess()?window.location.href='/wacc':showSub()" style="font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--gm);border:.5px solid var(--rule);padding:3px 9px;cursor:pointer;background:var(--white);white-space:nowrap">WACC</div>
+    <div onclick="hasAccess()?window.location.href='/exit-calculator':showSub()" style="font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--gm);border:.5px solid var(--rule);padding:3px 9px;cursor:pointer;background:var(--white);white-space:nowrap">Exit Calc</div>
+    <div onclick="hasAccess()?window.location.href='/country-index':showSub()" style="font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--gm);border:.5px solid var(--rule);padding:3px 9px;cursor:pointer;background:var(--white);white-space:nowrap">Cost Index</div>
+    <div onclick="hasAccess()?window.location.href='/advisors':showSub()" style="font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--gm);border:.5px solid var(--rule);padding:3px 9px;cursor:pointer;background:var(--white);white-space:nowrap">Advisors</div>
+    <div style="margin-left:auto;flex-shrink:0"><button onclick="showSub()" style="font-family:var(--sans);font-size:.65rem;font-weight:700;letter-spacing:.06em;background:var(--red);color:#fff;border:none;padding:.35rem .9rem;cursor:pointer">Get Full Access &rarr;</button></div>
   </div>
 </div>
 
@@ -673,24 +653,9 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
   </form>
 </div>
 
-<!-- BOTTOM GRID -->
-<div class="bottom-wrap">
 
-  <!-- Country costs -->
-  <div class="data-block">
-    <div class="db-header">
-      <svg class="db-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M1 8h14M8 1v14" stroke="currentColor" stroke-width="1.2"/></svg>
-      <span class="db-title">Transaction cost by country</span>
-    </div>
-    <div class="db-row"><span class="db-lbl">Switzerland</span><span class="db-val g">~4–7%</span></div>
-    <div class="db-row"><span class="db-lbl">Belgium</span><span class="db-val g">~4–8%</span></div>
-    <div class="db-row"><span class="db-lbl">United Kingdom</span><span class="db-val n">~25–28%</span></div>
-    <div class="db-row"><span class="db-lbl">Germany</span><span class="db-val n">~29–33%</span></div>
-    <div class="db-row"><span class="db-lbl">Italy</span><span class="db-val n">~31–35%</span></div>
-    <div class="db-row"><span class="db-lbl">France</span><span class="db-val r">~35–39%</span></div>
-    <div class="db-row"><span class="db-lbl">Denmark</span><span class="db-val r">~46–49%</span></div>
-    <div class="db-foot"><span class="db-src">Advisory + Legal + CGT · share deal · independent benchmarks</span><a href="/country-index" class="db-link">Full index →</a></div>
-  </div>
+<!-- BOTTOM GRID -->
+<div class="bottom-wrap" style="grid-template-columns:1fr 1fr">
 
   <!-- Issues -->
   <div class="data-block">
@@ -711,31 +676,14 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
       <svg class="db-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
       <span class="db-title">Case studies</span>
     </div>
-    <a href="/case-study-08" class="csr"><div class="csr-top"><span class="csr-num">08</span><span class="csr-badge g">~&euro;1.4B</span></div><div class="csr-title">L Catterton / KIKO Milano &mdash; Italian family exit</div></a>
-    <a href="/case-study-07" class="csr"><div class="csr-top"><span class="csr-num">07</span><span class="csr-badge n">7.6&times;</span></div><div class="csr-title">Swisscom / Vodafone Italia &mdash; &euro;8B market bet</div></a>
-    <a href="/case-study-06" class="csr"><div class="csr-top"><span class="csr-num">06</span><span class="csr-badge n">&pound;3.7B</span></div><div class="csr-title">Aviva / Direct Line &mdash; turnaround acquisition</div></a>
-    <a href="/case-study-05" class="csr"><div class="csr-top"><span class="csr-num">05</span><span class="csr-badge g">24.5&times;</span></div><div class="csr-title">Techem / Partners Group &mdash; infrastructure exit</div></a>
+    <a href="/case-study-08" class="csr"><div class="csr-top"><span class="csr-num">08</span><span class="csr-badge g">~&euro;1.4B</span></div><div class="csr-title">L Catterton / KIKO Milano &mdash; family exit</div></a>
+    <a href="/case-study-07" class="csr"><div class="csr-top"><span class="csr-num">07</span><span class="csr-badge n">7.6&times;</span></div><div class="csr-title">Swisscom / Vodafone Italia &mdash; &euro;8B bet</div></a>
+    <a href="/case-study-06" class="csr"><div class="csr-top"><span class="csr-num">06</span><span class="csr-badge n">&pound;3.7B</span></div><div class="csr-title">Aviva / Direct Line &mdash; turnaround acq.</div></a>
+    <a href="/case-study-05" class="csr"><div class="csr-top"><span class="csr-num">05</span><span class="csr-badge g">24.5&times;</span></div><div class="csr-title">Techem / Partners Group &mdash; infra exit</div></a>
     <div class="db-foot"><span class="db-src">8 case studies &middot; verified data</span><a href="/case-studies" class="db-link">All cases &rarr;</a></div>
   </div>
 
-</div>
-
-<!-- CREDENTIAL STRIP -->
-<div class="cred-strip">
-  <div class="cred-inner">
-    <div class="cred-item"><span class="cred-num">39+</span><span class="cred-lbl">Sector<br>benchmarks</span></div>
-    <div class="cred-sep"></div>
-    <div class="cred-item"><span class="cred-num">20</span><span class="cred-lbl">Countries<br>covered</span></div>
-    <div class="cred-sep"></div>
-    <div class="cred-item"><span class="cred-num">55</span><span class="cred-lbl">ERP country<br>datasets</span></div>
-    <div class="cred-sep"></div>
-    <div class="cred-item"><span class="cred-num">Jan 2026</span><span class="cred-lbl">Last data<br>update</span></div>
-    <div class="cred-sep"></div>
-    <div class="cred-item"><span class="cred-num">Damodaran</span><span class="cred-lbl">NYU Stern ·<br>primary source</span></div>
-  </div>
-</div>
-
-<footer>
+</div><footer>
   <div class="footer-inner">
     <a href="/" class="f-brand"><div class="f-brand-bar"></div><div class="f-brand-text">M&A Intelligence</div></a>
     <div class="f-links">
@@ -1098,7 +1046,7 @@ function pulseShow(id){
     if(el) el.style.display=(s===id?'':'none');
   });
   if(id==='pulseResult') document.getElementById('pulseResult').style.display='flex';
-  if(id==='pulseIdle') document.getElementById('pulseIdle').style.display='flex';
+  if(id==='pulseIdle') document.getElementById('pulseIdle').style.display='block';
   if(id==='pulseLoading') document.getElementById('pulseLoading').style.display='flex';
 }
 
