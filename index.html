@@ -401,13 +401,11 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
 <body>
 
 <!-- SIDEBAR -->
-
-<!-- SIDEBAR -->
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
 <div class="sidebar" id="sidebar">
   <div class="sb-top">
-    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&amp;A Intelligence</div></a>
-    <button class="sb-close" onclick="closeSidebar()">&#215;</button>
+    <a href="/" class="sb-logo"><div class="sb-logo-bar"></div><div class="sb-logo-text">M&A Intelligence</div></a>
+    <button class="sb-close" onclick="closeSidebar()">×</button>
   </div>
 
   <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0.75rem;margin-bottom:1.25rem">
@@ -421,7 +419,7 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
   <div class="sb-section">Editorial</div>
   <div class="sb-dropdown">
     <button class="sb-dropdown-btn" onclick="toggleDrop('dropEditorial')">
-      <span>Articles &amp; Cases</span><span class="sb-arrow" id="arrowEditorial">&#9662;</span>
+      <span>Articles &amp; Cases</span><span class="sb-arrow" id="arrowEditorial">▾</span>
     </button>
     <div class="sb-dropdown-items" id="dropEditorial">
       <a href="/issues" class="sb-sub-link" onclick="closeSidebar()">All Articles</a>
@@ -429,18 +427,26 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
       <a href="/issue-02" class="sb-sub-link" onclick="closeSidebar()">02. Why most SME sales take 3 years</a>
       <a href="/issue-03" class="sb-sub-link" onclick="closeSidebar()">03. What a buyer checks in 48 hours</a>
       <a href="/issue-04" class="sb-sub-link" onclick="closeSidebar()">04. Why your business sells to someone you know</a>
+      <a href="/issue-05" class="sb-sub-link" onclick="closeSidebar()">05. The earn-out trap</a>
+      <a href="/issue-06" class="sb-sub-link" onclick="closeSidebar()">06. Why PE pays more than strategics</a>
+      <a href="/issue-07" class="sb-sub-link" onclick="closeSidebar()">07. The mid-market multiple gap</a>
+      <a href="/issue-08" class="sb-sub-link" onclick="closeSidebar()">08. What EBITDA normalisation means</a>
       <a href="/case-studies" class="sb-sub-link" onclick="closeSidebar()">All Case Studies</a>
-      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker &#183; 7.5&#215;</a>
-      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer &#183; 4&#215; vs 7&#215;</a>
+      <a href="/case-study-01" class="sb-sub-link" onclick="closeSidebar()">CS01. DSV / DB Schenker &middot; 7.5&times;</a>
+      <a href="/case-study-02" class="sb-sub-link" onclick="closeSidebar()">CS02. DACH manufacturer &middot; 4&times; vs 7&times;</a>
       <a href="/case-study-03" class="sb-sub-link" onclick="closeSidebar()">CS03. Deal collapsed in due diligence</a>
-      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans &#183; 14.5&#215;</a>
+      <a href="/case-study-04" class="sb-sub-link" onclick="closeSidebar()">CS04. UPS / Frigo-Trans &middot; 14.5&times;</a>
+      <a href="/case-study-05" class="sb-sub-link" onclick="closeSidebar()">CS05. Techem &middot; 24.5&times;</a>
+      <a href="/case-study-06" class="sb-sub-link" onclick="closeSidebar()">CS06. Aviva / Direct Line</a>
+      <a href="/case-study-07" class="sb-sub-link" onclick="closeSidebar()">CS07. Swisscom / Vodafone Italia</a>
+      <a href="/case-study-08" class="sb-sub-link" onclick="closeSidebar()">CS08. L Catterton / KIKO Milano</a>
     </div>
   </div>
 
   <div class="sb-section">Tools</div>
   <div class="sb-dropdown">
     <button class="sb-dropdown-btn" onclick="toggleDrop('dropTools')">
-      <span>Calculators &amp; Data</span><span class="sb-arrow" id="arrowTools">&#9662;</span>
+      <span>Calculators &amp; Data</span><span class="sb-arrow" id="arrowTools">▾</span>
     </button>
     <div class="sb-dropdown-items" id="dropTools">
       <a href="/multiples" class="sb-sub-link" onclick="closeSidebar()">Valuation Multiples</a>
@@ -451,21 +457,21 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
     </div>
   </div>
 
-  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access &#8594;</button>
+  <button class="sb-cta" onclick="window.open('https://magic.beehiiv.com/v1/bb52d71b-9713-4d51-8c01-81b2c7f8d6e3','_blank')">Get Full Access →</button>
 </div>
 
 <!-- NAV -->
 <nav>
   <div class="nav-left">
     <button class="hamburger" onclick="openSidebar()" aria-label="Menu"><span></span><span></span><span></span></button>
-    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&amp;A Intelligence</div></a>
+    <a href="/" class="nav-logo"><div class="nav-logo-bar"></div><div class="nav-logo-text">M&A Intelligence</div></a>
   </div>
   <div class="nav-links">
     <a href="/about" class="nav-link">About</a>
     <a href="/issues" class="nav-link">Articles</a>
     <a href="/case-studies" class="nav-link">Case Studies</a>
     <div class="nav-dropdown" id="navToolsDrop">
-      <button class="nav-dropdown-btn" onclick="toggleNavDrop()" id="navToolsBtn">
+      <button class="nav-dropdown-btn " onclick="toggleNavDrop()" id="navToolsBtn">
         Tools
         <svg viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg"><path d="M0 0l5 6 5-6z"/></svg>
       </button>
@@ -514,7 +520,7 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
   <div class="hero-wrap">
     <div class="live-badge"><span class="live-dot"></span>Institutional-grade data · Updated Jan 2026</div>
     <h1 class="hero-h1">Stop guessing<br>your <span>valuation.</span></h1>
-    <p class="hero-tagline">Independent M&A data. Institutional precision.</p>
+    <p class="hero-tagline" style="font-family:var(--mono);font-size:.82rem;font-weight:400;font-style:normal;letter-spacing:.06em;color:var(--gl)">Independent M&A data &middot; Institutional precision &middot; Jan 2026</p>
 
     <div class="hero-grid">
       <!-- LEFT: rotating data card + CTA -->
@@ -616,43 +622,36 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
       </span>
     </a>
 
-    <!-- Locked group -->
-    <div class="locked-section">
-      <div class="locked-header">
-        <div class="lh-text">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="white" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="white" stroke-width="1.2"/></svg>
-          Professional access — unlock proprietary valuation models and market intelligence
-        </div>
-        <button class="btn-unlock" onclick="hasAccess()?window.location.href=this.dataset.url:showSub()">Get Full Access — Free →</button>
+    <!-- Tools terminal row -->
+    <div style="border:.5px solid var(--rule);background:var(--white)">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem;border-bottom:.5px solid var(--rule);background:var(--navy)">
+        <span style="font-family:var(--mono);font-size:.56rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4)">Analysis Tools &mdash; Full Access</span>
+        <button onclick="hasAccess()?null:showSub()" style="font-family:var(--sans);font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:.35rem .85rem;cursor:pointer">Get Full Access &rarr;</button>
       </div>
-      <div class="locked-grid">
-        <div class="lc" onclick="hasAccess()?window.location.href=this.dataset.url:showSub()">
-          <div class="lc-top"><span class="lc-num">02 · WACC</span><svg width="10" height="10" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="#999" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="#999" stroke-width="1.2"/></svg></div>
-          <div class="lc-name">WACC Calculator</div>
-          <div class="lc-data">9.2%</div>
-          <div class="lc-sub">IT · Germany · 55 countries</div>
-          <div class="lc-hint">Get access →</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule)">
+        <div onclick="hasAccess()?window.location.href='/wacc':showSub()" style="background:var(--bg);padding:.85rem 1rem;cursor:pointer;transition:background .12s" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background='var(--bg)'">
+          <div style="font-family:var(--mono);font-size:.56rem;color:var(--gl);letter-spacing:.08em;margin-bottom:.35rem">02 · WACC</div>
+          <div style="font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">WACC Calculator</div>
+          <div style="font-family:var(--mono);font-size:1.4rem;font-weight:600;color:var(--navy);filter:blur(4px);user-select:none">9.2%</div>
+          <div style="font-family:var(--mono);font-size:.6rem;color:var(--gl);margin-top:.2rem;filter:blur(3px);user-select:none">55 countries</div>
         </div>
-        <div class="lc" onclick="hasAccess()?window.location.href=this.dataset.url:showSub()">
-          <div class="lc-top"><span class="lc-num">03 · EXIT VALUE</span><svg width="10" height="10" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="#999" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="#999" stroke-width="1.2"/></svg></div>
-          <div class="lc-name">Exit Calculator</div>
-          <div class="lc-data">€8.8M</div>
-          <div class="lc-sub">€1M EBITDA · 12.6× · −30%</div>
-          <div class="lc-hint">Get access →</div>
+        <div onclick="hasAccess()?window.location.href='/exit-calculator':showSub()" style="background:var(--bg);padding:.85rem 1rem;cursor:pointer;transition:background .12s" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background='var(--bg)'">
+          <div style="font-family:var(--mono);font-size:.56rem;color:var(--gl);letter-spacing:.08em;margin-bottom:.35rem">03 · EXIT VALUE</div>
+          <div style="font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Exit Calculator</div>
+          <div style="font-family:var(--mono);font-size:1.4rem;font-weight:600;color:var(--navy);filter:blur(4px);user-select:none">&euro;8.8M</div>
+          <div style="font-family:var(--mono);font-size:.6rem;color:var(--gl);margin-top:.2rem;filter:blur(3px);user-select:none">&euro;1M EBITDA &middot; 12.6&times;</div>
         </div>
-        <div class="lc" onclick="hasAccess()?window.location.href=this.dataset.url:showSub()">
-          <div class="lc-top"><span class="lc-num">04 · COST INDEX</span><svg width="10" height="10" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="#999" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="#999" stroke-width="1.2"/></svg></div>
-          <div class="lc-name">Transaction Costs</div>
-          <div class="lc-data">0% → 42%</div>
-          <div class="lc-sub">CGT range · 20 countries</div>
-          <div class="lc-hint">Get access →</div>
+        <div onclick="hasAccess()?window.location.href='/country-index':showSub()" style="background:var(--bg);padding:.85rem 1rem;cursor:pointer;transition:background .12s" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background='var(--bg)'">
+          <div style="font-family:var(--mono);font-size:.56rem;color:var(--gl);letter-spacing:.08em;margin-bottom:.35rem">04 · COST INDEX</div>
+          <div style="font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Transaction Costs</div>
+          <div style="font-family:var(--mono);font-size:1.4rem;font-weight:600;color:var(--navy);filter:blur(4px);user-select:none">0%&rarr;42%</div>
+          <div style="font-family:var(--mono);font-size:.6rem;color:var(--gl);margin-top:.2rem;filter:blur(3px);user-select:none">20 countries</div>
         </div>
-        <div class="lc" onclick="hasAccess()?window.location.href=this.dataset.url:showSub()">
-          <div class="lc-top"><span class="lc-num">05 · ADVISORS</span><svg width="10" height="10" viewBox="0 0 14 14" fill="none"><rect x="2.5" y="6" width="9" height="7" rx="1" stroke="#999" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="#999" stroke-width="1.2"/></svg></div>
-          <div class="lc-name">Advisor Directory</div>
-          <div class="lc-data">20</div>
-          <div class="lc-sub">Firms · Europe · curated</div>
-          <div class="lc-hint">Get access →</div>
+        <div onclick="hasAccess()?window.location.href='/advisors':showSub()" style="background:var(--bg);padding:.85rem 1rem;cursor:pointer;transition:background .12s" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background='var(--bg)'">
+          <div style="font-family:var(--mono);font-size:.56rem;color:var(--gl);letter-spacing:.08em;margin-bottom:.35rem">05 · ADVISORS</div>
+          <div style="font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:.5rem">Advisor Directory</div>
+          <div style="font-family:var(--mono);font-size:1.4rem;font-weight:600;color:var(--navy);filter:blur(4px);user-select:none">100</div>
+          <div style="font-family:var(--mono);font-size:.6rem;color:var(--gl);margin-top:.2rem;filter:blur(3px);user-select:none">EU advisors</div>
         </div>
       </div>
     </div>
@@ -671,17 +670,17 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
 <!-- INTELLIGENCE PULSE -->
 <div class="pulse-section">
   <div class="pulse-inner">
-    <div class="pulse-header">
-      <div class="pulse-header-left">
-        <span class="pulse-label">Intelligence Pulse</span>
-        <span class="pulse-live"><span class="live-dot" style="width:5px;height:5px"></span>Live · powered by AI</span>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.85rem;flex-wrap:wrap;gap:.5rem">
+      <div style="display:flex;align-items:center;gap:.65rem">
+        <span style="font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy)">Intelligence Pulse</span>
+        <span style="display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:.55rem;color:var(--grn);letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border:1px solid rgba(10,92,30,.2);background:var(--grn2)"><span class="live-dot" style="width:4px;height:4px"></span>Live</span>
       </div>
-      <span class="pulse-note">Enter any M&A topic to get a 30-day signal briefing</span>
+      <span style="font-family:var(--mono);font-size:.58rem;color:var(--gl)">30-day signal brief &middot; AI</span>
     </div>
 
     <div class="pulse-search-row">
-      <input type="text" id="pulseInput" class="pulse-input" placeholder="e.g. PE buyouts DACH, carve-out multiples, Southern Europe deals…" />
-      <button class="pulse-btn" onclick="runPulse()">Scan →</button>
+      <input type="text" id="pulseInput" class="pulse-input" placeholder="sector / geography / deal type&hellip;" />
+      <button class="pulse-btn" onclick="runPulse()">Scan &rarr;</button>
     </div>
 
     <div class="pulse-chips">
@@ -735,11 +734,11 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
       <svg class="db-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="1" width="12" height="14" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M5 5h6M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.2"/></svg>
       <span class="db-title">Latest issues</span>
     </div>
-    <a href="/issue-04" class="ir"><div class="ir-meta">04 · May 2026</div><div class="ir-title">Why your business sells to someone you know</div></a>
-    <a href="/issue-03" class="ir"><div class="ir-meta">03 · Apr 2026</div><div class="ir-title">What a buyer checks in 48 hours</div></a>
-    <a href="/issue-02" class="ir"><div class="ir-meta">02 · Apr 2026</div><div class="ir-title">Why most SME sales take 3 years</div></a>
-    <a href="/issue-01" class="ir"><div class="ir-meta">01 · Mar 2026</div><div class="ir-title">Your business is not worth what you think</div></a>
-    <div class="db-foot"><span class="db-src">Independent analysis · buy-side perspective</span><a href="/issues" class="db-link">All issues →</a></div>
+    <a href="/issue-08" class="ir"><div class="ir-meta">08 · May 2026</div><div class="ir-title">What EBITDA normalisation really means</div></a>
+    <a href="/issue-07" class="ir"><div class="ir-meta">07 · May 2026</div><div class="ir-title">The mid-market multiple gap</div></a>
+    <a href="/issue-06" class="ir"><div class="ir-meta">06 · May 2026</div><div class="ir-title">Why PE pays more than strategic buyers</div></a>
+    <a href="/issue-05" class="ir"><div class="ir-meta">05 · May 2026</div><div class="ir-title">The earn-out trap</div></a>
+    <div class="db-foot"><span class="db-src">8 issues published</span><a href="/issues" class="db-link">All issues &rarr;</a></div>
   </div>
 
   <!-- Case Studies -->
@@ -748,11 +747,11 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
       <svg class="db-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
       <span class="db-title">Case studies</span>
     </div>
-    <a href="/case-study-04" class="csr"><div class="csr-top"><span class="csr-num">04</span><span class="csr-badge g">14.5×</span></div><div class="csr-title">UPS / Frigo-Trans — cold chain premium</div></a>
-    <a href="/case-study-03" class="csr"><div class="csr-top"><span class="csr-num">03</span><span class="csr-badge r">Collapsed</span></div><div class="csr-title">Deal killed in due diligence</div></a>
-    <a href="/case-study-02" class="csr"><div class="csr-top"><span class="csr-num">02</span><span class="csr-badge g">4× vs 7×</span></div><div class="csr-title">DACH manufacturer — 3× multiple gap</div></a>
-    <a href="/case-study-01" class="csr"><div class="csr-top"><span class="csr-num">01</span><span class="csr-badge g">7.5×</span></div><div class="csr-title">DSV / DB Schenker — €14.3B deconstructed</div></a>
-    <div class="db-foot"><span class="db-src">Institutional case analysis · verified data</span><a href="/case-studies" class="db-link">All cases →</a></div>
+    <a href="/case-study-08" class="csr"><div class="csr-top"><span class="csr-num">08</span><span class="csr-badge g">~&euro;1.4B</span></div><div class="csr-title">L Catterton / KIKO Milano &mdash; Italian family exit</div></a>
+    <a href="/case-study-07" class="csr"><div class="csr-top"><span class="csr-num">07</span><span class="csr-badge n">7.6&times;</span></div><div class="csr-title">Swisscom / Vodafone Italia &mdash; &euro;8B market bet</div></a>
+    <a href="/case-study-06" class="csr"><div class="csr-top"><span class="csr-num">06</span><span class="csr-badge n">&pound;3.7B</span></div><div class="csr-title">Aviva / Direct Line &mdash; turnaround acquisition</div></a>
+    <a href="/case-study-05" class="csr"><div class="csr-top"><span class="csr-num">05</span><span class="csr-badge g">24.5&times;</span></div><div class="csr-title">Techem / Partners Group &mdash; infrastructure exit</div></a>
+    <div class="db-foot"><span class="db-src">8 case studies &middot; verified data</span><a href="/case-studies" class="db-link">All cases &rarr;</a></div>
   </div>
 
 </div>
