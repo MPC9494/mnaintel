@@ -232,71 +232,70 @@ body{font-family:var(--sans);background:var(--bg);color:var(--b);-webkit-font-sm
 .sb-btn{font-family:var(--sans);font-size:0.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;border:none;padding:0.55rem 1rem;cursor:pointer;white-space:nowrap;transition:background .15s}
 .sb-btn:hover{background:var(--red2)}
 
-/* ── INTELLIGENCE PULSE ── */
-.pulse-section{background:var(--bg2);border-top:2.5px solid var(--navy);border-bottom:1px solid var(--rule)}
-.pulse-inner{max-width:1140px;margin:0 auto;padding:2.25rem 2.5rem 2rem}
-@media(max-width:767px){.pulse-inner{padding:1.5rem 1.25rem}}
+/* ── INTELLIGENCE PULSE — PERPLEXITY STYLE ── */
+.pulse-section{background:var(--white);border-top:.5px solid var(--rule);border-bottom:.5px solid var(--rule)}
+.pulse-inner{max-width:720px;margin:0 auto;padding:3rem 2rem 2.5rem;text-align:center}
+@media(max-width:767px){.pulse-inner{padding:2rem 1.25rem 2rem}}
 
-.pulse-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.5rem}
-.pulse-header-left{display:flex;align-items:center;gap:0.75rem}
-.pulse-label{font-size:0.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy)}
-.pulse-live{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:0.58rem;color:var(--grn);letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid rgba(10,92,30,0.2);background:var(--grn2)}
-.pulse-note{font-size:0.62rem;color:var(--gl)}
+/* Headline above input */
+.pulse-headline{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;color:var(--navy);letter-spacing:-.03em;margin-bottom:.35rem;line-height:1.1}
+.pulse-subhead{font-size:.88rem;color:var(--gl);margin-bottom:1.75rem;font-weight:400}
 
-.pulse-search-row{display:flex;gap:0;margin-bottom:0.85rem}
-.pulse-input{flex:1;font-family:var(--sans);font-size:1rem;color:var(--b);background:var(--white);border:1.5px solid var(--navy);border-right:none;padding:0.85rem 1.25rem;outline:none;transition:border-color .15s;box-shadow:0 2px 8px rgba(10,22,40,0.06)}
-.pulse-input:focus{border-color:var(--red);background:var(--white);box-shadow:0 2px 12px rgba(10,22,40,0.1)}
-.pulse-btn{font-family:var(--sans);font-size:0.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--navy);color:#fff;border:1.5px solid var(--navy);padding:0.85rem 2rem;cursor:pointer;white-space:nowrap;transition:all .15s;flex-shrink:0;box-shadow:0 2px 8px rgba(10,22,40,0.2)}
-.pulse-btn:hover{background:var(--red);border-color:var(--red);box-shadow:0 4px 16px rgba(139,26,26,0.25)}
+/* Input row — large, centered, pill */
+.pulse-search-row{display:flex;border:.5px solid var(--rule);border-radius:999px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07),0 0 0 0 transparent;transition:box-shadow .2s;margin-bottom:1rem;background:var(--white)}
+.pulse-search-row:focus-within{box-shadow:0 2px 20px rgba(10,22,40,.12),0 0 0 2px rgba(10,22,40,.08)}
+.pulse-input{flex:1;font-family:var(--sans);font-size:1rem;color:var(--b);background:transparent;border:none;padding:.9rem 1.4rem;outline:none;min-width:0}
+.pulse-input::placeholder{color:#bbb;font-size:.95rem}
+.pulse-btn{font-family:var(--sans);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--navy);color:#fff;border:none;padding:.9rem 1.75rem;cursor:pointer;border-radius:999px;margin:.2rem;transition:background .15s;flex-shrink:0;white-space:nowrap}
+.pulse-btn:hover{background:var(--red)}
 
-.pulse-chips{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.25rem}
-.pulse-chip{font-size:0.65rem;font-weight:600;letter-spacing:.04em;color:var(--gm);border:1px solid var(--rule);padding:4px 12px;cursor:pointer;background:var(--white);transition:all .12s;white-space:nowrap}
+/* Chips — pill shaped */
+.pulse-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;margin-bottom:0}
+.pulse-chip{font-size:.72rem;font-weight:500;color:var(--gm);border:.5px solid var(--rule);padding:5px 14px;cursor:pointer;background:var(--bg);border-radius:999px;transition:all .12s;white-space:nowrap}
 .pulse-chip:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
 
-.pulse-idle{display:flex;align-items:center;gap:0.75rem;padding:1.5rem;border:1px dashed var(--rule);background:var(--white)}
-.pi-icon{font-family:var(--mono);font-size:1.1rem;color:var(--gl);opacity:.5}
-.pi-text{font-size:0.8rem;color:var(--gl)}
+/* Output area */
+.pulse-output{margin-top:1.5rem;text-align:left}
 
-.pulse-loading{display:flex;flex-direction:column;gap:0.75rem;padding:1.25rem;border:0.5px solid var(--rule);background:var(--bg)}
-.pl-bar{height:2px;background:var(--rule);overflow:hidden}
-.pl-bar-fill{height:100%;width:40%;background:var(--red);animation:plScan 1.8s ease-in-out infinite}
+/* Idle */
+.pulse-idle{display:none}
+
+/* Loading */
+.pulse-loading{display:none;flex-direction:column;gap:.65rem;padding:1.25rem;border:.5px solid var(--rule);border-radius:var(--border-radius-lg,8px);background:var(--bg)}
+.pl-bar{height:2px;background:var(--rule);overflow:hidden;border-radius:2px}
+.pl-bar-fill{height:100%;width:40%;background:var(--navy);animation:plScan 1.8s ease-in-out infinite}
 @keyframes plScan{0%{transform:translateX(-100%)}100%{transform:translateX(350%)}}
-.pl-step{font-family:var(--mono);font-size:0.65rem;color:var(--gl);opacity:0;transition:opacity .3s;display:flex;align-items:center;gap:6px}
+.pl-step{font-family:var(--mono);font-size:.65rem;color:var(--gl);opacity:0;transition:opacity .3s;display:flex;align-items:center;gap:6px}
 .pl-step.vis{opacity:1}
-.pl-step-dot{width:4px;height:4px;border-radius:50%;background:var(--rule);flex-shrink:0}
+.pl-step-dot{width:5px;height:5px;border-radius:50%;background:var(--rule);flex-shrink:0}
 .pl-step-dot.done{background:var(--grn)}
 
-.pulse-result{display:flex;flex-direction:column;gap:0.85rem}
-.pr-head{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:0.75rem;border-bottom:0.5px solid var(--rule)}
-.pr-topic{font-size:0.95rem;font-weight:700;color:var(--navy)}
-.pr-date{font-family:var(--mono);font-size:0.58rem;color:var(--gl);letter-spacing:.06em}
-
-.pr-signals{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1.5px solid var(--navy)}
+/* Result card — clean white card */
+.pulse-result{display:none;flex-direction:column;gap:.85rem;border:.5px solid var(--rule);border-radius:8px;background:var(--white);padding:1.5rem;box-shadow:0 1px 8px rgba(0,0,0,.06)}
+.pr-head{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:.75rem;border-bottom:.5px solid var(--rule2)}
+.pr-topic{font-size:.95rem;font-weight:700;color:var(--navy)}
+.pr-date{font-family:var(--mono);font-size:.58rem;color:var(--gl);letter-spacing:.06em}
+.pr-signals{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:.5px solid var(--rule);border-radius:6px;overflow:hidden;margin-bottom:.25rem}
 @media(max-width:600px){.pr-signals{grid-template-columns:1fr 1fr}}
-.pr-sig{background:var(--bg);padding:0.9rem 1rem}
-.pr-sig-lbl{font-size:0.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:0.35rem}
-.pr-sig-val{font-family:var(--mono);font-size:1.5rem;font-weight:600;color:var(--navy);line-height:1}
-.pr-sig-sub{font-size:0.65rem;color:var(--gm);margin-top:0.2rem}
-
-.pr-section-lbl{font-size:0.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);padding-bottom:0.5rem;border-bottom:0.5px solid var(--rule2)}
-.pr-findings{display:flex;flex-direction:column;gap:0.5rem}
-.pr-finding{display:flex;gap:0.75rem;align-items:flex-start;padding:0.75rem 1rem;border:0.5px solid var(--rule);background:var(--bg)}
-.pr-find-n{font-family:var(--mono);font-size:0.6rem;color:var(--gl);min-width:18px;margin-top:1px}
-.pr-find-t{font-size:0.82rem;color:var(--g);line-height:1.55}
-
-.pr-driver{padding:0.85rem 1rem;border:0.5px solid var(--rule);border-left:3px solid var(--grn);background:var(--bg)}
-.pr-watch{padding:0.85rem 1rem;border:0.5px solid var(--rule);border-left:3px solid var(--red);background:var(--bg)}
-.pr-pill-lbl{font-size:0.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:0.3rem}
-.pr-pill-txt{font-size:0.82rem;color:var(--g);line-height:1.55}
-
-.pr-actions{display:flex;gap:0.5rem;flex-wrap:wrap}
-.pr-act{font-family:var(--sans);font-size:0.68rem;font-weight:600;letter-spacing:.06em;color:var(--navy);border:0.5px solid var(--rule);background:var(--bg);padding:0.45rem 0.85rem;cursor:pointer;transition:all .12s;white-space:nowrap}
+.pr-sig{background:var(--bg);padding:.85rem 1rem}
+.pr-sig-lbl{font-size:.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:.35rem}
+.pr-sig-val{font-family:var(--mono);font-size:1.35rem;font-weight:600;color:var(--navy);line-height:1}
+.pr-sig-sub{font-size:.65rem;color:var(--gm);margin-top:.2rem}
+.pr-section-lbl{font-size:.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);padding-bottom:.5rem;border-bottom:.5px solid var(--rule2)}
+.pr-findings{display:flex;flex-direction:column;gap:.45rem}
+.pr-finding{display:flex;gap:.75rem;align-items:flex-start;padding:.7rem .9rem;border:.5px solid var(--rule);background:var(--bg);border-radius:6px}
+.pr-find-n{font-family:var(--mono);font-size:.6rem;color:var(--gl);min-width:18px;margin-top:2px}
+.pr-find-t{font-size:.82rem;color:var(--g);line-height:1.55}
+.pr-driver{padding:.85rem 1rem;border:.5px solid var(--rule);border-left:3px solid var(--grn);background:var(--grn2);border-radius:0 6px 6px 0}
+.pr-watch{padding:.85rem 1rem;border:.5px solid var(--rule);border-left:3px solid var(--red);background:rgba(139,26,26,.05);border-radius:0 6px 6px 0}
+.pr-pill-lbl{font-size:.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gl);margin-bottom:.3rem}
+.pr-pill-txt{font-size:.82rem;color:var(--g);line-height:1.55}
+.pr-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+.pr-act{font-family:var(--sans);font-size:.68rem;font-weight:600;letter-spacing:.04em;color:var(--navy);border:.5px solid var(--rule);background:var(--bg);padding:.4rem .85rem;cursor:pointer;border-radius:999px;transition:all .12s;white-space:nowrap}
 .pr-act:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
 .pr-act.reset{color:var(--gl)}
 .pr-act.reset:hover{background:var(--bg2);color:var(--b);border-color:var(--rule)}
-
-.pulse-error{padding:0.85rem 1rem;border:0.5px solid var(--rule);font-size:0.8rem;color:var(--red);background:var(--bg)}
-
+.pulse-error{padding:.85rem 1rem;border:.5px solid var(--rule);border-radius:6px;font-size:.82rem;color:var(--red);background:var(--bg)}
 /* ── BOTTOM GRID ── */
 .bottom-wrap{max-width:1140px;margin:0 auto;padding:2rem 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
 @media(max-width:900px){.bottom-wrap{grid-template-columns:1fr 1fr;padding:1.5rem 1.25rem}}
@@ -495,61 +494,41 @@ footer{background:var(--navy);padding:1.5rem 2.5rem;border-top:1px solid rgba(25
 <!-- INTELLIGENCE PULSE -->
 <div class="pulse-section">
   <div class="pulse-inner">
-    <div class="pulse-header">
-      <div class="pulse-header-left">
-        <span class="pulse-label">Intelligence Pulse</span>
-        <span class="pulse-live"><span class="live-dot" style="width:5px;height:5px"></span>Live · powered by AI</span>
-      </div>
-      <span class="pulse-note">Enter any M&A topic to get a 30-day signal briefing</span>
-    </div>
+
+    <h2 class="pulse-headline">What's moving in European M&A?</h2>
+    <p class="pulse-subhead">Enter any sector, geography or deal type &mdash; get a live 30-day signal brief.</p>
 
     <div class="pulse-search-row">
-      <input type="text" id="pulseInput" class="pulse-input" placeholder="e.g. PE buyouts DACH, carve-out multiples, Southern Europe deals…" />
-      <button class="pulse-btn" onclick="runPulse()">Scan →</button>
+      <input type="text" id="pulseInput" class="pulse-input"
+        placeholder="e.g. PE buyouts DACH, healthcare carve-outs EU, distressed Italy&hellip;"
+        autocomplete="off" spellcheck="false" />
+      <button class="pulse-btn" onclick="runPulse()">Scan &rarr;</button>
     </div>
 
     <div class="pulse-chips">
-      <span class="pulse-chip" onclick="pFill('PE buyouts DACH 2025')">PE · DACH</span>
-      <span class="pulse-chip" onclick="pFill('Southern Europe M&A 2025')">Southern Europe</span>
-      <span class="pulse-chip" onclick="pFill('Latin America M&A 2025')">LatAm</span>
-      <span class="pulse-chip" onclick="pFill('carve-out transactions Europe 2025')">Carve-outs</span>
-      <span class="pulse-chip" onclick="pFill('EBITDA multiples industrials M&A 2025')">Industrials multiples</span>
-      <span class="pulse-chip" onclick="pFill('distressed M&A Europe 2025')">Distressed</span>
+      <span class="pulse-chip" onclick="pFill('PE buyouts DACH 2025');runPulse()">PE &middot; DACH</span>
+      <span class="pulse-chip" onclick="pFill('Software carve-outs Europe 2025');runPulse()">Software &middot; EU</span>
+      <span class="pulse-chip" onclick="pFill('distressed M&A Italy 2025');runPulse()">Distressed &middot; Italy</span>
+      <span class="pulse-chip" onclick="pFill('healthcare M&A Europe 2025');runPulse()">Healthcare</span>
+      <span class="pulse-chip" onclick="pFill('family business Germany 2025');runPulse()">Family &middot; DE</span>
+      <span class="pulse-chip" onclick="pFill('industrials M&A Europe 2025');runPulse()">Industrials</span>
+      <span class="pulse-chip" onclick="pFill('mid-market Benelux M&A 2025');runPulse()">Benelux</span>
+      <span class="pulse-chip" onclick="pFill('Latin America M&A 2025');runPulse()">LatAm</span>
     </div>
 
-    <!-- States -->
-    <div class="pulse-idle" id="pulseIdle" style="display:flex;flex-direction:column;gap:0;padding:0">
-      <div style="padding:1.1rem 1.5rem;display:flex;align-items:flex-start;gap:2.5rem;flex-wrap:wrap">
-        <div>
-          <div style="font-family:var(--mono);font-size:.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);margin-bottom:.6rem">Try scanning</div>
-          <div style="display:flex;flex-direction:column;gap:.35rem">
-            <button onclick="pFill('PE buyouts DACH 2025');runPulse()" style="font-family:var(--mono);font-size:.75rem;color:var(--navy);background:var(--white);border:1px solid var(--rule);padding:.38rem .85rem;cursor:pointer;text-align:left;font-weight:500;transition:border-color .12s" onmouseover="this.style.borderColor='var(--navy)'" onmouseout="this.style.borderColor='var(--rule)'">PE buyouts &middot; DACH &rarr;</button>
-            <button onclick="pFill('Software carve-outs Europe 2025');runPulse()" style="font-family:var(--mono);font-size:.75rem;color:var(--navy);background:var(--white);border:1px solid var(--rule);padding:.38rem .85rem;cursor:pointer;text-align:left;font-weight:500;transition:border-color .12s" onmouseover="this.style.borderColor='var(--navy)'" onmouseout="this.style.borderColor='var(--rule)'">Software carve-outs &middot; EU &rarr;</button>
-            <button onclick="pFill('distressed M&A Italy 2025');runPulse()" style="font-family:var(--mono);font-size:.75rem;color:var(--navy);background:var(--white);border:1px solid var(--rule);padding:.38rem .85rem;cursor:pointer;text-align:left;font-weight:500;transition:border-color .12s" onmouseover="this.style.borderColor='var(--navy)'" onmouseout="this.style.borderColor='var(--rule)'">Distressed &middot; Italy &rarr;</button>
-          </div>
-        </div>
-        <div style="border-left:.5px solid var(--rule);padding-left:2.5rem">
-          <div style="font-family:var(--mono);font-size:.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gl);margin-bottom:.6rem">You get</div>
-          <div style="display:flex;flex-direction:column;gap:.3rem">
-            <div style="font-family:var(--mono);font-size:.72rem;color:var(--gm);display:flex;align-items:center;gap:.4rem"><span style="color:var(--grn);font-size:.65rem">&#9658;</span>30-day deal flow signals</div>
-            <div style="font-family:var(--mono);font-size:.72rem;color:var(--gm);display:flex;align-items:center;gap:.4rem"><span style="color:var(--grn);font-size:.65rem">&#9658;</span>Valuation &amp; multiple data</div>
-            <div style="font-family:var(--mono);font-size:.72rem;color:var(--gm);display:flex;align-items:center;gap:.4rem"><span style="color:var(--grn);font-size:.65rem">&#9658;</span>Market sentiment</div>
-            <div style="font-family:var(--mono);font-size:.72rem;color:var(--gm);display:flex;align-items:center;gap:.4rem"><span style="color:var(--grn);font-size:.65rem">&#9658;</span>Key drivers &amp; watch signals</div>
-          </div>
-        </div>
+    <div class="pulse-output">
+      <div class="pulse-idle" id="pulseIdle"></div>
+      <div class="pulse-loading" id="pulseLoading">
+        <div class="pl-bar"><div class="pl-bar-fill"></div></div>
+        <div class="pl-steps" id="pulseSteps"></div>
       </div>
+      <div class="pulse-result" id="pulseResult"></div>
+      <div class="pulse-error" id="pulseError" style="display:none"></div>
     </div>
 
-    <div class="pulse-loading" id="pulseLoading" style="display:none">
-      <div class="pl-bar"><div class="pl-bar-fill"></div></div>
-      <div class="pl-steps" id="pulseSteps"></div>
-    </div>
-
-    <div class="pulse-result" id="pulseResult" style="display:none"></div>
-
-    <div class="pulse-error" id="pulseError" style="display:none"></div>
   </div>
 </div>
+
 
 <!-- HERO -->
 <div class="hero">
@@ -1098,7 +1077,7 @@ async function runPulse(){
   }
 }
 
-var sentColors={Bullish:'var(--grn)',Mixed:'var(--amber)',Cautious:'var(--red)',Bearish:'var(--red)'};
+var sentColors={Bullish:'#4ade80',Mixed:'#fbbf24',Cautious:'#f87171',Bearish:'#f87171'};
 
 function renderPulse(d,raw){
   var now=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short'});
